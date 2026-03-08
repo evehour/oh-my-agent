@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.1](https://github.com/first-fluke/oh-my-ag/compare/cli-v1.26.0...cli-v1.26.1) (2026-03-08)
+
+
+### Bug Fixes
+
+* **cli:** correct release-please extra-files paths for root-level manifest ([ecd18f1](https://github.com/first-fluke/oh-my-ag/commit/ecd18f1d333f90d5fc19845fb52d104eeafc2b25))
+
 ## [1.26.0](https://github.com/first-fluke/oh-my-ag/compare/cli-v1.25.1...cli-v1.26.0) (2026-03-08)
 
 

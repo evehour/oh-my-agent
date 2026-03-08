@@ -21,7 +21,7 @@ Deze repository kan dienen als een **centraal register** voor agentskills, zodat
                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  Consumerrepo                                           │
-│  • .agent-registry.yaml voor versiepinning              │
+│  • .agent-registry.yml voor versiepinning              │
 │  • Nieuwe versiedetectie → PR (geen auto-merge)         │
 │  • Herbruikbare Action voor bestandssynchronisatie       │
 └─────────────────────────────────────────────────────────┘
@@ -44,14 +44,14 @@ Kopieer sjablonen uit `docs/consumer-templates/` naar uw project:
 
 ```bash
 # Configuratiebestand
-cp docs/consumer-templates/.agent-registry.yaml /path/to/your-project/
+cp docs/consumer-templates/.agent-registry.yml /path/to/your-project/
 
 # GitHub-workflows
 cp docs/consumer-templates/check-registry-updates.yml /path/to/your-project/.github/workflows/
 cp docs/consumer-templates/sync-agent-registry.yml /path/to/your-project/.github/workflows/
 ```
 
-Pin vervolgens de gewenste versie in `.agent-registry.yaml`:
+Pin vervolgens de gewenste versie in `.agent-registry.yml`:
 
 ```yaml
 registry:

@@ -21,7 +21,7 @@ Este repositório pode servir como um **registro central** para skills de agente
                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  Repo Consumidor                                         │
-│  • .agent-registry.yaml para fixação de versão           │
+│  • .agent-registry.yml para fixação de versão           │
 │  • Detecção de nova versão → PR (sem auto-merge)         │
 │  • Action reutilizável para sincronização de arquivos    │
 └─────────────────────────────────────────────────────────┘
@@ -44,14 +44,14 @@ Copie os templates de `docs/consumer-templates/` para o seu projeto:
 
 ```bash
 # Arquivo de configuração
-cp docs/consumer-templates/.agent-registry.yaml /path/to/your-project/
+cp docs/consumer-templates/.agent-registry.yml /path/to/your-project/
 
 # Workflows do GitHub
 cp docs/consumer-templates/check-registry-updates.yml /path/to/your-project/.github/workflows/
 cp docs/consumer-templates/sync-agent-registry.yml /path/to/your-project/.github/workflows/
 ```
 
-Em seguida, fixe a versão desejada em `.agent-registry.yaml`:
+Em seguida, fixe a versão desejada em `.agent-registry.yml`:
 
 ```yaml
 registry:

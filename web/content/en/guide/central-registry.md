@@ -21,9 +21,9 @@ This repository can serve as a **central registry** for agent skills so multiple
                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  Consumer Repo                                          │
-│  • .agent-registry.yaml for version pinning             │
+│  • .agent-registry.yml for version pinning             │
 │  • New version detection → PR (no auto-merge)           │
-│  • Reusable Action for file sync                        │
+│  • Inline workflow for file sync                        │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -44,14 +44,14 @@ Copy templates from `docs/consumer-templates/` into your project:
 
 ```bash
 # Configuration file
-cp docs/consumer-templates/.agent-registry.yaml /path/to/your-project/
+cp docs/consumer-templates/.agent-registry.yml /path/to/your-project/
 
 # GitHub workflows
 cp docs/consumer-templates/check-registry-updates.yml /path/to/your-project/.github/workflows/
 cp docs/consumer-templates/sync-agent-registry.yml /path/to/your-project/.github/workflows/
 ```
 
-Then pin your desired version in `.agent-registry.yaml`:
+Then pin your desired version in `.agent-registry.yml`:
 
 ```yaml
 registry:
@@ -66,14 +66,3 @@ Workflow roles:
 
 **Important**: Auto-merge is intentionally disabled. All updates should be manually reviewed.
 
-## Using the Reusable Action
-
-Consumer repos can call the sync action directly:
-
-```yaml
-- uses: first-fluke/oh-my-ag/.github/actions/sync-agent-registry@main
-  with:
-    registry-repo: first-fluke/oh-my-ag
-    version: "1.2.0" # or "latest"
-    github-token: ${{ secrets.GITHUB_TOKEN }}
-```

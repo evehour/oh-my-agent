@@ -21,7 +21,7 @@ Ce dépôt peut servir de **registre central** pour les skills d'agents afin que
                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  Dépôt consommateur                                     │
-│  • .agent-registry.yaml pour l'épinglage de version     │
+│  • .agent-registry.yml pour l'épinglage de version     │
 │  • Détection de nouvelle version → PR (pas d'auto-merge)│
 │  • Action réutilisable pour la synchronisation           │
 └─────────────────────────────────────────────────────────┘
@@ -44,14 +44,14 @@ Copiez les modèles depuis `docs/consumer-templates/` dans votre projet :
 
 ```bash
 # Configuration file
-cp docs/consumer-templates/.agent-registry.yaml /path/to/your-project/
+cp docs/consumer-templates/.agent-registry.yml /path/to/your-project/
 
 # GitHub workflows
 cp docs/consumer-templates/check-registry-updates.yml /path/to/your-project/.github/workflows/
 cp docs/consumer-templates/sync-agent-registry.yml /path/to/your-project/.github/workflows/
 ```
 
-Puis épinglez la version souhaitée dans `.agent-registry.yaml` :
+Puis épinglez la version souhaitée dans `.agent-registry.yml` :
 
 ```yaml
 registry:

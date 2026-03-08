@@ -26,8 +26,8 @@ jobs:
       - name: Read current version
         id: current
         run: |
-          if [ -f ".agent-registry.yaml" ]; then
-            VERSION=$(grep -E '^version:' .agent-registry.yaml | sed 's/version:[[:space:]]*"\?\([^"]*\)"\?/\1/')
+          if [ -f ".agent-registry.yml" ]; then
+            VERSION=$(grep -E '^version:' .agent-registry.yml | sed 's/version:[[:space:]]*"\?\([^"]*\)"\?/\1/')
             echo "version=$VERSION" >> $GITHUB_OUTPUT
           else
             echo "version=0.0.0" >> $GITHUB_OUTPUT
@@ -78,13 +78,13 @@ jobs:
           # Create branch and update version
           git checkout -b "$BRANCH_NAME"
 
-          # Update .agent-registry.yaml
-          sed -i "s/^version:.*/version: \"${LATEST_VERSION}\"/" .agent-registry.yaml
+          # Update .agent-registry.yml
+          sed -i "s/^version:.*/version: \"${LATEST_VERSION}\"/" .agent-registry.yml
 
           # Commit and push
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .agent-registry.yaml
+          git add .agent-registry.yml
           git commit -m "chore(deps): update agent-registry to ${LATEST_VERSION}"
           git push origin "$BRANCH_NAME"
 

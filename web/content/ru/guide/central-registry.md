@@ -21,7 +21,7 @@ description: Использование этого репозитория как
                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │  Потребительский репозиторий                              │
-│  • .agent-registry.yaml для фиксации версий              │
+│  • .agent-registry.yml для фиксации версий              │
 │  • Обнаружение новой версии → PR (без авто-слияния)      │
 │  • Переиспользуемый Action для синхронизации файлов      │
 └─────────────────────────────────────────────────────────┘
@@ -44,14 +44,14 @@ description: Использование этого репозитория как
 
 ```bash
 # Файл конфигурации
-cp docs/consumer-templates/.agent-registry.yaml /path/to/your-project/
+cp docs/consumer-templates/.agent-registry.yml /path/to/your-project/
 
 # GitHub workflows
 cp docs/consumer-templates/check-registry-updates.yml /path/to/your-project/.github/workflows/
 cp docs/consumer-templates/sync-agent-registry.yml /path/to/your-project/.github/workflows/
 ```
 
-Затем зафиксируйте нужную версию в `.agent-registry.yaml`:
+Затем зафиксируйте нужную версию в `.agent-registry.yml`:
 
 ```yaml
 registry:

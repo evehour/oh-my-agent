@@ -236,3 +236,51 @@ If Antigravity IDE with SSE mode:
 - Start Serena server: serena-mcp-server --port 12341
 - Restart IDE to apply changes
 ```
+
+---
+
+## Step 6: Ask About Starring Repository
+
+First, check if `gh` CLI is available and authenticated:
+
+```bash
+gh auth status &>/dev/null
+```
+
+### If gh is available and authenticated
+
+**Before prompting, check if the repository is already starred:**
+
+```bash
+gh api user/starred/first-fluke/oh-my-ag &>/dev/null
+```
+
+**If already starred (exit code 0):**
+
+- Skip the prompt entirely
+
+**If NOT starred (exit code non-zero):**
+
+> **Ask the user**: "If you're enjoying oh-my-ag, would you like to support the project by starring it on GitHub?"
+>
+> **Options:**
+>
+> 1. Yes, star it!
+> 2. Maybe later
+
+If user chooses "Yes, star it!":
+
+```bash
+gh api -X PUT /user/starred/first-fluke/oh-my-ag 2>/dev/null && echo "Thanks for starring! ⭐" || true
+```
+
+**Note:** Fail silently if the API call doesn't work - never block setup completion.
+
+### If gh is NOT available or not authenticated
+
+```bash
+echo ""
+echo "If you enjoy oh-my-ag, consider starring the repo:"
+echo "  https://github.com/first-fluke/oh-my-ag"
+echo ""
+```

@@ -9,6 +9,7 @@ dist/
 build/
 *.js.map
 bin/*.js
+/cli/bin/
 !scripts/dashboard-web/**/*.js
 !scripts/generate-manifest.js
 

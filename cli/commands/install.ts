@@ -80,28 +80,22 @@ export async function install(): Promise<void> {
     selectedSkills = PRESETS[projectType as string] ?? [];
   }
 
-  const cliSelection = await p.multiselect({
-    message: "Also create symlinks for other CLI tools?",
-    options: [
-      {
-        value: "claude",
-        label: "Claude Code",
-        hint: ".claude/skills/",
-      },
-      {
-        value: "copilot",
-        label: "GitHub Copilot",
-        hint: ".github/skills/",
-      },
-    ],
-    required: false,
-  });
-
-  const selectedClis: CliTool[] = p.isCancel(cliSelection)
-    ? []
-    : (cliSelection as CliTool[]);
-
   const cwd = process.cwd();
+
+  const selectedClis: CliTool[] = ["claude"];
+  const hasGithubDir = existsSync(join(cwd, ".github"));
+  if (hasGithubDir) {
+    selectedClis.push("copilot");
+  } else {
+    const copilotSelection = await p.confirm({
+      message: "Also create symlinks for GitHub Copilot? (.github/skills/)",
+      initialValue: false,
+    });
+
+    if (!p.isCancel(copilotSelection) && copilotSelection) {
+      selectedClis.push("copilot");
+    }
+  }
   const spinner = p.spinner();
   spinner.start("Installing skills...");
 
@@ -118,10 +112,7 @@ export async function install(): Promise<void> {
 
     spinner.stop("Skills installed!");
 
-    const cliSymlinks =
-      selectedClis.length > 0
-        ? createCliSymlinks(cwd, selectedClis, selectedSkills)
-        : { created: [], skipped: [] };
+    const cliSymlinks = createCliSymlinks(cwd, selectedClis, selectedSkills);
 
     p.note(
       [

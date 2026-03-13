@@ -8,6 +8,11 @@ import {
   saveLocalVersion,
 } from "../lib/manifest.js";
 import { migrateToAgents } from "../lib/migrate.js";
+import {
+  createCliSymlinks,
+  detectExistingCliSymlinkDirs,
+  getInstalledSkillNames,
+} from "../lib/skills.js";
 
 export async function update(): Promise<void> {
   console.clear();
@@ -60,6 +65,20 @@ export async function update(): Promise<void> {
     }
 
     await saveLocalVersion(cwd, remoteManifest.version);
+
+    const cliTools = detectExistingCliSymlinkDirs(cwd);
+    if (cliTools.length > 0) {
+      const skillNames = getInstalledSkillNames(cwd);
+      if (skillNames.length > 0) {
+        const { created } = createCliSymlinks(cwd, cliTools, skillNames);
+        if (created.length > 0) {
+          p.note(
+            created.map((s) => `${pc.green("→")} ${s}`).join("\n"),
+            "Symlinks updated",
+          );
+        }
+      }
+    }
 
     const successCount = results.length - failures.length;
 

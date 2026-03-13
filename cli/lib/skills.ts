@@ -3,6 +3,7 @@ import {
   existsSync,
   lstatSync,
   mkdirSync,
+  readdirSync,
   readlinkSync,
   symlinkSync,
   unlinkSync,
@@ -365,4 +366,23 @@ export async function installGlobalWorkflows(): Promise<void> {
     const content = await res.text();
     writeFileSync(join(globalWorkflowsDir, file), content, "utf-8");
   }
+}
+
+export function getInstalledSkillNames(targetDir: string): string[] {
+  const skillsDir = join(targetDir, INSTALLED_SKILLS_DIR);
+  if (!existsSync(skillsDir)) return [];
+
+  return readdirSync(skillsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && !d.name.startsWith("_"))
+    .map((d) => d.name);
+}
+
+export function detectExistingCliSymlinkDirs(targetDir: string): CliTool[] {
+  const tools: CliTool[] = [];
+  for (const [cli, dir] of Object.entries(CLI_SKILLS_DIR)) {
+    if (existsSync(join(targetDir, dir))) {
+      tools.push(cli as CliTool);
+    }
+  }
+  return tools;
 }

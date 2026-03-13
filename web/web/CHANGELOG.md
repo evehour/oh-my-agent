@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/first-fluke/oh-my-agent/compare/web-v0.2.1...web-v0.2.2) (2026-03-13)
+
+
+### Documentation
+
+* update usage command to usage:anti across all documentation ([c696920](https://github.com/first-fluke/oh-my-agent/commit/c6969203005ce46eae40d5a3fd0ccea77c0cba84))
+
 ## [0.2.1](https://github.com/first-fluke/oh-my-agent/compare/web-v0.2.0...web-v0.2.1) (2026-03-13)
 
 

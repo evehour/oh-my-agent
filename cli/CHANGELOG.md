@@ -1,5 +1,40 @@
 # Changelog
 
+## [2.3.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.2.0...cli-v2.3.0) (2026-03-13)
+
+
+### Features
+
+* **cli:** auto-create .claude/skills/ symlinks without prompting ([05e24d3](https://github.com/first-fluke/oh-my-agent/commit/05e24d3f0d80c1bd209bd3c803e2f950d10c64bb))
+
+
+### Bug Fixes
+
+* **ci:** prevent release-please race with sync-manifest workflow ([9135cee](https://github.com/first-fluke/oh-my-agent/commit/9135cee38d4b00c14f21b89a6562894b74303d39))
+* **cli:** sync npm readme from root ([1a6112f](https://github.com/first-fluke/oh-my-agent/commit/1a6112fd3ca31fd360bc8fa9beb5d719f26ba1b9))
+* **docs:** escape pipe character in curl command for proper markdown table rendering ([4c47f4d](https://github.com/first-fluke/oh-my-agent/commit/4c47f4dbe2dd9c098d212d064ad4c9373486bb68))
+* **test:** use dynamic version comparison in metadata test ([3ce8fbf](https://github.com/first-fluke/oh-my-agent/commit/3ce8fbf68951be7e7bdd634ecb37478130c9b19d))
+
+
+### Refactoring
+
+* **skill:** rename developer-workflow to dev-workflow ([00b019f](https://github.com/first-fluke/oh-my-agent/commit/00b019fd25da33dcfcd2df54941539e89b7afb1a))
+
+
+### Documentation
+
+* add blank line between badges and language switcher ([4deb9b7](https://github.com/first-fluke/oh-my-agent/commit/4deb9b76351dd151ddaea8ed80043452a93d971d))
+* add npm, stars, license, and last-updated badges to all READMEs ([8d799ab](https://github.com/first-fluke/oh-my-agent/commit/8d799ab26948635fb0df1bc4fb3e921d9a528fe2))
+* clarify subtitle as 'The Ultimate Agent Orchestrator' ([9de9776](https://github.com/first-fluke/oh-my-agent/commit/9de9776699bde00cb4ba0c05fb12a247db64d556))
+* license ([838fb60](https://github.com/first-fluke/oh-my-agent/commit/838fb602da61bfe871f5e9db8fed3afc2f64e734))
+* swap Harness/Orchestrator naming (Harness=title, Orchestrator=description) ([6687245](https://github.com/first-fluke/oh-my-agent/commit/6687245d0dc5a063c09ce9674959108e790b7d1e))
+* translate 'Agent Orchestrator' in all languages ([25ce948](https://github.com/first-fluke/oh-my-agent/commit/25ce948e08ed38cfa604d4838d17bd154f7e9190))
+
+
+### Miscellaneous
+
+* sync prompt-manifest.json [skip ci] ([c5ab9c6](https://github.com/first-fluke/oh-my-agent/commit/c5ab9c699f21fb86738b091a682559f55afde2eb))
+
 ## [2.2.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.1.0...cli-v2.2.0) (2026-03-13)
 
 

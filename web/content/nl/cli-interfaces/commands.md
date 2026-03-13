@@ -13,7 +13,7 @@ Het onderstaande commando-overzicht weerspiegelt de huidige implementatie in `cl
 oh-my-ag                         # interactieve installer
 oh-my-ag dashboard               # terminaldashboard
 oh-my-ag dashboard:web           # webdashboard (:9847)
-oh-my-ag usage                   # gebruiksquota
+oh-my-ag usage:anti              # Antigravity-gebruiksquota
 oh-my-ag update                  # skills bijwerken vanuit registry
 oh-my-ag doctor                  # omgevings-/skilldiagnose
 oh-my-ag stats                   # productiviteitsmetrieken

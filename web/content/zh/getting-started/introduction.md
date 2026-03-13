@@ -5,7 +5,7 @@ description: oh-my-agent 是什么以及多代理协作的工作原理。
 
 # 简介
 
-oh-my-agent 是面向 Antigravity IDE 的多代理编排器。它将请求路由到专业化技能，并通过 Serena 记忆来协调各代理。
+oh-my-agent 是面向 AI IDE 的多代理编排器。它将请求路由到专业化技能，并通过 Serena 记忆来协调各代理。
 
 ## 您将获得
 

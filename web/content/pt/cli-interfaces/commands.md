@@ -13,7 +13,7 @@ A superfície de comandos abaixo reflete a implementação atual em `cli/cli.ts`
 oh-my-ag                         # instalador interativo
 oh-my-ag dashboard               # dashboard no terminal
 oh-my-ag dashboard:web           # dashboard web (:9847)
-oh-my-ag usage                   # cotas de uso
+oh-my-ag usage:anti              # cotas Antigravity
 oh-my-ag update                  # atualizar skills do registro
 oh-my-ag doctor                  # diagnóstico de ambiente/skills
 oh-my-ag stats                   # métricas de produtividade

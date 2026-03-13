@@ -13,7 +13,7 @@ La superficie de comandos a continuacion refleja la implementacion actual en `cl
 oh-my-ag                         # instalador interactivo
 oh-my-ag dashboard               # panel de control en terminal
 oh-my-ag dashboard:web           # panel de control web (:9847)
-oh-my-ag usage                   # cuotas de uso
+oh-my-ag usage:anti              # cuotas Antigravity
 oh-my-ag update                  # actualizar skills desde el registro
 oh-my-ag doctor                  # diagnosticos de entorno/skills
 oh-my-ag stats                   # metricas de productividad

@@ -1,8 +1,8 @@
-# oh-my-agent: Multi-Agent Orchestrator voor Antigravity
+# oh-my-agent: Multi-Agent Orchestrator
 
 [English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Polski](./README.pl.md) | [Українська](./README.uk.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
 
-Het ultieme multi-agent harness voor Google Antigravity.
+Het ultieme multi-agent harness voor agentisch programmeren.
 
 Orkestreer 9 gespecialiseerde domein agents (PM, Frontend, Backend, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform) via **Serena Memory**. Biedt parallelle CLI-uitvoering, realtime observability dashboards en zero-config progressieve skill loading. De alles-inbegrepen oplossing voor agentisch programmeren.
 
@@ -67,7 +67,7 @@ flowchart TD
 
 ## Wat is dit?
 
-Een verzameling **Antigravity Skills** die collaboratieve multi-agent ontwikkeling mogelijk maken. Werk wordt verdeeld over expert agents:
+Een verzameling **Agent Skills** die collaboratieve multi-agent ontwikkeling mogelijk maken. Werk wordt verdeeld over expert agents:
 
 | Agent | Specialisatie | Triggers |
 |-------|---------------|----------|
@@ -88,7 +88,7 @@ Een verzameling **Antigravity Skills** die collaboratieve multi-agent ontwikkeli
 
 ### Vereisten
 
-- **Google Antigravity** (2026+)
+- **AI IDE** (Amp, Claude Code, Gemini CLI, etc.)
 - **Bun** (voor CLI en dashboards)
 - **uv** (voor Serena setup)
 

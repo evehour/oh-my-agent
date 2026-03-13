@@ -13,7 +13,7 @@ description: cli/cli.ts 中的完整命令接口。
 oh-my-ag                         # 交互式安装器
 oh-my-ag dashboard               # 终端仪表盘
 oh-my-ag dashboard:web           # Web 仪表盘 (:9847)
-oh-my-ag usage                   # 用量配额
+oh-my-ag usage:anti              # Antigravity 用量配额
 oh-my-ag update                  # 从注册中心更新技能
 oh-my-ag doctor                  # 环境/技能诊断
 oh-my-ag stats                   # 生产力指标

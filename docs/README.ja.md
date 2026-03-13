@@ -1,8 +1,8 @@
-# oh-my-agent: Antigravity向けマルチエージェントオーケストレーター
+# oh-my-agent: マルチエージェントオーケストレーター
 
 [English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Українська](./README.uk.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
 
-Google Antigravityのための究極のマルチエージェントハーネス。
+エージェンティックコーディングのための究極のマルチエージェントハーネス。
 
 **Serena Memory**を通じて9つの専門ドメインエージェント(PM, Frontend, Backend, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform)を統合管理します。並列CLI実行、リアルタイム監視ダッシュボード、ゼロコンフィグの段階的スキルロードをサポート。エージェントベースのコーディングに必要なものすべてが揃ったオールインワンソリューションです。
 
@@ -67,7 +67,7 @@ flowchart TD
 
 ## これは何ですか？
 
-マルチエージェント協業開発を可能にする**Antigravity Skills**のコレクションです。作業を専門エージェントに分散します:
+マルチエージェント協業開発を可能にする**Agent Skills**のコレクションです。作業を専門エージェントに分散します:
 
 | エージェント | 専門分野 | トリガー |
 |-------|---------------|----------|
@@ -88,7 +88,7 @@ flowchart TD
 
 ### 前提条件
 
-- **Google Antigravity** (2026+)
+- **AI IDE** (Amp, Claude Code, Gemini CLI, etc.)
 - **Bun** (CLIとダッシュボード用)
 - **uv** (Serenaセットアップ用)
 

@@ -1,8 +1,8 @@
-# oh-my-agent: Orkiestrator Multi-Agentowy dla Antigravity
+# oh-my-agent: Orkiestrator Multi-Agentowy
 
 [English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Українська](./README.uk.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
 
-Najlepszy multi-agent harness dla Google Antigravity.
+Najlepszy multi-agent harness dla kodowania agentowego.
 
 Orkiestruj 9 wyspecjalizowanych agentów domenowych (PM, Frontend, Backend, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform) za pomocą **Serena Memory**. Oferuje równoległe wykonywanie CLI, dashboardy z obserwacją w czasie rzeczywistym i progresywne ładowanie umiejętności bez konfiguracji. Kompleksowe rozwiązanie dla kodowania agentowego.
 
@@ -67,7 +67,7 @@ flowchart TD
 
 ## Co to jest?
 
-Kolekcja **Antigravity Skills** umożliwiających współpracę multi-agentową w rozwoju. Praca jest dystrybuowana pomiędzy wyspecjalizowanych agentów:
+Kolekcja **Agent Skills** umożliwiających współpracę multi-agentową w rozwoju. Praca jest dystrybuowana pomiędzy wyspecjalizowanych agentów:
 
 | Agent | Specjalizacja | Wyzwalacze |
 |-------|---------------|----------|
@@ -88,7 +88,7 @@ Kolekcja **Antigravity Skills** umożliwiających współpracę multi-agentową 
 
 ### Wymagania wstępne
 
-- **Google Antigravity** (2026+)
+- **AI IDE** (Amp, Claude Code, Gemini CLI, etc.)
 - **Bun** (dla CLI i dashboardów)
 - **uv** (dla konfiguracji Serena)
 

@@ -10,7 +10,9 @@ import {
   vi,
 } from "vitest";
 import {
+  GITHUB_RAW,
   GITHUB_AGENT_ROOT,
+  REPO,
   installConfigs,
   installWorkflows,
 } from "../lib/skills.js";
@@ -145,5 +147,17 @@ describe("skills.ts - Workflow and Config Installation", () => {
         "utf-8",
       );
     });
+  });
+});
+
+describe("skills.ts - repository metadata", () => {
+  it("should use the renamed GitHub repository for skill downloads", () => {
+    expect(REPO).toBe("first-fluke/oh-my-agent");
+    expect(GITHUB_RAW).toBe(
+      "https://raw.githubusercontent.com/first-fluke/oh-my-agent/main/.agents/skills",
+    );
+    expect(GITHUB_AGENT_ROOT).toBe(
+      "https://raw.githubusercontent.com/first-fluke/oh-my-agent/main/.agents",
+    );
   });
 });

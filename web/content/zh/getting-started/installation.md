@@ -7,7 +7,7 @@ description: 前置条件、安装选项与首次运行设置。
 
 ## 前置条件
 
-- Google Antigravity (2026+)
+- AI IDE (Amp, Claude Code, Gemini CLI 等)
 - Bun
 - uv
 

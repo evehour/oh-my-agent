@@ -10,7 +10,7 @@ description: CLI が現在公開しているすべてのコマンドオプショ
 - `-h, --help`
 - `-V, --version`
 
-## usage
+## usage:anti
 
 - `--json`
 - `--raw`
@@ -56,7 +56,7 @@ description: CLI が現在公開しているすべてのコマンドオプショ
 ## 実践例
 
 ```bash
-oh-my-ag usage --json
+oh-my-ag usage:anti --json
 oh-my-ag stats --reset
 oh-my-ag cleanup --dry-run
 oh-my-ag agent:spawn backend "Implement auth API" session-01 -v codex -w ./apps/api

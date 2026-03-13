@@ -1,6 +1,6 @@
 import { execSync } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import type { SkillInfo, SkillsRegistry } from "../types/index.js";
 
 export const REPO = "first-fluke/oh-my-agent";

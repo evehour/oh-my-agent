@@ -1,8 +1,8 @@
-# oh-my-agent: Мультиагентний Оркестратор для Antigravity
+# oh-my-agent: Мультиагентний Оркестратор
 
 [English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
 
-Найкраща мультиагентна обв'язка для Google Antigravity.
+Найкраща мультиагентна обв'язка для агентного програмування.
 
 Керуйте 9 спеціалізованими доменними агентами (PM, Frontend, Backend, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform) через **Serena Memory**. Підтримка паралельного виконання CLI, дашборди спостереження в реальному часі та прогресивне завантаження навичок без налаштувань. Комплексне рішення для агентного програмування.
 
@@ -67,7 +67,7 @@ flowchart TD
 
 ## Що це таке?
 
-Колекція **навичок Antigravity**, що забезпечують спільну мультиагентну розробку. Робота розподіляється між експертними агентами:
+Колекція **Agent Skills**, що забезпечують спільну мультиагентну розробку. Робота розподіляється між експертними агентами:
 
 | Агент | Спеціалізація | Тригери |
 |-------|---------------|---------|
@@ -88,7 +88,7 @@ flowchart TD
 
 ### Передумови
 
-- **Google Antigravity** (2026+)
+- **AI IDE** (Amp, Claude Code, Gemini CLI, etc.)
 - **Bun** (для CLI та дашбордів)
 - **uv** (для налаштування Serena)
 

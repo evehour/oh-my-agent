@@ -13,7 +13,7 @@ description: Полный набор команд из cli/cli.ts.
 oh-my-ag                         # интерактивный установщик
 oh-my-ag dashboard               # терминальная панель мониторинга
 oh-my-ag dashboard:web           # веб-панель мониторинга (:9847)
-oh-my-ag usage                   # квоты использования
+oh-my-ag usage:anti              # квоты Antigravity
 oh-my-ag update                  # обновление навыков из реестра
 oh-my-ag doctor                  # диагностика окружения и навыков
 oh-my-ag stats                   # метрики продуктивности

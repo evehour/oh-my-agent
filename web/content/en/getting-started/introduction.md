@@ -5,7 +5,7 @@ description: What oh-my-agent is and how multi-agent collaboration works.
 
 # Introduction
 
-oh-my-agent is a multi-agent orchestrator for Antigravity IDE. It routes requests to specialized skills and coordinates agents through Serena memories.
+oh-my-agent is a multi-agent orchestrator for AI IDEs. It routes requests to specialized skills and coordinates agents through Serena memories.
 
 ## What You Get
 

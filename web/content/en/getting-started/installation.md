@@ -7,7 +7,7 @@ description: Prerequisites, install options, and first-run setup.
 
 ## Prerequisites
 
-- Google Antigravity (2026+)
+- AI IDE (2026+)
 - Bun
 - uv
 

@@ -13,7 +13,7 @@ description: cli/cli.ts 기준 전체 커맨드 인터페이스.
 oh-my-ag                         # 대화형 설치
 oh-my-ag dashboard               # 터미널 대시보드
 oh-my-ag dashboard:web           # 웹 대시보드 (:9847)
-oh-my-ag usage                   # 모델 사용량 조회
+oh-my-ag usage:anti              # Antigravity 모델 사용량 조회
 oh-my-ag update                  # 레지스트리 최신 스킬 업데이트
 oh-my-ag doctor                  # 환경/스킬 진단
 oh-my-ag stats                   # 생산성 지표

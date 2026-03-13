@@ -52,7 +52,7 @@ async function shouldCleanupGeminiDirs(
   const shouldCleanup = skipConfirm
     ? true
     : await p.confirm({
-        message: `Clean up Antigravity garbage?\n${dirList}`,
+        message: `Clean up IDE garbage?\n${dirList}`,
         initialValue: true,
       });
 

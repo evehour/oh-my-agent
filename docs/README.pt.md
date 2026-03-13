@@ -1,8 +1,8 @@
-# oh-my-agent: Orquestrador Multi-Agente para Antigravity
+# oh-my-agent: Orquestrador Multi-Agente
 
 [English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Українська](./README.uk.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
 
-O Harness Multi-Agente Definitivo para Google Antigravity.
+O Harness Multi-Agente Definitivo para codificação agêntica.
 
 Orquestre 9 agentes especializados de domínio (PM, Frontend, Backend, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform) via **Serena Memory**. Apresenta execução paralela via CLI, dashboards de observabilidade em tempo real e carregamento progressivo de habilidades com configuração zero. A solução completa para codificação agêntica.
 
@@ -67,7 +67,7 @@ flowchart TD
 
 ## O Que É Isso?
 
-Uma coleção de **Habilidades Antigravity** que permite o desenvolvimento colaborativo multi-agente. O trabalho é distribuído entre agentes especialistas:
+Uma coleção de **Habilidades Agent** que permite o desenvolvimento colaborativo multi-agente. O trabalho é distribuído entre agentes especialistas:
 
 | Agente | Especialização | Gatilhos |
 |-------|---------------|----------|
@@ -88,7 +88,7 @@ Uma coleção de **Habilidades Antigravity** que permite o desenvolvimento colab
 
 ### Pré-requisitos
 
-- **Google Antigravity** (2026+)
+- **AI IDE** (Amp, Claude Code, Gemini CLI, etc.)
 - **Bun** (para CLI e dashboards)
 - **uv** (para configuração do Serena)
 

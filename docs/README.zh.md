@@ -1,8 +1,8 @@
-# oh-my-agent: Antigravity 多代理编排器
+# oh-my-agent: 多代理编排器
 
 [English](../README.md) | [한국어](./README.ko.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Українська](./README.uk.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
 
-终极多代理驱动框架，适用于 Google Antigravity 及更多场景。
+终极多代理驱动框架，适用于智能编程及更多场景。
 
 通过 **Serena Memory** 编排 9 个专业领域代理（PM、Frontend、Backend、Mobile、QA、Debug、Brainstorm、DevWorkflow、Terraform）。支持并行 CLI 执行、实时可观测性仪表盘，以及零配置渐进式技能加载。开箱即用的代理编程解决方案。
 
@@ -60,7 +60,7 @@ flowchart TD
 
 ## 这是什么？
 
-一套 **Antigravity 技能**集合，支持协作式多代理开发。工作被分配给各专业代理：
+一套 **Agent 技能**集合，支持协作式多代理开发。工作被分配给各专业代理：
 
 | 代理 | 专业领域 | 触发条件 |
 |------|---------|---------|
@@ -81,7 +81,7 @@ flowchart TD
 
 ### 前置条件
 
-- **Google Antigravity**（2026+）
+- **AI IDE**（Amp, Claude Code, Gemini CLI, etc.）
 - **Bun**（用于 CLI 和仪表盘）
 - **uv**（用于 Serena 配置）
 
@@ -233,4 +233,4 @@ bunx oh-my-agent
 MIT
 
 ---
-**为 Google Antigravity 2026 构建** | **集成指南：** [EN](./web/content/en/guide/integration.md) · [KO](./web/content/ko/guide/integration.md)
+**为智能编程而构建** | **集成指南：** [EN](./web/content/en/guide/integration.md) · [KO](./web/content/ko/guide/integration.md)

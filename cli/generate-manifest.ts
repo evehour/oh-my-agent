@@ -10,9 +10,11 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const AGENT_DIR = ".agents";
 const MANIFEST_FILE = "prompt-manifest.json";
+export const REPOSITORY_URL = "https://github.com/first-fluke/oh-my-agent";
 const EXCLUDED_PATTERNS = [
   "__pycache__/",
   ".pyc",
@@ -27,13 +29,13 @@ interface FileInfo {
   fullPath: string;
 }
 
-interface ManifestFile {
+export interface ManifestFile {
   path: string;
   sha256: string;
   size: number;
 }
 
-interface Manifest {
+export interface Manifest {
   name: string;
   version: string;
   releaseDate: string;
@@ -101,6 +103,36 @@ function countByType(files: FileInfo[]): {
   return { skillCount, workflowCount };
 }
 
+export function createManifest({
+  version,
+  files,
+  skillCount,
+  workflowCount,
+  releaseDate,
+}: {
+  version: string;
+  files: ManifestFile[];
+  skillCount: number;
+  workflowCount: number;
+  releaseDate: string;
+}): Manifest {
+  return {
+    name: "oh-my-agent",
+    version,
+    releaseDate,
+    repository: REPOSITORY_URL,
+    files,
+    checksums: {
+      algorithm: "sha256",
+    },
+    metadata: {
+      skillCount,
+      workflowCount,
+      totalFiles: files.length,
+    },
+  };
+}
+
 function main(): void {
   const version = process.argv[2];
 
@@ -133,21 +165,13 @@ function main(): void {
     size: fs.statSync(file.fullPath).size,
   }));
 
-  const manifest: Manifest = {
-    name: "oh-my-agent",
-    version: version,
-    releaseDate: new Date().toISOString(),
-    repository: "https://github.com/first-fluke/oh-my-agent",
+  const manifest = createManifest({
+    version,
     files: filesWithChecksums,
-    checksums: {
-      algorithm: "sha256",
-    },
-    metadata: {
-      skillCount: skillCount,
-      workflowCount: workflowCount,
-      totalFiles: allFiles.length,
-    },
-  };
+    skillCount,
+    workflowCount,
+    releaseDate: new Date().toISOString(),
+  });
 
   fs.writeFileSync(MANIFEST_FILE, `${JSON.stringify(manifest, null, 2)}\n`);
   console.log(`Generated ${MANIFEST_FILE}`);
@@ -157,4 +181,7 @@ function main(): void {
   console.log(`  - Total files: ${allFiles.length}`);
 }
 
-main();
+const entryPath = process.argv[1] ? path.resolve(process.argv[1]) : "";
+if (entryPath === fileURLToPath(import.meta.url)) {
+  main();
+}

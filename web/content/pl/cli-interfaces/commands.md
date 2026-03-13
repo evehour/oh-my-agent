@@ -13,7 +13,7 @@ Poniższa powierzchnia komend odzwierciedla bieżącą implementację w `cli/cli
 oh-my-ag                         # interaktywny instalator
 oh-my-ag dashboard               # panel terminalowy
 oh-my-ag dashboard:web           # panel webowy (:9847)
-oh-my-ag usage                   # limity użycia
+oh-my-ag usage:anti              # limity Antigravity
 oh-my-ag update                  # aktualizacja umiejętności z rejestru
 oh-my-ag doctor                  # diagnostyka środowiska/umiejętności
 oh-my-ag stats                   # metryki produktywności

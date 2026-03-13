@@ -422,8 +422,8 @@ program
 
 addOutputOptions(
   program
-    .command("usage")
-    .description("Show model usage quotas (connects to local AI IDE)")
+    .command("usage:anti")
+    .description("Show model usage quotas (connects to local Antigravity IDE)")
     .option("--raw", "Dump raw RPC response"),
 ).action(
   runAction(

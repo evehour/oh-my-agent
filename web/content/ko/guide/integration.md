@@ -1,6 +1,6 @@
 ---
 title: 기존 프로젝트 통합
-description: 기존 Antigravity 프로젝트에 oh-my-agent 스킬을 안전하고 비파괴적으로 통합하는 가이드.
+description: 기존 AI IDE 프로젝트에 oh-my-agent 스킬을 안전하고 비파괴적으로 통합하는 가이드.
 ---
 
 # 기존 프로젝트에 통합하기
@@ -26,7 +26,7 @@ bunx oh-my-agent
 - `.agents/skills/*`, `.claude/skills/*` 호환 심링크 생성
 - `.agents/workflows/*` 설치
 - `.agents/config/user-preferences.yaml` 설치
-- 선택적으로 `~/.gemini/antigravity/global_workflows` 전역 워크플로우 설치
+- 선택적으로 `~/.gemini/global_workflows` 전역 워크플로우 설치
 
 ## 수동 통합 (안전 모드)
 

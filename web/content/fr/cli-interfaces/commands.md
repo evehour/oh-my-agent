@@ -13,7 +13,7 @@ La surface de commandes ci-dessous reflète l'implémentation actuelle dans `cli
 oh-my-ag                         # installateur interactif
 oh-my-ag dashboard               # tableau de bord terminal
 oh-my-ag dashboard:web           # tableau de bord web (:9847)
-oh-my-ag usage                   # quotas d'utilisation
+oh-my-ag usage:anti              # quotas Antigravity
 oh-my-ag update                  # mettre à jour les skills depuis le registre
 oh-my-ag doctor                  # diagnostics environnement/skills
 oh-my-ag stats                   # métriques de productivité

@@ -1,6 +1,6 @@
 ---
 title: 集成到现有项目
-description: 将 oh-my-agent 技能添加到现有 Antigravity 项目的安全且无损的集成工作流。
+description: 将 oh-my-agent 技能添加到现有 AI IDE 项目的安全且无损的集成工作流。
 ---
 
 # 集成到现有项目
@@ -25,7 +25,7 @@ bunx oh-my-agent
 - 安装共享资源到 `.agents/skills/_shared`
 - 安装 `.agents/workflows/*`
 - 安装 `.agents/config/user-preferences.yaml`
-- 可选安装全局工作流到 `~/.gemini/antigravity/global_workflows`
+- 可选安装全局工作流到 `~/.agents/global_workflows`
 
 ## 安全的手动方式
 
@@ -104,9 +104,9 @@ Also develop with other CLI tools?
   ○ GitHub Copilot (.github/skills/)
 ```
 
-选择您在 Antigravity 之外使用的其他 CLI 工具。安装器将：
+选择您在 AI IDE 之外使用的其他 CLI 工具。安装器将：
 
-1. 将技能安装到 `.agents/skills/`（Antigravity 的原生位置）
+1. 将技能安装到 `.agents/skills/`（AI IDE 的原生位置）
 2. 从每个选定 CLI 的技能目录创建到 `.agents/skills/` 的符号链接
 
 这确保了单一真实来源，同时允许技能在多个 CLI 工具间共用。

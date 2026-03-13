@@ -1,6 +1,6 @@
 ---
 title: Existing Project Integration
-description: Safe and non-destructive integration workflow for adding oh-my-agent skills to an existing Antigravity project.
+description: Safe and non-destructive integration workflow for adding oh-my-agent skills to an existing project.
 ---
 
 # Integrate Into an Existing Project
@@ -26,7 +26,7 @@ What it does:
 - Creates compatibility symlinks at `.agents/skills/*` and `.claude/skills/*`
 - Installs `.agents/workflows/*`
 - Installs `.agents/config/user-preferences.yaml`
-- Optionally installs global workflows under `~/.gemini/antigravity/global_workflows`
+- Optionally installs global workflows under `~/.gemini/global_workflows`
 
 ## Safe Manual Path
 

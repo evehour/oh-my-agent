@@ -13,7 +13,7 @@ description: Повна поверхня команд з cli/cli.ts.
 oh-my-ag                         # інтерактивний інсталятор
 oh-my-ag dashboard               # термінальна панель моніторингу
 oh-my-ag dashboard:web           # веб-панель моніторингу (:9847)
-oh-my-ag usage                   # квоти використання
+oh-my-ag usage:anti              # квоти Antigravity
 oh-my-ag update                  # оновити навички з реєстру
 oh-my-ag doctor                  # діагностика середовища/навичок
 oh-my-ag stats                   # метрики продуктивності

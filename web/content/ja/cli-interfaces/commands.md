@@ -13,7 +13,7 @@ description: cli/cli.ts の完全なコマンド一覧。
 oh-my-ag                         # インタラクティブインストーラー
 oh-my-ag dashboard               # ターミナルダッシュボード
 oh-my-ag dashboard:web           # Web ダッシュボード (:9847)
-oh-my-ag usage                   # 使用量クォータ
+oh-my-ag usage:anti              # Antigravity 使用量クォータ
 oh-my-ag update                  # レジストリからスキルを更新
 oh-my-ag doctor                  # 環境/スキル診断
 oh-my-ag stats                   # 生産性メトリクス

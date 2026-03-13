@@ -3,18 +3,16 @@ title: Usage Guide
 description: Full usage guide including examples, workflows, dashboard operations, and troubleshooting.
 ---
 
-# How to Use Antigravity Multi-Agent Skills
+# How to Use Agent Skills
 
 > If you are not sure where to start, type `/coordinate <your task prompt>` first.
 
 ## Quick Start
 
-1. **Open in Antigravity IDE**
-   ```bash
-   antigravity open /path/to/oh-my-agent
-   ```
+1. **Open in AI IDE**
+   Open the `oh-my-agent` project directory in your AI IDE.
 
-2. **Skills are automatically detected.** Antigravity scans `.agents/skills/` and indexes all available skills.
+2. **Skills are automatically detected.** The IDE scans `.agents/skills/` and indexes all available skills.
 
 3. **Chat in the IDE.** Describe what you want to build.
 
@@ -30,7 +28,7 @@ description: Full usage guide including examples, workflows, dashboard operation
 ```
 
 **What happens:**
-- Antigravity detects this matches `frontend-agent`
+- The IDE detects this matches `frontend-agent`
 - The skill loads automatically (Progressive Disclosure)
 - You get a React component with TypeScript, Tailwind, form validation
 
@@ -133,7 +131,7 @@ The server watches `.serena/memories/` using chokidar with debounce (100ms). Onl
 ## Key Concepts
 
 ### Progressive Disclosure
-Antigravity automatically matches requests to skills. You never manually select a skill. Only the needed skill loads into context.
+The IDE automatically matches requests to skills. You never manually select a skill. Only the needed skill loads into context.
 
 ### Token-Optimized Skill Design
 Each skill uses a two-layer architecture for maximum token efficiency:
@@ -186,7 +184,7 @@ Agents can work in separate directories to avoid conflicts. Workspace is auto-de
 
 ## Workflow Commands
 
-Type these in Antigravity IDE chat to trigger step-by-step workflows:
+Type these in AI IDE chat to trigger step-by-step workflows:
 
 | Command | Description |
 |---------|-------------|
@@ -206,7 +204,7 @@ These are separate from **skills** (which auto-activate). Workflows give you exp
 
 ```
 You: "Create a button component"
-  → Antigravity loads frontend-agent
+  → The IDE loads frontend-agent
   → Get component immediately
 ```
 
@@ -266,7 +264,7 @@ Browser:    http://localhost:9847 → real-time status
 
 | Problem | Solution |
 |---------|----------|
-| Skills not loading in Antigravity | Open project with `antigravity open .`, verify `.agents/skills/` and `SKILL.md`, then restart Antigravity IDE |
+| Skills not loading in IDE | Open the project directory in your AI IDE, verify `.agents/skills/` and `SKILL.md`, then restart the IDE |
 | CLI not found | Check `which gemini` / `which claude`, install missing CLIs |
 | Agents producing incompatible code | Review outputs in `.agents/brain/`, re-spawn one agent referencing the other agent output, then use QA Agent for final consistency check |
 | Dashboard shows "No agents detected" | Memory files have not been created yet. Run the orchestrator or manually create files in `.serena/memories/` |
@@ -295,7 +293,7 @@ bunx oh-my-agent help           # Show help
 
 ## For Developers (Integration Guide)
 
-If you want to integrate these skills into your existing Antigravity project, see [Existing Project Integration](./integration.md) for:
+If you want to integrate these skills into your existing project, see [Existing Project Integration](./integration.md) for:
 - Quick 3-step integration
 - Full dashboard integration
 - Customizing skills for your tech stack
@@ -303,4 +301,4 @@ If you want to integrate these skills into your existing Antigravity project, se
 
 ---
 
-**Just chat in Antigravity IDE.** For monitoring, use the dashboards. For CLI execution, use the orchestrator scripts. To integrate into your existing project, use [Existing Project Integration](./integration.md).
+**Just chat in your AI IDE.** For monitoring, use the dashboards. For CLI execution, use the orchestrator scripts. To integrate into your existing project, use [Existing Project Integration](./integration.md).

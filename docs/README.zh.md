@@ -121,7 +121,7 @@ bun install --global oh-my-agent
 | CLI | 安装 | 认证 |
 |-----|------|------|
 | Gemini | `bun install --global @google/gemini-cli` | `gemini auth` |
-| Claude | `curl -fsSL https://claude.ai/install.sh | bash` | `claude auth` |
+| Claude | `curl -fsSL https://claude.ai/install.sh \| bash` | `claude auth` |
 | Codex | `bun install --global @openai/codex` | `codex auth` |
 | Qwen | `bun install --global @qwen-code/qwen` | `qwen auth` |
 

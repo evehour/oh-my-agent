@@ -128,7 +128,7 @@ Vous aurez également besoin d'au moins un outil CLI :
 | CLI | Installation | Authentification |
 |-----|--------------|------------------|
 | Gemini | `bun install --global @anthropic-ai/gemini-cli` | `gemini auth` |
-| Claude | `curl -fsSL https://claude.ai/install.sh | bash` | `claude auth` |
+| Claude | `curl -fsSL https://claude.ai/install.sh \| bash` | `claude auth` |
 | Codex | `bun install --global @openai/codex` | `codex auth` |
 | Qwen | `bun install --global @qwen-code/qwen` | `qwen auth` |
 

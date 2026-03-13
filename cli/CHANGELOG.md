@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.8](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.0.7...cli-v2.0.8) (2026-03-13)
+
+
+### Documentation
+
+* add Antigravity as first AI IDE in README files ([80b1099](https://github.com/first-fluke/oh-my-agent/commit/80b1099bbf597b5a2506e6e97c1d22b265cb6ab8))
+
+
+### Miscellaneous
+
+* sync prompt-manifest.json ([7fec362](https://github.com/first-fluke/oh-my-agent/commit/7fec362c7f200ddb47f98e81681a88dcdc8d7de9))
+
 ## [2.0.7](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.0.6...cli-v2.0.7) (2026-03-13)
 
 

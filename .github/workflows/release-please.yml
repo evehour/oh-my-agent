@@ -125,6 +125,7 @@ jobs:
           const pkg = JSON.parse(fs.readFileSync("cli/package.json", "utf8"));
           pkg.name = "oh-my-ag";
           pkg.description = `${pkg.description} (legacy package name)`;
+          delete pkg.scripts;
           fs.writeFileSync(
             "/tmp/oh-my-ag-publish/package.json",
             `${JSON.stringify(pkg, null, 2)}\n`,

@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.1.0...cli-v2.2.0) (2026-03-13)
+
+
+### Features
+
+* **cli:** add DevOps preset to install wizard ([e428529](https://github.com/first-fluke/oh-my-agent/commit/e428529010aca69be8d08796afc7b328d747042d))
+
+
+### Miscellaneous
+
+* sync prompt-manifest.json ([88983ff](https://github.com/first-fluke/oh-my-agent/commit/88983ffc8943afd64c766165419bfc730bd5b88d))
+
 ## [2.1.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.0.8...cli-v2.1.0) (2026-03-13)
 
 

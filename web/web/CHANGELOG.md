@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/first-fluke/oh-my-agent/compare/web-v0.2.3...web-v0.2.4) (2026-03-13)
+
+
+### Documentation
+
+* sync localized readmes and remove uk docs ([3808917](https://github.com/first-fluke/oh-my-agent/commit/3808917ced96721766535e7b17fc39436d3fbd36))
+
 ## [0.2.3](https://github.com/first-fluke/oh-my-agent/compare/web-v0.2.2...web-v0.2.3) (2026-03-13)
 
 

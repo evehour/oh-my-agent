@@ -76,12 +76,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["オーケストレーション"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -114,7 +114,6 @@ flowchart TD
 | エージェント | 専門分野 | トリガー |
 |-------|---------------|----------|
 | **Brainstorm** | プランニング前のデザインファーストのアイデア出し | "brainstorm"、"ideate"、"explore idea" |
-| **Workflow Guide** | 複雑なマルチエージェントプロジェクトの調整 | "multi-domain"、"complex project" |
 | **PM Agent** | 要件分析、タスク分解、アーキテクチャ設計 | "plan"、"break down"、"what should we build" |
 | **Frontend Agent** | React/Next.js、TypeScript、Tailwind CSS | "UI"、"component"、"styling" |
 | **Backend Agent** | FastAPI、PostgreSQL、JWT認証 | "API"、"database"、"authentication" |
@@ -206,7 +205,7 @@ bunx oh-my-agent
 
 ```
 "ユーザー認証付きのTODOアプリを構築"
-→ workflow-guide → PM Agentが計画 → Agent Managerでエージェントを起動
+→ /coordinate → PM Agentが計画 → Agent Managerでエージェントを起動
 ```
 
 **明示的な調整** (ユーザートリガーのワークフロー):

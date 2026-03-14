@@ -76,12 +76,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["Оркестрация"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -114,7 +114,6 @@ flowchart TD
 | Агент | Специализация | Триггеры |
 |-------|---------------|----------|
 | **Brainstorm** | Идеация с приоритетом дизайна перед планированием | "brainstorm", "ideate", "explore idea" |
-| **Workflow Guide** | Координирует сложные мультиагентные проекты | "мультидомен", "сложный проект" |
 | **PM Agent** | Анализ требований, декомпозиция задач, архитектура | "план", "разбить", "что нужно построить" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "компонент", "стилизация" |
 | **Backend Agent** | FastAPI, PostgreSQL, JWT аутентификация | "API", "база данных", "аутентификация" |
@@ -206,7 +205,7 @@ bunx oh-my-agent
 
 ```
 "Построй TODO приложение с аутентификацией пользователей"
-→ workflow-guide → PM Agent планирует → агенты запускаются в Agent Manager
+→ /coordinate → PM Agent планирует → агенты запускаются в Agent Manager
 ```
 
 **Явная координация** (рабочий процесс, запущенный пользователем):

@@ -76,12 +76,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["Orchestration"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -114,7 +114,6 @@ Une collection de **Compétences Agent** permettant le développement collaborat
 | Agent | Spécialisation | Déclencheurs |
 |-------|---------------|--------------|
 | **Brainstorm** | Idéation design-first avant la planification | "brainstorm", "ideate", "explore idea" |
-| **Workflow Guide** | Coordonne les projets multi-agents complexes | "multi-domaine", "projet complexe" |
 | **PM Agent** | Analyse des exigences, décomposition des tâches, architecture | "planifier", "décomposer", "que devons-nous construire" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "composant", "style" |
 | **Backend Agent** | FastAPI, PostgreSQL, authentification JWT | "API", "base de données", "authentification" |
@@ -206,7 +205,7 @@ bunx oh-my-agent
 
 ```
 "Construire une application TODO avec authentification utilisateur"
-→ workflow-guide → PM Agent planifie → agents générés dans Agent Manager
+→ /coordinate → PM Agent planifie → agents générés dans Agent Manager
 ```
 
 **Coordination explicite** (workflow déclenché par l'utilisateur) :

@@ -68,12 +68,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["编排"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -106,7 +106,6 @@ flowchart TD
 | 代理 | 专业领域 | 触发条件 |
 |------|---------|---------|
 | **Brainstorm** | 规划前的设计优先构思 | "brainstorm", "ideate", "explore idea" |
-| **Workflow Guide** | 协调复杂的多代理项目 | "multi-domain", "complex project" |
 | **PM Agent** | 需求分析、任务分解、架构设计 | "plan", "break down", "what should we build" |
 | **Frontend Agent** | React/Next.js、TypeScript、Tailwind CSS | "UI", "component", "styling" |
 | **Backend Agent** | FastAPI、PostgreSQL、JWT 认证 | "API", "database", "authentication" |
@@ -200,7 +199,7 @@ bunx oh-my-agent
 
 ```
 "Build a TODO app with user authentication"
-→ workflow-guide → PM Agent plans → agents spawned in Agent Manager
+→ /coordinate → PM Agent plans → agents spawned in Agent Manager
 ```
 
 **简单任务**（单个代理自动激活）：

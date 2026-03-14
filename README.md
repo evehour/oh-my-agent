@@ -32,12 +32,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["Orchestration"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -116,7 +116,6 @@ A collection of **Agent Skills** enabling collaborative multi-agent development.
 | Agent | Specialization | Triggers |
 |-------|---------------|----------|
 | **Brainstorm** | Design-first ideation before planning | "brainstorm", "ideate", "explore idea" |
-| **Workflow Guide** | Coordinates complex multi-agent projects | "multi-domain", "complex project" |
 | **PM Agent** | Requirements analysis, task decomposition, architecture | "plan", "break down", "what should we build" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "component", "styling" |
 | **Backend Agent** | FastAPI, PostgreSQL, JWT authentication | "API", "database", "authentication" |
@@ -192,11 +191,11 @@ You'll also need at least one CLI tool:
 → Step-by-step: PM planning → agent spawning → QA review
 ```
 
-**Complex project** (workflow-guide coordinates):
+**Complex project** (/coordinate workflow)::
 
 ```
 "Build a TODO app with user authentication"
-→ workflow-guide → PM Agent plans → agents spawned in Agent Manager
+→ /coordinate → PM Agent plans → agents spawned in Agent Manager
 ```
 
 **Simple task** (single agent auto-activates):

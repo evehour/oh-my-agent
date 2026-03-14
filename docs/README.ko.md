@@ -73,7 +73,6 @@ Claude Code는 심링크 이상의 일급 네이티브 통합을 지원합니다
 | 에이전트 | 전문 분야 | 발동 키워드 |
 |---------|----------|-----------|
 | **Brainstorm** | 기획 전 설계 우선 아이디에이션 | "브레인스톰", "아이디어", "설계 탐색" |
-| **Workflow Guide** | 복잡한 멀티 에이전트 프로젝트 조율 | "멀티 도메인", "복잡한 프로젝트" |
 | **PM Agent** | 요구사항 분석, 태스크 분해, 아키텍처 설계 | "기획", "분석", "뭘 만들어야 할까" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "컴포넌트", "스타일링" |
 | **Backend Agent** | FastAPI, PostgreSQL, JWT 인증 | "API", "데이터베이스", "인증" |
@@ -99,12 +98,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["오케스트레이션"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -211,7 +210,7 @@ bunx oh-my-agent
 
 ```
 "사용자 인증이 있는 TODO 앱 만들어줘"
-→ workflow-guide → PM Agent 기획 → Agent Manager에서 에이전트 생성
+→ /coordinate → PM Agent 기획 → Agent Manager에서 에이전트 생성
 ```
 
 **간단한 작업** (단일 에이전트 자동 활성화):

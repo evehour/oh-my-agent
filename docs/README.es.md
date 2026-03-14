@@ -76,12 +76,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["Orquestación"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -114,7 +114,6 @@ Una colección de **Agent Skills** que habilitan desarrollo colaborativo multi-a
 | Agente | Especialización | Activadores |
 |-------|---------------|----------|
 | **Brainstorm** | Ideación design-first antes de la planificación | "brainstorm", "ideate", "explore idea" |
-| **Workflow Guide** | Coordina proyectos multi-agente complejos | "multi-dominio", "proyecto complejo" |
 | **PM Agent** | Análisis de requisitos, descomposición de tareas, arquitectura | "planificar", "descomponer", "qué deberíamos construir" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "componente", "estilos" |
 | **Backend Agent** | FastAPI, PostgreSQL, autenticación JWT | "API", "base de datos", "autenticación" |
@@ -206,7 +205,7 @@ bunx oh-my-agent
 
 ```
 "Construir una app TODO con autenticación de usuarios"
-→ workflow-guide → PM Agent planifica → agentes generados en Agent Manager
+→ /coordinate → PM Agent planifica → agentes generados en Agent Manager
 ```
 
 **Coordinación explícita** (workflow activado por usuario):

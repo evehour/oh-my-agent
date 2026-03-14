@@ -76,12 +76,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["Orkestratie"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -114,7 +114,6 @@ Een verzameling **Agent Skills** die collaboratieve multi-agent ontwikkeling mog
 | Agent | Specialisatie | Triggers |
 |-------|---------------|----------|
 | **Brainstorm** | Design-first ideatie vóór planning | "brainstorm", "ideate", "explore idea" |
-| **Workflow Guide** | Coördineert complexe multi-agent projecten | "multi-domein", "complex project" |
 | **PM Agent** | Requirements analyse, taak decompositie, architectuur | "plan", "onderverdelen", "wat moeten we bouwen" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "component", "styling" |
 | **Backend Agent** | FastAPI, PostgreSQL, JWT authenticatie | "API", "database", "authenticatie" |
@@ -206,7 +205,7 @@ bunx oh-my-agent
 
 ```
 "Bouw een TODO app met gebruikersauthenticatie"
-→ workflow-guide → PM Agent plant → agents gespawned in Agent Manager
+→ /coordinate → PM Agent plant → agents gespawned in Agent Manager
 ```
 
 **Expliciete coördinatie** (door gebruiker getriggerde workflow):

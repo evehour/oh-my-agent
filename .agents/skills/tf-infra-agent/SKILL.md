@@ -291,6 +291,16 @@ When reviewing terraform plan, provide:
 | Azure | `az account show` | `az account set --subscription <id>` |
 | Oracle | `oci iam region list` | `oci setup config` |
 
+## Execution Protocol (CLI Mode)
+
+See `../_shared/execution-protocols/` for vendor-specific protocols.
+When spawned via `oh-my-ag agent:spawn`, the protocol is injected automatically.
+
+## References
+
+- Clarification: `../_shared/clarification-protocol.md`
+- Difficulty assessment: `../_shared/difficulty-guide.md`
+
 ## Knowledge Reference
 
 terraform, infrastructure-as-code, iac, cloud, aws, gcp, azure, oracle, oci, multi-cloud, devops, provisioning, infrastructure, compute, database, storage, networking, iam, oidc, workload identity, container, kubernetes, serverless, vpc, subnet, load balancer, cdn, secrets management, state management, backend, provider

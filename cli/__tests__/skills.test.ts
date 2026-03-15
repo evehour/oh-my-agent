@@ -195,9 +195,18 @@ describe("installClaudeSkills", () => {
     await installClaudeSkills(mockTargetDir);
 
     const expectedSkills = [
-      "brainstorm", "commit", "coordinate", "debug", "deepinit",
-      "exec-plan", "orchestrate", "plan", "review", "setup",
-      "tools", "ultrawork",
+      "brainstorm",
+      "commit",
+      "coordinate",
+      "debug",
+      "deepinit",
+      "exec-plan",
+      "orchestrate",
+      "plan",
+      "review",
+      "setup",
+      "tools",
+      "ultrawork",
     ];
 
     for (const skill of expectedSkills) {
@@ -222,8 +231,12 @@ describe("installClaudeSkills", () => {
     await installClaudeSkills(mockTargetDir);
 
     const expectedAgents = [
-      "backend-impl.md", "frontend-impl.md", "mobile-impl.md",
-      "db-impl.md", "qa-reviewer.md", "debug-investigator.md",
+      "backend-impl.md",
+      "frontend-impl.md",
+      "mobile-impl.md",
+      "db-impl.md",
+      "qa-reviewer.md",
+      "debug-investigator.md",
       "pm-planner.md",
     ];
 

@@ -32,12 +32,12 @@ flowchart TD
         W3["/plan"]
         W4["/review"]
         W5["/debug"]
+        W6["/deepinit"]
     end
 
     subgraph Orchestration["Orchestration"]
         direction TB
         PM[pm-agent]
-        WF[workflow-guide]
         ORC[orchestrator]
     end
 
@@ -77,7 +77,7 @@ flowchart TD
 | Tool / IDE | Skills Source | Interop Mode | Notes |
 |------------|---------------|--------------|-------|
 | Antigravity | `.agents/skills/` | Native | Primary source-of-truth layout |
-| Claude Code | `.claude/skills/` | Symlink to `.agents/skills/` | Managed by installer |
+| Claude Code | `.claude/skills/` + `.claude/agents/` | Native + Adapter | Symlinks for domain skills + native workflow skills, subagents, and CLAUDE.md |
 | OpenCode | `.agents/skills/` | Native-compatible | Uses the same project-level skill source |
 | Amp | `.agents/skills/` | Native-compatible | Shares the same project-level source |
 | Codex CLI | `.agents/skills/` | Native-compatible | Works from the same project skill source |
@@ -85,6 +85,17 @@ flowchart TD
 | GitHub Copilot | `.github/skills/` | Optional symlink | Installed when selected during setup |
 
 See [SUPPORTED_AGENTS.md](https://github.com/first-fluke/oh-my-agent/blob/main/docs/SUPPORTED_AGENTS.md) for the current support matrix and interoperability notes.
+
+### Claude Code Native Integration
+
+Claude Code has first-class native integration beyond symlinks:
+
+- **`CLAUDE.md`** — project identity, architecture, and rules (auto-loaded by Claude Code)
+- **`.claude/skills/`** — 12 workflow skills mapped from `.agents/workflows/` (e.g., `/orchestrate`, `/coordinate`, `/ultrawork`)
+- **`.claude/agents/`** — 7 subagent definitions spawned via Task tool (backend-impl, frontend-impl, mobile-impl, db-impl, qa-reviewer, debug-investigator, pm-planner)
+- **Native loop patterns** — Review Loop, Issue Remediation Loop, and Phase Gate Loop using synchronous Task tool results instead of CLI polling
+
+Domain skills (backend-agent, frontend-agent, etc.) remain as symlinks from `.agents/skills/`. Workflow skills are native SKILL.md files that reference the corresponding `.agents/workflows/*.md` source of truth.
 
 ## The `.agents` Spec
 
@@ -105,7 +116,6 @@ A collection of **Agent Skills** enabling collaborative multi-agent development.
 | Agent | Specialization | Triggers |
 |-------|---------------|----------|
 | **Brainstorm** | Design-first ideation before planning | "brainstorm", "ideate", "explore idea" |
-| **Workflow Guide** | Coordinates complex multi-agent projects | "multi-domain", "complex project" |
 | **PM Agent** | Requirements analysis, task decomposition, architecture | "plan", "break down", "what should we build" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "component", "styling" |
 | **Backend Agent** | FastAPI, PostgreSQL, JWT authentication | "API", "database", "authentication" |
@@ -123,10 +133,16 @@ A collection of **Agent Skills** enabling collaborative multi-agent development.
 ### Prerequisites
 
 - **AI IDE** (Antigravity, Claude Code, Codex, Gemini, etc.)
-- **Bun** (for CLI and dashboards)
-- **uv** (for Serena setup)
 
-### Option 1: Interactive CLI (Recommended)
+### Option 1: One-Line Install (Recommended)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/first-fluke/oh-my-agent/main/cli/install.sh | bash
+```
+
+Automatically detects and installs missing dependencies (bun, uv), then launches the interactive setup.
+
+### Option 2: Manual Install
 
 ```bash
 # Install bun if you don't have it:
@@ -149,7 +165,7 @@ Select your project type and skills will be installed to `.agents/skills/`, with
 | 📱 Mobile | brainstorm, mobile, pm, qa, debug, commit |
 | 🚀 DevOps | brainstorm, tf-infra, dev-workflow, pm, qa, debug, commit |
 
-### Option 2: Global Installation (For Orchestrator)
+### Option 3: Global Installation (For Orchestrator)
 
 To use the core tools globally or run the SubAgent Orchestrator:
 
@@ -168,18 +184,18 @@ You'll also need at least one CLI tool:
 
 ### 2. Chat
 
-**Explicit coordination** (user-triggered workflow):
-
-```
-/coordinate
-→ Step-by-step: PM planning → agent spawning → QA review
-```
-
-**Complex project** (workflow-guide coordinates):
+**Complex project** (/coordinate workflow):
 
 ```
 "Build a TODO app with user authentication"
-→ workflow-guide → PM Agent plans → agents spawned in Agent Manager
+→ /coordinate → PM Agent plans → agents spawned in Agent Manager
+```
+
+**Maximum deployment** (/ultrawork workflow):
+
+```
+"Refactor auth module, add API tests, and update docs"
+→ /ultrawork → Independent tasks execute in parallel across agents
 ```
 
 **Simple task** (single agent auto-activates):

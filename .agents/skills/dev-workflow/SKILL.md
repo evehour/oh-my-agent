@@ -226,6 +226,16 @@ When troubleshooting:
 | Permission denied | Check file permissions, try with proper user |
 | Missing dependencies | Run `mise run install` or app-specific install |
 
+## Execution Protocol (CLI Mode)
+
+See `../_shared/execution-protocols/` for vendor-specific protocols.
+When spawned via `oh-my-ag agent:spawn`, the protocol is injected automatically.
+
+## References
+
+- Clarification: `../_shared/clarification-protocol.md`
+- Difficulty assessment: `../_shared/difficulty-guide.md`
+
 ## Knowledge Reference
 
 mise, task runner, monorepo, dev server, lint, format, test, typecheck, build, deployment, ci/cd, parallel execution, workflow, automation, tooling

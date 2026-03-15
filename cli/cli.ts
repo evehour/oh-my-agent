@@ -12,6 +12,7 @@ import { stats } from "./commands/stats.js";
 import { update } from "./commands/update.js";
 import { usage } from "./commands/usage.js";
 import { verify } from "./commands/verify.js";
+import { visualize } from "./commands/visualize.js";
 import { startDashboard } from "./dashboard.js";
 import { startTerminalDashboard } from "./terminal-dashboard.js";
 
@@ -602,6 +603,24 @@ program
       await star();
     }),
   );
+
+addOutputOptions(
+  program
+    .command("visualize")
+    .alias("viz")
+    .description("Visualize project structure as a dependency graph")
+    .option("-o, --out <path>", "Save as SVG file"),
+).action(
+  runAction(
+    async (options) => {
+      await visualize({
+        output: options.out,
+        json: resolveJsonMode(options),
+      });
+    },
+    { supportsJsonOutput: true },
+  ),
+);
 
 program
   .command("help")

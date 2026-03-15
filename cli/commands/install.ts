@@ -9,6 +9,7 @@ import {
   type CliTool,
   createCliSymlinks,
   getAllSkills,
+  installClaudeSkills,
   INSTALLED_SKILLS_DIR,
   installConfigs,
   installGlobalWorkflows,
@@ -111,6 +112,13 @@ export async function install(): Promise<void> {
     }
 
     spinner.stop("Skills installed!");
+
+    // Install Claude Code native workflow skills and agent definitions
+    if (selectedClis.includes("claude")) {
+      spinner.start("Installing Claude Code skills...");
+      await installClaudeSkills(cwd);
+      spinner.stop("Claude Code skills installed!");
+    }
 
     const cliSymlinks = createCliSymlinks(cwd, selectedClis, selectedSkills);
 

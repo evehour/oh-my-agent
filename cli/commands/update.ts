@@ -12,6 +12,7 @@ import {
   createCliSymlinks,
   detectExistingCliSymlinkDirs,
   getInstalledSkillNames,
+  installClaudeSkills,
 } from "../lib/skills.js";
 
 export async function update(): Promise<void> {
@@ -68,6 +69,11 @@ export async function update(): Promise<void> {
 
     const cliTools = detectExistingCliSymlinkDirs(cwd);
     if (cliTools.length > 0) {
+      // Update Claude Code native skills and agents
+      if (cliTools.includes("claude")) {
+        await installClaudeSkills(cwd);
+      }
+
       const skillNames = getInstalledSkillNames(cwd);
       if (skillNames.length > 0) {
         const { created } = createCliSymlinks(cwd, cliTools, skillNames);

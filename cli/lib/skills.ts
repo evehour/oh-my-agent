@@ -15,6 +15,7 @@ import type { SkillInfo, SkillsRegistry } from "../types/index.js";
 export const REPO = "first-fluke/oh-my-agent";
 export const GITHUB_RAW = `https://raw.githubusercontent.com/${REPO}/main/.agents/skills`;
 export const GITHUB_AGENT_ROOT = `https://raw.githubusercontent.com/${REPO}/main/.agents`;
+export const GITHUB_CLAUDE_ROOT = `https://raw.githubusercontent.com/${REPO}/main/.claude`;
 export const INSTALLED_SKILLS_DIR = ".agents/skills";
 
 function ghCliAvailable(): boolean {
@@ -371,6 +372,67 @@ export async function installGlobalWorkflows(): Promise<void> {
 
     const content = await res.text();
     writeFileSync(join(globalWorkflowsDir, file), content, "utf-8");
+  }
+}
+
+const CLAUDE_WORKFLOW_SKILLS = [
+  "brainstorm",
+  "commit",
+  "coordinate",
+  "debug",
+  "deepinit",
+  "exec-plan",
+  "orchestrate",
+  "plan",
+  "review",
+  "setup",
+  "tools",
+  "ultrawork",
+];
+
+const CLAUDE_AGENTS = [
+  "backend-impl.md",
+  "frontend-impl.md",
+  "mobile-impl.md",
+  "db-impl.md",
+  "qa-reviewer.md",
+  "debug-investigator.md",
+  "pm-planner.md",
+];
+
+export async function installClaudeSkills(targetDir: string): Promise<void> {
+  const claudeSkillsDir = join(targetDir, ".claude", "skills");
+  const claudeAgentsDir = join(targetDir, ".claude", "agents");
+
+  for (const dir of [claudeSkillsDir, claudeAgentsDir]) {
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
+    }
+  }
+
+  // Install workflow skills
+  for (const skill of CLAUDE_WORKFLOW_SKILLS) {
+    const skillDir = join(claudeSkillsDir, skill);
+    if (!existsSync(skillDir)) {
+      mkdirSync(skillDir, { recursive: true });
+    }
+
+    const url = `${GITHUB_CLAUDE_ROOT}/skills/${skill}/SKILL.md`;
+    const res = await fetch(url);
+    if (!res.ok) continue;
+
+    const content = await res.text();
+    writeFileSync(join(skillDir, "SKILL.md"), content, "utf-8");
+  }
+
+  // Install agent definitions
+  for (const agent of CLAUDE_AGENTS) {
+    const url = `${GITHUB_CLAUDE_ROOT}/agents/${agent}`;
+    const res = await fetch(url);
+    if (!res.ok) continue;
+
+    const content = await res.text();
+    writeFileSync(join(claudeAgentsDir, agent), content, "utf-8");
   }
 }
 

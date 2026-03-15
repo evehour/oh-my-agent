@@ -13,6 +13,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const AGENT_DIR = ".agents";
+const CLAUDE_DIR = ".claude";
 const MANIFEST_FILE = "prompt-manifest.json";
 export const REPOSITORY_URL = "https://github.com/first-fluke/oh-my-agent";
 const EXCLUDED_PATTERNS = [
@@ -157,6 +158,16 @@ function main(): void {
   console.log(`Generating manifest for version ${version}...`);
 
   const allFiles = getAllFiles(AGENT_DIR, [], AGENT_DIR);
+
+  // Scan .claude/skills/ and .claude/agents/ for Claude Code native files
+  const claudeDirs = ["skills", "agents"];
+  for (const sub of claudeDirs) {
+    const dir = path.join(CLAUDE_DIR, sub);
+    if (fs.existsSync(dir)) {
+      getAllFiles(dir, allFiles, dir);
+    }
+  }
+
   const { skillCount, workflowCount } = countByType(allFiles);
 
   const filesWithChecksums: ManifestFile[] = allFiles.map((file) => ({

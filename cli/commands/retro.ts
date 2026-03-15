@@ -1,373 +1,244 @@
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from "node:fs";
-import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
 import {
-  getCommitsSince,
-  getCommitTypes,
-  getGitStats,
-  getLastRetroDate,
-  getRecentChangedFiles,
-  getRecentGitCommits,
-} from "../lib/git.js";
-import {
-  extractKeyLearningsFromActivities,
-  getRecentAgentActivities,
-  getSessionSummary,
-} from "../lib/memory.js";
-import type { Retrospective } from "../types/index.js";
+  analyze,
+  fetchOrigin,
+  fmtCommitTypes,
+  fmtDelta,
+  fmtHotspots,
+  fmtHourlyHistogram,
+  fmtLeaderboard,
+  fmtMetricsTable,
+  fmtSessions,
+  fmtTweetable,
+  getCompareWindows,
+  getDisplayData,
+  getGitUserName,
+  loadPreviousSnapshot,
+  parseTimeWindow,
+  type RetroSnapshot,
+  saveSnapshot,
+  type TimeWindow,
+} from "../lib/retro.js";
 
-function getRetroPath(cwd: string): string {
-  return join(cwd, ".serena", "retrospectives");
-}
+function renderRetro(
+  snapshot: RetroSnapshot,
+  sessions: ReturnType<typeof getDisplayData>["sessions"],
+  hourly: number[],
+  currentUser: string,
+  previous: RetroSnapshot | null,
+): void {
+  // Tweetable summary
+  console.log(pc.bold(pc.cyan(fmtTweetable(snapshot))));
+  console.log();
 
-function loadRetrospectives(cwd: string): Retrospective[] {
-  const retroDir = getRetroPath(cwd);
-  if (!existsSync(retroDir)) return [];
+  // Summary Table
+  p.note(fmtMetricsTable(snapshot.metrics), "Summary");
 
-  try {
-    const files = readdirSync(retroDir)
-      .filter((f) => f.endsWith(".json"))
-      .sort()
-      .reverse();
-    return files
-      .slice(0, 10)
-      .map((f) => JSON.parse(readFileSync(join(retroDir, f), "utf-8")));
-  } catch {
-    return [];
+  // Trends vs Last Retro
+  if (previous) {
+    p.note(fmtDelta(snapshot, previous), "Trends vs Last Retro");
   }
-}
 
-function saveRetrospective(cwd: string, retro: Retrospective): void {
-  const retroDir = getRetroPath(cwd);
-  if (!existsSync(retroDir)) {
-    mkdirSync(retroDir, { recursive: true });
+  // Contributor Leaderboard
+  if (snapshot.metrics.contributors > 0) {
+    p.note(fmtLeaderboard(snapshot.authors, currentUser), "Contributors");
   }
-  const filename = `${retro.date.replace(/[:.]/g, "-")}_${retro.id}.json`;
-  writeFileSync(
-    join(retroDir, filename),
-    JSON.stringify(retro, null, 2),
-    "utf-8",
+
+  // Hourly Distribution
+  p.note(fmtHourlyHistogram(hourly), "Commit Time Distribution");
+
+  // Sessions
+  if (sessions.length > 0) {
+    p.note(fmtSessions(sessions), "Work Sessions");
+  }
+
+  // Commit Types
+  p.note(
+    fmtCommitTypes(snapshot.commitTypes, snapshot.metrics.commits),
+    "Commit Types",
   );
-}
 
-function generateAutoSummary(cwd: string): {
-  summary: string;
-  learnings: string[];
-  nextSteps: string[];
-} {
-  const lastRetroDate = getLastRetroDate(cwd);
-  const commits = getCommitsSince(cwd, lastRetroDate);
-  const commitTypes = getCommitTypes(commits);
-  const stats = getGitStats(cwd);
-  const sessionSummary = getSessionSummary(cwd);
-  const activities = getRecentAgentActivities(cwd, lastRetroDate || undefined);
+  // Hotspots
+  if (snapshot.hotspots.length > 0) {
+    const fixRatio =
+      snapshot.metrics.commits > 0
+        ? Math.round(
+            ((snapshot.commitTypes.fix || 0) / snapshot.metrics.commits) * 100,
+          )
+        : 0;
 
-  const mainType = Object.entries(commitTypes).sort(([, a], [, b]) => b - a)[0];
-  let summary = "Development session";
-
-  if (mainType) {
-    const [type] = mainType;
-    const typeDescriptions: Record<string, string> = {
-      feat: "Feature development",
-      fix: "Bug fixes and improvements",
-      refactor: "Code refactoring",
-      docs: "Documentation updates",
-      test: "Testing improvements",
-      chore: "Maintenance tasks",
-      build: "Build system updates",
-      perf: "Performance improvements",
-    };
-    summary = typeDescriptions[type] || "Development session";
-  }
-
-  if (stats.filesChanged > 0) {
-    summary += ` (${stats.filesChanged} files, +${stats.linesAdded}/-${stats.linesRemoved})`;
-  }
-
-  if (sessionSummary.agents.length > 0) {
-    summary += ` with ${sessionSummary.agents.join(", ")}`;
-  }
-
-  const learnings = extractKeyLearningsFromActivities(activities);
-
-  if (commits.length > 0 && learnings.length === 0) {
-    if (commitTypes.refactor || commitTypes.perf) {
-      learnings.push("Code quality and performance improvements");
+    let hotspotContent = fmtHotspots(snapshot.hotspots);
+    if (fixRatio > 50) {
+      hotspotContent += `\n\n  ${pc.yellow(`Fix ratio ${fixRatio}% — ship-fast-fix-fast pattern detected`)}`;
     }
-    if (commitTypes.test) {
-      learnings.push("Enhanced test coverage");
-    }
-    if (commitTypes.fix) {
-      learnings.push("Issue resolution and stability improvements");
-    }
+    p.note(hotspotContent, "File Hotspots (Top 10)");
   }
 
-  const nextSteps: string[] = [];
-  if (sessionSummary.inProgressTasks.length > 0) {
-    nextSteps.push(...sessionSummary.inProgressTasks.slice(0, 3));
-  }
+  // Focus Score
+  const { focusScore, focusArea } = snapshot.metrics;
+  const focusColor =
+    focusScore >= 60 ? pc.green : focusScore >= 40 ? pc.yellow : pc.red;
+  p.note(
+    `  ${focusColor(`${focusScore}%`)} — primary area: ${pc.bold(focusArea)}`,
+    "Focus Score",
+  );
 
-  if (commits.length > 0) {
-    const lastCommit = commits[0]?.toLowerCase() || "";
-    if (lastCommit.includes("wip") || lastCommit.includes("todo")) {
-      nextSteps.push("Complete work-in-progress items");
-    }
-  }
+  // Streak
+  p.note(
+    `  ${pc.bold(String(snapshot.metrics.streakDays))} consecutive days with commits`,
+    "Shipping Streak",
+  );
 
-  if (nextSteps.length === 0) {
-    nextSteps.push("Continue development", "Review and test changes");
+  // AI-assisted
+  if (snapshot.metrics.aiAssistedCommits > 0) {
+    const pct =
+      snapshot.metrics.commits > 0
+        ? Math.round(
+            (snapshot.metrics.aiAssistedCommits / snapshot.metrics.commits) *
+              100,
+          )
+        : 0;
+    p.note(
+      `  ${snapshot.metrics.aiAssistedCommits} commits (${pct}%) AI-assisted`,
+      "AI Collaboration",
+    );
   }
-
-  return {
-    summary,
-    learnings: learnings.slice(0, 5),
-    nextSteps: nextSteps.slice(0, 5),
-  };
 }
 
 export async function retro(
-  jsonMode = false,
-  interactive = false,
+  windowArg?: string,
+  options: {
+    json?: boolean;
+    compare?: boolean;
+    interactive?: boolean;
+  } = {},
 ): Promise<void> {
   const cwd = process.cwd();
-  const retroDir = getRetroPath(cwd);
-  const existingRetros = loadRetrospectives(cwd);
 
-  if (jsonMode) {
-    console.log(JSON.stringify({ retrospectives: existingRetros }, null, 2));
-    return;
-  }
-
-  if (!interactive) {
-    const { summary, learnings, nextSteps } = generateAutoSummary(cwd);
-    const changedFiles = getRecentChangedFiles(cwd);
-
-    const newRetro: Retrospective = {
-      id: Math.random().toString(36).slice(2, 8),
-      date: new Date().toISOString(),
-      summary,
-      keyLearnings: learnings,
-      filesChanged: changedFiles,
-      nextSteps,
-    };
-
-    saveRetrospective(cwd, newRetro);
-
-    console.clear();
-    p.intro(pc.bgMagenta(pc.white(" 🔄 oh-my-agent retro ")));
-
-    p.note(
-      [
-        pc.green("✅ Auto-generated retrospective saved!"),
-        "",
-        pc.bold("Summary:"),
-        summary,
-        "",
-        pc.bold("Key Learnings:"),
-        ...learnings.map((l) => `  • ${l}`),
-        "",
-        pc.bold("Next Steps:"),
-        ...nextSteps.map((s) => `  → ${s}`),
-      ].join("\n"),
-      "Saved",
-    );
-
-    p.outro(pc.dim(`Stored in: ${retroDir}`));
+  // Interactive mode (legacy)
+  if (options.interactive) {
+    const { retro: legacyRetro } = await import("./retro-interactive.js");
+    await legacyRetro();
     return;
   }
 
   console.clear();
-  p.intro(pc.bgMagenta(pc.white(" 🔄 oh-my-agent retro (interactive) ")));
+  p.intro(pc.bgMagenta(pc.white(" retro ")));
 
-  const recentRetro = existingRetros[0];
-  if (recentRetro) {
-    p.note(
-      [
-        pc.bold("📅 Last Retrospective"),
-        `Date: ${recentRetro.date}`,
-        "",
-        pc.bold("Summary:"),
-        recentRetro.summary,
-        "",
-        pc.bold("Key Learnings:"),
-        ...recentRetro.keyLearnings.map((l) => `  • ${l}`),
-        "",
-        pc.bold("Next Steps:"),
-        ...recentRetro.nextSteps.map((s) => `  → ${s}`),
-      ].join("\n"),
-      "Previous Session",
-    );
-  }
+  const s = p.spinner();
+  s.start("Fetching origin...");
+  fetchOrigin(cwd);
+  s.stop("Origin fetched");
 
-  const action = await p.select({
-    message: "What would you like to do?",
-    options: [
-      {
-        value: "auto",
-        label: "✨ Auto-generate from git history",
-        hint: "Analyze commits and agent activity",
-      },
-      {
-        value: "manual",
-        label: "📝 Create manually",
-        hint: "Write your own retrospective",
-      },
-      { value: "list", label: "📋 View past retrospectives" },
-      { value: "exit", label: "👋 Exit" },
-    ],
-  });
+  const currentUser = getGitUserName(cwd);
 
-  if (p.isCancel(action) || action === "exit") {
-    p.outro(pc.dim("Goodbye!"));
-    return;
-  }
+  if (options.compare) {
+    // Compare mode
+    const { current, previous } = getCompareWindows(windowArg);
 
-  if (action === "list") {
-    if (existingRetros.length === 0) {
-      p.note(pc.yellow("No retrospectives found."), "History");
-    } else {
-      const list = existingRetros
-        .map(
-          (r, i) =>
-            `${i + 1}. [${r.date.split("T")[0]}] ${r.summary.slice(0, 50)}...`,
-        )
-        .join("\n");
-      p.note(list, `📚 Past Retrospectives (${existingRetros.length})`);
-    }
-    p.outro(pc.dim(`Stored in: ${retroDir}`));
-    return;
-  }
+    s.start(`Analyzing current window (${current.label})...`);
+    const currentSnapshot = analyze(cwd, current);
+    const currentDisplay = getDisplayData(cwd, current);
+    s.stop("Current window analyzed");
 
-  if (action === "auto") {
-    const { summary, learnings, nextSteps } = generateAutoSummary(cwd);
-    const changedFiles = getRecentChangedFiles(cwd);
+    s.start(`Analyzing previous window (${previous.label})...`);
+    const previousSnapshot = analyze(cwd, previous);
+    s.stop("Previous window analyzed");
 
-    p.note(
-      [
-        pc.bold("🤖 Auto-generated Content"),
-        "",
-        pc.bold("Summary:"),
-        summary,
-        "",
-        pc.bold("Key Learnings:"),
-        ...learnings.map((l) => `  • ${l}`),
-        "",
-        pc.bold("Next Steps:"),
-        ...nextSteps.map((s) => `  → ${s}`),
-      ].join("\n"),
-      "Preview",
-    );
-
-    const shouldSave = await p.confirm({
-      message: "Save this retrospective?",
-      initialValue: true,
-    });
-
-    if (p.isCancel(shouldSave) || !shouldSave) {
-      p.cancel("Cancelled.");
+    if (
+      currentSnapshot.metrics.commits === 0 &&
+      previousSnapshot.metrics.commits === 0
+    ) {
+      p.note(pc.yellow("No commits found in either window."), "Empty");
+      p.outro(pc.dim("Try a wider window: oma retro compare 30d"));
       return;
     }
 
-    const newRetro: Retrospective = {
-      id: Math.random().toString(36).slice(2, 8),
-      date: new Date().toISOString(),
-      summary,
-      keyLearnings: learnings,
-      filesChanged: changedFiles,
-      nextSteps,
-    };
+    if (options.json) {
+      console.log(
+        JSON.stringify(
+          { current: currentSnapshot, previous: previousSnapshot },
+          null,
+          2,
+        ),
+      );
+      return;
+    }
 
-    saveRetrospective(cwd, newRetro);
-
-    p.note(
-      [
-        pc.green("✅ Retrospective saved!"),
-        "",
-        `Summary: ${newRetro.summary}`,
-        `Learnings: ${newRetro.keyLearnings.length} items`,
-        `Next steps: ${newRetro.nextSteps.length} items`,
-      ].join("\n"),
-      "Saved",
+    console.log(
+      pc.bold(
+        `\nComparing: ${current.label} (current) vs ${previous.label} (prior)\n`,
+      ),
     );
 
-    p.outro(pc.dim(`Stored in: ${retroDir}`));
+    // Side-by-side comparison
+    p.note(fmtDelta(currentSnapshot, previousSnapshot), "Period Comparison");
+
+    console.log(pc.bold("\n--- Current Period ---\n"));
+    renderRetro(
+      currentSnapshot,
+      currentDisplay.sessions,
+      currentDisplay.hourly,
+      currentUser,
+      null,
+    );
+
+    // Save only current window
+    const filepath = saveSnapshot(cwd, currentSnapshot);
+    p.outro(pc.dim(`Snapshot saved: ${filepath}`));
     return;
   }
 
-  const recentCommits = getRecentGitCommits(cwd);
-  const changedFiles = getRecentChangedFiles(cwd);
-
-  if (recentCommits.length > 0) {
-    p.note(recentCommits.join("\n"), "Recent Commits");
-  }
-  if (changedFiles.length > 0) {
-    p.note(changedFiles.join("\n"), "Changed Files");
-  }
-
-  const summary = await p.text({
-    message: "What did you accomplish in this session?",
-    placeholder: "e.g., Implemented user authentication flow",
-  });
-
-  if (p.isCancel(summary)) {
-    p.cancel("Cancelled.");
+  // Normal mode
+  let window: TimeWindow;
+  try {
+    window = parseTimeWindow(windowArg);
+  } catch (e) {
+    p.note(
+      [
+        "Usage: oma retro [window]",
+        "",
+        "  oma retro              last 7 days (default)",
+        "  oma retro 24h          last 24 hours",
+        "  oma retro 14d          last 14 days",
+        "  oma retro 30d          last 30 days",
+        "  oma retro 2w           last 2 weeks",
+        "  oma retro --compare    compare current vs prior period",
+        "  oma retro --compare 14d",
+      ].join("\n"),
+      "Usage",
+    );
+    p.outro(pc.dim((e as Error).message));
     return;
   }
 
-  const learningsInput = await p.text({
-    message: "Key learnings? (comma-separated)",
-    placeholder: "e.g., JWT needs refresh token, bcrypt is slow",
-  });
+  s.start(`Analyzing ${window.label} window...`);
+  const snapshot = analyze(cwd, window);
+  const displayData = getDisplayData(cwd, window);
+  s.stop(`Analysis complete (${snapshot.metrics.commits} commits)`);
 
-  if (p.isCancel(learningsInput)) {
-    p.cancel("Cancelled.");
+  if (snapshot.metrics.commits === 0) {
+    p.note(pc.yellow("No commits found in this window."), "Empty");
+    p.outro(pc.dim("Try a wider window: oma retro 30d"));
     return;
   }
 
-  const nextStepsInput = await p.text({
-    message: "Next steps? (comma-separated)",
-    placeholder: "e.g., Add password reset, Write tests",
-  });
-
-  if (p.isCancel(nextStepsInput)) {
-    p.cancel("Cancelled.");
+  if (options.json) {
+    console.log(JSON.stringify(snapshot, null, 2));
     return;
   }
 
-  const newRetro: Retrospective = {
-    id: Math.random().toString(36).slice(2, 8),
-    date: new Date().toISOString(),
-    summary: summary as string,
-    keyLearnings: (learningsInput as string)
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean),
-    filesChanged: changedFiles,
-    nextSteps: (nextStepsInput as string)
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean),
-  };
-
-  saveRetrospective(cwd, newRetro);
-
-  p.note(
-    [
-      pc.green("✅ Retrospective saved!"),
-      "",
-      `Summary: ${newRetro.summary}`,
-      `Learnings: ${newRetro.keyLearnings.length} items`,
-      `Next steps: ${newRetro.nextSteps.length} items`,
-    ].join("\n"),
-    "Saved",
+  const previous = loadPreviousSnapshot(cwd);
+  renderRetro(
+    snapshot,
+    displayData.sessions,
+    displayData.hourly,
+    currentUser,
+    previous,
   );
 
-  p.outro(pc.dim(`Stored in: ${retroDir}`));
+  // Save snapshot
+  const filepath = saveSnapshot(cwd, snapshot);
+  p.outro(pc.dim(`Snapshot saved: ${filepath}`));
 }

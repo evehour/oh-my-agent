@@ -473,13 +473,18 @@ addOutputOptions(
 
 addOutputOptions(
   program
-    .command("retro")
-    .description("Session retrospective (learnings & next steps)")
-    .option("--interactive", "Interactive mode (manual entry)"),
+    .command("retro [window]")
+    .description("Engineering retrospective with metrics & trends")
+    .option("--interactive", "Interactive mode (manual entry)")
+    .option("--compare", "Compare current window vs prior same-length window"),
 ).action(
   runAction(
-    async (options) => {
-      await retro(resolveJsonMode(options), options.interactive);
+    async (window, options) => {
+      await retro(window, {
+        json: resolveJsonMode(options),
+        compare: options.compare,
+        interactive: options.interactive,
+      });
     },
     { supportsJsonOutput: true },
   ),

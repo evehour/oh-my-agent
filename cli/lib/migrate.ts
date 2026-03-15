@@ -8,7 +8,7 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 
-const LEGACY_DIRS = [".agent", ".cursor/skills"] as const;
+const _LEGACY_DIRS = [".agent", ".cursor/skills"] as const;
 
 /**
  * Migrate from legacy .agent/ to .agents/ canonical root.

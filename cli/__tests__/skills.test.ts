@@ -10,11 +10,11 @@ import {
   vi,
 } from "vitest";
 import {
-  GITHUB_RAW,
   GITHUB_AGENT_ROOT,
-  REPO,
+  GITHUB_RAW,
   installConfigs,
   installWorkflows,
+  REPO,
 } from "../lib/skills.js";
 
 // Mock node:fs module

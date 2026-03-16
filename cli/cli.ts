@@ -15,8 +15,9 @@ import { verify } from "./commands/verify.js";
 import { visualize } from "./commands/visualize.js";
 import { startDashboard } from "./dashboard.js";
 import { startTerminalDashboard } from "./terminal-dashboard.js";
+import pkg from "./package.json";
 
-const VERSION = "1.26.2";
+const VERSION = pkg.version;
 const JSON_OUTPUT_ENV = "OH_MY_AG_OUTPUT_FORMAT";
 const OUTPUT_FORMATS = ["text", "json"] as const;
 const VENDORS = ["gemini", "claude", "codex", "qwen"] as const;

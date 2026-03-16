@@ -141,3 +141,18 @@ jobs:
         run: npm deprecate 'oh-my-ag@*' 'Deprecated. Use oh-my-agent instead.'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  bump-homebrew:
+    needs: [release-please, publish-npm]
+    if: |
+      needs.release-please.outputs.cli_release_created == 'true'
+      && endsWith(needs.release-please.outputs.cli_version, '.0')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mislav/bump-homebrew-formula-action@v3
+        with:
+          formula-name: oh-my-agent
+          homebrew-tap: Homebrew/homebrew-core
+          download-url: https://registry.npmjs.org/oh-my-agent/-/oh-my-agent-${{ needs.release-please.outputs.cli_version }}.tgz
+        env:
+          COMMITTER_TOKEN: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}

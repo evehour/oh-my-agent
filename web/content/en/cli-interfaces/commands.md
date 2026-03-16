@@ -10,28 +10,28 @@ The command surface below mirrors the current implementation in `cli/cli.ts`.
 ## Core Commands
 
 ```bash
-oh-my-ag                         # interactive installer
-oh-my-ag dashboard               # terminal dashboard
-oh-my-ag dashboard:web           # web dashboard (:9847)
-oh-my-ag usage:anti              # Antigravity usage quotas
-oh-my-ag update                  # update skills from registry
-oh-my-ag doctor                  # environment/skill diagnostics
-oh-my-ag stats                   # productivity metrics
-oh-my-ag retro                   # retrospective report
-oh-my-ag cleanup                 # cleanup orphan resources
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # interactive installer
+oma dashboard               # terminal dashboard
+oma dashboard:web           # web dashboard (:9847)
+oma usage:anti              # Antigravity usage quotas
+oma update                  # update skills from registry
+oma doctor                  # environment/skill diagnostics
+oma stats                   # productivity metrics
+oma retro                   # retrospective report
+oma cleanup                 # cleanup orphan resources
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## Agent Commands
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## Memory and Verification
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

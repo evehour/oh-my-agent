@@ -10,28 +10,28 @@ A superfície de comandos abaixo reflete a implementação atual em `cli/cli.ts`
 ## Comandos Principais
 
 ```bash
-oh-my-ag                         # instalador interativo
-oh-my-ag dashboard               # dashboard no terminal
-oh-my-ag dashboard:web           # dashboard web (:9847)
-oh-my-ag usage:anti              # cotas Antigravity
-oh-my-ag update                  # atualizar skills do registro
-oh-my-ag doctor                  # diagnóstico de ambiente/skills
-oh-my-ag stats                   # métricas de produtividade
-oh-my-ag retro                   # relatório retrospectivo
-oh-my-ag cleanup                 # limpar recursos órfãos
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # instalador interativo
+oma dashboard               # dashboard no terminal
+oma dashboard:web           # dashboard web (:9847)
+oma usage:anti              # cotas Antigravity
+oma update                  # atualizar skills do registro
+oma doctor                  # diagnóstico de ambiente/skills
+oma stats                   # métricas de produtividade
+oma retro                   # relatório retrospectivo
+oma cleanup                 # limpar recursos órfãos
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## Comandos de Agente
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## Memória e Verificação
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

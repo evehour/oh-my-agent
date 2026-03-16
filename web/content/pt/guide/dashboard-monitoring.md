@@ -18,7 +18,7 @@ URL padrão do dashboard web: `http://localhost:9847`
 
 Use pelo menos 3 terminais:
 
-1. dashboard no terminal (`oh-my-ag dashboard`)
+1. dashboard no terminal (`oma dashboard`)
 2. comandos de spawn de agentes
 3. logs de teste/build
 

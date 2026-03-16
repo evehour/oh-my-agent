@@ -18,7 +18,7 @@ bunx oh-my-agent dashboard:web
 
 최소 3개 터미널을 권장합니다:
 
-1. 대시보드 전용 (`oh-my-ag dashboard`)
+1. 대시보드 전용 (`oma dashboard`)
 2. 에이전트 spawn 실행
 3. 테스트/빌드 로그 확인
 

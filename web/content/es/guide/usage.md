@@ -45,8 +45,8 @@ description: Guía completa de uso incluyendo ejemplos, flujos de trabajo, opera
 2. **PM Agent planifica** — crea desglose de tareas con prioridades
 3. **Generas agentes mediante CLI**:
    ```bash
-   oh-my-ag agent:spawn backend "API de autenticación JWT" session-01 &
-   oh-my-ag agent:spawn frontend "UI de Login y TODO" session-01 &
+   oma agent:spawn backend "API de autenticación JWT" session-01 &
+   oma agent:spawn frontend "UI de Login y TODO" session-01 &
    wait
    ```
 4. **Los agentes trabajan en paralelo** — guardan outputs en Knowledge Base
@@ -73,12 +73,12 @@ description: Guía completa de uso incluyendo ejemplos, flujos de trabajo, opera
 
 ```bash
 # Un solo agente (workspace auto-detectado)
-oh-my-ag agent:spawn backend "Implementar API de autenticación JWT" session-01
+oma agent:spawn backend "Implementar API de autenticación JWT" session-01
 
 # Agentes en paralelo
-oh-my-ag agent:spawn backend "Implementar API de autenticación" session-01 &
-oh-my-ag agent:spawn frontend "Crear formulario de login" session-01 &
-oh-my-ag agent:spawn mobile "Construir pantallas de autenticación" session-01 &
+oma agent:spawn backend "Implementar API de autenticación" session-01 &
+oma agent:spawn frontend "Crear formulario de login" session-01 &
+oma agent:spawn mobile "Construir pantallas de autenticación" session-01 &
 wait
 ```
 
@@ -151,7 +151,7 @@ Los recursos compartidos viven en `_shared/` (no es un skill) y son referenciado
 
 ### Generación de Agentes CLI
 
-Usa `oh-my-ag agent:spawn` para ejecutar agentes mediante CLI. Respeta `agent_cli_mapping` en `user-preferences.yaml` para seleccionar el CLI apropiado (gemini, claude, codex, qwen) por tipo de agente. El workspace se auto-detecta de convenciones comunes de monorepo, o puede establecerse explícitamente con `-w`.
+Usa `oma agent:spawn` para ejecutar agentes mediante CLI. Respeta `agent_cli_mapping` en `user-preferences.yaml` para seleccionar el CLI apropiado (gemini, claude, codex, qwen) por tipo de agente. El workspace se auto-detecta de convenciones comunes de monorepo, o puede establecerse explícitamente con `-w`.
 
 ### Knowledge Base
 
@@ -220,7 +220,7 @@ Tú: "Crear un componente de botón"
 Tú: "Construir una app TODO con autenticación"
   → workflow-guide se activa automáticamente
   → PM Agent crea plan
-  → Generas agentes mediante CLI (oh-my-ag agent:spawn)
+  → Generas agentes mediante CLI (oma agent:spawn)
   → Los agentes trabajan en paralelo
   → QA Agent revisa
   → Corregir problemas, iterar
@@ -248,8 +248,8 @@ Tú: "El botón de login lanza TypeError"
 
 ```
 Terminal 1: bunx oh-my-agent dashboard:web
-Terminal 2: oh-my-ag agent:spawn backend "tarea" session-01 &
-            oh-my-ag agent:spawn frontend "tarea" session-01 &
+Terminal 2: oma agent:spawn backend "tarea" session-01 &
+            oma agent:spawn frontend "tarea" session-01 &
 Browser:    http://localhost:9847 → estado en tiempo real
 ```
 

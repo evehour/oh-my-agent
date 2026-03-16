@@ -18,7 +18,7 @@ Domyślny URL panelu webowego: `http://localhost:9847`
 
 Używaj co najmniej 3 terminali:
 
-1. Panel terminalowy (`oh-my-ag dashboard`)
+1. Panel terminalowy (`oma dashboard`)
 2. Komendy uruchamiania agentów
 3. Logi testów/budowania
 

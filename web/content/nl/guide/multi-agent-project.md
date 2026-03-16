@@ -35,9 +35,9 @@ Wijs geïsoleerde werkruimten toe per domein om mergeconflicten te verminderen:
 ## Spawnvoorbeeld
 
 ```bash
-oh-my-ag agent:spawn backend "Implement JWT auth API + refresh flow" session-auth-v2 -w ./apps/api
-oh-my-ag agent:spawn frontend "Build login + refresh UX with error states" session-auth-v2 -w ./apps/web
-oh-my-ag agent:spawn qa "Review auth risks, test matrix, and regression scope" session-auth-v2
+oma agent:spawn backend "Implement JWT auth API + refresh flow" session-auth-v2 -w ./apps/api
+oma agent:spawn frontend "Build login + refresh UX with error states" session-auth-v2 -w ./apps/web
+oma agent:spawn qa "Review auth risks, test matrix, and regression scope" session-auth-v2
 ```
 
 ## Contract-firstregel

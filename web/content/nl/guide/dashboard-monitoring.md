@@ -18,7 +18,7 @@ Standaard URL webdashboard: `http://localhost:9847`
 
 Gebruik minimaal 3 terminals:
 
-1. Terminaldashboard (`oh-my-ag dashboard`)
+1. Terminaldashboard (`oma dashboard`)
 2. Agent-spawncommando's
 3. Test-/buildlogs
 

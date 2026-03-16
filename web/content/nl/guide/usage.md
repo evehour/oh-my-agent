@@ -45,8 +45,8 @@ description: Volledige gebruiksgids met voorbeelden, workflows, dashboardbewerki
 2. **PM Agent plant** — creëert taak breakdown met prioriteiten
 3. **Je spawnt agents via CLI**:
    ```bash
-   oh-my-ag agent:spawn backend "JWT authenticatie API" session-01 &
-   oh-my-ag agent:spawn frontend "Login en TODO UI" session-01 &
+   oma agent:spawn backend "JWT authenticatie API" session-01 &
+   oma agent:spawn frontend "Login en TODO UI" session-01 &
    wait
    ```
 4. **Agents werken parallel** — slaan outputs op in Knowledge Base
@@ -73,12 +73,12 @@ description: Volledige gebruiksgids met voorbeelden, workflows, dashboardbewerki
 
 ```bash
 # Enkele agent (workspace automatisch gedetecteerd)
-oh-my-ag agent:spawn backend "Implementeer JWT auth API" session-01
+oma agent:spawn backend "Implementeer JWT auth API" session-01
 
 # Parallelle agents
-oh-my-ag agent:spawn backend "Implementeer auth API" session-01 &
-oh-my-ag agent:spawn frontend "Maak loginformulier" session-01 &
-oh-my-ag agent:spawn mobile "Bouw auth schermen" session-01 &
+oma agent:spawn backend "Implementeer auth API" session-01 &
+oma agent:spawn frontend "Maak loginformulier" session-01 &
+oma agent:spawn mobile "Bouw auth schermen" session-01 &
 wait
 ```
 
@@ -148,7 +148,7 @@ Gedeelde resources leven in `_shared/` (geen skill) en worden gerefereerd door a
 - Cross-session lessen geleerd accumulatie
 
 ### CLI agent spawning
-Gebruik `oh-my-ag agent:spawn` om agents via CLI uit te voeren. Respecteert `agent_cli_mapping` in `user-preferences.yaml` om de juiste CLI (gemini, claude, codex, qwen) per agent type te selecteren. Workspace wordt automatisch gedetecteerd uit gemeenschappelijke monorepo conventies, of kan expliciet worden ingesteld met `-w`.
+Gebruik `oma agent:spawn` om agents via CLI uit te voeren. Respecteert `agent_cli_mapping` in `user-preferences.yaml` om de juiste CLI (gemini, claude, codex, qwen) per agent type te selecteren. Workspace wordt automatisch gedetecteerd uit gemeenschappelijke monorepo conventies, of kan expliciet worden ingesteld met `-w`.
 
 ### Knowledge Base
 Agent outputs opgeslagen op `.agents/brain/`. Bevat plannen, code, rapporten en coördinatie notities.
@@ -214,7 +214,7 @@ Jij: "Maak een knop component"
 Jij: "Bouw een TODO app met authenticatie"
   → workflow-guide activeert automatisch
   → PM Agent creëert plan
-  → Jij spawnt agents via CLI (oh-my-ag agent:spawn)
+  → Jij spawnt agents via CLI (oma agent:spawn)
   → Agents werken parallel
   → QA Agent reviewt
   → Repareer problemen, itereer
@@ -242,8 +242,8 @@ Jij: "Login knop gooit TypeError"
 
 ```
 Terminal 1: bunx oh-my-agent dashboard:web
-Terminal 2: oh-my-ag agent:spawn backend "taak" session-01 &
-            oh-my-ag agent:spawn frontend "taak" session-01 &
+Terminal 2: oma agent:spawn backend "taak" session-01 &
+            oma agent:spawn frontend "taak" session-01 &
 Browser:    http://localhost:9847 → realtime status
 ```
 

@@ -10,28 +10,28 @@ Die folgende Befehlsoberfläche entspricht der aktuellen Implementierung in `cli
 ## Kernbefehle
 
 ```bash
-oh-my-ag                         # interaktiver Installer
-oh-my-ag dashboard               # Terminal-Dashboard
-oh-my-ag dashboard:web           # Web-Dashboard (:9847)
-oh-my-ag usage:anti              # Antigravity-Nutzungskontingente
-oh-my-ag update                  # Skills aus der Registry aktualisieren
-oh-my-ag doctor                  # Umgebungs-/Skill-Diagnose
-oh-my-ag stats                   # Produktivitätskennzahlen
-oh-my-ag retro                   # Retrospektive-Bericht
-oh-my-ag cleanup                 # Verwaiste Ressourcen bereinigen
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # interaktiver Installer
+oma dashboard               # Terminal-Dashboard
+oma dashboard:web           # Web-Dashboard (:9847)
+oma usage:anti              # Antigravity-Nutzungskontingente
+oma update                  # Skills aus der Registry aktualisieren
+oma doctor                  # Umgebungs-/Skill-Diagnose
+oma stats                   # Produktivitätskennzahlen
+oma retro                   # Retrospektive-Bericht
+oma cleanup                 # Verwaiste Ressourcen bereinigen
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## Agenten-Befehle
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## Speicher und Verifizierung
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

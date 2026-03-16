@@ -18,7 +18,7 @@ URL predeterminada del panel web: `http://localhost:9847`
 
 Use al menos 3 terminales:
 
-1. Panel de control en terminal (`oh-my-ag dashboard`)
+1. Panel de control en terminal (`oma dashboard`)
 2. Comandos de creacion de agentes
 3. Registros de pruebas/compilacion
 

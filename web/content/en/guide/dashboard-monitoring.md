@@ -18,7 +18,7 @@ Web dashboard default URL: `http://localhost:9847`
 
 Use at least 3 terminals:
 
-1. terminal dashboard (`oh-my-ag dashboard`)
+1. terminal dashboard (`oma dashboard`)
 2. agent spawn commands
 3. test/build logs
 

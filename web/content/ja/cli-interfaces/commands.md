@@ -10,28 +10,28 @@ description: cli/cli.ts の完全なコマンド一覧。
 ## コアコマンド
 
 ```bash
-oh-my-ag                         # インタラクティブインストーラー
-oh-my-ag dashboard               # ターミナルダッシュボード
-oh-my-ag dashboard:web           # Web ダッシュボード (:9847)
-oh-my-ag usage:anti              # Antigravity 使用量クォータ
-oh-my-ag update                  # レジストリからスキルを更新
-oh-my-ag doctor                  # 環境/スキル診断
-oh-my-ag stats                   # 生産性メトリクス
-oh-my-ag retro                   # 振り返りレポート
-oh-my-ag cleanup                 # 孤立リソースのクリーンアップ
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # インタラクティブインストーラー
+oma dashboard               # ターミナルダッシュボード
+oma dashboard:web           # Web ダッシュボード (:9847)
+oma usage:anti              # Antigravity 使用量クォータ
+oma update                  # レジストリからスキルを更新
+oma doctor                  # 環境/スキル診断
+oma stats                   # 生産性メトリクス
+oma retro                   # 振り返りレポート
+oma cleanup                 # 孤立リソースのクリーンアップ
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## エージェントコマンド
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## メモリと検証
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

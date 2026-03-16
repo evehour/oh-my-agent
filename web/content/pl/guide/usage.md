@@ -45,8 +45,8 @@ description: Kompletny przewodnik użytkowania z przykładami, przepływami prac
 2. **PM Agent planuje** — tworzy podział zadań z priorytetami
 3. **Uruchamiasz agentów przez CLI**:
    ```bash
-   oh-my-ag agent:spawn backend "API uwierzytelniania JWT" session-01 &
-   oh-my-ag agent:spawn frontend "UI logowania i TODO" session-01 &
+   oma agent:spawn backend "API uwierzytelniania JWT" session-01 &
+   oma agent:spawn frontend "UI logowania i TODO" session-01 &
    wait
    ```
 4. **Agenci pracują równolegle** — zapisują wyniki do bazy wiedzy
@@ -73,12 +73,12 @@ description: Kompletny przewodnik użytkowania z przykładami, przepływami prac
 
 ```bash
 # Pojedynczy agent (workspace wykrywany automatycznie)
-oh-my-ag agent:spawn backend "Implementuj API uwierzytelniania JWT" session-01
+oma agent:spawn backend "Implementuj API uwierzytelniania JWT" session-01
 
 # Równoległe agenty
-oh-my-ag agent:spawn backend "Implementuj API uwierzytelniania" session-01 &
-oh-my-ag agent:spawn frontend "Utwórz formularz logowania" session-01 &
-oh-my-ag agent:spawn mobile "Zbuduj ekrany uwierzytelniania" session-01 &
+oma agent:spawn backend "Implementuj API uwierzytelniania" session-01 &
+oma agent:spawn frontend "Utwórz formularz logowania" session-01 &
+oma agent:spawn mobile "Zbuduj ekrany uwierzytelniania" session-01 &
 wait
 ```
 
@@ -148,7 +148,7 @@ Współdzielone zasoby znajdują się w `_shared/` (nie jest to umiejętność) 
 - Akumulacja nauk z wielu sesji
 
 ### Uruchamianie agentów przez CLI
-Użyj `oh-my-ag agent:spawn` aby uruchamiać agentów przez CLI. Respektuje `agent_cli_mapping` w `user-preferences.yaml` aby wybrać odpowiednie CLI (gemini, claude, codex, qwen) dla typu agenta. Workspace jest wykrywany automatycznie z typowych konwencji monorepo lub może być ustawiony jawnie z `-w`.
+Użyj `oma agent:spawn` aby uruchamiać agentów przez CLI. Respektuje `agent_cli_mapping` w `user-preferences.yaml` aby wybrać odpowiednie CLI (gemini, claude, codex, qwen) dla typu agenta. Workspace jest wykrywany automatycznie z typowych konwencji monorepo lub może być ustawiony jawnie z `-w`.
 
 ### Baza wiedzy
 Wyniki agentów przechowywane w `.agents/brain/`. Zawiera plany, kod, raporty i notatki koordynacyjne.
@@ -214,7 +214,7 @@ Ty: "Utwórz komponent przycisku"
 Ty: "Zbuduj aplikację TODO z uwierzytelnianiem"
   → workflow-guide aktywuje się automatycznie
   → PM Agent tworzy plan
-  → Uruchamiasz agentów przez CLI (oh-my-ag agent:spawn)
+  → Uruchamiasz agentów przez CLI (oma agent:spawn)
   → Agenci pracują równolegle
   → QA Agent przegląda
   → Naprawiaj problemy, iteruj
@@ -242,8 +242,8 @@ Ty: "Przycisk logowania rzuca TypeError"
 
 ```
 Terminal 1: bunx oh-my-agent dashboard:web
-Terminal 2: oh-my-ag agent:spawn backend "zadanie" session-01 &
-            oh-my-ag agent:spawn frontend "zadanie" session-01 &
+Terminal 2: oma agent:spawn backend "zadanie" session-01 &
+            oma agent:spawn frontend "zadanie" session-01 &
 Przeglądarka: http://localhost:9847 → status w czasie rzeczywistym
 ```
 

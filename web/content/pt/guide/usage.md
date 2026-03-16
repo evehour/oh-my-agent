@@ -45,8 +45,8 @@ description: Guia completo de uso incluindo exemplos, fluxos de trabalho, opera�
 2. **PM Agent planeja** — cria divisão de tarefas com prioridades
 3. **Você cria agentes via CLI**:
    ```bash
-   oh-my-ag agent:spawn backend "API de autenticação JWT" session-01 &
-   oh-my-ag agent:spawn frontend "UI de Login e TODO" session-01 &
+   oma agent:spawn backend "API de autenticação JWT" session-01 &
+   oma agent:spawn frontend "UI de Login e TODO" session-01 &
    wait
    ```
 4. **Agentes trabalham em paralelo** — salvam saídas na Base de Conhecimento
@@ -73,12 +73,12 @@ description: Guia completo de uso incluindo exemplos, fluxos de trabalho, opera�
 
 ```bash
 # Agente único (workspace detectado automaticamente)
-oh-my-ag agent:spawn backend "Implementar API de autenticação JWT" session-01
+oma agent:spawn backend "Implementar API de autenticação JWT" session-01
 
 # Agentes paralelos
-oh-my-ag agent:spawn backend "Implementar API de autenticação" session-01 &
-oh-my-ag agent:spawn frontend "Criar formulário de login" session-01 &
-oh-my-ag agent:spawn mobile "Construir telas de autenticação" session-01 &
+oma agent:spawn backend "Implementar API de autenticação" session-01 &
+oma agent:spawn frontend "Criar formulário de login" session-01 &
+oma agent:spawn mobile "Construir telas de autenticação" session-01 &
 wait
 ```
 
@@ -148,7 +148,7 @@ Recursos compartilhados ficam em `_shared/` (não é uma habilidade) e são refe
 - Acumulação de lições aprendidas entre sessões
 
 ### Criação de Agentes via CLI
-Use `oh-my-ag agent:spawn` para executar agentes via CLI. Respeita `agent_cli_mapping` em `user-preferences.yaml` para selecionar a CLI apropriada (gemini, claude, codex, qwen) por tipo de agente. Workspace é detectado automaticamente de convenções de monorepo comuns, ou pode ser definido explicitamente com `-w`.
+Use `oma agent:spawn` para executar agentes via CLI. Respeita `agent_cli_mapping` em `user-preferences.yaml` para selecionar a CLI apropriada (gemini, claude, codex, qwen) por tipo de agente. Workspace é detectado automaticamente de convenções de monorepo comuns, ou pode ser definido explicitamente com `-w`.
 
 ### Base de Conhecimento
 Saídas de agentes armazenadas em `.agents/brain/`. Contém planos, código, relatórios e notas de coordenação.
@@ -214,7 +214,7 @@ Você: "Criar um componente de botão"
 Você: "Construir um app TODO com autenticação"
   → workflow-guide ativa automaticamente
   → PM Agent cria plano
-  → Você cria agentes via CLI (oh-my-ag agent:spawn)
+  → Você cria agentes via CLI (oma agent:spawn)
   → Agentes trabalham em paralelo
   → QA Agent revisa
   → Corrige problemas, itera
@@ -242,8 +242,8 @@ Você: "Botão de login lança TypeError"
 
 ```
 Terminal 1: bunx oh-my-agent dashboard:web
-Terminal 2: oh-my-ag agent:spawn backend "tarefa" session-01 &
-            oh-my-ag agent:spawn frontend "tarefa" session-01 &
+Terminal 2: oma agent:spawn backend "tarefa" session-01 &
+            oma agent:spawn frontend "tarefa" session-01 &
 Navegador:  http://localhost:9847 → status em tempo real
 ```
 

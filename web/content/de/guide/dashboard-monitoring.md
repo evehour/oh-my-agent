@@ -18,7 +18,7 @@ Standard-URL des Web-Dashboards: `http://localhost:9847`
 
 Verwenden Sie mindestens 3 Terminals:
 
-1. Terminal-Dashboard (`oh-my-ag dashboard`)
+1. Terminal-Dashboard (`oma dashboard`)
 2. Agent-Spawn-Befehle
 3. Test-/Build-Logs
 

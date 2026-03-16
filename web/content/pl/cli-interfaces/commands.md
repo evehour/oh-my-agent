@@ -10,28 +10,28 @@ Poniższa powierzchnia komend odzwierciedla bieżącą implementację w `cli/cli
 ## Komendy podstawowe
 
 ```bash
-oh-my-ag                         # interaktywny instalator
-oh-my-ag dashboard               # panel terminalowy
-oh-my-ag dashboard:web           # panel webowy (:9847)
-oh-my-ag usage:anti              # limity Antigravity
-oh-my-ag update                  # aktualizacja umiejętności z rejestru
-oh-my-ag doctor                  # diagnostyka środowiska/umiejętności
-oh-my-ag stats                   # metryki produktywności
-oh-my-ag retro                   # raport retrospektywny
-oh-my-ag cleanup                 # czyszczenie osieroconych zasobów
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # interaktywny instalator
+oma dashboard               # panel terminalowy
+oma dashboard:web           # panel webowy (:9847)
+oma usage:anti              # limity Antigravity
+oma update                  # aktualizacja umiejętności z rejestru
+oma doctor                  # diagnostyka środowiska/umiejętności
+oma stats                   # metryki produktywności
+oma retro                   # raport retrospektywny
+oma cleanup                 # czyszczenie osieroconych zasobów
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## Komendy agentów
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## Pamięć i weryfikacja
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

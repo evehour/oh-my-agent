@@ -56,8 +56,8 @@ description: Alle commando-opties die momenteel door de CLI worden aangeboden.
 ## Praktisch voorbeeld
 
 ```bash
-oh-my-ag usage:anti --json
-oh-my-ag stats --reset
-oh-my-ag cleanup --dry-run
-oh-my-ag agent:spawn backend "Implement auth API" session-01 -v codex -w ./apps/api
+oma usage:anti --json
+oma stats --reset
+oma cleanup --dry-run
+oma agent:spawn backend "Implement auth API" session-01 -v codex -w ./apps/api
 ```

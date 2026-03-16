@@ -8,16 +8,16 @@ description: CLI-Orchestrierungsmuster für die gleichzeitige Ausführung mehrer
 ## Grundmuster
 
 ```bash
-oh-my-ag agent:spawn backend "Implement auth API" session-01 &
-oh-my-ag agent:spawn frontend "Create login form" session-01 &
+oma agent:spawn backend "Implement auth API" session-01 &
+oma agent:spawn frontend "Create login form" session-01 &
 wait
 ```
 
 ## Workspace-bewusstes Muster
 
 ```bash
-oh-my-ag agent:spawn backend "Auth + DB migration" session-02 -w ./apps/api
-oh-my-ag agent:spawn frontend "Login + token refresh" session-02 -w ./apps/web
+oma agent:spawn backend "Auth + DB migration" session-02 -w ./apps/api
+oma agent:spawn frontend "Login + token refresh" session-02 -w ./apps/web
 ```
 
 ## Überwachungsmuster

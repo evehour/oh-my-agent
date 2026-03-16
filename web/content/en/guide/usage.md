@@ -45,8 +45,8 @@ description: Full usage guide including examples, workflows, dashboard operation
 2. **PM Agent plans** — creates task breakdown with priorities
 3. **You spawn agents via CLI**:
    ```bash
-   oh-my-ag agent:spawn backend "JWT authentication API" session-01 &
-   oh-my-ag agent:spawn frontend "Login and TODO UI" session-01 &
+   oma agent:spawn backend "JWT authentication API" session-01 &
+   oma agent:spawn frontend "Login and TODO UI" session-01 &
    wait
    ```
 4. **Agents work in parallel** — save outputs to Knowledge Base
@@ -73,12 +73,12 @@ description: Full usage guide including examples, workflows, dashboard operation
 
 ```bash
 # Single agent (workspace auto-detected)
-oh-my-ag agent:spawn backend "Implement JWT auth API" session-01
+oma agent:spawn backend "Implement JWT auth API" session-01
 
 # Parallel agents
-oh-my-ag agent:spawn backend "Implement auth API" session-01 &
-oh-my-ag agent:spawn frontend "Create login form" session-01 &
-oh-my-ag agent:spawn mobile "Build auth screens" session-01 &
+oma agent:spawn backend "Implement auth API" session-01 &
+oma agent:spawn frontend "Create login form" session-01 &
+oma agent:spawn mobile "Build auth screens" session-01 &
 wait
 ```
 
@@ -148,7 +148,7 @@ Shared resources live in `_shared/` (not a skill) and are referenced by all agen
 - Cross-session lessons learned accumulation
 
 ### CLI Agent Spawning
-Use `oh-my-ag agent:spawn` to run agents via CLI. Respects `agent_cli_mapping` in `user-preferences.yaml` to select the appropriate CLI (gemini, claude, codex, qwen) per agent type. Workspace is auto-detected from common monorepo conventions, or can be set explicitly with `-w`.
+Use `oma agent:spawn` to run agents via CLI. Respects `agent_cli_mapping` in `user-preferences.yaml` to select the appropriate CLI (gemini, claude, codex, qwen) per agent type. Workspace is auto-detected from common monorepo conventions, or can be set explicitly with `-w`.
 
 ### Knowledge Base
 Agent outputs stored at `.agents/brain/`. Contains plans, code, reports, and coordination notes.
@@ -214,7 +214,7 @@ You: "Create a button component"
 You: "Build a TODO app with authentication"
   → workflow-guide activates automatically
   → PM Agent creates plan
-  → You spawn agents via CLI (oh-my-ag agent:spawn)
+  → You spawn agents via CLI (oma agent:spawn)
   → Agents work in parallel
   → QA Agent reviews
   → Fix issues, iterate
@@ -242,8 +242,8 @@ You: "Login button throws TypeError"
 
 ```
 Terminal 1: bunx oh-my-agent dashboard:web
-Terminal 2: oh-my-ag agent:spawn backend "task" session-01 &
-            oh-my-ag agent:spawn frontend "task" session-01 &
+Terminal 2: oma agent:spawn backend "task" session-01 &
+            oma agent:spawn frontend "task" session-01 &
 Browser:    http://localhost:9847 → real-time status
 ```
 

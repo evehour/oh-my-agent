@@ -45,8 +45,8 @@ description: Guide complet incluant exemples, workflows, opérations de tableau 
 2. **PM Agent planifie** — crée décomposition des tâches avec priorités
 3. **Vous générez agents via CLI** :
    ```bash
-   oh-my-ag agent:spawn backend "API authentification JWT" session-01 &
-   oh-my-ag agent:spawn frontend "UI connexion et TODO" session-01 &
+   oma agent:spawn backend "API authentification JWT" session-01 &
+   oma agent:spawn frontend "UI connexion et TODO" session-01 &
    wait
    ```
 4. **Les agents travaillent en parallèle** — enregistrent sorties dans Knowledge Base
@@ -73,12 +73,12 @@ description: Guide complet incluant exemples, workflows, opérations de tableau 
 
 ```bash
 # Agent unique (espace de travail auto-détecté)
-oh-my-ag agent:spawn backend "Implémenter API auth JWT" session-01
+oma agent:spawn backend "Implémenter API auth JWT" session-01
 
 # Agents parallèles
-oh-my-ag agent:spawn backend "Implémenter API auth" session-01 &
-oh-my-ag agent:spawn frontend "Créer formulaire connexion" session-01 &
-oh-my-ag agent:spawn mobile "Construire écrans auth" session-01 &
+oma agent:spawn backend "Implémenter API auth" session-01 &
+oma agent:spawn frontend "Créer formulaire connexion" session-01 &
+oma agent:spawn mobile "Construire écrans auth" session-01 &
 wait
 ```
 
@@ -148,7 +148,7 @@ Les ressources partagées vivent dans `_shared/` (pas une compétence) et sont r
 - Accumulation leçons apprises entre sessions
 
 ### Génération d'agents CLI
-Utilisez `oh-my-ag agent:spawn` pour exécuter agents via CLI. Respecte `agent_cli_mapping` dans `user-preferences.yaml` pour sélectionner le CLI approprié (gemini, claude, codex, qwen) par type d'agent. L'espace de travail est auto-détecté depuis conventions monorepo communes, ou peut être défini explicitement avec `-w`.
+Utilisez `oma agent:spawn` pour exécuter agents via CLI. Respecte `agent_cli_mapping` dans `user-preferences.yaml` pour sélectionner le CLI approprié (gemini, claude, codex, qwen) par type d'agent. L'espace de travail est auto-détecté depuis conventions monorepo communes, ou peut être défini explicitement avec `-w`.
 
 ### Knowledge Base
 Sorties agents stockées à `.agents/brain/`. Contient plans, code, rapports et notes de coordination.
@@ -214,7 +214,7 @@ Vous : "Créer un composant bouton"
 Vous : "Construire une application TODO avec authentification"
   → workflow-guide s'active automatiquement
   → PM Agent crée plan
-  → Vous générez agents via CLI (oh-my-ag agent:spawn)
+  → Vous générez agents via CLI (oma agent:spawn)
   → Agents travaillent en parallèle
   → QA Agent examine
   → Corriger problèmes, itérer
@@ -242,8 +242,8 @@ Vous : "Bouton connexion lance TypeError"
 
 ```
 Terminal 1: bunx oh-my-agent dashboard:web
-Terminal 2: oh-my-ag agent:spawn backend "tâche" session-01 &
-            oh-my-ag agent:spawn frontend "tâche" session-01 &
+Terminal 2: oma agent:spawn backend "tâche" session-01 &
+            oma agent:spawn frontend "tâche" session-01 &
 Navigateur: http://localhost:9847 → statut temps réel
 ```
 

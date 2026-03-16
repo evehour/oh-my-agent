@@ -45,8 +45,8 @@ description: Vollständige Nutzungsanleitung mit Beispielen, Workflows, Dashboar
 2. **PM Agent plant** — erstellt Task-Breakdown mit Prioritäten
 3. **Sie spawnen Agenten via CLI**:
    ```bash
-   oh-my-ag agent:spawn backend "JWT-Authentifizierungs-API" session-01 &
-   oh-my-ag agent:spawn frontend "Login- und TODO-UI" session-01 &
+   oma agent:spawn backend "JWT-Authentifizierungs-API" session-01 &
+   oma agent:spawn frontend "Login- und TODO-UI" session-01 &
    wait
    ```
 4. **Agenten arbeiten parallel** — speichern Outputs in Knowledge Base
@@ -73,12 +73,12 @@ description: Vollständige Nutzungsanleitung mit Beispielen, Workflows, Dashboar
 
 ```bash
 # Einzelner Agent (Workspace wird automatisch erkannt)
-oh-my-ag agent:spawn backend "JWT-Auth-API implementieren" session-01
+oma agent:spawn backend "JWT-Auth-API implementieren" session-01
 
 # Parallele Agenten
-oh-my-ag agent:spawn backend "Auth-API implementieren" session-01 &
-oh-my-ag agent:spawn frontend "Login-Formular erstellen" session-01 &
-oh-my-ag agent:spawn mobile "Auth-Screens bauen" session-01 &
+oma agent:spawn backend "Auth-API implementieren" session-01 &
+oma agent:spawn frontend "Login-Formular erstellen" session-01 &
+oma agent:spawn mobile "Auth-Screens bauen" session-01 &
 wait
 ```
 
@@ -151,7 +151,7 @@ Gemeinsame Ressourcen liegen in `_shared/` (kein Skill) und werden von allen Age
 
 ### CLI-Agent-Spawning
 
-Verwenden Sie `oh-my-ag agent:spawn`, um Agenten via CLI auszuführen. Respektiert `agent_cli_mapping` in `user-preferences.yaml`, um die passende CLI (gemini, claude, codex, qwen) pro Agent-Typ auszuwählen. Workspace wird aus gängigen Monorepo-Konventionen automatisch erkannt oder kann explizit mit `-w` gesetzt werden.
+Verwenden Sie `oma agent:spawn`, um Agenten via CLI auszuführen. Respektiert `agent_cli_mapping` in `user-preferences.yaml`, um die passende CLI (gemini, claude, codex, qwen) pro Agent-Typ auszuwählen. Workspace wird aus gängigen Monorepo-Konventionen automatisch erkannt oder kann explizit mit `-w` gesetzt werden.
 
 ### Knowledge Base
 
@@ -220,7 +220,7 @@ Sie: "Erstelle eine Button-Komponente"
 Sie: "Baue eine TODO-App mit Authentifizierung"
   → workflow-guide aktiviert automatisch
   → PM Agent erstellt Plan
-  → Sie spawnen Agenten via CLI (oh-my-ag agent:spawn)
+  → Sie spawnen Agenten via CLI (oma agent:spawn)
   → Agenten arbeiten parallel
   → QA Agent überprüft
   → Issues beheben, iterieren
@@ -248,8 +248,8 @@ Sie: "Login-Button wirft TypeError"
 
 ```
 Terminal 1: bunx oh-my-agent dashboard:web
-Terminal 2: oh-my-ag agent:spawn backend "task" session-01 &
-            oh-my-ag agent:spawn frontend "task" session-01 &
+Terminal 2: oma agent:spawn backend "task" session-01 &
+            oma agent:spawn frontend "task" session-01 &
 Browser:    http://localhost:9847 → Echtzeit-Status
 ```
 

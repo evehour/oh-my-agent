@@ -10,28 +10,28 @@ La surface de commandes ci-dessous reflète l'implémentation actuelle dans `cli
 ## Commandes principales
 
 ```bash
-oh-my-ag                         # installateur interactif
-oh-my-ag dashboard               # tableau de bord terminal
-oh-my-ag dashboard:web           # tableau de bord web (:9847)
-oh-my-ag usage:anti              # quotas Antigravity
-oh-my-ag update                  # mettre à jour les skills depuis le registre
-oh-my-ag doctor                  # diagnostics environnement/skills
-oh-my-ag stats                   # métriques de productivité
-oh-my-ag retro                   # rapport rétrospectif
-oh-my-ag cleanup                 # nettoyage des ressources orphelines
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # installateur interactif
+oma dashboard               # tableau de bord terminal
+oma dashboard:web           # tableau de bord web (:9847)
+oma usage:anti              # quotas Antigravity
+oma update                  # mettre à jour les skills depuis le registre
+oma doctor                  # diagnostics environnement/skills
+oma stats                   # métriques de productivité
+oma retro                   # rapport rétrospectif
+oma cleanup                 # nettoyage des ressources orphelines
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## Commandes d'agent
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## Mémoire et vérification
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

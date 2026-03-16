@@ -18,7 +18,7 @@ URL par défaut du tableau de bord web : `http://localhost:9847`
 
 Utilisez au moins 3 terminaux :
 
-1. Tableau de bord terminal (`oh-my-ag dashboard`)
+1. Tableau de bord terminal (`oma dashboard`)
 2. Commandes de lancement d'agents
 3. Logs de tests/build
 

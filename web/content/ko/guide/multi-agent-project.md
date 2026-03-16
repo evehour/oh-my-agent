@@ -35,9 +35,9 @@ session-auth-v2
 ## 실행 예시
 
 ```bash
-oh-my-ag agent:spawn backend "JWT 인증 API + refresh 플로우 구현" session-auth-v2 -w ./apps/api
-oh-my-ag agent:spawn frontend "로그인 + refresh UX와 에러 상태 구현" session-auth-v2 -w ./apps/web
-oh-my-ag agent:spawn qa "인증 리스크, 테스트 매트릭스, 회귀 범위 검토" session-auth-v2
+oma agent:spawn backend "JWT 인증 API + refresh 플로우 구현" session-auth-v2 -w ./apps/api
+oma agent:spawn frontend "로그인 + refresh UX와 에러 상태 구현" session-auth-v2 -w ./apps/web
+oma agent:spawn qa "인증 리스크, 테스트 매트릭스, 회귀 범위 검토" session-auth-v2
 ```
 
 ## 계약 우선 원칙

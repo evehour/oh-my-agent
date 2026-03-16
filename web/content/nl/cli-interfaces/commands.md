@@ -10,28 +10,28 @@ Het onderstaande commando-overzicht weerspiegelt de huidige implementatie in `cl
 ## Kerncommando's
 
 ```bash
-oh-my-ag                         # interactieve installer
-oh-my-ag dashboard               # terminaldashboard
-oh-my-ag dashboard:web           # webdashboard (:9847)
-oh-my-ag usage:anti              # Antigravity-gebruiksquota
-oh-my-ag update                  # skills bijwerken vanuit registry
-oh-my-ag doctor                  # omgevings-/skilldiagnose
-oh-my-ag stats                   # productiviteitsmetrieken
-oh-my-ag retro                   # retrospectief rapport
-oh-my-ag cleanup                 # opruimen van verweesde resources
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # interactieve installer
+oma dashboard               # terminaldashboard
+oma dashboard:web           # webdashboard (:9847)
+oma usage:anti              # Antigravity-gebruiksquota
+oma update                  # skills bijwerken vanuit registry
+oma doctor                  # omgevings-/skilldiagnose
+oma stats                   # productiviteitsmetrieken
+oma retro                   # retrospectief rapport
+oma cleanup                 # opruimen van verweesde resources
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## Agentcommando's
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## Geheugen en verificatie
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

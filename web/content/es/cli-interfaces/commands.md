@@ -10,28 +10,28 @@ La superficie de comandos a continuacion refleja la implementacion actual en `cl
 ## Comandos principales
 
 ```bash
-oh-my-ag                         # instalador interactivo
-oh-my-ag dashboard               # panel de control en terminal
-oh-my-ag dashboard:web           # panel de control web (:9847)
-oh-my-ag usage:anti              # cuotas Antigravity
-oh-my-ag update                  # actualizar skills desde el registro
-oh-my-ag doctor                  # diagnosticos de entorno/skills
-oh-my-ag stats                   # metricas de productividad
-oh-my-ag retro                   # informe retrospectivo
-oh-my-ag cleanup                 # limpiar recursos huerfanos
-oh-my-ag bridge [url]            # MCP stdio -> streamable HTTP
+oma                         # instalador interactivo
+oma dashboard               # panel de control en terminal
+oma dashboard:web           # panel de control web (:9847)
+oma usage:anti              # cuotas Antigravity
+oma update                  # actualizar skills desde el registro
+oma doctor                  # diagnosticos de entorno/skills
+oma stats                   # metricas de productividad
+oma retro                   # informe retrospectivo
+oma cleanup                 # limpiar recursos huerfanos
+oma bridge [url]            # MCP stdio -> streamable HTTP
 ```
 
 ## Comandos de agentes
 
 ```bash
-oh-my-ag agent:spawn <agent-id> <prompt> <session-id>
-oh-my-ag agent:status <session-id> [agent-ids...]
+oma agent:spawn <agent-id> <prompt> <session-id>
+oma agent:status <session-id> [agent-ids...]
 ```
 
 ## Memoria y verificacion
 
 ```bash
-oh-my-ag memory:init
-oh-my-ag verify <agent-type>
+oma memory:init
+oma verify <agent-type>
 ```

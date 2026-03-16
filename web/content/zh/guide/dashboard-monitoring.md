@@ -18,7 +18,7 @@ Web 仪表盘默认 URL：`http://localhost:9847`
 
 至少使用 3 个终端：
 
-1. 终端仪表盘（`oh-my-ag dashboard`）
+1. 终端仪表盘（`oma dashboard`）
 2. 代理启动命令
 3. 测试/构建日志
 

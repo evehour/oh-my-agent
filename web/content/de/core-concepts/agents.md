@@ -7,9 +7,13 @@ description: Agententypen, Workspace-Strategie und Orchestrierungsablauf.
 
 ## Agentenkategorien
 
-- Planung: PM-Agent
-- Implementierung: Frontend, Backend, Mobile
+- Ideenfindung: Brainstorm
+- Planung: PM agent
+- Implementierung: Frontend, Backend, Mobile, DB
+- Infrastruktur: TF-infra agent
+- DevOps: Dev-workflow
 - Qualitätssicherung: QA, Debug
+- Lokalisierung: Translator
 - Koordination: workflow-guide, orchestrator
 
 ## Workspace-Strategie

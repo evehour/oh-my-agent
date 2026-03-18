@@ -15,24 +15,33 @@ Updated directory tree for the current monorepo layout (`cli` + `web` workspaces
 │   ├── config/
 │   │   └── user-preferences.yaml
 │   ├── workflows/
+│   │   ├── brainstorm.md
 │   │   ├── coordinate.md
+│   │   ├── debug.md
+│   │   ├── deepinit.md
+│   │   ├── exec-plan.md
 │   │   ├── orchestrate.md
 │   │   ├── plan.md
 │   │   ├── review.md
-│   │   ├── debug.md
 │   │   ├── setup.md
-│   │   └── tools.md
+│   │   ├── tools.md
+│   │   └── ultrawork.md
 │   └── skills/
 │       ├── _shared/
-│       ├── workflow-guide/
-│       ├── pm-agent/
-│       ├── frontend-agent/
 │       ├── backend-agent/
-│       ├── mobile-agent/
-│       ├── qa-agent/
+│       ├── brainstorm/
+│       ├── commit/
+│       ├── db-agent/
 │       ├── debug-agent/
+│       ├── dev-workflow/
+│       ├── frontend-agent/
+│       ├── mobile-agent/
 │       ├── orchestrator/
-│       └── commit/
+│       ├── pm-agent/
+│       ├── qa-agent/
+│       ├── tf-infra-agent/
+│       ├── translator/
+│       └── workflow-guide/
 ├── .github/
 │   └── workflows/
 │       ├── release-please.yml

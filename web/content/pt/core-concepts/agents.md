@@ -7,9 +7,13 @@ description: Tipos de agentes, estratégia de workspace e fluxo de orquestraçã
 
 ## Categorias de Agentes
 
-- Planejamento: agente PM
-- Implementação: Frontend, Backend, Mobile
+- Ideação: Brainstorm
+- Planejamento: PM agent
+- Implementação: Frontend, Backend, Mobile, DB
+- Infraestrutura: TF-infra agent
+- DevOps: Dev-workflow
 - Garantia: QA, Debug
+- Localização: Translator
 - Coordenação: workflow-guide, orchestrator
 
 ## Estratégia de Workspace

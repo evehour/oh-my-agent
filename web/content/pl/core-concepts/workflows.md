@@ -7,11 +7,17 @@ description: Jawne przepływy pracy oparte na komendach slash i kiedy ich używa
 
 ## Komendy przepływów pracy
 
+- `/brainstorm`
 - `/coordinate`
+- `/deepinit`
+- `/exec-plan`
 - `/orchestrate`
 - `/plan`
 - `/review`
 - `/debug`
+- `/setup`
+- `/tools`
+- `/ultrawork`
 
 ## Umiejętności a przepływy pracy
 

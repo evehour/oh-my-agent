@@ -181,6 +181,11 @@ Los agentes pueden trabajar en directorios separados para evitar conflictos. El 
 | frontend-agent | UI, componentes, estilos | Componentes React, pruebas |
 | backend-agent | APIs, bases de datos, autenticación | Endpoints API, modelos, pruebas |
 | mobile-agent | Apps móviles, iOS/Android | Pantallas Flutter, gestión de estado |
+| brainstorm | Ideación, exploración de conceptos | Documento de diseño |
+| db-agent | Base de datos, esquema, ERD, migración | Diseño de esquema, ajuste de consultas |
+| dev-workflow | CI/CD, git hooks, configuración monorepo | Configuraciones de flujo, automatización |
+| tf-infra-agent | Terraform, infraestructura cloud | Módulos IaC, gestión de estado |
+| translator | Traducción, contenido multilingüe | Texto traducido preservando el tono |
 | qa-agent | "revisar seguridad", "auditoría" | Reporte QA con correcciones priorizadas |
 | debug-agent | Reportes de bugs, mensajes de error | Código corregido, pruebas de regresión |
 | orchestrator | Ejecución de sub-agentes CLI | Resultados en `.agents/results/` |
@@ -194,11 +199,17 @@ Escribe estos en el chat de Antigravity IDE para activar workflows paso a paso:
 
 | Comando | Descripción |
 |---------|-------------|
+| `/brainstorm` | Ideación y exploración de conceptos con enfoque en diseño primero |
 | `/coordinate` | Orquestación multi-agente mediante CLI con guía paso a paso |
+| `/deepinit` | Inicialización profunda del proyecto con análisis jerárquico de codebase |
+| `/exec-plan` | Ejecución de plan paso a paso con gestión de progreso |
 | `/orchestrate` | Ejecución paralela automatizada de agentes basada en CLI |
 | `/plan` | Descomposición de tareas PM con contratos API |
 | `/review` | Pipeline QA completo (seguridad, rendimiento, accesibilidad, calidad de código) |
 | `/debug` | Corrección de bugs estructurada (reproducir → diagnosticar → corregir → prueba de regresión) |
+| `/setup` | Configuración de CLI y herramientas MCP |
+| `/tools` | Gestión de herramientas MCP disponibles |
+| `/ultrawork` | Ejecución de máximo paralelismo con orquestación de agentes en paralelo |
 
 Estos son separados de **skills** (que se auto-activan). Los workflows te dan control explícito sobre procesos multi-paso.
 

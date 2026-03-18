@@ -13,13 +13,17 @@ description: Árbol de directorios actualizado tras la separación de los worksp
 │   ├── config/
 │   │   └── user-preferences.yaml   # Idioma, zona horaria, mapeo CLI
 │   ├── workflows/
+│   │   ├── brainstorm.md           # /brainstorm (ideación y exploración de conceptos)
 │   │   ├── coordinate.md           # /coordinate (orquestación multi-agente mediante UI)
+│   │   ├── deepinit.md             # /deepinit (inicialización profunda de proyecto)
+│   │   ├── exec-plan.md            # /exec-plan (ejecución de plan paso a paso)
 │   │   ├── orchestrate.md          # /orchestrate (ejecución paralela automatizada CLI)
 │   │   ├── plan.md                 # /plan (descomposición de tareas PM)
 │   │   ├── review.md               # /review (pipeline QA completo)
 │   │   ├── debug.md                # /debug (corrección de bugs estructurada)
 │   │   ├── setup.md                # /setup (configuración CLI y MCP)
-│   │   └── tools.md                # /tools (gestión de herramientas MCP)
+│   │   ├── tools.md                # /tools (gestión de herramientas MCP)
+│   │   └── ultrawork.md            # /ultrawork (ejecución de máximo paralelismo)
 │   └── skills/
 │       ├── _shared/                    # Recursos comunes (no es un skill)
 │       │   ├── serena-memory-protocol.md
@@ -33,15 +37,20 @@ description: Árbol de directorios actualizado tras la separación de los worksp
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── workflow-guide/             # Coordinación multi-agente
-│       ├── pm-agent/                   # Product manager
-│       ├── frontend-agent/             # React/Next.js
 │       ├── backend-agent/              # FastAPI
-│       ├── mobile-agent/               # Flutter
-│       ├── qa-agent/                   # Seguridad y QA
+│       ├── brainstorm/                 # Ideación y exploración de conceptos
+│       ├── commit/                     # Skill de conventional commits
+│       ├── db-agent/                   # Modelado de bases de datos y esquemas
 │       ├── debug-agent/                # Corrección de bugs
+│       ├── dev-workflow/               # Optimización de flujos de trabajo y CI/CD
+│       ├── frontend-agent/             # React/Next.js
+│       ├── mobile-agent/               # Flutter
 │       ├── orchestrator/               # Generador de sub-agentes basado en CLI
-│       └── commit/                     # Skill de conventional commits
+│       ├── pm-agent/                   # Product manager
+│       ├── qa-agent/                   # Seguridad y QA
+│       ├── tf-infra-agent/             # Infraestructura como código con Terraform
+│       ├── translator/                 # Traducción multilingüe
+│       └── workflow-guide/             # Coordinación multi-agente
 │       # Cada skill tiene:
 │       #   SKILL.md              (~40 líneas, optimizado para tokens)
 │       #   resources/

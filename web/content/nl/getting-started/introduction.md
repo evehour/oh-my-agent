@@ -23,6 +23,11 @@ oh-my-agent is een multi-agentorkestrator voor Antigravity IDE. Het routeert ver
 | frontend-agent | React/Next.js-implementatie |
 | backend-agent | API/database/auth-implementatie |
 | mobile-agent | Flutter/mobiele implementatie |
+| brainstorm | Design-first ideevorming en conceptverkenning |
+| db-agent | Databasemodellering, schemaontwerp en queryoptimalisatie |
+| dev-workflow | Ontwikkelworkflow-optimalisatie en CI/CD |
+| tf-infra-agent | Terraform infrastructure-as-code provisioning |
+| translator | Contextbewuste meertalige vertaling |
 | qa-agent | Beveiligings-/prestatie-/toegankelijkheidsreview |
 | debug-agent | Hoofdoorzaakanalyse en regressieveilige fixes |
 | orchestrator | CLI-gebaseerde subagentorkestratie |

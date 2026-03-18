@@ -175,6 +175,11 @@ Les agents peuvent travailler dans répertoires séparés pour éviter conflits.
 | frontend-agent | UI, composants, style | Composants React, tests |
 | backend-agent | APIs, bases de données, auth | Points terminaison API, modèles, tests |
 | mobile-agent | Applications mobiles, iOS/Android | Écrans Flutter, gestion état |
+| brainstorm | Idéation, exploration de concepts | Document de conception |
+| db-agent | Base de données, schéma, ERD, migration | Conception de schéma, optimisation |
+| dev-workflow | CI/CD, git hooks, configuration monorepo | Configurations, automatisation |
+| tf-infra-agent | Terraform, infrastructure cloud | Modules IaC, gestion d'état |
+| translator | Traduction, contenu multilingue | Texte traduit préservant le ton |
 | qa-agent | "vérifier sécurité", "audit" | Rapport QA avec corrections priorisées |
 | debug-agent | Rapports bugs, messages erreur | Code corrigé, tests régression |
 | orchestrator | Exécution sous-agents CLI | Résultats dans `.agents/results/` |
@@ -188,11 +193,17 @@ Tapez-les dans le chat Antigravity IDE pour déclencher workflows étape par ét
 
 | Commande | Description |
 |----------|-------------|
+| `/brainstorm` | Idéation axée design et exploration de concepts |
 | `/coordinate` | Orchestration multi-agents via CLI avec guidance étape par étape |
+| `/deepinit` | Initialisation profonde du projet avec génération hiérarchique AGENTS.md |
+| `/exec-plan` | Exécution et gestion de plan étape par étape |
 | `/orchestrate` | Exécution parallèle d'agents automatisée basée CLI |
 | `/plan` | Décomposition tâches PM avec contrats API |
 | `/review` | Pipeline QA complet (sécurité, performance, accessibilité, qualité code) |
 | `/debug` | Correction bugs structurée (reproduire → diagnostiquer → corriger → test régression) |
+| `/setup` | Configuration CLI et outils MCP |
+| `/tools` | Gestion des outils MCP disponibles |
+| `/ultrawork` | Exécution maximale avec parallélisme multi-agents à 5 phases |
 
 Ces commandes sont séparées des **compétences** (qui s'activent automatiquement). Les workflows vous donnent contrôle explicite sur processus multi-étapes.
 

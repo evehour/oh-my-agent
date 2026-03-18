@@ -174,7 +174,12 @@ Agents can work in separate directories to avoid conflicts. Workspace is auto-de
 | pm-agent | "plan this", "break down" | `.agents/plan.json` |
 | frontend-agent | UI, components, styling | React components, tests |
 | backend-agent | APIs, databases, auth | API endpoints, models, tests |
+| db-agent | Database, schema, ERD, migration | Schema design, query tuning |
 | mobile-agent | Mobile apps, iOS/Android | Flutter screens, state management |
+| brainstorm | Ideation, concept exploration | Design document |
+| dev-workflow | CI/CD, git hooks, monorepo setup | Workflow configs, automation |
+| tf-infra-agent | Terraform, cloud infra | IaC modules, state management |
+| translator | Translation, multilingual content | Translated text preserving tone |
 | qa-agent | "review security", "audit" | QA report with prioritized fixes |
 | debug-agent | Bug reports, error messages | Fixed code, regression tests |
 | orchestrator | CLI sub-agent execution | Results in `.agents/results/` |
@@ -188,11 +193,17 @@ Type these in AI IDE chat to trigger step-by-step workflows:
 
 | Command | Description |
 |---------|-------------|
+| `/brainstorm` | Design-first ideation — explore intent, constraints, and approaches |
 | `/coordinate` | Multi-agent orchestration via CLI with step-by-step guidance |
+| `/deepinit` | Initialize project harness with AGENTS.md and ARCHITECTURE.md |
+| `/exec-plan` | Create and track execution plans as repository artifacts |
 | `/orchestrate` | Automated CLI-based parallel agent execution |
 | `/plan` | PM task decomposition with API contracts |
 | `/review` | Full QA pipeline (security, performance, accessibility, code quality) |
 | `/debug` | Structured bug fixing (reproduce → diagnose → fix → regression test) |
+| `/setup` | Project setup and configuration |
+| `/tools` | MCP tool management |
+| `/ultrawork` | High-quality 5-phase development with 11 review gates |
 
 These are separate from **skills** (which auto-activate). Workflows give you explicit control over multi-step processes.
 

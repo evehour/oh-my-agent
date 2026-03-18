@@ -7,10 +7,14 @@ description: 代理类型、工作区策略与编排流程。
 
 ## 代理分类
 
-- 规划类：PM agent
-- 实现类：Frontend、Backend、Mobile
-- 保障类：QA、Debug
-- 协调类：workflow-guide、orchestrator
+- 构思: Brainstorm
+- 规划: PM agent
+- 实现: Frontend, Backend, Mobile, DB
+- 基础设施: TF-infra agent
+- DevOps: Dev-workflow
+- 质量保障: QA, Debug
+- 本地化: Translator
+- 协调: workflow-guide, orchestrator
 
 ## 工作区策略
 

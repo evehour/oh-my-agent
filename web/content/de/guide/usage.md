@@ -181,6 +181,11 @@ Agenten können in separaten Verzeichnissen arbeiten, um Konflikte zu vermeiden.
 | frontend-agent | UI, Komponenten, Styling | React-Komponenten, Tests |
 | backend-agent | APIs, Datenbanken, Auth | API-Endpoints, Modelle, Tests |
 | mobile-agent | Mobile Apps, iOS/Android | Flutter-Screens, State-Management |
+| brainstorm | Ideenfindung, Konzepterkundung | Design-Dokument |
+| db-agent | Datenbank, Schema, ERD, Migration | Schema-Design, Query-Tuning |
+| dev-workflow | CI/CD, Git Hooks, Monorepo-Setup | Workflow-Konfigurationen, Automatisierung |
+| tf-infra-agent | Terraform, Cloud-Infrastruktur | IaC-Module, State-Management |
+| translator | Übersetzung, mehrsprachige Inhalte | Tonerhaltende Übersetzung |
 | qa-agent | "Sicherheit prüfen", "Audit" | QA-Report mit priorisierten Fixes |
 | debug-agent | Bug-Reports, Fehlermeldungen | Gefixter Code, Regressionstests |
 | orchestrator | CLI Sub-Agent-Ausführung | Ergebnisse in `.agents/results/` |
@@ -194,11 +199,17 @@ Tippen Sie diese in der Antigravity IDE, um schrittweise Workflows auszulösen:
 
 | Befehl | Beschreibung |
 |--------|--------------|
+| `/brainstorm` | Design-First-Ideenfindung — Absicht, Einschränkungen und Ansätze erkunden |
 | `/coordinate` | Multi-Agent-Orchestrierung via CLI mit schrittweiser Anleitung |
+| `/deepinit` | Projekt-Harness mit AGENTS.md und ARCHITECTURE.md initialisieren |
+| `/exec-plan` | Ausführungspläne als Repository-Artefakte erstellen und verfolgen |
 | `/orchestrate` | Automatisierte CLI-basierte parallele Agent-Ausführung |
 | `/plan` | PM Task-Zerlegung mit API-Verträgen |
 | `/review` | Vollständige QA-Pipeline (Sicherheit, Performance, Accessibility, Code-Qualität) |
 | `/debug` | Strukturierte Bug-Behebung (reproduzieren → diagnostizieren → fixen → Regressionstest) |
+| `/setup` | Projekt-Setup und Konfiguration |
+| `/tools` | MCP-Tool-Verwaltung |
+| `/ultrawork` | Hochwertige 5-Phasen-Entwicklung mit 11 Review-Gates |
 
 Diese sind getrennt von **Skills** (die automatisch aktivieren). Workflows geben Ihnen explizite Kontrolle über mehrstufige Prozesse.
 

@@ -7,9 +7,13 @@ description: Agent types, workspace strategy, and orchestration flow.
 
 ## Agent Categories
 
+- Ideation: Brainstorm
 - Planning: PM agent
-- Implementation: Frontend, Backend, Mobile
+- Implementation: Frontend, Backend, Mobile, DB
+- Infrastructure: TF-infra agent
+- DevOps: Dev-workflow
 - Assurance: QA, Debug
+- Localization: Translator
 - Coordination: workflow-guide, orchestrator
 
 ## Workspace Strategy

@@ -25,6 +25,11 @@ oh-my-agent 是面向 AI IDE 的多代理编排器。它将请求路由到专业
 | mobile-agent | Flutter/移动端实现 |
 | qa-agent | 安全/性能/无障碍评审 |
 | debug-agent | 根因分析与回归安全修复 |
+| brainstorm | 设计优先的构思与概念探索 |
+| db-agent | 数据库建模、模式设计和查询调优 |
+| dev-workflow | 开发工作流优化与 CI/CD |
+| tf-infra-agent | Terraform 基础设施即代码配置 |
+| translator | 上下文感知的多语言翻译 |
 | orchestrator | 基于 CLI 的子代理编排 |
 | commit | 约定式提交工作流 |
 

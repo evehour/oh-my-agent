@@ -175,6 +175,11 @@ Agents kunnen werken in aparte directories om conflicten te vermijden. Workspace
 | frontend-agent | UI, components, styling | React components, tests |
 | backend-agent | APIs, databases, auth | API endpoints, modellen, tests |
 | mobile-agent | Mobiele apps, iOS/Android | Flutter schermen, state management |
+| brainstorm | Ideevorming, conceptverkenning | Ontwerpdocument |
+| db-agent | Database, schema, ERD, migratie | Schemaontwerp, queryoptimalisatie |
+| dev-workflow | CI/CD, git hooks, monorepo-setup | Workflowconfiguraties, automatisering |
+| tf-infra-agent | Terraform, cloudinfrastructuur | IaC-modules, state-management |
+| translator | Vertaling, meertalige content | Vertaalde tekst met behoud van toon |
 | qa-agent | "review beveiliging", "audit" | QA rapport met geprioritiseerde fixes |
 | debug-agent | Bug rapporten, foutmeldingen | Gerepareerde code, regressietests |
 | orchestrator | CLI sub-agent uitvoering | Resultaten in `.agents/results/` |
@@ -188,11 +193,17 @@ Typ deze in Antigravity IDE chat om stap-voor-stap workflows te triggeren:
 
 | Commando | Beschrijving |
 |----------|--------------|
+| `/brainstorm` | Design-first ideevorming en conceptverkenning |
 | `/coordinate` | Multi-agent orkestratie via CLI met stap-voor-stap begeleiding |
+| `/deepinit` | Diepgaande projectinitialisatie met hiërarchische AGENTS.md |
+| `/exec-plan` | Planuitvoering en inline planbeheer |
 | `/orchestrate` | Geautomatiseerde CLI-gebaseerde parallelle agent uitvoering |
 | `/plan` | PM taak decompositie met API contracten |
 | `/review` | Volledige QA pipeline (beveiliging, prestaties, toegankelijkheid, code kwaliteit) |
 | `/debug` | Gestructureerd bug repareren (reproduceren → diagnosticeren → repareren → regressietest) |
+| `/setup` | CLI- en MCP-configuratie |
+| `/tools` | MCP tool management |
+| `/ultrawork` | Maximale parallelle uitvoering via 5-fase gate-lus |
 
 Deze zijn gescheiden van **skills** (die automatisch activeren). Workflows geven je expliciete controle over multi-step processen.
 

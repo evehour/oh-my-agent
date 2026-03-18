@@ -7,9 +7,13 @@ description: Agenttypen, werkruimtestrategie en orkestratiestroom.
 
 ## Agentcategorieën
 
-- Planning: PM-agent
-- Implementatie: Frontend, Backend, Mobile
+- Ideevorming: Brainstorm
+- Planning: PM agent
+- Implementatie: Frontend, Backend, Mobile, DB
+- Infrastructuur: TF-infra agent
+- DevOps: Dev-workflow
 - Kwaliteitsborging: QA, Debug
+- Lokalisatie: Translator
 - Coördinatie: workflow-guide, orchestrator
 
 ## Werkruimtestrategie

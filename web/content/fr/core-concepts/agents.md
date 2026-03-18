@@ -7,9 +7,13 @@ description: Types d'agents, stratégie d'espace de travail et flux d'orchestrat
 
 ## Catégories d'agents
 
-- Planification : agent PM
-- Implémentation : Frontend, Backend, Mobile
-- Assurance qualité : QA, Debug
+- Idéation : Brainstorm
+- Planification : PM agent
+- Implémentation : Frontend, Backend, Mobile, DB
+- Infrastructure : TF-infra agent
+- DevOps : Dev-workflow
+- Assurance : QA, Debug
+- Localisation : Translator
 - Coordination : workflow-guide, orchestrator
 
 ## Stratégie d'espace de travail

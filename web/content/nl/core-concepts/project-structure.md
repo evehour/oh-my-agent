@@ -13,13 +13,17 @@ Gedetailleerde directory tree voor deze repository.
 │   ├── config/
 │   │   └── user-preferences.yaml   # Taal, tijdzone, CLI mapping
 │   ├── workflows/
+│   │   ├── brainstorm.md           # /brainstorm (design-first ideevorming)
 │   │   ├── coordinate.md           # /coordinate (multi-agent orkestratie via UI)
+│   │   ├── deepinit.md             # /deepinit (diepgaande projectinitialisatie)
+│   │   ├── exec-plan.md            # /exec-plan (planuitvoering en -beheer)
 │   │   ├── orchestrate.md          # /orchestrate (geautomatiseerde CLI parallelle uitvoering)
 │   │   ├── plan.md                 # /plan (PM taak decompositie)
 │   │   ├── review.md               # /review (volledige QA pipeline)
 │   │   ├── debug.md                # /debug (gestructureerd bug repareren)
 │   │   ├── setup.md                # /setup (CLI & MCP configuratie)
-│   │   └── tools.md                # /tools (MCP tool management)
+│   │   ├── tools.md                # /tools (MCP tool management)
+│   │   └── ultrawork.md            # /ultrawork (maximale parallelle uitvoering)
 │   └── skills/
 │       ├── _shared/                    # Gemeenschappelijke resources (geen skill)
 │       │   ├── serena-memory-protocol.md
@@ -33,15 +37,20 @@ Gedetailleerde directory tree voor deze repository.
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── workflow-guide/             # Multi-agent coördinatie
-│       ├── pm-agent/                   # Product manager
-│       ├── frontend-agent/             # React/Next.js
 │       ├── backend-agent/              # FastAPI
-│       ├── mobile-agent/               # Flutter
-│       ├── qa-agent/                   # Beveiliging & QA
+│       ├── brainstorm/                 # Design-first ideevorming
+│       ├── commit/                     # Conventional commits skill
+│       ├── db-agent/                   # Databasemodellering & queryoptimalisatie
 │       ├── debug-agent/                # Bug repareren
+│       ├── dev-workflow/               # CI/CD & ontwikkelworkflow
+│       ├── frontend-agent/             # React/Next.js
+│       ├── mobile-agent/               # Flutter
 │       ├── orchestrator/               # CLI-gebaseerde sub-agent spawner
-│       └── commit/                     # Conventional commits skill
+│       ├── pm-agent/                   # Product manager
+│       ├── qa-agent/                   # Beveiliging & QA
+│       ├── tf-infra-agent/             # Terraform infrastructure-as-code
+│       ├── translator/                 # Contextbewuste meertalige vertaling
+│       └── workflow-guide/             # Multi-agent coördinatie
 │       # Elke skill heeft:
 │       #   SKILL.md              (~40 regels, token-geoptimaliseerd)
 │       #   resources/

@@ -13,13 +13,17 @@ Arborescence détaillée des répertoires pour ce dépôt.
 │   ├── config/
 │   │   └── user-preferences.yaml   # Langue, fuseau horaire, mappage CLI
 │   ├── workflows/
+│   │   ├── brainstorm.md           # /brainstorm (idéation et exploration de concepts)
 │   │   ├── coordinate.md           # /coordinate (orchestration multi-agents via UI)
+│   │   ├── deepinit.md             # /deepinit (initialisation profonde du projet)
+│   │   ├── exec-plan.md            # /exec-plan (exécution et gestion de plan)
 │   │   ├── orchestrate.md          # /orchestrate (exécution parallèle CLI automatisée)
 │   │   ├── plan.md                 # /plan (décomposition tâches PM)
 │   │   ├── review.md               # /review (pipeline QA complet)
 │   │   ├── debug.md                # /debug (correction bugs structurée)
 │   │   ├── setup.md                # /setup (configuration CLI & MCP)
-│   │   └── tools.md                # /tools (gestion outils MCP)
+│   │   ├── tools.md                # /tools (gestion outils MCP)
+│   │   └── ultrawork.md            # /ultrawork (exécution maximale parallèle)
 │   └── skills/
 │       ├── _shared/                    # Ressources communes (pas une compétence)
 │       │   ├── serena-memory-protocol.md
@@ -33,15 +37,20 @@ Arborescence détaillée des répertoires pour ce dépôt.
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── workflow-guide/             # Coordination multi-agents
-│       ├── pm-agent/                   # Chef de projet
-│       ├── frontend-agent/             # React/Next.js
 │       ├── backend-agent/              # FastAPI
-│       ├── mobile-agent/               # Flutter
-│       ├── qa-agent/                   # Sécurité & QA
+│       ├── brainstorm/                 # Idéation et exploration de concepts
+│       ├── commit/                     # Compétence commits conventionnels
+│       ├── db-agent/                   # Base de données, schémas, requêtes
 │       ├── debug-agent/                # Correction bugs
+│       ├── dev-workflow/               # Workflows de développement et CI/CD
+│       ├── frontend-agent/             # React/Next.js
+│       ├── mobile-agent/               # Flutter
 │       ├── orchestrator/               # Générateur sous-agents basé CLI
-│       └── commit/                     # Compétence commits conventionnels
+│       ├── pm-agent/                   # Chef de projet
+│       ├── qa-agent/                   # Sécurité & QA
+│       ├── tf-infra-agent/             # Infrastructure as code Terraform
+│       ├── translator/                 # Traduction multilingue
+│       └── workflow-guide/             # Coordination multi-agents
 │       # Chaque compétence contient :
 │       #   SKILL.md              (~40 lignes, optimisé tokens)
 │       #   resources/

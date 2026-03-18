@@ -7,9 +7,13 @@ description: Typy agentów, strategia przestrzeni roboczych i przepływ orkiestr
 
 ## Kategorie agentów
 
-- Planowanie: agent PM
-- Implementacja: Frontend, Backend, Mobile
+- Ideacja: Brainstorm
+- Planowanie: PM agent
+- Implementacja: Frontend, Backend, Mobile, DB
+- Infrastruktura: TF-infra agent
+- DevOps: Dev-workflow
 - Zapewnienie jakości: QA, Debug
+- Lokalizacja: Translator
 - Koordynacja: workflow-guide, orchestrator
 
 ## Strategia przestrzeni roboczych

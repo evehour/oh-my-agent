@@ -7,10 +7,14 @@ description: Tipos de agentes, estrategia de espacios de trabajo y flujo de orqu
 
 ## Categorias de agentes
 
-- Planificacion: agente PM
-- Implementacion: Frontend, Backend, Mobile
+- Ideación: Brainstorm
+- Planificación: PM agent
+- Implementación: Frontend, Backend, Mobile, DB
+- Infraestructura: TF-infra agent
+- DevOps: Dev-workflow
 - Aseguramiento: QA, Debug
-- Coordinacion: workflow-guide, orchestrator
+- Localización: Translator
+- Coordinación: workflow-guide, orchestrator
 
 ## Estrategia de espacios de trabajo
 

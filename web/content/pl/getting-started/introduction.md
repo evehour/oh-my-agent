@@ -25,6 +25,11 @@ oh-my-agent to wieloagentowy orkiestrator dla Antigravity IDE. Kieruje żądania
 | mobile-agent | Implementacja Flutter/mobile |
 | qa-agent | Przegląd bezpieczeństwa/wydajności/dostępności |
 | debug-agent | Analiza przyczyn źródłowych i poprawki bezpieczne dla regresji |
+| brainstorm | Ideacja z priorytetem projektowania i eksploracja koncepcji |
+| db-agent | Modelowanie baz danych, projektowanie schematów i optymalizacja zapytań |
+| dev-workflow | Optymalizacja przepływu pracy deweloperskiej i CI/CD |
+| tf-infra-agent | Provisioning infrastruktury jako kodu z Terraform |
+| translator | Kontekstowe tłumaczenie wielojęzyczne |
 | orchestrator | Orkiestracja podagentów oparta na CLI |
 | commit | Przepływ pracy konwencjonalnych commitów |
 

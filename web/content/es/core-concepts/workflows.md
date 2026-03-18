@@ -7,11 +7,17 @@ description: Flujos de trabajo explicitos con comandos slash y cuando utilizarlo
 
 ## Comandos de flujo de trabajo
 
+- `/brainstorm`
 - `/coordinate`
+- `/deepinit`
+- `/exec-plan`
 - `/orchestrate`
 - `/plan`
 - `/review`
 - `/debug`
+- `/setup`
+- `/tools`
+- `/ultrawork`
 
 ## Skills vs flujos de trabajo
 

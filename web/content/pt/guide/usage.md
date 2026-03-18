@@ -175,6 +175,11 @@ Agentes podem trabalhar em diretórios separados para evitar conflitos. Workspac
 | frontend-agent | UI, componentes, estilo | Componentes React, testes |
 | backend-agent | APIs, bancos de dados, autenticação | Endpoints de API, modelos, testes |
 | mobile-agent | Apps mobile, iOS/Android | Telas Flutter, gestão de estado |
+| brainstorm | Ideação, exploração de conceitos | Documento de design |
+| db-agent | Banco de dados, esquema, ERD, migração | Design de esquema, ajuste de consultas |
+| dev-workflow | CI/CD, git hooks, configuração monorepo | Configurações de fluxo, automação |
+| tf-infra-agent | Terraform, infraestrutura cloud | Módulos IaC, gestão de estado |
+| translator | Tradução, conteúdo multilíngue | Texto traduzido preservando o tom |
 | qa-agent | "revisar segurança", "auditoria" | Relatório QA com correções priorizadas |
 | debug-agent | Relatórios de bug, mensagens de erro | Código corrigido, testes de regressão |
 | orchestrator | Execução de sub-agente CLI | Resultados em `.agents/results/` |
@@ -188,11 +193,17 @@ Digite estes no chat do Antigravity IDE para acionar fluxos de trabalho passo a 
 
 | Comando | Descrição |
 |---------|-------------|
+| `/brainstorm` | Ideação design-first e exploração de conceitos |
 | `/coordinate` | Orquestração multi-agente via CLI com orientação passo a passo |
+| `/deepinit` | Inicialização profunda do projeto com AGENTS.md hierárquico |
+| `/exec-plan` | Execução e gerenciamento de plano existente |
 | `/orchestrate` | Execução paralela de agentes automatizada via CLI |
 | `/plan` | Decomposição de tarefas PM com contratos de API |
 | `/review` | Pipeline QA completo (segurança, performance, acessibilidade, qualidade de código) |
 | `/debug` | Correção estruturada de bugs (reproduzir → diagnosticar → corrigir → teste de regressão) |
+| `/setup` | Configuração de CLI e ferramentas MCP |
+| `/tools` | Gestão de ferramentas MCP |
+| `/ultrawork` | Execução de máximo paralelismo com orquestração de agentes paralelos |
 
 Estes são separados de **habilidades** (que auto-ativam). Fluxos de trabalho dão controle explícito sobre processos multi-etapa.
 

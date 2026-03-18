@@ -175,6 +175,11 @@ Agenci mogą pracować w oddzielnych katalogach aby uniknąć konfliktów. Works
 | frontend-agent | UI, komponenty, stylizacja | Komponenty React, testy |
 | backend-agent | API, bazy danych, uwierzytelnianie | Endpointy API, modele, testy |
 | mobile-agent | Aplikacje mobilne, iOS/Android | Ekrany Flutter, zarządzanie stanem |
+| brainstorm | Ideacja, eksploracja koncepcji | Dokument projektowy |
+| db-agent | Baza danych, schemat, ERD, migracja | Projektowanie schematów, optymalizacja zapytań |
+| dev-workflow | CI/CD, git hooks, konfiguracja monorepo | Konfiguracje przepływu, automatyzacja |
+| tf-infra-agent | Terraform, infrastruktura chmurowa | Moduły IaC, zarządzanie stanem |
+| translator | Tłumaczenie, treści wielojęzyczne | Przetłumaczony tekst z zachowaniem tonu |
 | qa-agent | "sprawdź bezpieczeństwo", "audyt" | Raport QA z priorytetowymi poprawkami |
 | debug-agent | Raporty błędów, komunikaty o błędach | Naprawiony kod, testy regresji |
 | orchestrator | Wykonywanie pod-agentów przez CLI | Wyniki w `.agents/results/` |
@@ -188,11 +193,17 @@ Wpisz te w czacie Antigravity IDE aby wyzwolić przepływy pracy krok po kroku:
 
 | Polecenie | Opis |
 |---------|-------------|
+| `/brainstorm` | Ideacja i eksploracja koncepcji z priorytetem projektowania |
 | `/coordinate` | Orkiestracja multi-agentowa przez CLI z wskazówkami krok po kroku |
+| `/deepinit` | Głęboka inicjalizacja projektu z hierarchiczną strukturą AGENTS.md |
+| `/exec-plan` | Zarządzanie i wykonywanie istniejącego planu zadań |
 | `/orchestrate` | Automatyczne równoległe wykonywanie agentów przez CLI |
 | `/plan` | Dekompozycja zadań PM z kontraktami API |
 | `/review` | Pełny pipeline QA (bezpieczeństwo, wydajność, dostępność, jakość kodu) |
 | `/debug` | Strukturalne naprawianie błędów (odtwórz → zdiagnozuj → napraw → test regresji) |
+| `/setup` | Konfiguracja CLI i MCP dla środowiska deweloperskiego |
+| `/tools` | Zarządzanie narzędziami MCP i ich konfiguracją |
+| `/ultrawork` | Maksymalna równoległość z bramkami fazowymi dla złożonych zadań |
 
 Są to oddzielne od **umiejętności** (które auto-aktywują się). Przepływy pracy dają Ci jawną kontrolę nad procesami wieloetapowymi.
 

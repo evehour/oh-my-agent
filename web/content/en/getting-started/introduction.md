@@ -25,6 +25,11 @@ oh-my-agent is a multi-agent orchestrator for AI IDEs. It routes requests to spe
 | mobile-agent | Flutter/mobile implementation |
 | qa-agent | Security/performance/accessibility review |
 | debug-agent | Root-cause analysis and regression-safe fixes |
+| brainstorm | Design-first ideation and concept exploration |
+| db-agent | Database modeling, schema design, and query tuning |
+| dev-workflow | Developer workflow optimization and CI/CD |
+| tf-infra-agent | Terraform infrastructure-as-code provisioning |
+| translator | Context-aware multilingual translation |
 | orchestrator | CLI-based sub-agent orchestration |
 | commit | Conventional commit workflow |
 

@@ -7,11 +7,17 @@ description: Workflows explícitos por comandos de barra e quando utilizá-los.
 
 ## Comandos de Workflow
 
+- `/brainstorm`
 - `/coordinate`
+- `/deepinit`
+- `/exec-plan`
 - `/orchestrate`
 - `/plan`
 - `/review`
 - `/debug`
+- `/setup`
+- `/tools`
+- `/ultrawork`
 
 ## Skills vs Workflows
 

@@ -7,9 +7,13 @@ description: Типы агентов, стратегия рабочих прос
 
 ## Категории агентов
 
-- Планирование: PM-агент
-- Реализация: Frontend, Backend, Mobile
+- Идеация: Brainstorm
+- Планирование: PM agent
+- Реализация: Frontend, Backend, Mobile, DB
+- Инфраструктура: TF-infra agent
+- DevOps: Dev-workflow
 - Обеспечение качества: QA, Debug
+- Локализация: Translator
 - Координация: workflow-guide, orchestrator
 
 ## Стратегия рабочих пространств

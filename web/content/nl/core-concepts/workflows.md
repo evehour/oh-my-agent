@@ -7,11 +7,17 @@ description: Expliciete slash-commandoworkflows en wanneer ze te gebruiken.
 
 ## Workflowcommando's
 
+- `/brainstorm`
 - `/coordinate`
+- `/deepinit`
+- `/exec-plan`
 - `/orchestrate`
 - `/plan`
 - `/review`
 - `/debug`
+- `/setup`
+- `/tools`
+- `/ultrawork`
 
 ## Skills versus workflows
 

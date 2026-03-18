@@ -25,6 +25,11 @@ oh-my-agent は Antigravity IDE 向けのマルチエージェントオーケス
 | mobile-agent | Flutter/モバイルの実装 |
 | qa-agent | セキュリティ/パフォーマンス/アクセシビリティレビュー |
 | debug-agent | 根本原因分析とリグレッションセーフな修正 |
+| brainstorm | 設計優先のアイデア創出とコンセプト探索 |
+| db-agent | データベースモデリング、スキーマ設計、クエリチューニング |
+| dev-workflow | 開発ワークフロー最適化と CI/CD |
+| tf-infra-agent | Terraform インフラストラクチャ・アズ・コード プロビジョニング |
+| translator | コンテキスト対応多言語翻訳 |
 | orchestrator | CLI ベースのサブエージェントオーケストレーション |
 | commit | コンベンショナルコミットワークフロー |
 

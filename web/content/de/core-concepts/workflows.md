@@ -7,11 +7,17 @@ description: Explizite Slash-Befehl-Workflows und wann man sie verwendet.
 
 ## Workflow-Befehle
 
+- `/brainstorm`
 - `/coordinate`
+- `/deepinit`
+- `/exec-plan`
 - `/orchestrate`
 - `/plan`
 - `/review`
 - `/debug`
+- `/setup`
+- `/tools`
+- `/ultrawork`
 
 ## Skills vs. Workflows
 

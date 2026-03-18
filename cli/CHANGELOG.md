@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.11.1](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.11.0...cli-v2.11.1) (2026-03-18)
+
+
+### Refactoring
+
+* **skills:** standardize dev-workflow and translator SKILL.md format ([dee1234](https://github.com/first-fluke/oh-my-agent/commit/dee12349fcaa3bc4e9ab523002bdb4e337f68202))
+
 ## [2.11.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.10.2...cli-v2.11.0) (2026-03-18)
 
 

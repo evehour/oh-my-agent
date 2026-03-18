@@ -1,7 +1,7 @@
 {
   "name": "oh-my-agent",
-  "version": "2.11.0",
-  "releaseDate": "2026-03-18T10:39:49.844Z",
+  "version": "2.11.1",
+  "releaseDate": "2026-03-18T08:41:26.939Z",
   "repository": "https://github.com/first-fluke/oh-my-agent",
   "files": [
     {
@@ -276,8 +276,8 @@
     },
     {
       "path": ".agents/skills/dev-workflow/SKILL.md",
-      "sha256": "3fa964ce1bff85692358296b851941da8ac8448f369dc0ffd00da02c41b4dbe8",
-      "size": 8092
+      "sha256": "3feaeef3643f023988624078eae75ff3faff65c561b1810d944473104e5b6fa9",
+      "size": 8319
     },
     {
       "path": ".agents/skills/dev-workflow/resources/api-workflows.md",
@@ -581,8 +581,8 @@
     },
     {
       "path": ".agents/skills/translator/SKILL.md",
-      "sha256": "f23f31d7e1b420c8297e9da637650be00ed81776df9b62ba9308a2cb099da980",
-      "size": 6958
+      "sha256": "5803ac476f67646b48be6c1a47936257eabee0f4006e7dd8baa2f54f4a37a16e",
+      "size": 7120
     },
     {
       "path": ".agents/skills/translator/resources/anti-ai-patterns.md",

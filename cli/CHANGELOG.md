@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.11.3](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.11.2...cli-v2.11.3) (2026-03-18)
+
+
+### Bug Fixes
+
+* **demo:** use Hack Nerd Font for VHS recording ([b16bdd7](https://github.com/first-fluke/oh-my-agent/commit/b16bdd711e38ba4c58bca589926d8d5488480839))
+
 ## [2.11.2](https://github.com/first-fluke/oh-my-agent/compare/cli-v2.11.1...cli-v2.11.2) (2026-03-18)
 
 

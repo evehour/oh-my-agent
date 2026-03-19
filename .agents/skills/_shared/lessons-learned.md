@@ -145,6 +145,21 @@ When there are failed tasks at session end:
 2. Add lesson to the relevant domain section
 3. Prevent same mistakes in next session
 
+### Auto-Generation from Experiment Ledger
+
+At session end, the Experiment Ledger (see `experiment-ledger.md`) auto-generates lesson candidates from **discarded experiments with delta <= -5**.
+
+Auto-generated lessons use this format:
+```markdown
+### {YYYY-MM-DD}: {agent-type} - {hypothesis} (DISCARDED, delta: {delta})
+- **Problem**: {what was attempted}
+- **Root Cause**: {why score decreased — which dimension regressed and why}
+- **Lesson**: {what to avoid or do differently next time}
+- **Source**: Experiment Ledger #{experiment_number}, Session {session_id}
+```
+
+Auto-generated lessons are appended to the relevant domain section. They are marked with `(Source: Experiment Ledger)` to distinguish from manual RCA entries.
+
 ### When Lessons Become Too Many (50+)
 - Move old lessons (6+ months) to archive
 - Delete lessons invalidated by framework version upgrades

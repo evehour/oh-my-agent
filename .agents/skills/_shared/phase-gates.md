@@ -26,6 +26,28 @@ Revise plan, do not proceed to IMPL
 
 ---
 
+## Quality Score Integration
+
+All gates below incorporate the Quality Score (see `quality-score.md`).
+When automated measurement is available, the composite score supplements the checklist:
+
+- **Grade A (90-100)**: Gate auto-passes if all checklist items are also met
+- **Grade B (75-89)**: Gate passes with noted improvements for next phase
+- **Grade C (60-74)**: Gate FAILS — must improve score before proceeding
+- **Grade D (0-59)**: Hard FAIL — rollback required
+
+Score is recorded at each gate checkpoint in the Experiment Ledger (see `experiment-ledger.md`).
+
+### Repeated Gate Failure Rule
+
+If the same gate **fails twice** on the same issue:
+- Activate the **Exploration Loop** (see `exploration-loop.md`)
+- Generate 2-3 alternative hypotheses
+- Experiment and select the highest-scoring approach
+- Resume gate evaluation with the winning approach
+
+---
+
 ## IMPL_GATE
 
 **Owner**: Implementation Agent
@@ -105,6 +127,10 @@ Address issues, re-verify
 
 ### Final Approval
 User must confirm
+
+### Quality Score Requirement
+- [ ] Final composite score >= 75 (Grade B or above)
+- [ ] Score delta from IMPL baseline is positive
 
 ### Failure Action
 Return to appropriate phase based on failure type

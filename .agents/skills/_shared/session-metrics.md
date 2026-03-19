@@ -115,6 +115,44 @@ At session end, if total CD >= 50:
 | **QA Agent** | Reviews session metrics, generates RCA if needed |
 | **Dashboard** | Displays real-time CD score (optional) |
 | **Retro Command** | Aggregates CD across sessions for trend analysis |
+| **Quality Score** | Score progression tracked per phase checkpoint |
+| **Experiment Ledger** | Experiment count and keep rate feed into session summary |
+| **Exploration Loop** | Exploration rounds count toward session complexity |
+
+---
+
+## Quality Score Tracking (Extension)
+
+In addition to CD events, session metrics now track the **Quality Score progression** through the session.
+
+### Score Progression Log
+
+Append to the session log alongside CD events:
+
+```markdown
+### Quality Score Progression
+
+| Checkpoint | Phase | Composite | Correctness | Security | Performance | Coverage | Consistency |
+|-----------|-------|-----------|-------------|----------|-------------|----------|-------------|
+| Baseline | IMPL start | — | — | — | — | — | — |
+| Post-IMPL | IMPL end | 72 | 80 | 70 | 65 | 70 | 75 |
+| Post-VERIFY | VERIFY end | 78 | 85 | 80 | 65 | 75 | 85 |
+| Post-REFINE | REFINE end | 84 | 85 | 80 | 80 | 80 | 95 |
+| Final | SHIP | 86 | 90 | 80 | 80 | 80 | 95 |
+```
+
+### Experiment Summary
+
+```markdown
+### Experiment Summary
+- Total experiments: {N}
+- Kept: {N} ({%})
+- Discarded: {N} ({%})
+- Exploration rounds: {N}
+- Net score improvement: {delta} ({start} → {final})
+```
+
+This data is sourced from the Experiment Ledger (see `experiment-ledger.md`).
 
 ---
 

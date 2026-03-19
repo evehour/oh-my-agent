@@ -25,7 +25,10 @@ description: Ultrawork - high-quality 5-phase development workflow with 11 revie
 4. Read `.agents/skills/_shared/multi-review-protocol.md` (11 review guides)
 5. Read `.agents/skills/_shared/quality-principles.md` (4 principles)
 6. Read `.agents/skills/_shared/phase-gates.md` (gate definitions)
-7. Record session start using memory write tool:
+7. Read `.agents/skills/_shared/quality-score.md` (continuous quality scoring)
+8. Read `.agents/skills/_shared/experiment-ledger.md` (experiment tracking)
+9. Read `.agents/skills/_shared/exploration-loop.md` (hypothesis-driven exploration)
+10. Record session start using memory write tool:
    - Create `session-ultrawork.md` in the memory base path
    - Include: session start time, user request summary, workflow version (ultrawork)
 
@@ -94,12 +97,22 @@ wait
 
 **Continue polling until all agents report completion or failure.**
 
+### Step 5.2: Measure Baseline Quality Score
+
+After implementation is complete, measure the **baseline Quality Score** (see `quality-score.md`):
+
+1. Run tests, lint, type-check where available
+2. Record composite score as the IMPL baseline
+3. Log as first entry in Experiment Ledger (`.agents/results/experiment-ledger.md`)
+4. This baseline is used for all subsequent delta calculations
+
 ### IMPL_GATE
 - [ ] Build succeeds
 - [ ] Tests pass
 - [ ] Only planned files modified
+- [ ] Baseline Quality Score recorded in Experiment Ledger
 
-**On gate pass**: Use memory edit tool to record phase completion in `session-ultrawork.md`
+**On gate pass**: Use memory edit tool to record phase completion and baseline score in `session-ultrawork.md`
 
 **Gate failure → Return to Step 5, re-spawn failed agents, and repeat monitoring until GATE passes.**
 
@@ -133,15 +146,32 @@ Command: `oh-my-ag agent:spawn qa-agent "Execute Phase 3 Verification. Step 6: A
 ### Step 8: Improvement Review (Regression Prevention)
 - **Executed by QA Agent**: Run regression tests.
 
+### Step 8.1: Measure Post-VERIFY Quality Score
+
+After QA Agent completes verification:
+
+1. Measure Quality Score incorporating QA findings
+2. Calculate delta from IMPL baseline
+3. Record as experiment in Experiment Ledger
+
 ### VERIFY_GATE
 - [ ] Implementation = Requirements
 - [ ] CRITICAL count: 0
 - [ ] HIGH count: 0
 - [ ] No regressions
+- [ ] Quality Score >= 75 (Grade B)
 
-**On gate pass**: Use memory edit tool to record phase completion in `session-ultrawork.md`
+**On gate pass**: Use memory edit tool to record phase completion and quality score in `session-ultrawork.md`
 
-**Gate failure → Return to Step 5, fix implementation issues, and repeat VERIFY phase until GATE passes.**
+**Gate failure (1st time)** → Return to Step 5, fix implementation issues, and repeat VERIFY phase.
+
+**Gate failure (2nd time on same issue)** → Activate **Exploration Loop** (see `exploration-loop.md`):
+1. Generate 2-3 alternative hypotheses based on QA findings
+2. Experiment each approach (sequential, inline)
+3. Measure Quality Score for each
+4. Select the highest-scoring approach
+5. Record all experiments in Experiment Ledger
+6. Resume VERIFY with winning approach
 
 ---
 
@@ -179,13 +209,25 @@ Command: `oh-my-ag agent:spawn debug-agent "Execute Phase 4 Refine. Step 9: Spli
 ### Step 13: Clean Up Unused Code
 - **Executed by Debug Agent**: Remove newly created dead code.
 
+### Step 13.1: Measure Post-REFINE Quality Score
+
+After refinement:
+
+1. Measure Quality Score
+2. Calculate delta from Post-VERIFY score
+3. **If delta is negative**: Apply Keep/Discard rule from `quality-score.md`
+   - DISCARD refinement changes that reduce score
+   - Record discarded experiments in Experiment Ledger
+4. Record kept experiments in Experiment Ledger
+
 ### REFINE_GATE
 - [ ] No large files/functions
 - [ ] Integration opportunities captured
 - [ ] Side effects verified
 - [ ] Code cleaned
+- [ ] Quality Score >= Post-VERIFY score (no regression from refinement)
 
-**On gate pass**: Use memory edit tool to record phase completion in `session-ultrawork.md`
+**On gate pass**: Use memory edit tool to record phase completion and quality score in `session-ultrawork.md`
 
 **Gate failure → Re-spawn Debug Agent with specific issues and repeat until GATE passes.**
 
@@ -224,14 +266,23 @@ Command: `oh-my-ag agent:spawn qa-agent "Execute Phase 5 Ship. Step 14: Quality 
 ### Step 17: Deployment Readiness Review (Final)
 - **Executed by QA Agent**: Secrets, Migrations, checklist.
 
+### Step 17.1: Final Quality Score & Experiment Ledger Summary
+
+1. Measure final Quality Score
+2. Generate Experiment Ledger summary (total experiments, keep rate, net delta)
+3. Auto-generate lessons from discarded experiments (delta <= -5) into `lessons-learned.md`
+4. Record final score progression in session metrics
+
 ### SHIP_GATE
 - [ ] Quality checks pass
 - [ ] UX verified
 - [ ] Related issues resolved
 - [ ] Deployment checklist complete
+- [ ] Final Quality Score >= 75 (Grade B) with positive delta from baseline
+- [ ] Experiment Ledger summary recorded
 - [ ] **User final approval**
 
-**On gate pass**: Use memory write tool to record final results in `session-ultrawork.md`
+**On gate pass**: Use memory write tool to record final results, quality score, and experiment summary in `session-ultrawork.md`
 
 **Gate failure → Address issues, re-run affected steps, and repeat until GATE passes.**
 
@@ -247,4 +298,18 @@ Command: `oh-my-ag agent:spawn qa-agent "Execute Phase 5 Ship. Step 14: Quality 
 | REFINE | 9-13  | Debug Agent | Spawn     | Reusability, Cascade, Consistency |
 | SHIP   | 14-17 | QA Agent    | Spawn     | Quality, UX, Cascade 2nd, Deploy  |
 
-**Total 11 review steps → High quality guaranteed (PM Agent inline, others spawned)**
+**Total 11 review steps + Quality Score checkpoints → High quality guaranteed (PM Agent inline, others spawned)**
+
+---
+
+## Autoresearch-Inspired Enhancements
+
+This workflow incorporates patterns from [autoresearch](https://github.com/karpathy/autoresearch):
+
+| Pattern | Implementation | Reference |
+|---------|---------------|-----------|
+| **Continuous metrics** | Quality Score at every phase gate | `quality-score.md` |
+| **Keep/Discard** | Delta-based decisions in REFINE/VERIFY | `quality-score.md` |
+| **Experiment logging** | All change attempts recorded | `experiment-ledger.md` |
+| **Hypothesis exploration** | Activated on repeated gate failures | `exploration-loop.md` |
+| **Auto-learning** | Discarded experiments feed lessons-learned | `lessons-learned.md` |

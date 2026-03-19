@@ -21,6 +21,9 @@ description: Automated CLI-based parallel agent execution — spawn subagents vi
 1. Read `.agents/skills/workflow-guide/SKILL.md` and confirm Core Rules.
 2. Read `.agents/skills/_shared/context-loading.md` for resource loading strategy.
 3. Read `.agents/skills/_shared/memory-protocol.md` for memory protocol.
+4. Read `.agents/skills/_shared/quality-score.md` for continuous quality scoring.
+5. Read `.agents/skills/_shared/experiment-ledger.md` for experiment tracking.
+6. Read `.agents/skills/_shared/exploration-loop.md` for hypothesis-driven exploration.
 
 ---
 
@@ -90,8 +93,14 @@ For each completed agent, run automated verification:
 bash .agents/skills/_shared/verify.sh {agent-type} {workspace}
 ```
 
-- PASS (exit 0): accept result.
+- PASS (exit 0): accept result. Measure Quality Score and record in Experiment Ledger.
 - FAIL (exit 1): re-spawn with error context (max 2 retries).
+- FAIL (after 2 retries): Activate **Exploration Loop** (see `exploration-loop.md`):
+  1. Generate 2-3 alternative hypotheses for the failing agent
+  2. Spawn parallel agents per hypothesis (separate workspaces)
+  3. Score each result with Quality Score
+  4. Keep the highest-scoring approach
+  5. Record all experiments in Experiment Ledger
 
 ---
 
@@ -110,3 +119,7 @@ Present session summary to the user.
 - If any tasks failed after retries, list them with error details.
 - Suggest next steps: manual fix, re-run specific agents, or run `/review` for QA.
 - Use memory write tool to record final results.
+- Generate Experiment Ledger summary:
+  - Total experiments, kept/discarded counts, net Quality Score delta
+  - Agent effectiveness ranking (by average delta)
+  - Auto-generate lessons from discarded experiments (delta <= -5) into `lessons-learned.md`

@@ -22,7 +22,10 @@ description: Coordinate multiple agents for a complex multi-domain project using
 1. Read `.agents/skills/workflow-guide/SKILL.md` and confirm Core Rules.
 2. Read `.agents/skills/_shared/context-loading.md` for resource loading strategy.
 3. Read `.agents/skills/_shared/memory-protocol.md` for memory protocol.
-4. Record session start using memory write tool:
+4. Read `.agents/skills/_shared/quality-score.md` for continuous quality scoring.
+5. Read `.agents/skills/_shared/experiment-ledger.md` for experiment tracking.
+6. Read `.agents/skills/_shared/exploration-loop.md` for hypothesis-driven exploration.
+7. Record session start using memory write tool:
    - Create `session-coordinate.md` in the memory base path
    - Include: session start time, user request summary.
 
@@ -100,11 +103,30 @@ After all implementation agents complete, spawn QA Agent to review all deliverab
 
 ---
 
+## Step 6.1: Measure Quality Score
+
+After QA review completes:
+
+1. Measure Quality Score based on QA findings
+2. Record as experiment in Experiment Ledger (`.agents/results/experiment-ledger.md`)
+3. This becomes the baseline for issue remediation
+
+---
+
 ## Step 7: Address Issues and Iterate
 
 If QA finds CRITICAL or HIGH issues:
 
 1. Re-spawn the responsible agent with QA findings.
-2. Repeat Steps 5-7.
-3. Continue until all critical issues are resolved.
-4. Use memory write tool to record final results.
+2. After fix, re-measure Quality Score and calculate delta.
+3. Apply Keep/Discard rule: only keep fixes that maintain or improve score.
+4. Record each fix attempt in Experiment Ledger.
+5. Repeat Steps 5-7.
+6. **If same issue persists after 2 fix attempts**: Activate **Exploration Loop** (see `exploration-loop.md`):
+   - Generate 2-3 alternative approaches
+   - Re-spawn agents per hypothesis
+   - QA scores each result
+   - Best result adopted, others discarded
+7. Continue until all critical issues are resolved.
+8. Use memory write tool to record final results.
+9. Generate Experiment Ledger summary and auto-generate lessons from discarded experiments.

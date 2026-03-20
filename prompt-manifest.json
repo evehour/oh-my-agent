@@ -1,7 +1,7 @@
 {
   "name": "oh-my-agent",
   "version": "2.11.3",
-  "releaseDate": "2026-03-18T14:18:36.050Z",
+  "releaseDate": "2026-03-20T12:25:09.889Z",
   "repository": "https://github.com/first-fluke/oh-my-agent",
   "files": [
     {
@@ -46,8 +46,8 @@
     },
     {
       "path": ".agents/skills/_shared/context-loading.md",
-      "sha256": "6785e56d03b42c7b6aba0172192adb04246aeeceee2325b4ac671a8a9573bb7c",
-      "size": 5938
+      "sha256": "b514dcebcab00a25da65b4897ff3380d84274cbd67636ca94962a3197bd59612",
+      "size": 7214
     },
     {
       "path": ".agents/skills/_shared/difficulty-guide.md",
@@ -75,14 +75,24 @@
       "size": 1080
     },
     {
+      "path": ".agents/skills/_shared/experiment-ledger.md",
+      "sha256": "4ead3ce293fad266c27212a4e1293abf6254cfe495f8081d2ffd5660f2e90d78",
+      "size": 3961
+    },
+    {
+      "path": ".agents/skills/_shared/exploration-loop.md",
+      "sha256": "732d18b9d6e353aa3f771ba34f2683cd8bc311929b172f3c1d53902f143714bf",
+      "size": 5470
+    },
+    {
       "path": ".agents/skills/_shared/lessons-learned.md",
-      "sha256": "8724fd877a32ce17ea7fbe1e4b655cb8319d3483847c330572f00bcbd62c409d",
-      "size": 6170
+      "sha256": "087856e7cc09b92e676a1b3ce1cd409a71e86e2ae797b70ea2faa523fb1f3c62",
+      "size": 6807
     },
     {
       "path": ".agents/skills/_shared/memory-protocol.md",
-      "sha256": "c99f3932200ddeb2fbd79a3158f95d8a5ce27943061e158025657dece383039b",
-      "size": 2053
+      "sha256": "3ba66ea5c29a487c6e13fe5aee55d0f13b425344533465be93ed39e51e735690",
+      "size": 3131
     },
     {
       "path": ".agents/skills/_shared/multi-review-protocol.md",
@@ -91,8 +101,8 @@
     },
     {
       "path": ".agents/skills/_shared/phase-gates.md",
-      "sha256": "d6aa6b68f4664fb8663b803854dac8e69e67e0d5b831ceaee7b5e3bec88278b8",
-      "size": 2073
+      "sha256": "88d58e0bce1a1ce55b841b9a1a055c9de12560bed8eda2e09431c415a38a3378",
+      "size": 3280
     },
     {
       "path": ".agents/skills/_shared/prompt-structure.md",
@@ -105,14 +115,19 @@
       "size": 2031
     },
     {
+      "path": ".agents/skills/_shared/quality-score.md",
+      "sha256": "43056dc4e79320d8b9f03ebad976652425f9f7f3fcb4ef72396572d6a61937ba",
+      "size": 4404
+    },
+    {
       "path": ".agents/skills/_shared/reasoning-templates.md",
-      "sha256": "c7490ea50c4abf45c9d204daff74b555d204438d49fc18293f0a1c6adc787bbb",
-      "size": 4826
+      "sha256": "15aacdd20b282e67e4a6dc4ba059a0682dc6e7f735836f8eec24faa082f91c4f",
+      "size": 6272
     },
     {
       "path": ".agents/skills/_shared/session-metrics.md",
-      "sha256": "f7c4dc7f7e3cc6f6c8fe481012a966d4c6f2d21082cf1f91ee9b095968b42e12",
-      "size": 4676
+      "sha256": "4f6e7797d4823034e33ffc8da6b41a81692a8b606c4baff35db837d47893ebe4",
+      "size": 5541
     },
     {
       "path": ".agents/skills/_shared/skill-routing.md",
@@ -611,8 +626,8 @@
     },
     {
       "path": ".agents/workflows/coordinate.md",
-      "sha256": "61ee9266815387000cac009a7fdb6729866e908f8f88368307dbf8a237634ba2",
-      "size": 3893
+      "sha256": "6dcd547dd7d59f096c13dd9acdf08c2d1bfc30966940cc28a6d95a1b30e7175a",
+      "size": 4811
     },
     {
       "path": ".agents/workflows/debug.md",
@@ -631,8 +646,8 @@
     },
     {
       "path": ".agents/workflows/orchestrate.md",
-      "sha256": "ab96bc4e77e79cbd31c1d5c92c1d333e5e2789f97ec56938499fc6ea57afbb79",
-      "size": 3769
+      "sha256": "5357e1040b290fe9fc6070114a1d19cc3a0f0002b7bd5986ba56ef694b435dbb",
+      "size": 4554
     },
     {
       "path": ".agents/workflows/plan.md",
@@ -656,8 +671,8 @@
     },
     {
       "path": ".agents/workflows/ultrawork.md",
-      "sha256": "14569e2092e35479f2edceee73368fd7b8d03fb31c754fd08a0f4620ad50cb10",
-      "size": 9479
+      "sha256": "98445960aa15a22194fc132e477f742bd4981d0e9f547c61586d4f236925635c",
+      "size": 12576
     },
     {
       "path": ".claude/skills/brainstorm/SKILL.md",
@@ -761,6 +776,6 @@
   "metadata": {
     "skillCount": 26,
     "workflowCount": 11,
-    "totalFiles": 150
+    "totalFiles": 153
   }
 }

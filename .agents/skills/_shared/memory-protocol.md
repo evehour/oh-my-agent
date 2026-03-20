@@ -42,6 +42,39 @@ Memory base path is configurable via `memoryConfig.basePath` (default: `.serena/
 
 ---
 
+## Experiment Tracking (Optional Extension)
+
+When a workflow activates Quality Score measurement (see `quality-score.md`), agents record experiments using the same memory tools.
+
+### Experiment Ledger Location
+
+The ledger follows the same path convention as other memory files:
+- **MCP mode**: `[WRITE]("experiment-ledger.md", ...)` → stored at `{memoryConfig.basePath}/experiment-ledger.md`
+- **File-based mode** (Claude protocol): `.agents/results/experiment-ledger.md`
+
+### Recording an Experiment
+
+After each measurable change, append a row:
+
+```
+[EDIT]("experiment-ledger.md", append experiment row)
+```
+
+Row format: `| # | Phase | Agent | Hypothesis | Score Before | Score After | Delta | Decision |`
+
+### Who Records
+
+| Situation | Recorder |
+|-----------|----------|
+| IMPL baseline | Orchestrator (inline) |
+| Post-VERIFY / Post-REFINE | QA or Debug agent (via memory tools) |
+| Exploration experiments | Orchestrator (inline, after scoring) |
+| Final summary | Orchestrator (at session end) |
+
+See `experiment-ledger.md` for full format and analysis protocol.
+
+---
+
 ## Example with Default Tools (Serena)
 
 ```python

@@ -44,6 +44,7 @@
 | Review Loop | `/orchestrate` | QA FAIL | 5회 (3 self + 2 cross) |
 | Issue Remediation | `/coordinate` | CRITICAL/HIGH 이슈 | 이슈 해소까지 |
 | Phase Gate | `/ultrawork` | 게이트 미충족 | 게이트별 무제한 |
+| Exploration Loop | 모든 워크플로우 | 동일 게이트 2회 실패 | 세션당 2회, 가설 최대 3개 |
 
 ## 절대 규칙
 1. **`.agents/` 내 파일 수정 금지** — SSOT 보호

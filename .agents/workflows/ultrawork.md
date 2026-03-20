@@ -94,10 +94,22 @@ wait
 
 **Continue polling until all agents report completion or failure.**
 
+### Step 5.2: Measure Baseline Quality Score (Conditional)
+
+If automated measurement is available (tests, lint exist):
+
+1. Load `quality-score.md` (conditional, per `context-loading.md`)
+2. Run tests, lint, type-check via Bash to measure baseline
+3. Create Experiment Ledger via memory tools: `[WRITE]("experiment-ledger.md", initial ledger with baseline row)`
+4. Record composite score as the IMPL baseline
+
+If no measurement tools: skip — gates fall back to binary checklist.
+
 ### IMPL_GATE
 - [ ] Build succeeds
 - [ ] Tests pass
 - [ ] Only planned files modified
+- [ ] (If measured) Baseline Quality Score recorded in Experiment Ledger
 
 **On gate pass**: Use memory edit tool to record phase completion in `session-ultrawork.md`
 
@@ -133,15 +145,32 @@ Command: `oh-my-ag agent:spawn qa-agent "Execute Phase 3 Verification. Step 6: A
 ### Step 8: Improvement Review (Regression Prevention)
 - **Executed by QA Agent**: Run regression tests.
 
+### Step 8.1: Measure Post-VERIFY Quality Score (Conditional)
+
+If baseline was measured at Step 5.2:
+1. Measure Quality Score incorporating QA findings
+2. Calculate delta from IMPL baseline
+3. Record as experiment in Experiment Ledger via memory tools
+
 ### VERIFY_GATE
 - [ ] Implementation = Requirements
 - [ ] CRITICAL count: 0
 - [ ] HIGH count: 0
 - [ ] No regressions
+- [ ] (If measured) Quality Score >= 75 (Grade B)
 
 **On gate pass**: Use memory edit tool to record phase completion in `session-ultrawork.md`
 
-**Gate failure → Return to Step 5, fix implementation issues, and repeat VERIFY phase until GATE passes.**
+**Gate failure (1st time)** → Return to Step 5, fix implementation issues, and repeat VERIFY phase.
+
+**Gate failure (2nd time on same issue)** → Activate **Exploration Loop**:
+1. Load `exploration-loop.md` (conditional, per `context-loading.md`)
+2. Generate 2-3 alternative hypotheses using Exploration Decision template (`reasoning-templates.md` #6)
+3. Experiment each approach sequentially (git stash per attempt)
+4. Measure Quality Score for each
+5. Select the highest-scoring approach
+6. Record all experiments in Experiment Ledger
+7. Resume VERIFY with winning approach
 
 ---
 
@@ -179,11 +208,20 @@ Command: `oh-my-ag agent:spawn debug-agent "Execute Phase 4 Refine. Step 9: Spli
 ### Step 13: Clean Up Unused Code
 - **Executed by Debug Agent**: Remove newly created dead code.
 
+### Step 13.1: Measure Post-REFINE Quality Score (Conditional)
+
+If baseline was measured at Step 5.2:
+1. Measure Quality Score after refinement
+2. Calculate delta from Post-VERIFY score
+3. **If delta < -5**: Apply Discard rule — revert refinement changes, record in Experiment Ledger
+4. Record kept experiments in Experiment Ledger
+
 ### REFINE_GATE
 - [ ] No large files/functions
 - [ ] Integration opportunities captured
 - [ ] Side effects verified
 - [ ] Code cleaned
+- [ ] (If measured) Quality Score >= Post-VERIFY score (no regression from refinement)
 
 **On gate pass**: Use memory edit tool to record phase completion in `session-ultrawork.md`
 
@@ -224,11 +262,21 @@ Command: `oh-my-ag agent:spawn qa-agent "Execute Phase 5 Ship. Step 14: Quality 
 ### Step 17: Deployment Readiness Review (Final)
 - **Executed by QA Agent**: Secrets, Migrations, checklist.
 
+### Step 17.1: Final Quality Score & Experiment Ledger Summary (Conditional)
+
+If Quality Score was measured during this session:
+1. Measure final Quality Score
+2. Generate Experiment Ledger summary (total experiments, keep rate, net delta)
+3. Auto-generate lessons from discarded experiments (delta <= -5) into `lessons-learned.md`
+4. Append Quality Score Progression and Experiment Summary to session metrics
+
 ### SHIP_GATE
 - [ ] Quality checks pass
 - [ ] UX verified
 - [ ] Related issues resolved
 - [ ] Deployment checklist complete
+- [ ] (If measured) Final Quality Score >= 75 (Grade B) with non-negative delta from baseline
+- [ ] (If measured) Experiment Ledger summary recorded
 - [ ] **User final approval**
 
 **On gate pass**: Use memory write tool to record final results in `session-ultrawork.md`
@@ -247,4 +295,20 @@ Command: `oh-my-ag agent:spawn qa-agent "Execute Phase 5 Ship. Step 14: Quality 
 | REFINE | 9-13  | Debug Agent | Spawn     | Reusability, Cascade, Consistency |
 | SHIP   | 14-17 | QA Agent    | Spawn     | Quality, UX, Cascade 2nd, Deploy  |
 
-**Total 11 review steps → High quality guaranteed (PM Agent inline, others spawned)**
+**Total 11 review steps + conditional Quality Score checkpoints → High quality guaranteed**
+
+---
+
+## Autoresearch-Inspired Enhancements
+
+This workflow conditionally incorporates patterns from autoresearch:
+
+| Pattern | When Active | Reference |
+|---------|-------------|-----------|
+| **Continuous metrics** | When measurement tools available | `quality-score.md` (loaded at VERIFY/SHIP) |
+| **Keep/Discard** | When quality score is measured | `quality-score.md` delta rules |
+| **Experiment logging** | When baseline is established | `experiment-ledger.md` (via memory protocol) |
+| **Hypothesis exploration** | On repeated gate failures | `exploration-loop.md` (loaded on trigger) |
+| **Auto-learning** | At session end, if experiments exist | `lessons-learned.md` auto-generation |
+
+All protocols are loaded **conditionally** per `context-loading.md` — not at Phase 0.

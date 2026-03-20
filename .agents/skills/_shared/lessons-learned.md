@@ -145,6 +145,17 @@ When there are failed tasks at session end:
 2. Add lesson to the relevant domain section
 3. Prevent same mistakes in next session
 
+### Auto-Generation from Experiment Ledger
+
+At session end, the Orchestrator extracts discarded experiments with **delta <= -5** from the Experiment Ledger (see `experiment-ledger.md`) and generates lesson candidates.
+
+Auto-generated lessons use the RCA Entry Format above, with these additions:
+- **Root Cause** field specifies which quality dimension regressed and why
+- Append `(Source: Experiment Ledger #{N}, Session {session_id})` to the summary line
+- Append to the relevant domain section (based on agent type)
+
+Only the Orchestrator performs this at session end — after all agents have completed and the ledger is finalized.
+
 ### When Lessons Become Too Many (50+)
 - Move old lessons (6+ months) to archive
 - Delete lessons invalidated by framework version upgrades

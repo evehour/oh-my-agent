@@ -25,6 +25,11 @@ This saves context window and prevents confusion from irrelevant information.
 9. `../_shared/common-checklist.md` — For final verification of Complex tasks
 10. `../_shared/memory-protocol.md` — CLI mode only
 
+### Load on Measurement / Exploration (Conditional)
+11. `../_shared/quality-score.md` — Load when Quality Score measurement is needed (VERIFY/SHIP gates)
+12. `../_shared/experiment-ledger.md` — Load when recording experiment results (after implementation changes)
+13. `../_shared/exploration-loop.md` — Load only when a gate fails twice on the same issue
+
 ---
 
 ## Task Type → Resource Mapping by Agent
@@ -71,12 +76,13 @@ This saves context window and prevents confusion from irrelevant information.
 
 ### QA Agent
 
-| Task Type            | Required Resources                   |
-| -------------------- | ------------------------------------ |
-| Security review      | checklist.md (Security section)      |
-| Performance review   | checklist.md (Performance section)   |
-| Accessibility review | checklist.md (Accessibility section) |
-| Full audit           | checklist.md (full) + self-check.md  |
+| Task Type            | Required Resources                                  |
+| -------------------- | --------------------------------------------------- |
+| Security review      | checklist.md (Security section)                     |
+| Performance review   | checklist.md (Performance section)                  |
+| Accessibility review | checklist.md (Accessibility section)                |
+| Full audit           | checklist.md (full) + self-check.md                 |
+| Quality scoring      | quality-score.md (measurement protocol via Bash)    |
 
 ### Developer Workflow Expert
 
@@ -119,3 +125,18 @@ Prompt composition:
 ```
 
 This approach avoids loading unnecessary resources, maximizing subagent context efficiency.
+
+---
+
+## Conditional Protocol Loading (Measurement & Exploration)
+
+The following protocols are **NOT** loaded at Phase 0 / Step 0. They are loaded on-demand:
+
+| Protocol | Trigger | Loaded By |
+|----------|---------|-----------|
+| `quality-score.md` | VERIFY or SHIP phase begins | Orchestrator (passes to QA agent prompt) |
+| `experiment-ledger.md` | First experiment recorded | Orchestrator (inline, after IMPL baseline) |
+| `exploration-loop.md` | Same gate fails twice on same issue | Orchestrator (inline, before spawning hypothesis agents) |
+
+**Budget impact**: ~750 tokens total if all 3 loaded, but since loading is conditional, typical sessions load 1-2 only.
+Flash-tier budget remains within ~3,100 token allocation for most sessions.

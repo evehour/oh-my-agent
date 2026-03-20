@@ -138,6 +138,38 @@ Total CD: 95 ❌ → RCA REQUIRED
 
 ---
 
+## Quality Score Tracking (Extension)
+
+When Quality Score measurement is active (see `quality-score.md`), the session log includes score progression.
+
+### Score Progression (appended to session log)
+
+```markdown
+### Quality Score Progression
+
+| Checkpoint | Phase | Composite | Grade | Delta |
+|-----------|-------|-----------|-------|-------|
+| Baseline | IMPL end | 72 | C | — |
+| Post-VERIFY | VERIFY end | 78 | B | +6 |
+| Post-REFINE | REFINE end | 84 | B | +6 |
+| Final | SHIP | 86 | B | +2 |
+```
+
+### Experiment Summary (appended to session log)
+
+```markdown
+### Experiment Summary
+- Total experiments: {N}
+- Kept: {N} ({%})
+- Discarded: {N} ({%})
+- Exploration rounds: {N} (max 2 per session)
+- Net score improvement: {start} → {final} (delta: {+N})
+```
+
+This data is sourced from the Experiment Ledger at session end (see `experiment-ledger.md`).
+
+---
+
 ## Metrics Retention
 
 - **Active session**: `.serena/memories/session-metrics.md`

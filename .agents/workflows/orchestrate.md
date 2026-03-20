@@ -90,8 +90,14 @@ For each completed agent, run automated verification:
 bash .agents/skills/_shared/verify.sh {agent-type} {workspace}
 ```
 
-- PASS (exit 0): accept result.
+- PASS (exit 0): accept result. If Quality Score is active, measure and record in Experiment Ledger.
 - FAIL (exit 1): re-spawn with error context (max 2 retries).
+- FAIL (after 2 retries): Activate **Exploration Loop** (load `exploration-loop.md` per `context-loading.md`):
+  1. Generate 2-3 alternative hypotheses for the failing task
+  2. Spawn the **same agent type** with different hypothesis prompts (parallel, separate workspaces)
+  3. Score each result with Quality Score (if available)
+  4. Keep the highest-scoring approach, discard others
+  5. Record all experiments in Experiment Ledger
 
 ---
 
@@ -110,3 +116,7 @@ Present session summary to the user.
 - If any tasks failed after retries, list them with error details.
 - Suggest next steps: manual fix, re-run specific agents, or run `/review` for QA.
 - Use memory write tool to record final results.
+- If Quality Score was measured during this session:
+  - Generate Experiment Ledger summary (total experiments, keep rate, net delta)
+  - Auto-generate lessons from discarded experiments (delta <= -5) into `lessons-learned.md`
+  - Include agent effectiveness ranking in the report

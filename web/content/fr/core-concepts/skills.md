@@ -7,7 +7,7 @@ description: Divulgation progressive et architecture de skills optimisée en tok
 
 ## Divulgation progressive
 
-Les skills sont sélectionnés en fonction de l'intention de la requête. La sélection manuelle de skill est généralement inutile.
+Les skills sont chargés explicitement via /command ou via le champ skills de l'agent.
 
 ## Conception à deux couches
 
@@ -30,7 +30,7 @@ Ressources communes dédupliquées entre tous les skills :
 | `clarification-protocol.md` | Quand demander vs supposer, niveaux d'ambiguïté |
 | `context-budget.md` | Stratégies de lecture de fichiers optimisées en tokens par niveau de modèle |
 | `context-loading.md` | Correspondance type de tâche vers ressource pour la construction du prompt de l'orchestrateur |
-| `skill-routing.md` | Correspondance mot-clé vers skill et règles d'exécution parallèle |
+| `skill-routing.md` | Correspondance skill vers agent et règles d'exécution parallèle |
 | `difficulty-guide.md` | Évaluation Simple/Moyen/Complexe avec branchement de protocole |
 | `lessons-learned.md` | Retours d'expérience accumulés entre sessions |
 | `verify.sh` | Script de vérification automatisé exécuté après la complétion de l'agent |

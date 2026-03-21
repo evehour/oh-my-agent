@@ -199,11 +199,11 @@ You'll also need at least one CLI tool:
 → /ultrawork → Independent tasks execute in parallel across agents
 ```
 
-**Simple task** (single agent auto-activates):
+**Simple task** (use /command or agent skill):
 
 ```
 "Create a login form with Tailwind CSS and form validation"
-→ oma-frontend activates
+→ oma-frontend loaded via /command or agent skills field
 ```
 
 **Commit changes** (conventional commits):

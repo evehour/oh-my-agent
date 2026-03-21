@@ -28,8 +28,8 @@ description: Kompletny przewodnik użytkowania z przykładami, przepływami prac
 ```
 
 **Co się dzieje:**
-- Antigravity wykrywa, że pasuje to do `oma-frontend`
-- Umiejętność ładuje się automatycznie (Progresywne ujawnianie)
+- Wywołujesz `oma-frontend` przez /command lub pole skills agenta
+- Umiejętność ładuje się na żądanie (Progresywne ujawnianie)
 - Otrzymujesz komponent React z TypeScript, Tailwind, walidacją formularza
 
 ### Przykład 2: Złożony projekt wielodomenowy
@@ -131,7 +131,7 @@ Serwer obserwuje `.serena/memories/` używając chokidar z debounce (100ms). Tyl
 ## Kluczowe koncepcje
 
 ### Progresywne ujawnianie
-Antigravity automatycznie dopasowuje żądania do umiejętności. Nigdy nie wybierasz umiejętności ręcznie. Tylko potrzebna umiejętność ładuje się do kontekstu.
+Umiejętności są wywoływane jawnie przez /command lub ładowane przez pole skills agenta. Tylko potrzebna umiejętność ładuje się do kontekstu.
 
 ### Projekt umiejętności zoptymalizowany tokenowo
 Każda umiejętność wykorzystuje dwuwarstwową architekturę dla maksymalnej efektywności tokenowej:
@@ -168,7 +168,7 @@ Agenci mogą pracować w oddzielnych katalogach aby uniknąć konfliktów. Works
 
 ## Dostępne umiejętności
 
-| Umiejętność | Auto-aktywuje się dla | Wynik |
+| Umiejętność | Przypadek użycia | Wynik |
 |-------|-------------------|--------|
 | oma-coordination | Złożonych projektów wielodomenowych | Koordynacja agentów krok po kroku |
 | oma-pm | "zaplanuj to", "rozbij" | `.agents/plan.json` |
@@ -206,7 +206,7 @@ Wpisz te w czacie Antigravity IDE aby wyzwolić przepływy pracy krok po kroku:
 | `/ultrawork` | Maksymalna równoległość z bramkami fazowymi dla złożonych zadań |
 | `/stack-set` | Ustawienie stosu językowego backendu oma-backend (Python, Node.js, Rust) |
 
-Są to oddzielne od **umiejętności** (które auto-aktywują się). Przepływy pracy dają Ci jawną kontrolę nad procesami wieloetapowymi.
+Są to oddzielne od **umiejętności** (wywoływanych przez /command lub pole skills agenta). Przepływy pracy dają Ci jawną kontrolę nad procesami wieloetapowymi.
 
 ---
 
@@ -224,7 +224,7 @@ Ty: "Utwórz komponent przycisku"
 
 ```
 Ty: "Zbuduj aplikację TODO z uwierzytelnianiem"
-  → oma-coordination aktywuje się automatycznie
+  → użyj /coordinate aby uruchomić oma-coordination
   → PM Agent tworzy plan
   → Uruchamiasz agentów przez CLI (oma agent:spawn)
   → Agenci pracują równolegle

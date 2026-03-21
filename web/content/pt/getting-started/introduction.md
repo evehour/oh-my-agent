@@ -9,7 +9,7 @@ oh-my-agent é um orquestrador multi-agente para o Antigravity IDE. Ele roteia s
 
 ## O Que Você Obtém
 
-- Roteamento de skills baseado na solicitação
+- Invocação explícita de skills via /command ou campo skills do agente
 - Execução baseada em workflows para planejamento/revisão/depuração
 - Orquestração CLI para execuções paralelas de agentes
 - Dashboards em tempo real para monitoramento de sessões

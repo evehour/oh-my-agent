@@ -7,7 +7,7 @@ description: 점진적 공개와 토큰 최적화 스킬 아키텍처.
 
 ## Progressive Disclosure
 
-요청 의도에 따라 스킬이 자동 선택됩니다. 대부분의 경우 수동 선택이 필요 없습니다.
+스킬은 /command 호출 또는 에이전트 skills 필드를 통해 명시적으로 로드됩니다.
 
 ## 2계층 설계
 
@@ -30,7 +30,7 @@ description: 점진적 공개와 토큰 최적화 스킬 아키텍처.
 | `clarification-protocol.md` | 질문 vs 가정 판단, 모호성 수준별 대응 |
 | `context-budget.md` | 모델 등급별 토큰 효율적 파일 읽기 전략 |
 | `context-loading.md` | Orchestrator 프롬프트 구성을 위한 태스크-리소스 매핑 |
-| `skill-routing.md` | 키워드→스킬 매핑, 병렬 실행 규칙 |
+| `skill-routing.md` | 스킬→에이전트 매핑, 병렬 실행 규칙 |
 | `difficulty-guide.md` | Simple/Medium/Complex 평가 및 프로토콜 분기 |
 | `lessons-learned.md` | 크로스 세션 누적 도메인 교훈 |
 | `verify.sh` | 에이전트 완료 후 자동 검증 스크립트 |

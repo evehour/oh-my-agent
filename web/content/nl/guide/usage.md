@@ -28,8 +28,8 @@ description: Volledige gebruiksgids met voorbeelden, workflows, dashboardbewerki
 ```
 
 **Wat gebeurt er:**
-- Antigravity detecteert dat dit overeenkomt met `oma-frontend`
-- De skill laadt automatisch (Progressive Disclosure)
+- Je roept `oma-frontend` aan via /command of agent skills-veld
+- De skill laadt op aanvraag (Progressive Disclosure)
 - Je krijgt een React component met TypeScript, Tailwind, formuliervalidatie
 
 ### Voorbeeld 2: Complex multi-domein project
@@ -131,7 +131,7 @@ De server monitort `.serena/memories/` met chokidar met debounce (100ms). Alleen
 ## Belangrijke concepten
 
 ### Progressive Disclosure
-Antigravity matcht automatisch verzoeken met skills. Je selecteert nooit handmatig een skill. Alleen de benodigde skill laadt in context.
+Skills worden expliciet aangeroepen via /command of geladen via het agent skills-veld. Alleen de benodigde skill laadt in context.
 
 ### Token-geoptimaliseerd skill ontwerp
 Elke skill gebruikt een twee-laags architectuur voor maximale token efficiëntie:
@@ -168,7 +168,7 @@ Agents kunnen werken in aparte directories om conflicten te vermijden. Workspace
 
 ## Beschikbare skills
 
-| Skill | Activeert automatisch voor | Output |
+| Skill | Gebruiksgeval | Output |
 |-------|---------------------------|--------|
 | oma-coordination | Complexe multi-domein projecten | Stap-voor-stap agent coördinatie |
 | oma-pm | "plan dit", "onderverdelen" | `.agents/plan.json` |
@@ -206,7 +206,7 @@ Typ deze in Antigravity IDE chat om stap-voor-stap workflows te triggeren:
 | `/ultrawork` | Maximale parallelle uitvoering via 5-fase gate-lus |
 | `/stack-set` | Backend taalstack van oma-backend instellen (Python, Node.js, Rust) |
 
-Deze zijn gescheiden van **skills** (die automatisch activeren). Workflows geven je expliciete controle over multi-step processen.
+Deze zijn gescheiden van **skills** (aangeroepen via /command of agent skills-veld). Workflows geven je expliciete controle over multi-step processen.
 
 ---
 
@@ -224,7 +224,7 @@ Jij: "Maak een knop component"
 
 ```
 Jij: "Bouw een TODO app met authenticatie"
-  → oma-coordination activeert automatisch
+  → gebruik /coordinate om oma-coordination te starten
   → PM Agent creëert plan
   → Jij spawnt agents via CLI (oma agent:spawn)
   → Agents werken parallel

@@ -28,8 +28,8 @@ description: Guia completo de uso incluindo exemplos, fluxos de trabalho, opera�
 ```
 
 **O que acontece:**
-- Antigravity detecta que isso corresponde ao `oma-frontend`
-- A habilidade carrega automaticamente (Divulgação Progressiva)
+- Você invoca `oma-frontend` via /command ou campo skills do agente
+- A habilidade carrega sob demanda (Divulgação Progressiva)
 - Você recebe um componente React com TypeScript, Tailwind, validação de formulário
 
 ### Exemplo 2: Projeto Multi-Domínio Complexo
@@ -131,7 +131,7 @@ O servidor observa `.serena/memories/` usando chokidar com debounce (100ms). Ape
 ## Conceitos Chave
 
 ### Divulgação Progressiva
-O Antigravity combina automaticamente solicitações com habilidades. Você nunca seleciona uma habilidade manualmente. Apenas a habilidade necessária carrega no contexto.
+As habilidades são invocadas explicitamente via /command ou carregadas pelo campo skills do agente. Apenas a habilidade necessária carrega no contexto.
 
 ### Design de Habilidade Otimizado para Tokens
 Cada habilidade usa uma arquitetura de duas camadas para máxima eficiência de tokens:
@@ -168,7 +168,7 @@ Agentes podem trabalhar em diretórios separados para evitar conflitos. Workspac
 
 ## Habilidades Disponíveis
 
-| Habilidade | Auto-ativa para | Saída |
+| Habilidade | Caso de uso | Saída |
 |-------|-------------------|--------|
 | oma-coordination | Projetos multi-domínio complexos | Coordenação de agentes passo a passo |
 | oma-pm | "planejar isso", "dividir" | `.agents/plan.json` |
@@ -206,7 +206,7 @@ Digite estes no chat do Antigravity IDE para acionar fluxos de trabalho passo a 
 | `/ultrawork` | Execução de máximo paralelismo com orquestração de agentes paralelos |
 | `/stack-set` | Configurar stack de linguagem backend do oma-backend (Python, Node.js, Rust) |
 
-Estes são separados de **habilidades** (que auto-ativam). Fluxos de trabalho dão controle explícito sobre processos multi-etapa.
+Estes são separados de **habilidades** (invocadas via /command ou campo skills do agente). Fluxos de trabalho dão controle explícito sobre processos multi-etapa.
 
 ---
 
@@ -224,7 +224,7 @@ Você: "Criar um componente de botão"
 
 ```
 Você: "Construir um app TODO com autenticação"
-  → oma-coordination ativa automaticamente
+  → use /coordinate para iniciar oma-coordination
   → PM Agent cria plano
   → Você cria agentes via CLI (oma agent:spawn)
   → Agentes trabalham em paralelo

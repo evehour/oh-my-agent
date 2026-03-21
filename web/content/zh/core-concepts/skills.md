@@ -7,7 +7,7 @@ description: 渐进式披露与 Token 优化的技能架构。
 
 ## 渐进式披露
 
-技能根据请求意图自动选择。通常无需手动选择技能。
+技能通过 /command 调用或代理 skills 字段显式加载。
 
 ## 双层设计
 
@@ -30,7 +30,7 @@ description: 渐进式披露与 Token 优化的技能架构。
 | `clarification-protocol.md` | 何时询问与何时假设、歧义等级 |
 | `context-budget.md` | 按模型层级的 Token 高效文件读取策略 |
 | `context-loading.md` | 任务类型到资源的映射，用于编排器提示构建 |
-| `skill-routing.md` | 关键词到技能的映射与并行执行规则 |
+| `skill-routing.md` | 技能到代理的映射与并行执行规则 |
 | `difficulty-guide.md` | 简单/中等/复杂评估与协议分支 |
 | `lessons-learned.md` | 跨会话积累的领域经验教训 |
 | `verify.sh` | 代理完成后运行的自动化验证脚本 |

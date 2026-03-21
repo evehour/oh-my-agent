@@ -56,7 +56,7 @@
 ## 절대 규칙
 1. **`.agents/` 내 파일 수정 금지** — SSOT 보호
    > 예외: 이 레포는 oh-my-agent 소스 레포 자체이므로, `.agents/` 파일 수정이 허용됨
-2. 심링크된 도메인 skills는 Claude가 키워드 기반으로 자동 활성화 가능
+2. 도메인 skills는 명시적 호출 또는 에이전트의 `skills` 필드로 로드
 3. 워크플로우 skills는 사용자 명시적 호출(`/command`)만 허용
    > Claude Code에서 `disable-model-invocation: true`로 설정됨 — Skill tool 대신 워크플로우 파일을 직접 읽고 인라인 실행
 4. 서브에이전트는 Charter Preflight(`CHARTER_CHECK`) 필수

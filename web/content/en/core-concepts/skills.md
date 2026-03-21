@@ -7,7 +7,7 @@ description: Progressive disclosure and token-optimized skill architecture.
 
 ## Progressive Disclosure
 
-Skills are selected from request intent. Manual skill selection is usually unnecessary.
+Skills are explicitly loaded via /command invocation or agent skills field. Manual skill selection ensures precise control over which skills are active.
 
 ## Two-Layer Design
 
@@ -30,7 +30,7 @@ Common resources deduplicated across all skills:
 | `clarification-protocol.md` | When to ask vs. assume, ambiguity levels |
 | `context-budget.md` | Token-efficient file reading strategies per model tier |
 | `context-loading.md` | Task-type to resource mapping for orchestrator prompt construction |
-| `skill-routing.md` | Keyword-to-skill mapping and parallel execution rules |
+| `skill-routing.md` | Skill-to-agent mapping and parallel execution rules |
 | `difficulty-guide.md` | Simple/Medium/Complex assessment with protocol branching |
 | `lessons-learned.md` | Cross-session accumulated domain gotchas |
 | `verify.sh` | Automated verification script run after agent completion |

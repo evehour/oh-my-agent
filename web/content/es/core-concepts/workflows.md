@@ -22,7 +22,7 @@ description: Flujos de trabajo explicitos con comandos slash y cuando utilizarlo
 
 ## Skills vs flujos de trabajo
 
-- Skills: se activan automaticamente a partir de la intencion de la solicitud
+- Skills: invocados explicitamente via /command o cargados a traves del campo skills del agente
 - Flujos de trabajo: pipelines explicitos de multiples pasos activados por el usuario
 
 ## Secuencia tipica multi-agente

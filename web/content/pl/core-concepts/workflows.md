@@ -22,7 +22,7 @@ description: Jawne przepływy pracy oparte na komendach slash i kiedy ich używa
 
 ## Umiejętności a przepływy pracy
 
-- Umiejętności: aktywowane automatycznie na podstawie intencji żądania
+- Umiejętności: wywoływane jawnie przez /command lub ładowane przez pole skills agenta
 - Przepływy pracy: jawne wieloetapowe potoki uruchamiane przez użytkownika
 
 ## Typowa sekwencja wieloagentowa

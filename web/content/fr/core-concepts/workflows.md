@@ -22,7 +22,7 @@ description: Workflows explicites par commande slash et quand les utiliser.
 
 ## Skills vs Workflows
 
-- Skills : activés automatiquement en fonction de l'intention de la requête
+- Skills : invoqués explicitement via /command ou chargés via le champ skills de l'agent
 - Workflows : pipelines explicites en plusieurs étapes déclenchés par l'utilisateur
 
 ## Séquence multi-agent typique

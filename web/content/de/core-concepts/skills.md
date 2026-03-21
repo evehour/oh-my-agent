@@ -7,7 +7,7 @@ description: Progressive Offenlegung und Token-optimierte Skill-Architektur.
 
 ## Progressive Offenlegung
 
-Skills werden anhand der Absicht der Anfrage ausgewählt. Eine manuelle Skill-Auswahl ist in der Regel nicht erforderlich.
+Skills werden explizit über /command oder das Agent-Skills-Feld geladen.
 
 ## Zwei-Schichten-Design
 
@@ -30,7 +30,7 @@ Gemeinsame Ressourcen, die über alle Skills hinweg dedupliziert werden:
 | `clarification-protocol.md` | Wann fragen vs. annehmen, Mehrdeutigkeitsstufen |
 | `context-budget.md` | Token-effiziente Dateilesetrategien pro Modellstufe |
 | `context-loading.md` | Aufgabentyp-zu-Ressource-Zuordnung für die Orchestrator-Prompt-Konstruktion |
-| `skill-routing.md` | Schlüsselwort-zu-Skill-Zuordnung und Regeln für parallele Ausführung |
+| `skill-routing.md` | Skill-zu-Agent-Zuordnung und Regeln für parallele Ausführung |
 | `difficulty-guide.md` | Einfach/Mittel/Komplex-Bewertung mit Protokollverzweigung |
 | `lessons-learned.md` | Sitzungsübergreifend gesammelte domänenspezifische Stolperfallen |
 | `verify.sh` | Automatisiertes Verifizierungsskript nach Agentenabschluss |

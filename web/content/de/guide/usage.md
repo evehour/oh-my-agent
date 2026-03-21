@@ -28,8 +28,8 @@ description: Vollständige Nutzungsanleitung mit Beispielen, Workflows, Dashboar
 ```
 
 **Was passiert:**
-- Antigravity erkennt, dass dies zu `oma-frontend` passt
-- Der Skill wird automatisch geladen (Progressive Disclosure)
+- Sie rufen `oma-frontend` über /command oder Agent-Skills-Feld auf
+- Der Skill wird bei Bedarf geladen (Progressive Disclosure)
 - Sie erhalten eine React-Komponente mit TypeScript, Tailwind, Formularvalidierung
 
 ### Beispiel 2: Komplexes Multi-Domain-Projekt
@@ -132,7 +132,7 @@ Der Server beobachtet `.serena/memories/` mit chokidar mit Debounce (100ms). Nur
 
 ### Progressive Disclosure
 
-Antigravity matcht Anfragen automatisch zu Skills. Sie wählen niemals manuell einen Skill aus. Nur der benötigte Skill wird in den Kontext geladen.
+Skills werden explizit über /command oder das Agent-Skills-Feld aufgerufen. Nur der benötigte Skill wird in den Kontext geladen.
 
 ### Token-optimiertes Skill-Design
 
@@ -174,7 +174,7 @@ Agenten können in separaten Verzeichnissen arbeiten, um Konflikte zu vermeiden.
 
 ## Verfügbare Skills
 
-| Skill | Aktiviert automatisch für | Output |
+| Skill | Anwendungsfall | Output |
 |-------|--------------------------|--------|
 | oma-coordination | Komplexe Multi-Domain-Projekte | Schritt-für-Schritt-Agent-Koordination |
 | oma-pm | "plane das", "schlüssele auf" | `.agents/plan.json` |
@@ -212,7 +212,7 @@ Tippen Sie diese in der Antigravity IDE, um schrittweise Workflows auszulösen:
 | `/ultrawork` | Hochwertige 5-Phasen-Entwicklung mit 11 Review-Gates |
 | `/stack-set` | Backend-Sprachstack von oma-backend setzen (Python, Node.js, Rust) |
 
-Diese sind getrennt von **Skills** (die automatisch aktivieren). Workflows geben Ihnen explizite Kontrolle über mehrstufige Prozesse.
+Diese sind getrennt von **Skills** (aufgerufen über /command oder Agent-Skills-Feld). Workflows geben Ihnen explizite Kontrolle über mehrstufige Prozesse.
 
 ---
 
@@ -230,7 +230,7 @@ Sie: "Erstelle eine Button-Komponente"
 
 ```
 Sie: "Baue eine TODO-App mit Authentifizierung"
-  → oma-coordination aktiviert automatisch
+  → /coordinate verwenden um oma-coordination zu starten
   → PM Agent erstellt Plan
   → Sie spawnen Agenten via CLI (oma agent:spawn)
   → Agenten arbeiten parallel

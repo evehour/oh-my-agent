@@ -9,7 +9,7 @@ oh-my-agent ist ein Multi-Agenten-Orchestrator für die Antigravity-IDE. Er leit
 
 ## Was Sie erhalten
 
-- Anfragengesteuerte Skill-Weiterleitung
+- Expliziter Skill-Aufruf über /command oder Agent-Skills-Feld
 - Workflow-basierte Ausführung für Planung/Review/Debugging
 - CLI-Orchestrierung für parallele Agentenläufe
 - Echtzeit-Dashboards zur Sitzungsüberwachung

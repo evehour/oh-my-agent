@@ -22,7 +22,7 @@ description: Expliciete slash-commandoworkflows en wanneer ze te gebruiken.
 
 ## Skills versus workflows
 
-- Skills: automatisch geactiveerd op basis van verzoekintentie
+- Skills: expliciet aangeroepen via /command of geladen via het agent skills-veld
 - Workflows: expliciete meerstapspijplijnen die door de gebruiker worden gestart
 
 ## Typische multi-agentsequentie

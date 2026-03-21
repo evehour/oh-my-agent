@@ -20,7 +20,6 @@ Orkestreer 10 gespecialiseerde domeinagents (PM, Frontend, Backend, DB, Mobile, 
 
 - [Architectuur](#architectuur)
 - [Waarom anders](#waarom-anders)
-- [`.agents` Specificatie](#agents-specificatie)
 - [Wat is dit?](#wat-is-dit)
 - [Snel starten](#snel-starten)
 - [Sponsors](#sponsors)
@@ -34,29 +33,6 @@ Orkestreer 10 gespecialiseerde domeinagents (PM, Frontend, Backend, DB, Mobile, 
 - **Standaard-bewust ontwerp**: agents dragen nu gerichte begeleiding voor ISO-gedreven planning, QA, databasecontinuïteit/veiligheid en infrastructuurgovernance.
 - **Gebouwd voor verificatie**: dashboards, manifestgeneratie, gedeelde uitvoeringsprotocollen en gestructureerde uitvoer geven de voorkeur aan traceerbaarheid boven alleen-vibe-generatie.
 
-
-## Native integratie met Claude Code
-
-Claude Code heeft native eersteklas ondersteuning via drie mechanismen:
-
-- **`CLAUDE.md`** — wordt automatisch geladen bij elke sessiestart; bevat projectinformatie, architectuur en gedragsregels voor agents.
-- **`.claude/skills/`** — 12 thin router SKILL.md-bestanden die delegeren naar `.agents/workflows/` (bijv. `/orchestrate`, `/coordinate`, `/ultrawork`). Skills worden expliciet aangeroepen via slash-commando's, niet automatisch geactiveerd door trefwoorden. Domeinskills zijn gesymlinkt vanuit `.agents/skills/`.
-- **`.claude/agents/`** — 7 subagents gegenereerd uit `.agents/agents/*.yaml`, aangeroepen via de Task tool: `backend-engineer`, `frontend-engineer`, `mobile-engineer`, `db-engineer`, `qa-reviewer`, `debug-investigator`, `pm-planner`.
-
-Luspatronen (Review Loop, Issue Remediation Loop, Phase Gate Loop) draaien rechtstreeks binnen Claude Code zonder externe CLI-polling.
-
-## `.agents` Specificatie
-
-`oh-my-agent` behandelt `.agents/` als een draagbare projectconventie voor agent skills, workflows en gedeelde context.
-
-- Skills leven in `.agents/skills/<skill-name>/SKILL.md`
-- Abstracte agent-definities leven in `.agents/agents/` (leverancier-neutrale SSOT; de CLI genereert `.claude/agents/`, `.codex/agents/` (planned), `.gemini/agents/` (planned) hieruit)
-- Gedeelde bronnen leven in `.agents/skills/_shared/`
-- Workflows leven in `.agents/workflows/*.md`
-- Projectconfiguratie leeft in `.agents/config/`
-- CLI-metagegevens en verpakking blijven uitgelijnd via gegenereerde manifesten
-
-Zie [AGENTS_SPEC.md](./AGENTS_SPEC.md) voor de projectlay-out, vereiste bestanden, interoperabiliteitsregels en bron-van-waarheid model.
 
 ## Architectuur
 

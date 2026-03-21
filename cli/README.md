@@ -6,16 +6,36 @@
 
 The portable, role-based agent harness for serious AI-assisted engineering.
 
-Orchestrate 10 specialized domain agents (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform) via **Serena Memory**. `oh-my-agent` uses `.agents/` as the source of truth for portable skills and workflows, then projects compatibility to other AI IDEs and CLIs. It combines role-based agents, explicit workflows, real-time observability, and standards-aware guidance for teams that want less AI slop and more disciplined execution.
+Orchestrate 10 specialized domain agents (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform)  `oh-my-agent` uses `.agents/` as the source of truth for portable skills and workflows, then projects compatibility to other AI IDEs and CLIs. It combines role-based agents, explicit workflows, real-time observability, and standards-aware guidance for teams that want less AI slop and more disciplined execution.
 
 ## Table of Contents
 
+- [What Is This?](#what-is-this)
 - [Architecture](#architecture)
 - [Why Different](#why-different)
-- [What Is This?](#what-is-this)
 - [Quick Start](#quick-start)
 - [Sponsors](#sponsors)
 - [License](#license)
+
+## What Is This?
+
+A collection of **Agent Skills** enabling collaborative multi-agent development. Work is distributed across expert agents with explicit roles, workflows, and verification boundaries:
+
+| Agent | Specialization | Triggers |
+|-------|---------------|----------|
+| **Brainstorm** | Design-first ideation before planning | "brainstorm", "ideate", "explore idea" |
+| **PM Agent** | Requirements analysis, task decomposition, architecture | "plan", "break down", "what should we build" |
+| **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "component", "styling" |
+| **Backend Agent** | FastAPI, PostgreSQL, JWT authentication | "API", "database", "authentication" |
+| **DB Agent** | SQL/NoSQL modeling, normalization, integrity, backup, capacity | "ERD", "schema", "database design", "index tuning" |
+| **Mobile Agent** | Flutter cross-platform development | "mobile app", "iOS/Android" |
+| **QA Agent** | OWASP Top 10 security, performance, accessibility | "review security", "audit", "check performance" |
+| **Debug Agent** | Bug diagnosis, root cause analysis, regression tests | "bug", "error", "crash" |
+| **Developer Workflow** | Monorepo task automation, mise tasks, CI/CD, migrations, release | "dev workflow", "mise tasks", "CI/CD pipeline" |
+| **TF Infra Agent** | Multi-cloud IaC provisioning (AWS, GCP, Azure, OCI) | "infrastructure", "terraform", "cloud setup" |
+| **Orchestrator** | CLI-based parallel agent execution | "spawn agent", "parallel execution" |
+| **Commit** | Conventional Commits with project-specific rules | "commit", "save changes" |
+
 
 ## Architecture
 
@@ -60,6 +80,7 @@ flowchart TD
     Quality --> CMT([oma-commit])
 ```
 
+
 ## Why Different
 
 - **`.agents/` is the source of truth**: skills, workflows, shared resources, and config live in one portable project structure instead of being trapped inside one IDE plugin.
@@ -69,36 +90,6 @@ flowchart TD
 - **Built for verification**: dashboards, manifest generation, shared execution protocols, and structured outputs favor traceability over vibe-only generation.
 
 
-### Claude Code Native Integration
-
-Claude Code has first-class native integration beyond symlinks:
-
-- **`CLAUDE.md`** — project identity, architecture, and rules (auto-loaded by Claude Code)
-- **`.claude/skills/`** — 12 workflow skills mapped from `.agents/workflows/` (e.g., `/orchestrate`, `/coordinate`, `/ultrawork`)
-- **`.claude/agents/`** — 7 subagent definitions spawned via Task tool (backend-engineer, frontend-engineer, mobile-engineer, db-engineer, qa-reviewer, debug-investigator, pm-planner)
-- **Native loop patterns** — Review Loop, Issue Remediation Loop, and Phase Gate Loop using synchronous Task tool results instead of CLI polling
-
-Domain skills (oma-backend, oma-frontend, etc.) remain as symlinks from `.agents/skills/`. Workflow skills are native SKILL.md files that reference the corresponding `.agents/workflows/*.md` source of truth.
-
-
-## What Is This?
-
-A collection of **Agent Skills** enabling collaborative multi-agent development. Work is distributed across expert agents with explicit roles, workflows, and verification boundaries:
-
-| Agent | Specialization | Triggers |
-|-------|---------------|----------|
-| **Brainstorm** | Design-first ideation before planning | "brainstorm", "ideate", "explore idea" |
-| **PM Agent** | Requirements analysis, task decomposition, architecture | "plan", "break down", "what should we build" |
-| **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "component", "styling" |
-| **Backend Agent** | FastAPI, PostgreSQL, JWT authentication | "API", "database", "authentication" |
-| **DB Agent** | SQL/NoSQL modeling, normalization, integrity, backup, capacity | "ERD", "schema", "database design", "index tuning" |
-| **Mobile Agent** | Flutter cross-platform development | "mobile app", "iOS/Android" |
-| **QA Agent** | OWASP Top 10 security, performance, accessibility | "review security", "audit", "check performance" |
-| **Debug Agent** | Bug diagnosis, root cause analysis, regression tests | "bug", "error", "crash" |
-| **Developer Workflow** | Monorepo task automation, mise tasks, CI/CD, migrations, release | "dev workflow", "mise tasks", "CI/CD pipeline" |
-| **TF Infra Agent** | Multi-cloud IaC provisioning (AWS, GCP, Azure, OCI) | "infrastructure", "terraform", "cloud setup" |
-| **Orchestrator** | CLI-based parallel agent execution with Serena Memory | "spawn agent", "parallel execution" |
-| **Commit** | Conventional Commits with project-specific rules | "commit", "save changes" |
 
 ## Quick Start
 
@@ -188,6 +179,7 @@ You'll also need at least one CLI tool:
 
 For dashboard setup and usage details, see [`web/content/en/guide/usage.md`](https://github.com/first-fluke/oh-my-agent/blob/main/web/content/en/guide/usage.md#real-time-dashboards).
 
+
 ## Sponsors
 
 This project is maintained thanks to our generous sponsors.
@@ -223,10 +215,14 @@ This project is maintained thanks to our generous sponsors.
 
 See [SPONSORS.md](https://github.com/first-fluke/oh-my-agent/blob/main/SPONSORS.md) for a full list of supporters.
 
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=first-fluke/oh-my-agent&type=date&legend=bottom-right)](https://www.star-history.com/#first-fluke/oh-my-agent&type=date&legend=bottom-right)
 
+
 ## License
 
 MIT
+
+

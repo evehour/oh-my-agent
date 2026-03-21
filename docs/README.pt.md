@@ -6,7 +6,7 @@
 
 O arnês de agente portátil e baseado em funções para engenharia séria assistida por IA.
 
-Orquestre 10 agentes de domínio especializados (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform)  O `oh-my-agent` usa `.agents/` como a fonte de verdade para habilidades e fluxos de trabalho portáteis e é compatível com outras IDEs e CLIs de IA. Ele combina agentes baseados em funções, fluxos de trabalho explícitos, observabilidade em tempo real e orientação com reconhecimento de padrões para equipes que desejam menos confusão de IA e uma execução mais disciplinada.
+Orquestre 10 agentes de domínio especializados (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform). O `oh-my-agent` funciona com todas as principais IDEs de IA. Ele combina agentes baseados em funções, fluxos de trabalho explícitos, observabilidade em tempo real e orientação com reconhecimento de padrões para equipes que desejam menos confusão de IA e uma execução mais disciplinada.
 
 > **Gostou deste projeto?** Dê uma estrela!
 >
@@ -20,7 +20,6 @@ Orquestre 10 agentes de domínio especializados (PM, Frontend, Backend, DB, Mobi
 
 - [Arquitetura](#arquitetura)
 - [Por que diferente](#por-que-diferente)
-- [Especificação `.agents`](#especificação-agents)
 - [O Que É Isso?](#o-que-é-isso)
 - [Início Rápido](#início-rápido)
 - [Patrocinadores](#patrocinadores)
@@ -45,19 +44,6 @@ O Claude Code tem integração nativa de primeira classe, além dos symlinks:
 - **Padrões de loop nativos** — Review Loop, Issue Remediation Loop e Phase Gate Loop usando resultados síncronos do Task tool, sem necessidade de polling via CLI
 
 As skills de domínio (oma-backend, oma-frontend, etc.) permanecem como symlinks de `.agents/skills/`. As workflow skills são arquivos SKILL.md thin router que delegam para o `.agents/workflows/*.md` correspondente como fonte de verdade.
-
-## Especificação `.agents`
-
-`oh-my-agent` trata `.agents/` como uma convenção de projeto portátil para skills, workflows e contexto compartilhado de agentes.
-
-- Skills vivem em `.agents/skills/<skill-name>/SKILL.md`
-- Definições abstratas de agentes vivem em `.agents/agents/` (SSOT vendor-neutral; o CLI gera `.claude/agents/`, `.codex/agents/` (planned), `.gemini/agents/` (planned) a partir delas)
-- Recursos compartilhados vivem em `.agents/skills/_shared/`
-- Workflows vivem em `.agents/workflows/*.md`
-- Configuração do projeto vive em `.agents/config/`
-- Metadados CLI e empacotamento permanecem alinhados através de manifestos gerados
-
-Veja [AGENTS_SPEC.md](./AGENTS_SPEC.md) para o layout do projeto, arquivos necessários, regras de interoperabilidade e modelo fonte-da-verdade.
 
 ## Arquitetura
 
@@ -119,7 +105,7 @@ Uma coleção de **Habilidades Agent** que permite o desenvolvimento colaborativ
 | **Debug Agent** | Diagnóstico de bugs, análise de causa raiz, testes de regressão | "bug", "erro", "crash" |
 | **Developer Workflow** | Automação de tarefas monorepo, tarefas mise, CI/CD, migrações, release | "workflow dev", "tarefas mise", "pipeline CI/CD" |
 | **TF Infra Agent** | Provisionamento IaC multi-nuvem (AWS, GCP, Azure, OCI) | "infraestrutura", "terraform", "config cloud" |
-| **Orchestrator** | Execução paralela de agentes via CLI com Serena Memory | "executar agente", "execução paralela" |
+| **Orchestrator** | Execução paralela de agentes via CLI | "executar agente", "execução paralela" |
 | **Commit** | Commits Convencionais com regras específicas do projeto | "commit", "salvar mudanças" |
 
 ## Início Rápido

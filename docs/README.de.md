@@ -6,7 +6,7 @@
 
 Das tragbare, rollenbasierte Agenten-Harness für ernsthaftes KI-gestütztes Engineering.
 
-Orchestrieren Sie 10 spezialisierte Domain-Agenten (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform)  `oh-my-agent` verwendet `.agents/` als Single Source of Truth für tragbare Fähigkeiten und Workflows und verbindet sich von dort aus mit anderen KI-IDEs und CLIs. Es kombiniert rollenbasierte Agenten, explizite Workflows, Echtzeit-Observability und standardbewusste Anleitung für Teams, die weniger KI-Chaos und eine diszipliniertere Ausführung wünschen.
+Orchestrieren Sie 10 spezialisierte Domain-Agenten (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform). `oh-my-agent` funktioniert mit allen wichtigen KI-IDEs. Es kombiniert rollenbasierte Agenten, explizite Workflows, Echtzeit-Observability und standardbewusste Anleitung für Teams, die weniger KI-Chaos und eine diszipliniertere Ausführung wünschen.
 
 > **Gefällt Ihnen dieses Projekt?** Geben Sie ihm einen Stern!
 >
@@ -20,7 +20,6 @@ Orchestrieren Sie 10 spezialisierte Domain-Agenten (PM, Frontend, Backend, DB, M
 
 - [Architektur](#architektur)
 - [Warum anders](#warum-anders)
-- [`.agents` Spezifikation](#agents-spezifikation)
 - [Was ist das?](#was-ist-das)
 - [Schnellstart](#schnellstart)
 - [Sponsoren](#sponsoren)
@@ -34,28 +33,6 @@ Orchestrieren Sie 10 spezialisierte Domain-Agenten (PM, Frontend, Backend, DB, M
 - **Standard-bewusstes Design**: Agenten tragen jetzt fokussierte Anleitung für ISO-getriebene Planung, QA, Datenbank-Kontinuität/Sicherheit und Infrastruktur-Governance.
 - **Für Verifikation gebaut**: Dashboards, Manifest-Generierung, gemeinsame Ausführungsprotokolle und strukturierte Ausgaben bevorzugen Rückverfolgbarkeit gegenüber reiner Vibe-Generierung.
 
-
-## Native Claude Code Integration
-
-Claude Code unterstützt `oh-my-agent` vollständig nativ — ohne Plugins.
-
-- **`CLAUDE.md`** — wird beim Start automatisch geladen; enthält Projektbeschreibung, Architektur und Agentenregeln.
-- **`.claude/skills/`** — 12 Thin-Router-SKILL.md-Dateien, die an `.agents/workflows/` delegieren (z. B. `/orchestrate`, `/coordinate`, `/ultrawork`). Skills werden explizit über Slash-Befehle aufgerufen, nicht automatisch durch Schlüsselwörter aktiviert.
-- **`.claude/agents/`** — 7 Subagenten, generiert aus `.agents/agents/*.yaml`, die per Task-Tool gestartet werden: `backend-engineer`, `frontend-engineer`, `mobile-engineer`, `db-engineer`, `qa-reviewer`, `debug-investigator`, `pm-planner`.
-- **Loop-Muster** — Review Loop, Issue Remediation Loop und Phase Gate Loop laufen ohne CLI-Polling; das Task-Tool liefert Ergebnisse synchron zurück.
-
-## `.agents` Spezifikation
-
-`oh-my-agent` behandelt `.agents/` als portable Projektkonvention für Agenten-Skills, Workflows und gemeinsamen Kontext.
-
-- Skills leben in `.agents/skills/<skill-name>/SKILL.md`
-- Abstrakte Agent-Definitionen leben in `.agents/agents/` (herstellerneutraler SSOT; die CLI generiert daraus `.claude/agents/`, `.codex/agents/` (planned), `.gemini/agents/` (planned))
-- Gemeinsame Ressourcen leben in `.agents/skills/_shared/`
-- Workflows leben in `.agents/workflows/*.md`
-- Projektkonfiguration lebt in `.agents/config/`
-- CLI-Metadaten und Packaging bleiben durch generierte Manifeste ausgerichtet
-
-Siehe [AGENTS_SPEC.md](./AGENTS_SPEC.md) für das Projekt-Layout, erforderliche Dateien, Interoperabilitätsregeln und Source-of-Truth-Modell.
 
 ## Architektur
 

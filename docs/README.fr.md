@@ -6,7 +6,7 @@
 
 Le harnais d'agent portable, basé sur les rôles, pour l'ingénierie sérieuse assistée par l'IA.
 
-Orchestrez 10 agents de domaine spécialisés (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform)  `oh-my-agent` utilise `.agents/` comme source de vérité pour les compétences et les flux de travail portables, et s'intègre avec d'autres IDE et CLI d'IA. Il combine des agents basés sur les rôles, des flux de travail explicites, une observabilité en temps réel et des conseils tenant compte des normes pour les équipes qui souhaitent moins de déchets liés à l'IA et une exécution plus disciplinée.
+Orchestrez 10 agents de domaine spécialisés (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform). `oh-my-agent` fonctionne avec tous les principaux IDE d'IA. Il combine des agents basés sur les rôles, des flux de travail explicites, une observabilité en temps réel et des conseils tenant compte des normes pour les équipes qui souhaitent moins de déchets liés à l'IA et une exécution plus disciplinée.
 
 > **Ce projet vous plaît ?** Donnez-lui une étoile !
 >
@@ -20,7 +20,6 @@ Orchestrez 10 agents de domaine spécialisés (PM, Frontend, Backend, DB, Mobile
 
 - [Architecture](#architecture)
 - [Pourquoi différent](#pourquoi-différent)
-- [Spécification `.agents`](#spécification-agents)
 - [Qu'est-ce que c'est ?](#quest-ce-que-cest-)
 - [Démarrage rapide](#démarrage-rapide)
 - [Sponsors](#sponsors)
@@ -45,19 +44,6 @@ Claude Code bénéficie d'une intégration native de premier ordre, au-delà des
 - **Patterns de boucle natifs** — Review Loop, Issue Remediation Loop et Phase Gate Loop utilisant les résultats synchrones du Task tool, sans polling CLI
 
 Les skills de domaine (oma-backend, oma-frontend, etc.) restent des liens symboliques depuis `.agents/skills/`. Les workflow skills sont des fichiers SKILL.md thin router qui délèguent vers le fichier `.agents/workflows/*.md` correspondant comme source de vérité.
-
-## Spécification `.agents`
-
-`oh-my-agent` traite `.agents/` comme une convention de projet portable pour les compétences, workflows et contexte partagé des agents.
-
-- Les compétences vivent dans `.agents/skills/<skill-name>/SKILL.md`
-- Les définitions abstraites d'agents vivent dans `.agents/agents/` (SSOT neutre vis-à-vis des fournisseurs ; le CLI génère `.claude/agents/`, `.codex/agents/` (planned), `.gemini/agents/` (planned) à partir de celles-ci)
-- Les ressources partagées vivent dans `.agents/skills/_shared/`
-- Les workflows vivent dans `.agents/workflows/*.md`
-- La configuration du projet vit dans `.agents/config/`
-- Les métadonnées CLI et l'emballage restent alignés via des manifestes générés
-
-Voir [AGENTS_SPEC.md](./AGENTS_SPEC.md) pour la disposition du projet, les fichiers requis, les règles d'interopérabilité et le modèle source-de-vérité.
 
 ## Architecture
 

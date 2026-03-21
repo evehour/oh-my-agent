@@ -18,12 +18,32 @@ Orchestrez 10 agents de domaine spécialisés (PM, Frontend, Backend, DB, Mobile
 
 ## Table des matières
 
-- [Architecture](#architecture)
-- [Pourquoi différent](#pourquoi-différent)
 - [Qu'est-ce que c'est ?](#quest-ce-que-cest-)
+- [Pourquoi différent](#pourquoi-différent)
 - [Démarrage rapide](#démarrage-rapide)
+- [Architecture](#architecture)
 - [Sponsors](#sponsors)
 - [Licence](#licence)
+
+## Qu'est-ce que c'est ?
+
+Une collection de **Compétences Agent** permettant le développement collaboratif multi-agents. Le travail est distribué entre agents experts :
+
+| Agent | Spécialisation | Déclencheurs |
+|-------|---------------|--------------|
+| **Brainstorm** | Idéation design-first avant la planification | "brainstorm", "ideate", "explore idea" |
+| **PM Agent** | Analyse des exigences, décomposition des tâches, architecture | "planifier", "décomposer", "que devons-nous construire" |
+| **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "composant", "style" |
+| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API", "base de données", "authentification" |
+| **DB Agent** | Modélisation SQL/NoSQL, normalisation, intégrité, sauvegarde, capacité | "ERD", "schéma", "database design", "index tuning" |
+| **Mobile Agent** | Développement multiplateforme Flutter | "application mobile", "iOS/Android" |
+| **QA Agent** | Sécurité OWASP Top 10, performance, accessibilité | "vérifier sécurité", "audit", "vérifier performance" |
+| **Debug Agent** | Diagnostic de bugs, analyse de cause racine, tests de régression | "bug", "erreur", "crash" |
+| **Developer Workflow** | Automatisation des tâches monorepo, tâches mise, CI/CD, migrations, release | "workflow dev", "tâches mise", "pipeline CI/CD" |
+| **TF Infra Agent** | Provisionnement IaC multi-cloud (AWS, GCP, Azure, OCI) | "infrastructure", "terraform", "config cloud" |
+| **Orchestrator** | Exécution parallèle d'agents via CLI  | "lancer agent", "exécution parallèle" |
+| **Commit** | Commits conventionnels avec règles spécifiques au projet | "commit", "enregistrer changements" |
+
 
 ## Pourquoi différent
 
@@ -45,68 +65,6 @@ Claude Code bénéficie d'une intégration native de premier ordre, au-delà des
 
 Les skills de domaine (oma-backend, oma-frontend, etc.) restent des liens symboliques depuis `.agents/skills/`. Les workflow skills sont des fichiers SKILL.md thin router qui délèguent vers le fichier `.agents/workflows/*.md` correspondant comme source de vérité.
 
-## Architecture
-
-```mermaid
-flowchart TD
-    subgraph Workflows["Workflows"]
-        direction TB
-        W0["/brainstorm"]
-        W1["/coordinate"]
-        W1b["/ultrawork"]
-        W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-    end
-
-    subgraph Orchestration["Orchestration"]
-        direction TB
-        PM[oma-pm]
-        ORC[orchestrator]
-    end
-
-    subgraph Domain["Agents de domaine"]
-        direction TB
-        FE[oma-frontend]
-        BE[oma-backend]
-        DB[oma-db]
-        MB[oma-mobile]
-        TF[oma-tf-infra]
-    end
-
-    subgraph Quality["Qualité"]
-        direction TB
-        QA[oma-qa]
-        DBG[oma-debug]
-    end
-
-
-    Workflows --> Orchestration
-    Orchestration --> Domain
-    Domain --> Quality
-    Quality --> CMT([commit])
-```
-
-## Qu'est-ce que c'est ?
-
-Une collection de **Compétences Agent** permettant le développement collaboratif multi-agents. Le travail est distribué entre agents experts :
-
-| Agent | Spécialisation | Déclencheurs |
-|-------|---------------|--------------|
-| **Brainstorm** | Idéation design-first avant la planification | "brainstorm", "ideate", "explore idea" |
-| **PM Agent** | Analyse des exigences, décomposition des tâches, architecture | "planifier", "décomposer", "que devons-nous construire" |
-| **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "composant", "style" |
-| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API", "base de données", "authentification" |
-| **DB Agent** | Modélisation SQL/NoSQL, normalisation, intégrité, sauvegarde, capacité | "ERD", "schéma", "database design", "index tuning" |
-| **Mobile Agent** | Développement multiplateforme Flutter | "application mobile", "iOS/Android" |
-| **QA Agent** | Sécurité OWASP Top 10, performance, accessibilité | "vérifier sécurité", "audit", "vérifier performance" |
-| **Debug Agent** | Diagnostic de bugs, analyse de cause racine, tests de régression | "bug", "erreur", "crash" |
-| **Developer Workflow** | Automatisation des tâches monorepo, tâches mise, CI/CD, migrations, release | "workflow dev", "tâches mise", "pipeline CI/CD" |
-| **TF Infra Agent** | Provisionnement IaC multi-cloud (AWS, GCP, Azure, OCI) | "infrastructure", "terraform", "config cloud" |
-| **Orchestrator** | Exécution parallèle d'agents via CLI  | "lancer agent", "exécution parallèle" |
-| **Commit** | Commits conventionnels avec règles spécifiques au projet | "commit", "enregistrer changements" |
 
 ## Démarrage rapide
 
@@ -208,6 +166,52 @@ bunx oh-my-agent
 
 Pour la configuration et les détails d'utilisation des tableaux de bord, voir [`web/content/fr/guide/usage.md`](./web/content/fr/guide/usage.md#tableaux-de-bord-en-temps-réel).
 
+
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph Workflows["Workflows"]
+        direction TB
+        W0["/brainstorm"]
+        W1["/coordinate"]
+        W1b["/ultrawork"]
+        W2["/orchestrate"]
+        W3["/plan"]
+        W4["/review"]
+        W5["/debug"]
+        W6["/deepinit"]
+    end
+
+    subgraph Orchestration["Orchestration"]
+        direction TB
+        PM[oma-pm]
+        ORC[orchestrator]
+    end
+
+    subgraph Domain["Agents de domaine"]
+        direction TB
+        FE[oma-frontend]
+        BE[oma-backend]
+        DB[oma-db]
+        MB[oma-mobile]
+        TF[oma-tf-infra]
+    end
+
+    subgraph Quality["Qualité"]
+        direction TB
+        QA[oma-qa]
+        DBG[oma-debug]
+    end
+
+
+    Workflows --> Orchestration
+    Orchestration --> Domain
+    Domain --> Quality
+    Quality --> CMT([commit])
+```
+
+
 ## Sponsors
 
 Ce projet est maintenu grâce à nos généreux sponsors.
@@ -235,10 +239,8 @@ Ce projet est maintenu grâce à nos généreux sponsors.
 
 Voir [SPONSORS.md](./SPONSORS.md) pour la liste complète des supporters.
 
-## Historique des étoiles
-
-[![Star History Chart](https://api.star-history.com/svg?repos=first-fluke/oh-my-agent&type=date&legend=bottom-right)](https://www.star-history.com/#first-fluke/oh-my-agent&type=date&legend=bottom-right)
 
 ## Licence
 
 MIT
+

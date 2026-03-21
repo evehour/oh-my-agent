@@ -1,82 +1,11 @@
-# oh-my-agent: Przenośna Uprząż Wielu Agentów
-
-[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
-
-[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
-
-Przenośna, oparta na rolach uprząż dla agentów do poważnej inżynierii wspomaganej przez AI.
-
-Orkiestruj 10 wyspecjalizowanymi agentami domenowymi (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform). `oh-my-agent` współpracuje ze wszystkimi głównymi IDE AI. Łączy opartych na rolach agentów, jawne przepływy pracy, obserwowalność w czasie rzeczywistym i wskazówki uwzględniające standardy dla zespołów, które chcą mniej bałaganu związanego z AI i bardziej zdyscyplinowanego wykonywania zadań.
-
-> **Podoba Ci się ten projekt?** Daj mu gwiazdkę!
->
-> ```bash
-> gh api --method PUT /user/starred/first-fluke/oh-my-agent
-> ```
->
-> Wypróbuj nasz zoptymalizowany szablon startowy: [fullstack-starter](https://github.com/first-fluke/fullstack-starter)
-
 ## Spis treści
 
-- [Architektura](#architektura)
-- [Dlaczego inaczej](#dlaczego-inaczej)
 - [Co to jest?](#co-to-jest)
+- [Dlaczego inaczej](#dlaczego-inaczej)
 - [Szybki start](#szybki-start)
+- [Architektura](#architektura)
 - [Sponsorzy](#sponsorzy)
 - [Licencja](#licencja)
-
-## Dlaczego inaczej
-
-- **`.agents/` jest źródłem prawdy**: skills, workflows, zasoby współdzielone i konfiguracja żyją w jednej przenośnej strukturze projektu zamiast być uwięzione wewnątrz jednego pluginu IDE.
-- **Zespoły agentów oparte na rolach**: agenci PM, QA, DB, Infra, Frontend, Backend, Mobile, Debug i Workflow są modelowani jak organizacja inżynierska, a nie tylko sterta promptów.
-- **Orkiestracja workflow-first**: planowanie, przegląd, debugowanie i skoordynowane wykonanie to workflows pierwszej klasy, a nie przemyślenia po fakcie.
-- **Projekt świadomy standardów**: agenci teraz przenoszą ukierunkowane wskazówki dla planowania ISO, QA, ciągłości/bezpieczeństwa baz danych i zarządzania infrastrukturą.
-- **Zbudowany do weryfikacji**: dashboardy, generowanie manifestów, współdzielone protokoły wykonania i strukturyzowane wyjścia faworyzują możliwości śledzenia nad generowaniem tylko na podstawie odczuć.
-
-
-## Architektura
-
-```mermaid
-flowchart TD
-    subgraph Workflows["Przepływy pracy"]
-        direction TB
-        W0["/brainstorm"]
-        W1["/coordinate"]
-        W1b["/ultrawork"]
-        W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-    end
-
-    subgraph Orchestration["Orkiestracja"]
-        direction TB
-        PM[oma-pm]
-        ORC[orchestrator]
-    end
-
-    subgraph Domain["Agenci domenowi"]
-        direction TB
-        FE[oma-frontend]
-        BE[oma-backend]
-        DB[oma-db]
-        MB[oma-mobile]
-        TF[oma-tf-infra]
-    end
-
-    subgraph Quality["Jakość"]
-        direction TB
-        QA[oma-qa]
-        DBG[oma-debug]
-    end
-
-
-    Workflows --> Orchestration
-    Orchestration --> Domain
-    Domain --> Quality
-    Quality --> CMT([commit])
-```
 
 ## Co to jest?
 
@@ -96,6 +25,17 @@ Kolekcja **Agent Skills** umożliwiających współpracę multi-agentową w rozw
 | **TF Infra Agent** | Wielochmurowy provisioning IaC (AWS, GCP, Azure, OCI) | "infrastruktura", "terraform", "konfiguracja chmury" |
 | **Orchestrator** | Równoległe wykonywanie agentów przez CLI  | "uruchom agenta", "wykonanie równoległe" |
 | **Commit** | Conventional Commits z regułami specyficznymi dla projektu | "commit", "zapisz zmiany" |
+
+
+## Dlaczego inaczej
+
+- **`.agents/` jest źródłem prawdy**: skills, workflows, zasoby współdzielone i konfiguracja żyją w jednej przenośnej strukturze projektu zamiast być uwięzione wewnątrz jednego pluginu IDE.
+- **Zespoły agentów oparte na rolach**: agenci PM, QA, DB, Infra, Frontend, Backend, Mobile, Debug i Workflow są modelowani jak organizacja inżynierska, a nie tylko sterta promptów.
+- **Orkiestracja workflow-first**: planowanie, przegląd, debugowanie i skoordynowane wykonanie to workflows pierwszej klasy, a nie przemyślenia po fakcie.
+- **Projekt świadomy standardów**: agenci teraz przenoszą ukierunkowane wskazówki dla planowania ISO, QA, ciągłości/bezpieczeństwa baz danych i zarządzania infrastrukturą.
+- **Zbudowany do weryfikacji**: dashboardy, generowanie manifestów, współdzielone protokoły wykonania i strukturyzowane wyjścia faworyzują możliwości śledzenia nad generowaniem tylko na podstawie odczuć.
+
+
 
 ## Szybki start
 
@@ -197,6 +137,52 @@ bunx oh-my-agent
 
 Szczegóły konfiguracji i użycia dashboardu znajdziesz w [`docs/USAGE.pl.md`](./docs/USAGE.pl.md#dashboardy-w-czasie-rzeczywistym).
 
+
+## Architektura
+
+```mermaid
+flowchart TD
+    subgraph Workflows["Przepływy pracy"]
+        direction TB
+        W0["/brainstorm"]
+        W1["/coordinate"]
+        W1b["/ultrawork"]
+        W2["/orchestrate"]
+        W3["/plan"]
+        W4["/review"]
+        W5["/debug"]
+        W6["/deepinit"]
+    end
+
+    subgraph Orchestration["Orkiestracja"]
+        direction TB
+        PM[oma-pm]
+        ORC[orchestrator]
+    end
+
+    subgraph Domain["Agenci domenowi"]
+        direction TB
+        FE[oma-frontend]
+        BE[oma-backend]
+        DB[oma-db]
+        MB[oma-mobile]
+        TF[oma-tf-infra]
+    end
+
+    subgraph Quality["Jakość"]
+        direction TB
+        QA[oma-qa]
+        DBG[oma-debug]
+    end
+
+
+    Workflows --> Orchestration
+    Orchestration --> Domain
+    Domain --> Quality
+    Quality --> CMT([commit])
+```
+
+
 ## Sponsorzy
 
 Ten projekt jest utrzymywany dzięki naszym hojnym sponsorom.
@@ -224,10 +210,8 @@ Ten projekt jest utrzymywany dzięki naszym hojnym sponsorom.
 
 Zobacz [SPONSORS.md](./SPONSORS.md) dla pełnej listy wspierających.
 
-## Historia gwiazdek
-
-[![Star History Chart](https://api.star-history.com/svg?repos=first-fluke/oh-my-agent&type=date&legend=bottom-right)](https://www.star-history.com/#first-fluke/oh-my-agent&type=date&legend=bottom-right)
 
 ## Licencja
 
 MIT
+

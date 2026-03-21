@@ -1,29 +1,31 @@
-# oh-my-agent: Arnês Multi-Agente Portátil
-
-[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
-
-[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
-
-O arnês de agente portátil e baseado em funções para engenharia séria assistida por IA.
-
-Orquestre 10 agentes de domínio especializados (PM, Frontend, Backend, DB, Mobile, QA, Debug, Brainstorm, DevWorkflow, Terraform). O `oh-my-agent` funciona com todas as principais IDEs de IA. Ele combina agentes baseados em funções, fluxos de trabalho explícitos, observabilidade em tempo real e orientação com reconhecimento de padrões para equipes que desejam menos confusão de IA e uma execução mais disciplinada.
-
-> **Gostou deste projeto?** Dê uma estrela!
->
-> ```bash
-> gh api --method PUT /user/starred/first-fluke/oh-my-agent
-> ```
->
-> Experimente nosso template inicial otimizado: [fullstack-starter](https://github.com/first-fluke/fullstack-starter)
-
 ## Índice
 
-- [Arquitetura](#arquitetura)
-- [Por que diferente](#por-que-diferente)
 - [O Que É Isso?](#o-que-é-isso)
+- [Por que diferente](#por-que-diferente)
 - [Início Rápido](#início-rápido)
+- [Arquitetura](#arquitetura)
 - [Patrocinadores](#patrocinadores)
 - [Licença](#licença)
+
+## O Que É Isso?
+
+Uma coleção de **Habilidades Agent** que permite o desenvolvimento colaborativo multi-agente. O trabalho é distribuído entre agentes especialistas:
+
+| Agente | Especialização | Gatilhos |
+|-------|---------------|----------|
+| **Brainstorm** | Ideação com design-first antes do planejamento | "brainstorm", "ideate", "explore idea" |
+| **PM Agent** | Análise de requisitos, decomposição de tarefas, arquitetura | "planejar", "dividir", "o que devemos construir" |
+| **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "componente", "estilo" |
+| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API", "banco de dados", "autenticação" |
+| **DB Agent** | Modelagem SQL/NoSQL, normalização, integridade, backup, capacidade | "ERD", "schema", "database design", "index tuning" |
+| **Mobile Agent** | Desenvolvimento Flutter multiplataforma | "app mobile", "iOS/Android" |
+| **QA Agent** | Segurança OWASP Top 10, performance, acessibilidade | "revisar segurança", "auditoria", "verificar performance" |
+| **Debug Agent** | Diagnóstico de bugs, análise de causa raiz, testes de regressão | "bug", "erro", "crash" |
+| **Developer Workflow** | Automação de tarefas monorepo, tarefas mise, CI/CD, migrações, release | "workflow dev", "tarefas mise", "pipeline CI/CD" |
+| **TF Infra Agent** | Provisionamento IaC multi-nuvem (AWS, GCP, Azure, OCI) | "infraestrutura", "terraform", "config cloud" |
+| **Orchestrator** | Execução paralela de agentes via CLI | "executar agente", "execução paralela" |
+| **Commit** | Commits Convencionais com regras específicas do projeto | "commit", "salvar mudanças" |
+
 
 ## Por que diferente
 
@@ -45,68 +47,6 @@ O Claude Code tem integração nativa de primeira classe, além dos symlinks:
 
 As skills de domínio (oma-backend, oma-frontend, etc.) permanecem como symlinks de `.agents/skills/`. As workflow skills são arquivos SKILL.md thin router que delegam para o `.agents/workflows/*.md` correspondente como fonte de verdade.
 
-## Arquitetura
-
-```mermaid
-flowchart TD
-    subgraph Workflows["Fluxos de Trabalho"]
-        direction TB
-        W0["/brainstorm"]
-        W1["/coordinate"]
-        W1b["/ultrawork"]
-        W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-    end
-
-    subgraph Orchestration["Orquestração"]
-        direction TB
-        PM[oma-pm]
-        ORC[orchestrator]
-    end
-
-    subgraph Domain["Agentes de Domínio"]
-        direction TB
-        FE[oma-frontend]
-        BE[oma-backend]
-        DB[oma-db]
-        MB[oma-mobile]
-        TF[oma-tf-infra]
-    end
-
-    subgraph Quality["Qualidade"]
-        direction TB
-        QA[oma-qa]
-        DBG[oma-debug]
-    end
-
-
-    Workflows --> Orchestration
-    Orchestration --> Domain
-    Domain --> Quality
-    Quality --> CMT([commit])
-```
-
-## O Que É Isso?
-
-Uma coleção de **Habilidades Agent** que permite o desenvolvimento colaborativo multi-agente. O trabalho é distribuído entre agentes especialistas:
-
-| Agente | Especialização | Gatilhos |
-|-------|---------------|----------|
-| **Brainstorm** | Ideação com design-first antes do planejamento | "brainstorm", "ideate", "explore idea" |
-| **PM Agent** | Análise de requisitos, decomposição de tarefas, arquitetura | "planejar", "dividir", "o que devemos construir" |
-| **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "componente", "estilo" |
-| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API", "banco de dados", "autenticação" |
-| **DB Agent** | Modelagem SQL/NoSQL, normalização, integridade, backup, capacidade | "ERD", "schema", "database design", "index tuning" |
-| **Mobile Agent** | Desenvolvimento Flutter multiplataforma | "app mobile", "iOS/Android" |
-| **QA Agent** | Segurança OWASP Top 10, performance, acessibilidade | "revisar segurança", "auditoria", "verificar performance" |
-| **Debug Agent** | Diagnóstico de bugs, análise de causa raiz, testes de regressão | "bug", "erro", "crash" |
-| **Developer Workflow** | Automação de tarefas monorepo, tarefas mise, CI/CD, migrações, release | "workflow dev", "tarefas mise", "pipeline CI/CD" |
-| **TF Infra Agent** | Provisionamento IaC multi-nuvem (AWS, GCP, Azure, OCI) | "infraestrutura", "terraform", "config cloud" |
-| **Orchestrator** | Execução paralela de agentes via CLI | "executar agente", "execução paralela" |
-| **Commit** | Commits Convencionais com regras específicas do projeto | "commit", "salvar mudanças" |
 
 ## Início Rápido
 
@@ -208,6 +148,52 @@ bunx oh-my-agent
 
 Para detalhes de configuração e uso do dashboard, veja [`docs/USAGE.pt.md`](./docs/USAGE.pt.md#dashboards-em-tempo-real).
 
+
+## Arquitetura
+
+```mermaid
+flowchart TD
+    subgraph Workflows["Fluxos de Trabalho"]
+        direction TB
+        W0["/brainstorm"]
+        W1["/coordinate"]
+        W1b["/ultrawork"]
+        W2["/orchestrate"]
+        W3["/plan"]
+        W4["/review"]
+        W5["/debug"]
+        W6["/deepinit"]
+    end
+
+    subgraph Orchestration["Orquestração"]
+        direction TB
+        PM[oma-pm]
+        ORC[orchestrator]
+    end
+
+    subgraph Domain["Agentes de Domínio"]
+        direction TB
+        FE[oma-frontend]
+        BE[oma-backend]
+        DB[oma-db]
+        MB[oma-mobile]
+        TF[oma-tf-infra]
+    end
+
+    subgraph Quality["Qualidade"]
+        direction TB
+        QA[oma-qa]
+        DBG[oma-debug]
+    end
+
+
+    Workflows --> Orchestration
+    Orchestration --> Domain
+    Domain --> Quality
+    Quality --> CMT([commit])
+```
+
+
 ## Patrocinadores
 
 Este projeto é mantido graças aos nossos generosos patrocinadores.
@@ -235,10 +221,8 @@ Este projeto é mantido graças aos nossos generosos patrocinadores.
 
 Veja [SPONSORS.md](./SPONSORS.md) para uma lista completa de apoiadores.
 
-## Histórico de Estrelas
-
-[![Star History Chart](https://api.star-history.com/svg?repos=first-fluke/oh-my-agent&type=date&legend=bottom-right)](https://www.star-history.com/#first-fluke/oh-my-agent&type=date&legend=bottom-right)
 
 ## Licença
 
 MIT
+

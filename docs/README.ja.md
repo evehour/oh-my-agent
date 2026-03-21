@@ -1,75 +1,11 @@
-# oh-my-agent: どのIDEでも使えるマルチエージェントハーネス
-
-[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
-
-[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
-
-AIで本気の開発をしたいチームのためのエージェントハーネス。役割ごとにエージェントが分かれていて、特定のIDEに縛られません。
-
-Antigravity、Claude Code、Cursor、Gemini、OpenCode など、すべての主要な AI IDE で動作します。役割を持ったエージェント、明確なワークフロー、リアルタイム監視、標準に沿ったガイドを組み合わせて、AIが雑に生成したコードを減らし、チームが体系的に動けるようにします。
-
 ## 目次
 
 - [何ができるのか](#何ができるのか)
-- [アーキテクチャ](#アーキテクチャ)
 - [何が違うのか](#何が違うのか)
-- [何ができるのか](#何ができるのか)
 - [クイックスタート](#クイックスタート)
+- [アーキテクチャ](#アーキテクチャ)
 - [スポンサー](#スポンサー)
 - [ライセンス](#ライセンス)
-
-## アーキテクチャ
-
-```mermaid
-flowchart TD
-    subgraph Workflows["ワークフロー"]
-        direction TB
-        W0["/brainstorm"]
-        W1["/coordinate"]
-        W1b["/ultrawork"]
-        W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-    end
-
-    subgraph Orchestration["オーケストレーション"]
-        direction TB
-        PM[oma-pm]
-        ORC[orchestrator]
-    end
-
-    subgraph Domain["ドメインエージェント"]
-        direction TB
-        FE[oma-frontend]
-        BE[oma-backend]
-        DB[oma-db]
-        MB[oma-mobile]
-        TF[oma-tf-infra]
-    end
-
-    subgraph Quality["品質"]
-        direction TB
-        QA[oma-qa]
-        DBG[oma-debug]
-    end
-
-
-    Workflows --> Orchestration
-    Orchestration --> Domain
-    Domain --> Quality
-    Quality --> CMT([commit])
-```
-
-## 何が違うのか
-
-- **`.agents/`が原本です**: スキル、ワークフロー、共有リソース、設定がひとつのプロジェクト構造に入っていて、特定のIDEプラグインに閉じ込められません。
-- **エンジニアリング組織のように動きます**: PM、QA、DB、Infra、Frontend、Backend、Mobile、Debug、Workflowの各エージェントが、プロンプトの寄せ集めではなくチームとして役割を分担します。
-- **ワークフローが最初に来ます**: 企画、レビュー、デバッグ、協調実行がおまけではなく、コアのワークフローとして設計されています。
-- **標準を知っています**: ISO基準の企画、QA、DBセキュリティ、インフラガバナンスのガイドがエージェントに組み込まれています。
-- **検証できます**: ダッシュボード、マニフェスト生成、実行プロトコル、構造化された出力で結果を追跡できます。ただ生成するだけではありません。
-
 
 ## 何ができるのか
 
@@ -89,6 +25,17 @@ flowchart TD
 | **TF Infra Agent** | マルチクラウドIaC（AWS、GCP、Azure、OCI） | "infrastructure"、"terraform"、"cloud" |
 | **Orchestrator** | CLIでエージェントを並列実行  | "spawn agent"、"parallel execution" |
 | **Commit** | Conventional Commitsのルールでコミット | "commit"、"save changes" |
+
+
+## 何が違うのか
+
+- **`.agents/`が原本です**: スキル、ワークフロー、共有リソース、設定がひとつのプロジェクト構造に入っていて、特定のIDEプラグインに閉じ込められません。
+- **エンジニアリング組織のように動きます**: PM、QA、DB、Infra、Frontend、Backend、Mobile、Debug、Workflowの各エージェントが、プロンプトの寄せ集めではなくチームとして役割を分担します。
+- **ワークフローが最初に来ます**: 企画、レビュー、デバッグ、協調実行がおまけではなく、コアのワークフローとして設計されています。
+- **標準を知っています**: ISO基準の企画、QA、DBセキュリティ、インフラガバナンスのガイドがエージェントに組み込まれています。
+- **検証できます**: ダッシュボード、マニフェスト生成、実行プロトコル、構造化された出力で結果を追跡できます。ただ生成するだけではありません。
+
+
 
 ## クイックスタート
 
@@ -188,66 +135,6 @@ bunx oh-my-agent
 
 ダッシュボードの設定と使い方は[`web/content/ja/guide/usage.md`](./web/content/ja/guide/usage.md#リアルタイムダッシュボード)を参照してください。
 
-## スポンサー
-
-このプロジェクトはスポンサーの皆さんのおかげで維持されています。
-
-> **気に入りましたか？** スターをお願いします！
->
-> ```bash
-> gh api --method PUT /user/starred/first-fluke/oh-my-agent
-> ```
->
-> スターターテンプレートもあります: [fullstack-starter](https://github.com/first-fluke/fullstack-starter)
-
-<a href="https://github.com/sponsors/first-fluke">
-  <img src="https://img.shields.io/badge/Sponsor-♥-ea4aaa?style=for-the-badge" alt="Sponsor" />
-</a>
-<a href="https://buymeacoffee.com/firstfluke">
-  <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕-FFDD00?style=for-the-badge" alt="Buy Me a Coffee" />
-</a>
-
-### 🚀 Champion
-
-<!-- Champion ($100/月) ロゴ -->
-
-### 🛸 Booster
-
-<!-- Booster ($30/月) ロゴ -->
-
-### ☕ Contributor
-
-<!-- Contributor ($10/月) 名前 -->
-
-[スポンサーになる →](https://github.com/sponsors/first-fluke)
-
-サポーターの一覧は[SPONSORS.md](./SPONSORS.md)を参照してください。
-
-## スター履歴
-
-[![Star History Chart](https://api.star-history.com/svg?repos=first-fluke/oh-my-agent&type=date&legend=bottom-right)](https://www.star-history.com/#first-fluke/oh-my-agent&type=date&legend=bottom-right)
-
-## ライセンス
-
-MIT## 何ができるのか
-
-複数のエージェントが協力して開発する**Agent Skills**のコレクションです。専門エージェントに役割を分けて任せます:
-
-| エージェント | 担当 | こういう時に呼びます |
-|-------|---------------|----------|
-| **Brainstorm** | 企画前にアイデアを探る | "brainstorm"、"ideate"、"explore idea" |
-| **PM Agent** | 要件分析、タスク分解、アーキテクチャ | "plan"、"break down"、"what should we build" |
-| **Frontend Agent** | React/Next.js、TypeScript、Tailwind CSS | "UI"、"component"、"styling" |
-| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API"、"database"、"authentication" |
-| **DB Agent** | SQL/NoSQLモデリング、正規化、整合性、バックアップ | "ERD"、"schema"、"DB設計"、"index tuning" |
-| **Mobile Agent** | Flutterクロスプラットフォーム開発 | "mobile app"、"iOS/Android" |
-| **QA Agent** | OWASP Top 10セキュリティ、パフォーマンス、アクセシビリティ | "review security"、"audit"、"check performance" |
-| **Debug Agent** | バグ診断、原因分析、回帰テスト | "bug"、"error"、"crash" |
-| **Developer Workflow** | モノレポ自動化、mise、CI/CD、リリース | "dev workflow"、"mise"、"CI/CD" |
-| **TF Infra Agent** | マルチクラウドIaC（AWS、GCP、Azure、OCI） | "infrastructure"、"terraform"、"cloud" |
-| **Orchestrator** | CLIでエージェントを並列実行  | "spawn agent"、"parallel execution" |
-| **Commit** | Conventional Commitsのルールでコミット | "commit"、"save changes" |
-
 
 ## アーキテクチャ
 
@@ -294,13 +181,115 @@ flowchart TD
 ```
 
 
-## 何が違うのか
+## スポンサー
+
+このプロジェクトはスポンサーの皆さんのおかげで維持されています。
+
+> **気に入りましたか？** スターをお願いします！
+>
+> ```bash
+> gh api --method PUT /user/starred/first-fluke/oh-my-agent
+> ```
+>
+> スターターテンプレートもあります: [fullstack-starter](https://github.com/first-fluke/fullstack-starter)
+
+<a href="https://github.com/sponsors/first-fluke">
+  <img src="https://img.shields.io/badge/Sponsor-♥-ea4aaa?style=for-the-badge" alt="Sponsor" />
+</a>
+<a href="https://buymeacoffee.com/firstfluke">
+  <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕-FFDD00?style=for-the-badge" alt="Buy Me a Coffee" />
+</a>
+
+### 🚀 Champion
+
+<!-- Champion ($100/月) ロゴ -->
+
+### 🛸 Booster
+
+<!-- Booster ($30/月) ロゴ -->
+
+### ☕ Contributor
+
+<!-- Contributor ($10/月) 名前 -->
+
+[スポンサーになる →](https://github.com/sponsors/first-fluke)
+
+サポーターの一覧は[SPONSORS.md](./SPONSORS.md)を参照してください。
+
+
+## ライセンス
+
+MIT## 何ができるのか
+
+複数のエージェントが協力して開発する**Agent Skills**のコレクションです。専門エージェントに役割を分けて任せます:
+
+| エージェント | 担当 | こういう時に呼びます |
+|-------|---------------|----------|
+| **Brainstorm** | 企画前にアイデアを探る | "brainstorm"、"ideate"、"explore idea" |
+| **PM Agent** | 要件分析、タスク分解、アーキテクチャ | "plan"、"break down"、"what should we build" |
+| **Frontend Agent** | React/Next.js、TypeScript、Tailwind CSS | "UI"、"component"、"styling" |
+| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API"、"database"、"authentication" |
+| **DB Agent** | SQL/NoSQLモデリング、正規化、整合性、バックアップ | "ERD"、"schema"、"DB設計"、"index tuning" |
+| **Mobile Agent** | Flutterクロスプラットフォーム開発 | "mobile app"、"iOS/Android" |
+| **QA Agent** | OWASP Top 10セキュリティ、パフォーマンス、アクセシビリティ | "review security"、"audit"、"check performance" |
+| **Debug Agent** | バグ診断、原因分析、回帰テスト | "bug"、"error"、"crash" |
+| **Developer Workflow** | モノレポ自動化、mise、CI/CD、リリース | "dev workflow"、"mise"、"CI/CD" |
+| **TF Infra Agent** | マルチクラウドIaC（AWS、GCP、Azure、OCI） | "infrastructure"、"terraform"、"cloud" |
+| **Orchestrator** | CLIでエージェントを並列実行  | "spawn agent"、"parallel execution" |
+| **Commit** | Conventional Commitsのルールでコミット | "commit"、"save changes" |
+
+
+
+```mermaid
+flowchart TD
+    subgraph Workflows["ワークフロー"]
+        direction TB
+        W0["/brainstorm"]
+        W1["/coordinate"]
+        W1b["/ultrawork"]
+        W2["/orchestrate"]
+        W3["/plan"]
+        W4["/review"]
+        W5["/debug"]
+        W6["/deepinit"]
+    end
+
+    subgraph Orchestration["オーケストレーション"]
+        direction TB
+        PM[oma-pm]
+        ORC[orchestrator]
+    end
+
+    subgraph Domain["ドメインエージェント"]
+        direction TB
+        FE[oma-frontend]
+        BE[oma-backend]
+        DB[oma-db]
+        MB[oma-mobile]
+        TF[oma-tf-infra]
+    end
+
+    subgraph Quality["品質"]
+        direction TB
+        QA[oma-qa]
+        DBG[oma-debug]
+    end
+
+
+    Workflows --> Orchestration
+    Orchestration --> Domain
+    Domain --> Quality
+    Quality --> CMT([commit])
+```
+
+
 
 - **`.agents/`が原本です**: スキル、ワークフロー、共有リソース、設定がひとつのプロジェクト構造に入っていて、特定のIDEプラグインに閉じ込められません。
 - **エンジニアリング組織のように動きます**: PM、QA、DB、Infra、Frontend、Backend、Mobile、Debug、Workflowの各エージェントが、プロンプトの寄せ集めではなくチームとして役割を分担します。
 - **ワークフローが最初に来ます**: 企画、レビュー、デバッグ、協調実行がおまけではなく、コアのワークフローとして設計されています。
 - **標準を知っています**: ISO基準の企画、QA、DBセキュリティ、インフラガバナンスのガイドがエージェントに組み込まれています。
 - **検証できます**: ダッシュボード、マニフェスト生成、実行プロトコル、構造化された出力で結果を追跡できます。ただ生成するだけではありません。
+
 
 
 

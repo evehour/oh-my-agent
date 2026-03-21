@@ -33,7 +33,7 @@
 | **Debug Agent** | Bug 诊断、根因分析、回归测试 | "bug", "error", "crash" |
 | **Developer Workflow** | 单仓库任务自动化、mise 任务、CI/CD、迁移、发布 | "dev workflow", "mise tasks", "CI/CD pipeline" |
 | **TF Infra Agent** | 多云 IaC 基础设施配置（AWS、GCP、Azure、OCI） | "infrastructure", "terraform", "cloud setup" |
-| **Orchestrator** | 基于 CLI 的并行代理执行，使用  | "spawn agent", "parallel execution" |
+| **Orchestrator** | 基于 CLI 的并行代理执行 | "spawn agent", "parallel execution" |
 | **Commit** | 遵循项目特定规则的 Conventional Commits | "commit", "save changes" |
 
 
@@ -52,7 +52,7 @@
 
 ### 前置条件
 
-- **AI IDE** (Antigravity, Claude Code, Codex, Gemini 등)
+- **AI IDE** (Antigravity、Claude Code、Codex、Gemini 等)
 
 ### 选项 1：一键安装（推荐）
 
@@ -60,7 +60,6 @@
 curl -fsSL https://raw.githubusercontent.com/first-fluke/oh-my-agent/main/cli/install.sh | bash
 ```
 
-빠진 의존성(bun, uv)을 자동으로 찾아서 설치하고 대화형 설정을 시작합니다.
 
 ### 选项 2：手动安装
 
@@ -74,68 +73,64 @@ curl -fsSL https://raw.githubusercontent.com/first-fluke/oh-my-agent/main/cli/in
 bunx oh-my-agent
 ```
 
-프로젝트 타입을 고르면 `.agents/skills/`에 스킬이 설치됩니다.
+选择项目类型后，skills 将安装到 `.agents/skills/`。
 
-| 프리셋 | 스킬 |
+| 预设 | Skills |
 |--------|--------|
-| ✨ All | 전체 |
+| ✨ All | 全部 |
 | 🌐 Fullstack | oma-brainstorm, oma-frontend, oma-backend, oma-db, oma-pm, oma-qa, oma-debug, oma-commit |
 | 🎨 Frontend | oma-brainstorm, oma-frontend, oma-pm, oma-qa, oma-debug, oma-commit |
 | ⚙️ Backend | oma-brainstorm, oma-backend, oma-db, oma-pm, oma-qa, oma-debug, oma-commit |
 | 📱 Mobile | oma-brainstorm, oma-mobile, oma-pm, oma-qa, oma-debug, oma-commit |
 | 🚀 DevOps | oma-brainstorm, oma-tf-infra, oma-dev-workflow, oma-pm, oma-qa, oma-debug, oma-commit |
 
-### 옵션 3: 전역 설치 (Orchestrator용)
 
-SubAgent Orchestrator를 쓰거나 도구를 전역에서 쓰려면:
 
 ```bash
 bun install --global oh-my-agent
 ```
 
-CLI 도구가 최소 1개 필요합니다:
 
-| CLI | 설치 | 인증 |
+| CLI | 安装 | 认证 |
 |-----|------|------|
 | Gemini | `bun install --global @google/gemini-cli` | Auto on first `gemini` run |
 | Claude | `curl -fsSL https://claude.ai/install.sh \| bash` | Auto on first `claude` run |
 | Codex | `bun install --global @openai/codex` | `codex login` |
 | Qwen | `bun install --global @qwen-code/qwen-code` | `/auth` inside CLI |
 
-### 옵션 4: 기존 프로젝트에 추가
 
-프로젝트 루트에서 실행하면 스킬과 워크플로우가 자동 설치됩니다:
+在项目根目录运行此命令以自动安装 skills 和 workflows：
 
 ```bash
 bunx oh-my-agent
 ```
 
-> **팁:** 설치 후 `bunx oh-my-agent doctor`를 실행하면 설정이 제대로 됐는지 확인할 수 있습니다.
+> **提示：** 安装后运行 `bunx oh-my-agent doctor` 验证配置是否正确。
 
 ### 2. 使用으로 쓰기
 
-**복잡한 프로젝트** (/coordinate):
+**复杂项目**（/coordinate 工作流）：
 
 ```
-"사용자 인증이 있는 TODO 앱 만들어줘"
+"做个带用户认证的 TODO 应用"
 → /coordinate → PM Agent가 기획 → Agent Manager에서 에이전트 실행
 ```
 
-**전력 투구** (/ultrawork):
+**最大部署**（/ultrawork 工作流）：
 
 ```
-"인증 모듈 리팩토링, API 테스트 추가, 문서 업데이트"
-→ /ultrawork → 독립된 작업이 에이전트 사이에서 동시 실행
+"重构认证模块、添加 API 测试、更新文档"
+→ /ultrawork → 独立任务在 agents 间并行执行
 ```
 
-**간단한 작업** (도메인 스킬 직접 호출):
+**简单任务**（直接调用域技能）：
 
 ```
 "Tailwind CSS로 로그인 폼 만들어줘"
 → oma-frontend 스킬
 ```
 
-**커밋** (Conventional Commits):
+**提交更改**（conventional commits）：
 
 ```
 /commit
@@ -144,7 +139,7 @@ bunx oh-my-agent
 
 ### 3. 仪表盘监控
 
-대시보드 설정과 사용법은 [`web/content/ko/guide/usage.md`](./web/content/ko/guide/usage.md#실시간-대시보드)를 참고하세요.
+有关仪表盘设置和使用详情，请参阅 [`web/content/en/guide/usage.md`](./web/content/en/guide/usage.md#real-time-dashboards)。
 
 
 
@@ -195,38 +190,38 @@ flowchart TD
 
 ## 赞助商
 
-이 프로젝트는 후원자분들 덕분에 유지됩니다.
+本项目得益于慷慨的赞助商支持。
 
-> **마음에 드셨나요?** 스타 눌러주세요!
+> **喜欢这个项目吗？** 请给它一颗星！
 >
 > ```bash
 > gh api --method PUT /user/starred/first-fluke/oh-my-agent
 > ```
 >
-> 스타터 템플릿도 있습니다: [fullstack-starter](https://github.com/first-fluke/fullstack-starter)
+> 查看我们优化的启动模板：[fullstack-starter](https://github.com/first-fluke/fullstack-starter)
 
 <a href="https://github.com/sponsors/first-fluke">
-  <img src="https://img.shields.io/badge/후원하기-♥-ea4aaa?style=for-the-badge" alt="Sponsor" />
+  <img src="https://img.shields.io/badge/Sponsor-♥-ea4aaa?style=for-the-badge" alt="Sponsor" />
 </a>
 <a href="https://buymeacoffee.com/firstfluke">
   <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕-FFDD00?style=for-the-badge" alt="Buy Me a Coffee" />
 </a>
 
-### 🚀 Champion
+### 🚀 冠军
 
-<!-- Champion ($100/월) 로고 -->
+<!-- Champion tier ($100/mo) logos here -->
 
-### 🛸 Booster
+### 🛸 助推者
 
-<!-- Booster ($30/월) 로고 -->
+<!-- Booster tier ($30/mo) logos here -->
 
-### ☕ Contributor
+### ☕ 贡献者
 
-<!-- Contributor ($10/월) 이름 -->
+<!-- Contributor tier ($10/mo) names here -->
 
-[후원자 되기 →](https://github.com/sponsors/first-fluke)
+[Become a sponsor →](https://github.com/sponsors/first-fluke)
 
-전체 후원자 목록은 [SPONSORS.md](./SPONSORS.md)를 참고하세요.
+See [SPONSORS.md](./SPONSORS.md) for a full list of supporters.
 
 
 

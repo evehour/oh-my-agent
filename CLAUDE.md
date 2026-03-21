@@ -7,7 +7,7 @@
 
 ## 아키텍처
 - **13 도메인 Skills**: `.agents/skills/` (심링크로 `.claude/skills/`에 노출)
-- **11 Workflows**: `.agents/workflows/` (`.claude/skills/`에 네이티브 skill로 매핑)
+- **12 Workflows**: `.agents/workflows/` (`.claude/skills/`에 네이티브 skill로 매핑)
 - **7 서브에이전트**: `.claude/agents/` (Task tool로 스폰)
 
 ## 네이티브 모드 매핑
@@ -25,6 +25,7 @@
 | `/setup` | `setup.md` | inline 셋업 |
 | `/commit` | `commit/SKILL.md` | inline git 커밋 |
 | `/tools` | `tools.md` | inline MCP 관리 |
+| `/stack-set` | `stack-set.md` | inline 스택 설정 |
 | `/deepinit` | `deepinit.md` | inline 프로젝트 초기화 |
 
 ## 필수 참조 (모든 skill 실행 전)
@@ -46,10 +47,19 @@
 | Phase Gate | `/ultrawork` | 게이트 미충족 | 게이트별 무제한 |
 | Exploration Loop | 모든 워크플로우 | 동일 게이트 2회 실패 | 세션당 2회, 가설 최대 3개 |
 
+## 개발 커맨드
+- `bun run test` — CLI 테스트 (vitest)
+- `bun run lint` — 린트
+- `bun run build` — CLI 빌드
+- commitlint: conventional commits 필수 (build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test)
+
 ## 절대 규칙
 1. **`.agents/` 내 파일 수정 금지** — SSOT 보호
+   > 예외: 이 레포는 oh-my-agent 소스 레포 자체이므로, `.agents/` 파일 수정이 허용됨
 2. 심링크된 도메인 skills는 Claude가 키워드 기반으로 자동 활성화 가능
 3. 워크플로우 skills는 사용자 명시적 호출(`/command`)만 허용
+   > Claude Code에서 `disable-model-invocation: true`로 설정됨 — Skill tool 대신 워크플로우 파일을 직접 읽고 인라인 실행
 4. 서브에이전트는 Charter Preflight(`CHARTER_CHECK`) 필수
 5. 플랜 저장: `.agents/plan.json` (호환성 유지)
 6. 커밋 Co-Author: `First Fluke <our.first.fluke@gmail.com>`
+7. **`stack/`은 생성된 산출물** — SSOT 예외. `/stack-set`이나 `oma install` variant로 생성됨

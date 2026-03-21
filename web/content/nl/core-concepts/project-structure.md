@@ -37,7 +37,7 @@ Gedetailleerde directory tree voor deze repository.
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── oma-backend/              # FastAPI
+│       ├── oma-backend/              # Backend (multi-stack: Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/                 # Design-first ideevorming
 │       ├── oma-commit/                     # Conventional commits skill
 │       ├── oma-db/                   # Databasemodellering & queryoptimalisatie

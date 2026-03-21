@@ -50,6 +50,7 @@ Cada skill proporciona recursos especificos de dominio:
 | `error-playbook.md` | Recuperacion de fallos con regla de escalacion de "3 intentos" |
 | `tech-stack.md` | Especificaciones tecnologicas detalladas |
 | `snippets.md` | Patrones de codigo listos para copiar y pegar |
+| `variants/` | Presets por lenguaje (e.g., `python/`, `node/`, `rust/`) -- usado por `oma-backend` |
 
 ## Por que es importante
 

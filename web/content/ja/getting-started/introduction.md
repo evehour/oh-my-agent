@@ -21,7 +21,7 @@ oh-my-agent は Antigravity IDE 向けのマルチエージェントオーケス
 | oma-coordination | 複雑なマルチドメインプロジェクトの調整 |
 | oma-pm | 計画とアーキテクチャ分解 |
 | oma-frontend | React/Next.js の実装 |
-| oma-backend | API/データベース/認証の実装 |
+| oma-backend | バックエンドAPI実装 (Python, Node.js, Rust, ...) |
 | oma-mobile | Flutter/モバイルの実装 |
 | oma-qa | セキュリティ/パフォーマンス/アクセシビリティレビュー |
 | oma-debug | 根本原因分析とリグレッションセーフな修正 |

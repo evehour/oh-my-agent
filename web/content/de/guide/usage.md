@@ -210,6 +210,7 @@ Tippen Sie diese in der Antigravity IDE, um schrittweise Workflows auszulösen:
 | `/setup` | Projekt-Setup und Konfiguration |
 | `/tools` | MCP-Tool-Verwaltung |
 | `/ultrawork` | Hochwertige 5-Phasen-Entwicklung mit 11 Review-Gates |
+| `/stack-set` | Backend-Sprachstack von oma-backend setzen (Python, Node.js, Rust) |
 
 Diese sind getrennt von **Skills** (die automatisch aktivieren). Workflows geben Ihnen explizite Kontrolle über mehrstufige Prozesse.
 
@@ -268,7 +269,7 @@ Browser:    http://localhost:9847 → Echtzeit-Status
 
 ## Tipps
 
-1. **Seien Sie spezifisch** — "Baue eine TODO-App mit JWT-Auth, React-Frontend, FastAPI-Backend" ist besser als "mache eine App"
+1. **Seien Sie spezifisch** — "Baue eine TODO-App mit JWT-Auth, React-Frontend, Express-Backend" ist besser als "mache eine App"
 2. **Verwenden Sie CLI-Spawning** für Multi-Domain-Projekte — versuchen Sie nicht, alles in einem Chat zu machen
 3. **Überprüfen Sie Knowledge Base** — prüfen Sie `.agents/brain/` auf API-Konsistenz
 4. **Iterieren Sie mit Re-Spawns** — verfeinern Sie Anweisungen, starten Sie nicht von vorne

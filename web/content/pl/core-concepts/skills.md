@@ -50,6 +50,7 @@ Każda umiejętność dostarcza zasoby specyficzne dla danej domeny:
 | `error-playbook.md` | Odzyskiwanie po awariach z regułą eskalacji „3 strajki" |
 | `tech-stack.md` | Szczegółowe specyfikacje technologiczne |
 | `snippets.md` | Gotowe do skopiowania wzorce kodu |
+| `variants/` | Presety językowe (np. `python/`, `node/`, `rust/`) -- używane przez `oma-backend` |
 
 ## Dlaczego to ma znaczenie
 

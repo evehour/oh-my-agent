@@ -50,6 +50,7 @@ description: 점진적 공개와 토큰 최적화 스킬 아키텍처.
 | `error-playbook.md` | "3 strikes" 에스컬레이션 규칙을 포함한 장애 복구 |
 | `tech-stack.md` | 상세 기술 사양 |
 | `snippets.md` | 바로 사용 가능한 코드 패턴 |
+| `variants/` | 언어별 프리셋 (예: `python/`, `node/`, `rust/`) -- `oma-backend`에서 사용 |
 
 ## 설계 효과
 

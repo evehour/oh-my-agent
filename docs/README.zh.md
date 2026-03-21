@@ -119,7 +119,7 @@ Claude Code 提供超越符号链接的一等原生集成：
 | **Brainstorm** | 规划前的设计优先构思 | "brainstorm", "ideate", "explore idea" |
 | **PM Agent** | 需求分析、任务分解、架构设计 | "plan", "break down", "what should we build" |
 | **Frontend Agent** | React/Next.js、TypeScript、Tailwind CSS | "UI", "component", "styling" |
-| **Backend Agent** | FastAPI、PostgreSQL、JWT 认证 | "API", "database", "authentication" |
+| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API", "database", "authentication" |
 | **DB Agent** | SQL/NoSQL 建模、规范化、完整性、备份、容量规划 | "ERD", "schema", "database design", "index tuning" |
 | **Mobile Agent** | Flutter 跨平台开发 | "mobile app", "iOS/Android" |
 | **QA Agent** | OWASP Top 10 安全、性能、可访问性 | "review security", "audit", "check performance" |

@@ -204,6 +204,7 @@ Wpisz te w czacie Antigravity IDE aby wyzwolić przepływy pracy krok po kroku:
 | `/setup` | Konfiguracja CLI i MCP dla środowiska deweloperskiego |
 | `/tools` | Zarządzanie narzędziami MCP i ich konfiguracją |
 | `/ultrawork` | Maksymalna równoległość z bramkami fazowymi dla złożonych zadań |
+| `/stack-set` | Ustawienie stosu językowego backendu oma-backend (Python, Node.js, Rust) |
 
 Są to oddzielne od **umiejętności** (które auto-aktywują się). Przepływy pracy dają Ci jawną kontrolę nad procesami wieloetapowymi.
 
@@ -262,7 +263,7 @@ Przeglądarka: http://localhost:9847 → status w czasie rzeczywistym
 
 ## Wskazówki
 
-1. **Bądź konkretny** — "Zbuduj aplikację TODO z uwierzytelnianiem JWT, frontendem React, backendem FastAPI" jest lepsze niż "zrób aplikację"
+1. **Bądź konkretny** — "Zbuduj aplikację TODO z uwierzytelnianiem JWT, frontendem React, backendem Express" jest lepsze niż "zrób aplikację"
 2. **Użyj uruchamiania przez CLI** dla projektów wielodomenowych — nie próbuj robić wszystkiego w jednym czacie
 3. **Przeglądaj bazę wiedzy** — sprawdź `.agents/brain/` pod kątem spójności API
 4. **Iteruj z ponownymi uruchomieniami** — udoskonalaj instrukcje, nie zaczynaj od nowa

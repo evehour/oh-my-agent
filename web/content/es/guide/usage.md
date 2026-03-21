@@ -210,6 +210,7 @@ Escribe estos en el chat de Antigravity IDE para activar workflows paso a paso:
 | `/setup` | Configuración de CLI y herramientas MCP |
 | `/tools` | Gestión de herramientas MCP disponibles |
 | `/ultrawork` | Ejecución de máximo paralelismo con orquestación de agentes en paralelo |
+| `/stack-set` | Configurar stack de lenguaje backend de oma-backend (Python, Node.js, Rust) |
 
 Estos son separados de **skills** (que se auto-activan). Los workflows te dan control explícito sobre procesos multi-paso.
 
@@ -268,7 +269,7 @@ Browser:    http://localhost:9847 → estado en tiempo real
 
 ## Consejos
 
-1. **Sé específico** — "Construir una app TODO con autenticación JWT, frontend React, backend FastAPI" es mejor que "hacer una app"
+1. **Sé específico** — "Construir una app TODO con autenticación JWT, frontend React, backend Express" es mejor que "hacer una app"
 2. **Usa generación CLI** para proyectos multi-dominio — no intentes hacer todo en un chat
 3. **Revisa Knowledge Base** — verifica `.agents/brain/` para consistencia de API
 4. **Itera con re-generaciones** — refina instrucciones, no comiences de nuevo

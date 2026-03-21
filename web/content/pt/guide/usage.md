@@ -204,6 +204,7 @@ Digite estes no chat do Antigravity IDE para acionar fluxos de trabalho passo a 
 | `/setup` | Configuração de CLI e ferramentas MCP |
 | `/tools` | Gestão de ferramentas MCP |
 | `/ultrawork` | Execução de máximo paralelismo com orquestração de agentes paralelos |
+| `/stack-set` | Configurar stack de linguagem backend do oma-backend (Python, Node.js, Rust) |
 
 Estes são separados de **habilidades** (que auto-ativam). Fluxos de trabalho dão controle explícito sobre processos multi-etapa.
 
@@ -262,7 +263,7 @@ Navegador:  http://localhost:9847 → status em tempo real
 
 ## Dicas
 
-1. **Seja específico** — "Construir um app TODO com autenticação JWT, frontend React, backend FastAPI" é melhor que "fazer um app"
+1. **Seja específico** — "Construir um app TODO com autenticação JWT, frontend React, backend Express" é melhor que "fazer um app"
 2. **Use criação CLI** para projetos multi-domínio — não tente fazer tudo em um chat
 3. **Revise a Base de Conhecimento** — verifique `.agents/brain/` para consistência de API
 4. **Itere com re-criações** — refine instruções, não recomece

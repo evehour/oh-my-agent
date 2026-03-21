@@ -50,6 +50,7 @@ Chaque skill fournit des ressources spécifiques à son domaine :
 | `error-playbook.md` | Récupération sur erreur avec règle d'escalade « 3 tentatives » |
 | `tech-stack.md` | Spécifications techniques détaillées |
 | `snippets.md` | Modèles de code prêts à copier-coller |
+| `variants/` | Presets par langage (ex. `python/`, `node/`, `rust/`) -- utilisé par `oma-backend` |
 
 ## Pourquoi c'est important
 

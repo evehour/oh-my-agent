@@ -126,7 +126,7 @@ Een verzameling **Agent Skills** die collaboratieve multi-agent ontwikkeling mog
 | **Brainstorm** | Design-first ideatie vóór planning | "brainstorm", "ideate", "explore idea" |
 | **PM Agent** | Requirements analyse, taak decompositie, architectuur | "plan", "onderverdelen", "wat moeten we bouwen" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "component", "styling" |
-| **Backend Agent** | FastAPI, PostgreSQL, JWT authenticatie | "API", "database", "authenticatie" |
+| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API", "database", "authenticatie" |
 | **DB Agent** | SQL/NoSQL-modellering, normalisatie, integriteit, back-up, capaciteitsplanning | "ERD", "schema", "databaseontwerp", "index-tuning" |
 | **Mobile Agent** | Flutter cross-platform ontwikkeling | "mobiele app", "iOS/Android" |
 | **QA Agent** | OWASP Top 10 beveiliging, prestaties, toegankelijkheid | "bekijk beveiliging", "audit", "controleer prestaties" |

@@ -21,7 +21,7 @@ oh-my-agent is a multi-agent orchestrator for AI IDEs. It routes requests to spe
 | oma-coordination | Coordinates complex multi-domain projects |
 | oma-pm | Planning and architecture decomposition |
 | oma-frontend | React/Next.js implementation |
-| oma-backend | API/database/auth implementation |
+| oma-backend | Backend API implementation (Python, Node.js, Rust, ...) |
 | oma-mobile | Flutter/mobile implementation |
 | oma-qa | Security/performance/accessibility review |
 | oma-debug | Root-cause analysis and regression-safe fixes |

@@ -17,7 +17,7 @@ This saves context window and prevents confusion from irrelevant information.
 ### Load Based on Difficulty
 4. **Simple**: Proceed to implementation without additional loading
 5. **Medium**: `resources/examples.md` (reference similar examples)
-6. **Complex**: `resources/examples.md` + `resources/tech-stack.md` + `resources/snippets.md`
+6. **Complex**: `resources/examples.md` + `stack/tech-stack.md` + `stack/snippets.md`
 
 ### Load During Execution as Needed
 7. `resources/checklist.md` — Load at Step 4 (Verify)
@@ -38,9 +38,9 @@ This saves context window and prevents confusion from irrelevant information.
 
 | Task Type                     | Required Resources                          |
 | ----------------------------- | ------------------------------------------- |
-| CRUD API creation             | snippets.md (route, schema, model, test)    |
-| Authentication implementation | snippets.md (JWT, password) + tech-stack.md |
-| DB migration                  | snippets.md (migration)                     |
+| CRUD API creation             | stack/snippets.md (route, schema, model, test)    |
+| Authentication implementation | stack/snippets.md (JWT, password) + stack/tech-stack.md |
+| DB migration                  | stack/snippets.md (migration)                     |
 | Performance optimization      | examples.md (N+1 example)                   |
 | Existing code modification    | examples.md + Serena MCP                    |
 

@@ -21,7 +21,7 @@ oh-my-agent 是面向 AI IDE 的多代理编排器。它将请求路由到专业
 | oma-coordination | 协调复杂的多领域项目 |
 | oma-pm | 规划与架构拆解 |
 | oma-frontend | React/Next.js 实现 |
-| oma-backend | API/数据库/认证实现 |
+| oma-backend | 后端 API 实现 (Python, Node.js, Rust, ...) |
 | oma-mobile | Flutter/移动端实现 |
 | oma-qa | 安全/性能/无障碍评审 |
 | oma-debug | 根因分析与回归安全修复 |

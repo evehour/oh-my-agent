@@ -21,7 +21,7 @@ oh-my-agent es un orquestador multi-agente para Antigravity IDE. Enruta solicitu
 | oma-coordination | Coordina proyectos complejos multi-dominio |
 | oma-pm | Planificacion y descomposicion de arquitectura |
 | oma-frontend | Implementacion React/Next.js |
-| oma-backend | Implementacion de API/base de datos/autenticacion |
+| oma-backend | Implementacion de API backend (Python, Node.js, Rust, ...) |
 | oma-mobile | Implementacion Flutter/mobile |
 | oma-qa | Revision de seguridad/rendimiento/accesibilidad |
 | oma-debug | Analisis de causa raiz y correcciones seguras contra regresiones |

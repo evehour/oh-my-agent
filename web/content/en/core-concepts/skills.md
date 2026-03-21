@@ -50,6 +50,7 @@ Each skill provides domain-specific resources:
 | `error-playbook.md` | Failure recovery with "3 strikes" escalation rule |
 | `tech-stack.md` | Detailed technology specifications |
 | `snippets.md` | Copy-paste ready code patterns |
+| `variants/` | Language-specific presets (e.g., `python/`, `node/`, `rust/`) — used by `oma-backend` |
 
 ## Why It Matters
 

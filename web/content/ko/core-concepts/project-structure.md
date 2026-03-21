@@ -28,7 +28,7 @@ description: CLI와 web 문서 워크스페이스 분리 이후의 최신 레포
 │   │   └── ultrawork.md
 │   └── skills/
 │       ├── _shared/
-│       ├── oma-backend/
+│       ├── oma-backend/            # 백엔드 (멀티 스택: Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/
 │       ├── oma-commit/
 │       ├── oma-db/

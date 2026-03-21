@@ -21,7 +21,7 @@ oh-my-agent는 AI IDE용 멀티 에이전트 오케스트레이터입니다. 요
 | oma-coordination | 복잡한 멀티 도메인 프로젝트 조율 |
 | oma-pm | 기획, 태스크 분해, 아키텍처 |
 | oma-frontend | React/Next.js 구현 |
-| oma-backend | API/DB/인증 구현 |
+| oma-backend | 백엔드 API 구현 (Python, Node.js, Rust, ...) |
 | oma-mobile | Flutter/모바일 구현 |
 | oma-qa | 보안/성능/접근성 리뷰 |
 | oma-debug | 원인 분석 및 회귀 방지 수정 |

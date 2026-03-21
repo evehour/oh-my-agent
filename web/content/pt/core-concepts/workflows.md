@@ -17,6 +17,7 @@ description: Workflows explícitos por comandos de barra e quando utilizá-los.
 - `/debug`
 - `/setup`
 - `/tools`
+- `/stack-set`
 - `/ultrawork`
 
 ## Skills vs Workflows

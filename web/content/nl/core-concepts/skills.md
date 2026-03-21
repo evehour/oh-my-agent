@@ -50,6 +50,7 @@ Elke skill biedt domeinspecifieke resources:
 | `error-playbook.md` | Foutherstel met "3 strikes"-escalatieregel |
 | `tech-stack.md` | Gedetailleerde technologiespecificaties |
 | `snippets.md` | Kant-en-klare codepatronen |
+| `variants/` | Taalspecifieke presets (bijv. `python/`, `node/`, `rust/`) -- gebruikt door `oma-backend` |
 
 ## Waarom dit belangrijk is
 

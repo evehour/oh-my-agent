@@ -173,7 +173,7 @@ Agents can work in separate directories to avoid conflicts. Workspace is auto-de
 | oma-coordination | Complex multi-domain projects | Step-by-step agent coordination |
 | oma-pm | "plan this", "break down" | `.agents/plan.json` |
 | oma-frontend | UI, components, styling | React components, tests |
-| oma-backend | APIs, databases, auth | API endpoints, models, tests |
+| oma-backend | APIs, databases, auth (Python, Node.js, Rust, ...) | API endpoints, models, tests |
 | oma-db | Database, schema, ERD, migration | Schema design, query tuning |
 | oma-mobile | Mobile apps, iOS/Android | Flutter screens, state management |
 | oma-brainstorm | Ideation, concept exploration | Design document |
@@ -204,6 +204,7 @@ Type these in AI IDE chat to trigger step-by-step workflows:
 | `/setup` | Project setup and configuration |
 | `/tools` | MCP tool management |
 | `/ultrawork` | High-quality 5-phase development with 11 review gates |
+| `/stack-set` | Set backend language stack (Python, Node.js, Rust) for oma-backend |
 
 These are separate from **skills** (which auto-activate). Workflows give you explicit control over multi-step processes.
 
@@ -262,7 +263,7 @@ Browser:    http://localhost:9847 → real-time status
 
 ## Tips
 
-1. **Be specific** — "Build a TODO app with JWT auth, React frontend, FastAPI backend" is better than "make an app"
+1. **Be specific** — "Build a TODO app with JWT auth, React frontend, Express backend" is better than "make an app"
 2. **Use CLI spawning** for multi-domain projects — don't try to do everything in one chat
 3. **Review Knowledge Base** — check `.agents/brain/` for API consistency
 4. **Iterate with re-spawns** — refine instructions, don't start over

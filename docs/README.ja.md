@@ -119,7 +119,7 @@ Claude Codeはシンボリックリンクだけでなく、直接連携できま
 | **Brainstorm** | 企画前にアイデアを探る | "brainstorm"、"ideate"、"explore idea" |
 | **PM Agent** | 要件分析、タスク分解、アーキテクチャ | "plan"、"break down"、"what should we build" |
 | **Frontend Agent** | React/Next.js、TypeScript、Tailwind CSS | "UI"、"component"、"styling" |
-| **Backend Agent** | FastAPI、PostgreSQL、JWT認証 | "API"、"database"、"authentication" |
+| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API"、"database"、"authentication" |
 | **DB Agent** | SQL/NoSQLモデリング、正規化、整合性、バックアップ | "ERD"、"schema"、"DB設計"、"index tuning" |
 | **Mobile Agent** | Flutterクロスプラットフォーム開発 | "mobile app"、"iOS/Android" |
 | **QA Agent** | OWASP Top 10セキュリティ、パフォーマンス、アクセシビリティ | "review security"、"audit"、"check performance" |

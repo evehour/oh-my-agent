@@ -204,6 +204,7 @@ Typ deze in Antigravity IDE chat om stap-voor-stap workflows te triggeren:
 | `/setup` | CLI- en MCP-configuratie |
 | `/tools` | MCP tool management |
 | `/ultrawork` | Maximale parallelle uitvoering via 5-fase gate-lus |
+| `/stack-set` | Backend taalstack van oma-backend instellen (Python, Node.js, Rust) |
 
 Deze zijn gescheiden van **skills** (die automatisch activeren). Workflows geven je expliciete controle over multi-step processen.
 
@@ -262,7 +263,7 @@ Browser:    http://localhost:9847 → realtime status
 
 ## Tips
 
-1. **Wees specifiek** — "Bouw een TODO app met JWT auth, React frontend, FastAPI backend" is beter dan "maak een app"
+1. **Wees specifiek** — "Bouw een TODO app met JWT auth, React frontend, Express backend" is beter dan "maak een app"
 2. **Gebruik CLI spawning** voor multi-domein projecten — probeer niet alles in één chat te doen
 3. **Review Knowledge Base** — controleer `.agents/brain/` voor API consistentie
 4. **Itereer met re-spawns** — verfijn instructies, begin niet opnieuw

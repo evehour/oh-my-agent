@@ -204,6 +204,7 @@ Tapez-les dans le chat Antigravity IDE pour déclencher workflows étape par ét
 | `/setup` | Configuration CLI et outils MCP |
 | `/tools` | Gestion des outils MCP disponibles |
 | `/ultrawork` | Exécution maximale avec parallélisme multi-agents à 5 phases |
+| `/stack-set` | Configurer la stack backend d'oma-backend (Python, Node.js, Rust) |
 
 Ces commandes sont séparées des **compétences** (qui s'activent automatiquement). Les workflows vous donnent contrôle explicite sur processus multi-étapes.
 
@@ -262,7 +263,7 @@ Navigateur: http://localhost:9847 → statut temps réel
 
 ## Conseils
 
-1. **Soyez spécifique** — "Construire une application TODO avec auth JWT, frontend React, backend FastAPI" est meilleur que "faire une app"
+1. **Soyez spécifique** — "Construire une application TODO avec auth JWT, frontend React, backend Express" est meilleur que "faire une app"
 2. **Utilisez génération CLI** pour projets multi-domaine — n'essayez pas de tout faire dans une discussion
 3. **Examinez Knowledge Base** — vérifiez `.agents/brain/` pour cohérence API
 4. **Itérez avec régénérations** — affinez instructions, ne recommencez pas de zéro

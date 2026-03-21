@@ -37,7 +37,7 @@ description: Árvore de diretórios atualizada após a separação dos workspace
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── oma-backend/              # FastAPI
+│       ├── oma-backend/              # Backend (multi-stack: Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/                 # Ideação design-first
 │       ├── oma-commit/                     # Habilidade de commits convencionais
 │       ├── oma-db/                   # Banco de dados e esquemas

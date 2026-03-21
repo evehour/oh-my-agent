@@ -17,6 +17,7 @@ description: Workflows explicites par commande slash et quand les utiliser.
 - `/debug`
 - `/setup`
 - `/tools`
+- `/stack-set`
 - `/ultrawork`
 
 ## Skills vs Workflows

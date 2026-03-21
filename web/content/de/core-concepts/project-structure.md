@@ -37,7 +37,7 @@ Detaillierter Verzeichnisbaum für dieses Repository.
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── oma-backend/              # FastAPI
+│       ├── oma-backend/              # Backend (Multi-Stack: Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/                 # Design-First-Ideenfindung
 │       ├── oma-commit/                     # Conventional Commits Skill
 │       ├── oma-db/                   # Datenbankmodellierung & Query-Tuning

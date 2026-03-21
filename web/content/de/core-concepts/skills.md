@@ -50,6 +50,7 @@ Jeder Skill stellt domänenspezifische Ressourcen bereit:
 | `error-playbook.md` | Fehlerbehebung mit „3-Strikes"-Eskalationsregel |
 | `tech-stack.md` | Detaillierte Technologiespezifikationen |
 | `snippets.md` | Sofort einsetzbare Code-Muster |
+| `variants/` | Sprachspezifische Presets (z.B. `python/`, `node/`, `rust/`) -- von `oma-backend` verwendet |
 
 ## Warum das wichtig ist
 

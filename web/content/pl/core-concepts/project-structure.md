@@ -37,7 +37,7 @@ Szczegółowe drzewo katalogów dla tego repozytorium.
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── oma-backend/              # FastAPI
+│       ├── oma-backend/              # Backend (multi-stack: Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/                 # Ideacja i eksploracja koncepcji
 │       ├── oma-commit/                     # Umiejętność conventional commits
 │       ├── oma-db/                   # Modelowanie baz danych i optymalizacja

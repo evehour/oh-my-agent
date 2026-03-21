@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi, beforeEach } from "vitest";
 import * as skills from "../lib/skills.js";
 
 vi.mock("../lib/manifest.js", () => ({
@@ -56,5 +56,57 @@ describe("whitelist-based skill filtering", () => {
     for (const expected of expectedSkills) {
       expect(skillNames).toContain(expected);
     }
+  });
+});
+
+describe("update stack/ preservation logic", () => {
+  it("should detect legacy files for migration", () => {
+    const mockExistsSync = vi.fn((p: string) => {
+      if (p.includes("resources/snippets.md")) return true;
+      if (p.includes("/stack")) return false;
+      return false;
+    });
+
+    const legacyFiles = ["snippets.md", "tech-stack.md", "api-template.py"];
+    const hasLegacyFiles = legacyFiles.some((f) =>
+      mockExistsSync(`/project/.agents/skills/oma-backend/resources/${f}`),
+    );
+    const hasBackendStack = mockExistsSync(
+      "/project/.agents/skills/oma-backend/stack",
+    );
+
+    expect(hasLegacyFiles).toBe(true);
+    expect(hasBackendStack).toBe(false);
+    expect(hasLegacyFiles && !hasBackendStack).toBe(true);
+  });
+
+  it("should not migrate when stack/ already exists", () => {
+    const mockExistsSync = vi.fn((p: string) => {
+      if (p.includes("resources/snippets.md")) return true;
+      if (p.includes("/stack")) return true;
+      return false;
+    });
+
+    const legacyFiles = ["snippets.md", "tech-stack.md", "api-template.py"];
+    const hasLegacyFiles = legacyFiles.some((f) =>
+      mockExistsSync(`/project/.agents/skills/oma-backend/resources/${f}`),
+    );
+    const hasBackendStack = mockExistsSync(
+      "/project/.agents/skills/oma-backend/stack",
+    );
+
+    expect(hasLegacyFiles).toBe(true);
+    expect(hasBackendStack).toBe(true);
+    expect(hasLegacyFiles && !hasBackendStack).toBe(false);
+  });
+
+  it("stack.yaml should contain migrated source marker", () => {
+    const expectedStackYaml =
+      "language: python\nframework: fastapi\norm: sqlalchemy\nsource: migrated\n";
+
+    expect(expectedStackYaml).toContain("language: python");
+    expect(expectedStackYaml).toContain("framework: fastapi");
+    expect(expectedStackYaml).toContain("orm: sqlalchemy");
+    expect(expectedStackYaml).toContain("source: migrated");
   });
 });

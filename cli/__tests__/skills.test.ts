@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   installClaudeSkills,
   installConfigs,
+  installSkill,
   installWorkflows,
   REPO,
 } from "../lib/skills.js";
@@ -13,6 +14,10 @@ vi.mock("node:fs", () => ({
   mkdirSync: vi.fn(),
   cpSync: vi.fn(),
   readdirSync: vi.fn(),
+  rmSync: vi.fn(),
+  writeFileSync: vi.fn(),
+  lstatSync: vi.fn(),
+  unlinkSync: vi.fn(),
 }));
 
 describe("skills.ts - Workflow and Config Installation", () => {
@@ -166,5 +171,131 @@ describe("installClaudeSkills", () => {
 describe("skills.ts - repository metadata", () => {
   it("should use the correct GitHub repository", () => {
     expect(REPO).toBe("first-fluke/oh-my-agent");
+  });
+});
+
+describe("installSkill - variant handling", () => {
+  const mockSourceDir = "/tmp/extracted-repo";
+  const mockTargetDir = "/tmp/test-project";
+  const skillName = "oma-backend";
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    // Default: lstatSync throws so clearNonDirectory treats dest as non-existent
+    (fs.lstatSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      () => {
+        throw new Error("ENOENT");
+      },
+    );
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("should copy variant to stack/ when variant is specified", () => {
+    const variantName = "python";
+    const srcBase = join(
+      mockSourceDir,
+      ".agents",
+      "skills",
+      skillName,
+    );
+    const destBase = join(
+      mockTargetDir,
+      ".agents",
+      "skills",
+      skillName,
+    );
+    // Variant is read from SOURCE, not dest
+    const variantSrcDir = join(srcBase, "variants", variantName);
+    const destVariantsDir = join(destBase, "variants");
+    const stackDir = join(destBase, "stack");
+    const stackYaml = join(stackDir, "stack.yaml");
+
+    (fs.existsSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      (p: string) => {
+        // skill source exists
+        if (p === srcBase) return true;
+        // variant directory exists (in source)
+        if (p === variantSrcDir) return true;
+        // variants/ dir exists in dest for cleanup
+        if (p === destVariantsDir) return true;
+        return false;
+      },
+    );
+
+    installSkill(mockSourceDir, skillName, mockTargetDir, variantName);
+
+    // variant → stack copy (from source)
+    expect(fs.cpSync).toHaveBeenCalledWith(variantSrcDir, stackDir, {
+      recursive: true,
+      force: true,
+    });
+
+    // stack.yaml written
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      stackYaml,
+      `language: ${variantName}\nsource: preset\n`,
+    );
+
+    // variants/ cleaned up from dest
+    expect(fs.rmSync).toHaveBeenCalledWith(destVariantsDir, {
+      recursive: true,
+      force: true,
+    });
+  });
+
+  it("should not create stack/ when variant is not specified", () => {
+    const destBase = join(
+      mockTargetDir,
+      ".agents",
+      "skills",
+      skillName,
+    );
+    const variantsDir = join(destBase, "variants");
+    const stackYaml = join(destBase, "stack", "stack.yaml");
+
+    (fs.existsSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      (p: string) => {
+        if (p === join(mockSourceDir, ".agents", "skills", skillName))
+          return true;
+        if (p === variantsDir) return true;
+        return false;
+      },
+    );
+
+    installSkill(mockSourceDir, skillName, mockTargetDir);
+
+    expect(fs.writeFileSync).not.toHaveBeenCalledWith(
+      stackYaml,
+      expect.any(String),
+    );
+  });
+
+  it("should remove variants/ directory after install", () => {
+    const destBase = join(
+      mockTargetDir,
+      ".agents",
+      "skills",
+      skillName,
+    );
+    const variantsDir = join(destBase, "variants");
+
+    (fs.existsSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      (p: string) => {
+        if (p === join(mockSourceDir, ".agents", "skills", skillName))
+          return true;
+        if (p === variantsDir) return true;
+        return false;
+      },
+    );
+
+    installSkill(mockSourceDir, skillName, mockTargetDir);
+
+    expect(fs.rmSync).toHaveBeenCalledWith(variantsDir, {
+      recursive: true,
+      force: true,
+    });
   });
 });

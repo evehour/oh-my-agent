@@ -28,7 +28,7 @@ description: 拆分 CLI 和 Web 文档工作区后的更新版仓库目录树。
 │   │   └── ultrawork.md
 │   └── skills/
 │       ├── _shared/
-│       ├── oma-backend/
+│       ├── oma-backend/            # 后端 (多栈: Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/
 │       ├── oma-commit/
 │       ├── oma-db/

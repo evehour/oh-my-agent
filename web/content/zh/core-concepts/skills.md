@@ -50,6 +50,7 @@ description: 渐进式披露与 Token 优化的技能架构。
 | `error-playbook.md` | 带有"三振出局"升级规则的故障恢复手册 |
 | `tech-stack.md` | 详细的技术规格说明 |
 | `snippets.md` | 可直接复制粘贴的代码模式 |
+| `variants/` | 语言专属预设（如 `python/`、`node/`、`rust/`）-- 用于 `oma-backend` |
 
 ## 为何如此重要
 

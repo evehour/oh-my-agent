@@ -28,7 +28,7 @@ Updated directory tree for the current monorepo layout (`cli` + `web` workspaces
 │   │   └── ultrawork.md
 │   └── skills/
 │       ├── _shared/
-│       ├── oma-backend/
+│       ├── oma-backend/            # Backend (multi-stack: Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/
 │       ├── oma-commit/
 │       ├── oma-db/

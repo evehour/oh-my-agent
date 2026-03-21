@@ -27,6 +27,8 @@ It is not a formal external standard. It is the interoperability contract used b
 ├── workflows/
 ├── config/
 ├── brain/
+├── stack/                  (generated backend stack — SSOT exception)
+│   └── variants/           (language/framework variant definitions)
 └── mcp.json
 ```
 
@@ -53,6 +55,8 @@ Each skill lives at:
 - `scripts/`
 - `templates/`
 - `config/`
+- `stack/` (generated backend stack artifacts, language-agnostic)
+- `variants/` (stack variant definitions for different languages/frameworks)
 
 ## Shared Resources
 
@@ -115,7 +119,7 @@ Claude Code uses a hybrid model beyond simple symlinks:
 ```text
 .claude/
 ├── skills/
-│   ├── oma-backend/  → ../../.agents/skills/oma-backend  (symlink, domain skill)
+│   ├── oma-backend/  → ../../.agents/skills/oma-backend  (symlink, domain skill, language-agnostic)
 │   ├── orchestrate/SKILL.md                                   (native, workflow skill)
 │   └── ...
 ├── agents/

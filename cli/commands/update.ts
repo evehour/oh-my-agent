@@ -1,4 +1,12 @@
-import { cpSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  existsSync,
+  readFileSync,
+  rmSync,
+  mkdirSync,
+  writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
@@ -73,6 +81,43 @@ export async function update(force = false): Promise<void> {
       const savedMcp =
         !force && existsSync(mcpPath) ? readFileSync(mcpPath) : null;
 
+      // Preserve stack/ directories (user-generated or preset)
+      const stackBackupDir = join(
+        tmpdir(),
+        `oma-stack-backup-${Date.now()}`,
+      );
+      const backendStackDir = join(
+        cwd,
+        ".agents",
+        "skills",
+        "oma-backend",
+        "stack",
+      );
+      const hasBackendStack = !force && existsSync(backendStackDir);
+      if (hasBackendStack) {
+        mkdirSync(stackBackupDir, { recursive: true });
+        cpSync(backendStackDir, join(stackBackupDir, "oma-backend"), {
+          recursive: true,
+        });
+      }
+
+      // Detect legacy Python resources BEFORE cpSync overwrites them
+      // (new source moves these files to variants/python/, so they won't exist after copy)
+      const legacyFiles = ["snippets.md", "tech-stack.md", "api-template.py"];
+      const backendResourcesDir = join(
+        cwd,
+        ".agents",
+        "skills",
+        "oma-backend",
+        "resources",
+      );
+      const hasLegacyFiles =
+        !force &&
+        !hasBackendStack &&
+        legacyFiles.some((f) =>
+          existsSync(join(backendResourcesDir, f)),
+        );
+
       cpSync(join(repoDir, ".agents"), join(cwd, ".agents"), {
         recursive: true,
         force: true,
@@ -82,6 +127,58 @@ export async function update(force = false): Promise<void> {
       if (savedUserPrefs) writeFileSync(userPrefsPath, savedUserPrefs);
       if (savedMcp) writeFileSync(mcpPath, savedMcp);
 
+      // Restore stack/ directories
+      if (hasBackendStack) {
+        try {
+          mkdirSync(backendStackDir, { recursive: true });
+          cpSync(join(stackBackupDir, "oma-backend"), backendStackDir, {
+            recursive: true,
+            force: true,
+          });
+        } finally {
+          rmSync(stackBackupDir, { recursive: true, force: true });
+        }
+      }
+
+      // Migrate legacy Python resources to stack/ (one-time)
+      // hasLegacyFiles was captured before cpSync (old resources/ had Python files)
+      // Read variant from repoDir (source temp dir), not cwd (already overwritten)
+      if (hasLegacyFiles) {
+        const variantPythonDir = join(
+          repoDir,
+          ".agents",
+          "skills",
+          "oma-backend",
+          "variants",
+          "python",
+        );
+        if (existsSync(variantPythonDir)) {
+          mkdirSync(backendStackDir, { recursive: true });
+          cpSync(variantPythonDir, backendStackDir, {
+            recursive: true,
+            force: true,
+          });
+          writeFileSync(
+            join(backendStackDir, "stack.yaml"),
+            "language: python\nframework: fastapi\norm: sqlalchemy\nsource: migrated\n",
+          );
+        }
+      }
+
+      // Clean up variants/ from user project (not needed at runtime)
+      // Must run AFTER migration (which reads from repoDir, not cwd)
+      const backendVariantsDir = join(
+        cwd,
+        ".agents",
+        "skills",
+        "oma-backend",
+        "variants",
+      );
+      if (existsSync(backendVariantsDir)) {
+        rmSync(backendVariantsDir, { recursive: true, force: true });
+      }
+
+      // Shared layout migration (core/, conditional/, runtime/)
       const sharedLayoutMigrations = migrateSharedLayout(cwd);
       if (sharedLayoutMigrations.length > 0) {
         p.note(

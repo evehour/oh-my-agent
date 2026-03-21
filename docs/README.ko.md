@@ -119,7 +119,7 @@ Claude Code는 심링크를 넘어서 직접 연동됩니다:
 | **Brainstorm** | 기획 전에 아이디어를 먼저 탐색 | "브레인스톰", "아이디어", "설계 탐색" |
 | **PM Agent** | 요구사항 분석, 태스크 분해, 아키텍처 | "기획", "분석", "뭘 만들어야 할까" |
 | **Frontend Agent** | React/Next.js, TypeScript, Tailwind CSS | "UI", "컴포넌트", "스타일링" |
-| **Backend Agent** | FastAPI, PostgreSQL, JWT 인증 | "API", "데이터베이스", "인증" |
+| **Backend Agent** | Backend (Python, Node.js, Rust, ...) | "API", "데이터베이스", "인증" |
 | **DB Agent** | SQL/NoSQL 모델링, 정규화, 무결성, 백업 | "ERD", "스키마", "DB 설계", "인덱스 튜닝" |
 | **Mobile Agent** | Flutter 크로스 플랫폼 개발 | "모바일 앱", "iOS/Android" |
 | **QA Agent** | OWASP Top 10 보안, 성능, 접근성 | "보안 검토", "감사", "성능 확인" |

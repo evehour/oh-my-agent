@@ -37,7 +37,7 @@ Arborescence détaillée des répertoires pour ce dépôt.
 │       │   ├── lessons-learned.md
 │       │   ├── verify.sh
 │       │   └── api-contracts/
-│       ├── oma-backend/              # FastAPI
+│       ├── oma-backend/              # Backend (multi-stack : Python, Node.js, Rust, ...)
 │       ├── oma-brainstorm/                 # Idéation et exploration de concepts
 │       ├── oma-commit/                     # Compétence commits conventionnels
 │       ├── oma-db/                   # Base de données, schémas, requêtes

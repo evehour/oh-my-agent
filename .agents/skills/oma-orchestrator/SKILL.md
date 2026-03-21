@@ -173,7 +173,7 @@ At session end, if CD >= 50:
 - Config: `config/cli-config.yaml`
 - Scripts: `scripts/spawn-agent.sh`, `scripts/parallel-run.sh`, `scripts/verify.sh`
 - Task templates: `templates/`
-- Skill routing: `../_shared/core/skill-routing.md`
+- Skill-to-agent mapping: `../_shared/core/skill-routing.md`
 - Verification: `scripts/verify.sh <agent-type>`
 - Session metrics: `../_shared/core/session-metrics.md`
 - API contracts: `../_shared/core/api-contracts/`

@@ -7,7 +7,7 @@ description: Progresywne ujawnianie i architektura umiejętności zoptymalizowan
 
 ## Progresywne ujawnianie
 
-Umiejętności są wybierane na podstawie intencji żądania. Ręczny wybór umiejętności zwykle nie jest konieczny.
+Umiejętności są ładowane jawnie przez /command lub pole skills agenta.
 
 ## Dwuwarstwowy design
 
@@ -30,7 +30,7 @@ Wspólne zasoby zdeduplikowane pomiędzy wszystkimi umiejętnościami:
 | `clarification-protocol.md` | Kiedy pytać, a kiedy zakładać, poziomy niejednoznaczności |
 | `context-budget.md` | Strategie odczytu plików efektywne tokenowo dla poszczególnych poziomów modeli |
 | `context-loading.md` | Mapowanie typ zadania → zasób dla konstruowania promptu orkiestratora |
-| `skill-routing.md` | Mapowanie słów kluczowych na umiejętności i reguły wykonywania równoległego |
+| `skill-routing.md` | Mapowanie umiejętności na agentów i reguły wykonywania równoległego |
 | `difficulty-guide.md` | Ocena Proste/Średnie/Złożone z rozgałęzieniem protokołu |
 | `lessons-learned.md` | Zgromadzone między sesjami pułapki domenowe |
 | `verify.sh` | Automatyczny skrypt weryfikacyjny uruchamiany po zakończeniu pracy agenta |

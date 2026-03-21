@@ -7,7 +7,7 @@ description: Arquitetura de skills com divulgação progressiva e otimização d
 
 ## Divulgação Progressiva
 
-As skills são selecionadas com base na intenção da solicitação. Normalmente, não é necessário selecionar uma skill manualmente.
+As skills são carregadas explicitamente via /command ou pelo campo skills do agente.
 
 ## Design em Duas Camadas
 
@@ -30,7 +30,7 @@ Recursos comuns deduplicados entre todas as skills:
 | `clarification-protocol.md` | Quando perguntar vs. assumir, níveis de ambiguidade |
 | `context-budget.md` | Estratégias de leitura de arquivos eficientes em tokens por nível de modelo |
 | `context-loading.md` | Mapeamento de tipo de tarefa para recurso na construção do prompt do orquestrador |
-| `skill-routing.md` | Mapeamento de palavras-chave para skills e regras de execução paralela |
+| `skill-routing.md` | Mapeamento de skills para agentes e regras de execução paralela |
 | `difficulty-guide.md` | Avaliação Simples/Médio/Complexo com ramificação de protocolo |
 | `lessons-learned.md` | Lições acumuladas entre sessões sobre peculiaridades do domínio |
 | `verify.sh` | Script de verificação automatizada executado após a conclusão do agente |

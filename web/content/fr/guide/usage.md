@@ -28,8 +28,8 @@ description: Guide complet incluant exemples, workflows, opérations de tableau 
 ```
 
 **Ce qui se passe :**
-- Antigravity détecte que cela correspond à `oma-frontend`
-- La compétence se charge automatiquement (Divulgation progressive)
+- Vous invoquez `oma-frontend` via /command ou champ skills de l'agent
+- La compétence se charge à la demande (Divulgation progressive)
 - Vous obtenez un composant React avec TypeScript, Tailwind, validation de formulaire
 
 ### Exemple 2 : Projet multi-domaine complexe
@@ -131,7 +131,7 @@ Le serveur surveille `.serena/memories/` en utilisant chokidar avec debounce (10
 ## Concepts clés
 
 ### Divulgation progressive
-Antigravity fait automatiquement correspondre les demandes aux compétences. Vous ne sélectionnez jamais manuellement une compétence. Seule la compétence nécessaire se charge dans le contexte.
+Les compétences sont invoquées explicitement via /command ou chargées via le champ skills de l'agent. Seule la compétence nécessaire se charge dans le contexte.
 
 ### Conception de compétence optimisée pour tokens
 Chaque compétence utilise une architecture à deux couches pour efficacité maximale des tokens :
@@ -168,7 +168,7 @@ Les agents peuvent travailler dans répertoires séparés pour éviter conflits.
 
 ## Compétences disponibles
 
-| Compétence | S'active automatiquement pour | Sortie |
+| Compétence | Cas d'utilisation | Sortie |
 |------------|------------------------------|--------|
 | oma-coordination | Projets multi-domaine complexes | Coordination d'agents étape par étape |
 | oma-pm | "planifier ceci", "décomposer" | `.agents/plan.json` |
@@ -206,7 +206,7 @@ Tapez-les dans le chat Antigravity IDE pour déclencher workflows étape par ét
 | `/ultrawork` | Exécution maximale avec parallélisme multi-agents à 5 phases |
 | `/stack-set` | Configurer la stack backend d'oma-backend (Python, Node.js, Rust) |
 
-Ces commandes sont séparées des **compétences** (qui s'activent automatiquement). Les workflows vous donnent contrôle explicite sur processus multi-étapes.
+Ces commandes sont séparées des **compétences** (invoquées via /command ou champ skills de l'agent). Les workflows vous donnent contrôle explicite sur processus multi-étapes.
 
 ---
 
@@ -224,7 +224,7 @@ Vous : "Créer un composant bouton"
 
 ```
 Vous : "Construire une application TODO avec authentification"
-  → oma-coordination s'active automatiquement
+  → utilisez /coordinate pour démarrer oma-coordination
   → PM Agent crée plan
   → Vous générez agents via CLI (oma agent:spawn)
   → Agents travaillent en parallèle

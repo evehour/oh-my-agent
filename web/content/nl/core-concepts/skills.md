@@ -7,7 +7,7 @@ description: Progressieve ontsluiting en tokengeoptimaliseerde skillarchitectuur
 
 ## Progressieve ontsluiting
 
-Skills worden geselecteerd op basis van de intentie van het verzoek. Handmatige skillselectie is doorgaans niet nodig.
+Skills worden expliciet geladen via /command of via het agent skills-veld.
 
 ## Tweelaags ontwerp
 
@@ -30,7 +30,7 @@ Gemeenschappelijke resources die over alle skills worden ontdubbeld:
 | `clarification-protocol.md` | Wanneer vragen versus aannemen, ambiguïteitsniveaus |
 | `context-budget.md` | Tokenefficiënte bestandsleesstrategieën per modelniveau |
 | `context-loading.md` | Taaktype-naar-resourcetoewijzing voor orkestrator-promptconstructie |
-| `skill-routing.md` | Trefwoord-naar-skilltoewijzing en parallelle uitvoeringsregels |
+| `skill-routing.md` | Skill-naar-agenttoewijzing en parallelle uitvoeringsregels |
 | `difficulty-guide.md` | Eenvoudig/Gemiddeld/Complex-beoordeling met protocolvertakking |
 | `lessons-learned.md` | Sessie-overstijgende verzamelde domeinvalkuilen |
 | `verify.sh` | Geautomatiseerd verificatiescript dat na voltooiing van de agent wordt uitgevoerd |

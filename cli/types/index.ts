@@ -68,6 +68,21 @@ export interface SkillsRegistry {
   infrastructure: SkillInfo[];
 }
 
+export type VendorType = "claude" | "codex" | "gemini";
+
+export interface AgentAbstract {
+  name: string;
+  description: string;
+  skills?: string[];
+  body: string;
+}
+
+export interface VendorAgentConfig {
+  claude?: { tools?: string; model?: string; maxTurns?: number };
+  codex?: { sandbox_mode?: string };
+  gemini?: { model?: string; tools?: string[] };
+}
+
 export interface VerifyCheck {
   name: string;
   status: "pass" | "fail" | "warn" | "skip";

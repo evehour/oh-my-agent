@@ -7,7 +7,7 @@ description: Divulgacion progresiva y arquitectura de skills optimizada en token
 
 ## Divulgacion progresiva
 
-Los skills se seleccionan a partir de la intencion de la solicitud. La seleccion manual de skills generalmente no es necesaria.
+Los skills se cargan explicitamente via /command o a traves del campo skills del agente.
 
 ## Diseno de dos capas
 
@@ -30,7 +30,7 @@ Recursos comunes deduplicados entre todos los skills:
 | `clarification-protocol.md` | Cuando preguntar vs. asumir, niveles de ambiguedad |
 | `context-budget.md` | Estrategias de lectura de archivos eficientes en tokens por nivel de modelo |
 | `context-loading.md` | Mapeo de tipo de tarea a recurso para la construccion de prompts del orquestador |
-| `skill-routing.md` | Mapeo de palabras clave a skills y reglas de ejecucion paralela |
+| `skill-routing.md` | Mapeo de skills a agentes y reglas de ejecucion paralela |
 | `difficulty-guide.md` | Evaluacion Simple/Medio/Complejo con bifurcacion de protocolo |
 | `lessons-learned.md` | Problemas de dominio acumulados entre sesiones |
 | `verify.sh` | Script de verificacion automatizada ejecutado tras la finalizacion del agente |

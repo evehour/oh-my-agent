@@ -9,7 +9,7 @@ oh-my-agent is a multi-agent orchestrator for AI IDEs. It routes requests to spe
 
 ## What You Get
 
-- Request-driven skill routing
+- Explicit skill invocation via /command or agent skills field
 - Workflow-based execution for planning/review/debugging
 - CLI orchestration for parallel agent runs
 - Real-time dashboards for session monitoring

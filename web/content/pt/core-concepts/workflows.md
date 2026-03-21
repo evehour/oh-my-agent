@@ -22,7 +22,7 @@ description: Workflows explícitos por comandos de barra e quando utilizá-los.
 
 ## Skills vs Workflows
 
-- Skills: ativadas automaticamente a partir da intenção da solicitação
+- Skills: invocadas explicitamente via /command ou carregadas pelo campo skills do agente
 - Workflows: pipelines explícitos de múltiplas etapas acionados pelo usuário
 
 ## Sequência Típica Multi-Agente

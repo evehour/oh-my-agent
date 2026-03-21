@@ -7,7 +7,7 @@
 
 ## 아키텍처
 - **13 도메인 Skills**: `.agents/skills/` (심링크로 `.claude/skills/`에 노출)
-- **12 Workflows**: `.agents/workflows/` (`.claude/skills/`에 네이티브 skill로 매핑)
+- **13 Workflows**: `.agents/workflows/` (`.claude/skills/`에 얇은 라우터로 매핑)
 - **7 서브에이전트**: `.claude/agents/` (Task tool로 스폰)
 
 ## 네이티브 모드 매핑
@@ -23,7 +23,7 @@
 | `/review` | `review.md` | qa-reviewer 서브에이전트 위임 |
 | `/debug` | `debug.md` | inline + 서브에이전트 |
 | `/setup` | `setup.md` | inline 셋업 |
-| `/commit` | `commit/SKILL.md` | inline git 커밋 |
+| `/commit` | `commit.md` | inline git 커밋 |
 | `/tools` | `tools.md` | inline MCP 관리 |
 | `/stack-set` | `stack-set.md` | inline 스택 설정 |
 | `/deepinit` | `deepinit.md` | inline 프로젝트 초기화 |
@@ -56,7 +56,7 @@
 ## 절대 규칙
 1. **`.agents/` 내 파일 수정 금지** — SSOT 보호
    > 예외: 이 레포는 oh-my-agent 소스 레포 자체이므로, `.agents/` 파일 수정이 허용됨
-2. 심링크된 도메인 skills는 Claude가 키워드 기반으로 자동 활성화 가능
+2. 도메인 skills는 명시적 호출 또는 에이전트의 `skills` 필드로 로드
 3. 워크플로우 skills는 사용자 명시적 호출(`/command`)만 허용
    > Claude Code에서 `disable-model-invocation: true`로 설정됨 — Skill tool 대신 워크플로우 파일을 직접 읽고 인라인 실행
 4. 서브에이전트는 Charter Preflight(`CHARTER_CHECK`) 필수

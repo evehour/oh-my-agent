@@ -28,8 +28,8 @@ description: Full usage guide including examples, workflows, dashboard operation
 ```
 
 **What happens:**
-- The IDE detects this matches `oma-frontend`
-- The skill loads automatically (Progressive Disclosure)
+- You invoke `oma-frontend` via /command or agent skills field
+- The skill loads on demand (Progressive Disclosure)
 - You get a React component with TypeScript, Tailwind, form validation
 
 ### Example 2: Complex Multi-Domain Project
@@ -131,7 +131,7 @@ The server watches `.serena/memories/` using chokidar with debounce (100ms). Onl
 ## Key Concepts
 
 ### Progressive Disclosure
-The IDE automatically matches requests to skills. You never manually select a skill. Only the needed skill loads into context.
+Skills are explicitly invoked via /command or loaded through agent skills field. Only the needed skill loads into context.
 
 ### Token-Optimized Skill Design
 Each skill uses a two-layer architecture for maximum token efficiency:
@@ -168,7 +168,7 @@ Agents can work in separate directories to avoid conflicts. Workspace is auto-de
 
 ## Available Skills
 
-| Skill | Auto-activates for | Output |
+| Skill | Use case | Output |
 |-------|-------------------|--------|
 | oma-coordination | Complex multi-domain projects | Step-by-step agent coordination |
 | oma-pm | "plan this", "break down" | `.agents/plan.json` |
@@ -206,7 +206,7 @@ Type these in AI IDE chat to trigger step-by-step workflows:
 | `/ultrawork` | High-quality 5-phase development with 11 review gates |
 | `/stack-set` | Set backend language stack (Python, Node.js, Rust) for oma-backend |
 
-These are separate from **skills** (which auto-activate). Workflows give you explicit control over multi-step processes.
+These are separate from **skills** (invoked via /command or agent skills field). Workflows give you explicit control over multi-step processes.
 
 ---
 
@@ -224,7 +224,7 @@ You: "Create a button component"
 
 ```
 You: "Build a TODO app with authentication"
-  → oma-coordination activates automatically
+  → use /coordinate to start oma-coordination
   → PM Agent creates plan
   → You spawn agents via CLI (oma agent:spawn)
   → Agents work in parallel

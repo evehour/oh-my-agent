@@ -7,7 +7,7 @@
 
 ## 아키텍처
 - **13 도메인 Skills**: `.agents/skills/` (심링크로 `.claude/skills/`에 노출)
-- **12 Workflows**: `.agents/workflows/` (`.claude/skills/`에 네이티브 skill로 매핑)
+- **13 Workflows**: `.agents/workflows/` (`.claude/skills/`에 얇은 라우터로 매핑)
 - **7 서브에이전트**: `.claude/agents/` (Task tool로 스폰)
 
 ## 네이티브 모드 매핑
@@ -23,7 +23,7 @@
 | `/review` | `review.md` | qa-reviewer 서브에이전트 위임 |
 | `/debug` | `debug.md` | inline + 서브에이전트 |
 | `/setup` | `setup.md` | inline 셋업 |
-| `/commit` | `commit/SKILL.md` | inline git 커밋 |
+| `/commit` | `commit.md` | inline git 커밋 |
 | `/tools` | `tools.md` | inline MCP 관리 |
 | `/stack-set` | `stack-set.md` | inline 스택 설정 |
 | `/deepinit` | `deepinit.md` | inline 프로젝트 초기화 |

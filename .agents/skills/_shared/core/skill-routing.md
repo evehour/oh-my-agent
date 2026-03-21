@@ -7,7 +7,7 @@ Routing rules for oma-orchestrator and oma-coordination to assign tasks to the c
 Skills use two-stage loading to optimize context usage:
 
 1. **Stage 1 (always loaded)**: `name` and `description` from SKILL.md frontmatter
-2. **Stage 2 (on match)**: Full SKILL.md body loaded only when the description matches the user's request
+2. **Stage 2 (on explicit invocation)**: Full SKILL.md body loaded only when skill is explicitly requested via /command or agent skills field
 
 Skills are explicitly loaded via /command invocation or agent skills field. Load full instructions only for explicitly requested skills.
 

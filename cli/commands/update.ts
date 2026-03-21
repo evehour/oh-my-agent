@@ -2,7 +2,6 @@ import {
   cpSync,
   existsSync,
   readFileSync,
-  renameSync,
   rmSync,
   mkdirSync,
   writeFileSync,
@@ -102,6 +101,23 @@ export async function update(force = false): Promise<void> {
         });
       }
 
+      // Detect legacy Python resources BEFORE cpSync overwrites them
+      // (new source moves these files to variants/python/, so they won't exist after copy)
+      const legacyFiles = ["snippets.md", "tech-stack.md", "api-template.py"];
+      const backendResourcesDir = join(
+        cwd,
+        ".agents",
+        "skills",
+        "oma-backend",
+        "resources",
+      );
+      const hasLegacyFiles =
+        !force &&
+        !hasBackendStack &&
+        legacyFiles.some((f) =>
+          existsSync(join(backendResourcesDir, f)),
+        );
+
       cpSync(join(repoDir, ".agents"), join(cwd, ".agents"), {
         recursive: true,
         force: true,
@@ -134,29 +150,28 @@ export async function update(force = false): Promise<void> {
       }
 
       // Migrate legacy Python resources to stack/ (one-time)
-      const legacyFiles = ["snippets.md", "tech-stack.md", "api-template.py"];
-      const backendResourcesDir = join(
-        cwd,
-        ".agents",
-        "skills",
-        "oma-backend",
-        "resources",
-      );
-      const hasLegacyFiles = legacyFiles.some((f) =>
-        existsSync(join(backendResourcesDir, f)),
-      );
-      if (hasLegacyFiles && !existsSync(backendStackDir)) {
-        mkdirSync(backendStackDir, { recursive: true });
-        for (const file of legacyFiles) {
-          const src = join(backendResourcesDir, file);
-          if (existsSync(src)) {
-            renameSync(src, join(backendStackDir, file));
-          }
-        }
-        writeFileSync(
-          join(backendStackDir, "stack.yaml"),
-          "language: python\nframework: fastapi\norm: sqlalchemy\nsource: migrated\n",
+      // hasLegacyFiles was captured before cpSync (old resources/ had Python files)
+      // After cpSync, use variants/python/ from the new source as the migration source
+      if (hasLegacyFiles) {
+        const variantPythonDir = join(
+          cwd,
+          ".agents",
+          "skills",
+          "oma-backend",
+          "variants",
+          "python",
         );
+        if (existsSync(variantPythonDir)) {
+          mkdirSync(backendStackDir, { recursive: true });
+          cpSync(variantPythonDir, backendStackDir, {
+            recursive: true,
+            force: true,
+          });
+          writeFileSync(
+            join(backendStackDir, "stack.yaml"),
+            "language: python\nframework: fastapi\norm: sqlalchemy\nsource: migrated\n",
+          );
+        }
       }
 
       // Shared layout migration (core/, conditional/, runtime/)

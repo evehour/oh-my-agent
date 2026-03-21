@@ -7,6 +7,10 @@ description: Auto-detect project tech stack and generate stack-specific referenc
 ## Goal
 Analyze project files to detect the tech stack, then generate language-specific references in the domain skill's `stack/` directory.
 
+> **Vendor note:** This workflow executes inline (no subagent spawning). All vendors use their native file reading tools for manifest detection and file writing tools for stack generation.
+
+---
+
 ## Step 1: Detect
 
 Scan project root for package manifests:

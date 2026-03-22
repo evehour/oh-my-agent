@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.3.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.2.1...cli-v4.3.0) (2026-03-22)
+
+
+### Features
+
+* **action:** add GitHub Action for automated oma update ([dc22007](https://github.com/first-fluke/oh-my-agent/commit/dc220070a1c180d3e32b9c2f00eafb2e5c1888b3))
+
+
+### Documentation
+
+* add brew install oh-my-agent as global installation option ([026169e](https://github.com/first-fluke/oh-my-agent/commit/026169ef10b451fe72461979b13b778026371c83))
+
+
+### Miscellaneous
+
+* **main:** release web 0.3.3 ([926ae67](https://github.com/first-fluke/oh-my-agent/commit/926ae670118a291c6cbb312738a42d7686ce9bc6))
+* **main:** release web 0.3.3 ([4ab0dff](https://github.com/first-fluke/oh-my-agent/commit/4ab0dffabb40634178eda2734c950ab69549edf1))
+
 ## [4.2.1](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.2.0...cli-v4.2.1) (2026-03-22)
 
 

@@ -22,6 +22,10 @@ bunx oh-my-agent
 ## 选项 2：全局安装
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

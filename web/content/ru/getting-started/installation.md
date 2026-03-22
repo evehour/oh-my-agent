@@ -22,6 +22,10 @@ bunx oh-my-agent
 ## Вариант 2: Глобальная установка
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

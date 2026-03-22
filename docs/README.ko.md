@@ -94,6 +94,10 @@ bunx oh-my-agent
 SubAgent Orchestrator를 쓰거나 도구를 전역에서 쓰려면:
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

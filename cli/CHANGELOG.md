@@ -1,5 +1,26 @@
 # Changelog
 
+## [4.2.1](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.2.0...cli-v4.2.1) (2026-03-22)
+
+
+### Documentation
+
+* add headers and badges to all README files ([a703c54](https://github.com/first-fluke/oh-my-agent/commit/a703c541dac3c6c1a97adc518ca30843cbe6f809))
+* fix all README TOC order and remove outdated content ([b759ddc](https://github.com/first-fluke/oh-my-agent/commit/b759ddc12fe956760307edc110d565efaa79a2c4))
+* fix README.md section order ([2c5af23](https://github.com/first-fluke/oh-my-agent/commit/2c5af233dd1aeb0709376a0af25a6d02112221f3))
+* fix README.md TOC and section order ([2fd99a4](https://github.com/first-fluke/oh-my-agent/commit/2fd99a43c43e1e40c950f579e61bb79686b268f1))
+* reorder all README files to standard structure ([f27f163](https://github.com/first-fluke/oh-my-agent/commit/f27f1632ebf9a39e7b4aa1411a2e1266cbb85b77))
+* simplify user-facing documentation and standardize structure ([fcbaad7](https://github.com/first-fluke/oh-my-agent/commit/fcbaad7a19b72a002193a0bb325bed10c3b27085))
+* translate Chinese README - remove Korean text ([8210f18](https://github.com/first-fluke/oh-my-agent/commit/8210f185a60155723c391327605d49b01435c5a0))
+
+
+### Miscellaneous
+
+* **main:** release web 0.3.1 ([3bd7a94](https://github.com/first-fluke/oh-my-agent/commit/3bd7a940283e25a2ccb2b979c34d5cf51786d095))
+* **main:** release web 0.3.2 ([5ab400e](https://github.com/first-fluke/oh-my-agent/commit/5ab400e6e5b9d983adac77c9574abbbef1c77f5b))
+* **main:** release web 0.3.2 ([0a12651](https://github.com/first-fluke/oh-my-agent/commit/0a12651d193a84c2c862f5204044a95358902573))
+* move and sync homebrew formula to cli/ from merged PR ([6f91a28](https://github.com/first-fluke/oh-my-agent/commit/6f91a286a1e1295cde4042085f6103ffb3f0f35d))
+
 ## [4.2.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.1.0...cli-v4.2.0) (2026-03-21)
 
 

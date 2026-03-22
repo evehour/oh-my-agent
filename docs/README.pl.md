@@ -1,11 +1,12 @@
-## Spis treści
+# oh-my-agent: Przenośna uprząż wieloagentowa
 
-- [Co to jest?](#co-to-jest)
-- [Dlaczego inaczej](#dlaczego-inaczej)
-- [Szybki start](#szybki-start)
-- [Architektura](#architektura)
-- [Sponsorzy](#sponsorzy)
-- [Licencja](#licencja)
+[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
+
+[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
+
+Przenośna, oparta na rolach uprząż dla agentów do poważnej inżynierii wspomaganej przez AI.
+
+`oh-my-agent` współpracuje ze wszystkimi głównymi IDE AI, w tym Antigravity, Claude Code, Cursor, Gemini, OpenCode i innymi. Łączy opartych na rolach agentów, jawne przepływy pracy, obserwowalność w czasie rzeczywistym i wskazówki uwzględniające standardy dla zespołów, które chcą mniej bałaganu związanego z AI i bardziej zdyscyplinowanego wykonywania zadań.
 
 ## Co to jest?
 

@@ -1,11 +1,12 @@
-## Оглавление
+# oh-my-agent: Портативный мультиагентный хаб
 
-- [Что это такое?](#что-это-такое)
-- [Почему другой](#почему-другой)
-- [Быстрый старт](#быстрый-старт)
-- [Архитектура](#архитектура)
-- [Спонсоры](#спонсоры)
-- [Лицензия](#лицензия)
+[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
+
+[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Deutsch](./README.de.md)
+
+Портативный ролевой хаб агентов для серьёзной разработки с применением ИИ.
+
+`oh-my-agent` работает со всеми основными ИИ-IDE, включая Antigravity, Claude Code, Cursor, Gemini, OpenCode и другие. Он объединяет ролевых агентов, явные рабочие процессы, наблюдаемость в реальном времени и руководство с учётом стандартов — для команд, которым нужно меньше небрежно сгенерированного ИИ-кода и больше дисциплинированного исполнения.
 
 ## Что это такое?
 

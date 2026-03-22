@@ -1,11 +1,12 @@
-## Inhaltsverzeichnis
+# oh-my-agent: Tragbares Multi-Agenten-Harness
 
-- [Was ist das?](#was-ist-das)
-- [Warum anders](#warum-anders)
-- [Schnellstart](#schnellstart)
-- [Architektur](#architektur)
-- [Sponsoren](#sponsoren)
-- [Lizenz](#lizenz)
+[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
+
+[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md)
+
+Das tragbare, rollenbasierte Agenten-Harness für ernsthaftes KI-gestütztes Engineering.
+
+`oh-my-agent` funktioniert mit allen wichtigen KI-IDEs, einschließlich Antigravity, Claude Code, Cursor, Gemini, OpenCode und mehr. Es kombiniert rollenbasierte Agenten, explizite Workflows, Echtzeit-Observability und standardbewusste Anleitung für Teams, die weniger KI-Chaos und eine diszipliniertere Ausführung wünschen.
 
 ## Was ist das?
 

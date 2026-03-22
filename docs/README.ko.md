@@ -1,11 +1,12 @@
-## 목차
+# oh-my-agent: 어디서든 쓸 수 있는 멀티 에이전트 하네스
 
-- [이게 뭔가요?](#이게-뭔가요)
-- [뭐가 다른가요?](#뭐가-다른가요)
-- [빠른 시작](#빠른-시작)
-- [아키텍처](#아키텍처)
-- [후원하기](#후원하기)
-- [라이선스](#라이선스)
+[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
+
+[English](../README.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
+
+AI 로 제대로 개발하고 싶은 팀을 위한 에이전트 하네스. 역할별로 나뉘어 있고, 특정 IDE 에 종속되지 않습니다.
+
+Antigravity, Claude Code, Cursor, Gemini, OpenCode 등 모든 주요 AI IDE 에서 작동합니다. 역할이 정해진 에이전트, 명확한 워크플로우, 실시간 모니터링, 표준 기반 가이드를 합쳐서 AI 가 대충 만든 코드를 줄이고 체계적으로 일할 수 있게 해줍니다.
 
 ## 이게 뭔가요?
 

@@ -1,11 +1,12 @@
-## Inhoudsopgave
+# oh-my-agent: Draagbare Multi-Agent Harness
 
-- [Wat is dit?](#wat-is-dit)
-- [Waarom anders](#waarom-anders)
-- [Snel starten](#snel-starten)
-- [Architectuur](#architectuur)
-- [Sponsors](#sponsors)
-- [Licentie](#licentie)
+[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
+
+[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
+
+Het draagbare, rolgebaseerde agentharnas voor serieuze AI-ondersteunde engineering.
+
+`oh-my-agent` werkt met alle grote AI IDE's, waaronder Antigravity, Claude Code, Cursor, Gemini, OpenCode en meer. Het combineert rolgebaseerde agents, expliciete workflows, realtime waarneembaarheid en standaardbewuste begeleiding voor teams die minder AI-rommel en een meer gedisciplineerde uitvoering willen.
 
 ## Wat is dit?
 

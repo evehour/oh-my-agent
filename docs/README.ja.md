@@ -1,11 +1,12 @@
-## 目次
+# oh-my-agent: どの IDE でも使えるマルチエージェントハーネス
 
-- [何ができるのか](#何ができるのか)
-- [何が違うのか](#何が違うのか)
-- [クイックスタート](#クイックスタート)
-- [アーキテクチャ](#アーキテクチャ)
-- [スポンサー](#スポンサー)
-- [ライセンス](#ライセンス)
+[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
+
+[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [Português](./README.pt.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
+
+AI で本気の開発をしたいチームのためのエージェントハーネス。役割ごとにエージェントが分かれていて、特定の IDE に縛られません。
+
+Antigravity、Claude Code、Cursor、Gemini、OpenCode など、すべての主要な AI IDE で動作します。役割を持ったエージェント、明確なワークフロー、リアルタイム監視、標準に沿ったガイドを組み合わせて、AI が雑に生成したコードを減らし、チームが体系的に動けるようにします。
 
 ## 何ができるのか
 

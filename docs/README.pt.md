@@ -1,11 +1,12 @@
-## Índice
+# oh-my-agent: Arnês de Agente Portátil
 
-- [O Que É Isso?](#o-que-é-isso)
-- [Por que diferente](#por-que-diferente)
-- [Início Rápido](#início-rápido)
-- [Arquitetura](#arquitetura)
-- [Patrocinadores](#patrocinadores)
-- [Licença](#licença)
+[![npm version](https://img.shields.io/npm/v/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![npm downloads](https://img.shields.io/npm/dm/oh-my-agent?color=cb3837&logo=npm)](https://www.npmjs.com/package/oh-my-agent) [![GitHub stars](https://img.shields.io/github/stars/first-fluke/oh-my-agent?style=flat&logo=github)](https://github.com/first-fluke/oh-my-agent) [![License](https://img.shields.io/github/license/first-fluke/oh-my-agent)](https://github.com/first-fluke/oh-my-agent/blob/main/LICENSE) [![Last Updated](https://img.shields.io/github/last-commit/first-fluke/oh-my-agent?label=updated&logo=git)](https://github.com/first-fluke/oh-my-agent/commits/main)
+
+[English](../README.md) | [한국어](./README.ko.md) | [中文](./README.zh.md) | [日本語](./README.ja.md) | [Français](./README.fr.md) | [Español](./README.es.md) | [Nederlands](./README.nl.md) | [Polski](./README.pl.md) | [Русский](./README.ru.md) | [Deutsch](./README.de.md)
+
+O arnês de agente portátil e baseado em funções para engenharia séria assistida por IA.
+
+O `oh-my-agent` funciona com todas as principais IDEs de IA, incluindo Antigravity, Claude Code, Cursor, Gemini, OpenCode e muito mais. Ele combina agentes baseados em funções, fluxos de trabalho explícitos, observabilidade em tempo real e orientação com reconhecimento de padrões para equipes que desejam menos confusão de IA e uma execução mais disciplinada.
 
 ## O Que É Isso?
 

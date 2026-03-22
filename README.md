@@ -92,6 +92,10 @@ Select your project type and skills will be installed to `.agents/skills/`, with
 To use the core tools globally or run the SubAgent Orchestrator:
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

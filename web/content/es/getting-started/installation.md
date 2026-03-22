@@ -22,6 +22,10 @@ Instala skills y flujos de trabajo en `.agents/` en el proyecto actual.
 ## Opcion 2: Instalacion global
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

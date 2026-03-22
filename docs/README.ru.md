@@ -91,6 +91,10 @@ bunx oh-my-agent
 Чтобы использовать основные инструменты глобально или запустить SubAgent Orchestrator:
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

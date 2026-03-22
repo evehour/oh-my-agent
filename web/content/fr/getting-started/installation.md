@@ -22,6 +22,10 @@ Installe les skills et workflows dans `.agents/` du projet courant.
 ## Option 2 : Installation globale
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

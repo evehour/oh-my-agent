@@ -91,6 +91,10 @@ Selecione seu tipo de projeto e as habilidades serão instaladas em `.agents/ski
 Para usar as ferramentas principais globalmente ou executar o SubAgent Orchestrator:
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

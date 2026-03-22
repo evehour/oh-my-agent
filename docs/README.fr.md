@@ -108,6 +108,10 @@ Sélectionnez votre type de projet et les compétences seront installées dans `
 Pour utiliser les outils principaux globalement ou exécuter le SubAgent Orchestrator :
 
 ```bash
+# Homebrew (macOS/Linux)
+brew install oh-my-agent
+
+# npm/bun
 bun install --global oh-my-agent
 ```
 

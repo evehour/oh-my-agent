@@ -467,23 +467,20 @@ function installClaudeHooks(sourceDir: string, targetDir: string): void {
 
 /**
  * Install Codex CLI hooks and hooks.json.
+ * Codex has no project dir env var — uses relative paths (cwd passed via stdin).
  */
 function installCodexHooks(sourceDir: string, targetDir: string): void {
   const hooksDir = join(targetDir, ".codex", "hooks");
   copyHookScripts(sourceDir, hooksDir);
 
-  // Codex uses hooks.json (discovered from .codex/ or project root)
+  // Codex uses hooks.json (discovered from .codex/)
   mergeHooksIntoSettings(join(targetDir, ".codex", "hooks.json"), {
     UserPromptSubmit: [
       {
         hooks: [
           {
             type: "command",
-            command: bunHookCmd(
-              "CODEX_PROJECT_DIR",
-              ".codex",
-              "keyword-detector.ts",
-            ),
+            command: "bun .codex/hooks/keyword-detector.ts",
             timeout: 5,
           },
         ],
@@ -494,11 +491,7 @@ function installCodexHooks(sourceDir: string, targetDir: string): void {
         hooks: [
           {
             type: "command",
-            command: bunHookCmd(
-              "CODEX_PROJECT_DIR",
-              ".codex",
-              "persistent-mode.ts",
-            ),
+            command: "bun .codex/hooks/persistent-mode.ts",
             timeout: 5,
           },
         ],

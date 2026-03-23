@@ -53,8 +53,8 @@ export function makeBlockOutput(vendor: Vendor, reason: string): string {
     case "codex":
       return JSON.stringify({ decision: "block", reason });
     case "gemini":
-      // Gemini uses AfterAgent deny — same JSON shape
-      return JSON.stringify({ decision: "block", reason });
+      // Gemini AfterAgent uses "deny" to reject response and force retry
+      return JSON.stringify({ decision: "deny", reason });
   }
 }
 

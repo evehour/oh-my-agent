@@ -68,7 +68,7 @@ export interface SkillsRegistry {
   infrastructure: SkillInfo[];
 }
 
-export type VendorType = "claude" | "codex" | "gemini";
+export type VendorType = "claude" | "codex" | "gemini" | "qwen";
 
 export interface AgentAbstract {
   name: string;

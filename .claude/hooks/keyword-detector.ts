@@ -26,6 +26,8 @@ function detectVendor(input: Record<string, unknown>): Vendor {
     // Codex uses snake_case session_id, Claude uses camelCase sessionId
     if ("session_id" in input && !("sessionId" in input)) return "codex";
   }
+  // Qwen Code sets QWEN_PROJECT_DIR; Claude sets CLAUDE_PROJECT_DIR
+  if (process.env.QWEN_PROJECT_DIR) return "qwen";
   return "claude";
 }
 
@@ -38,6 +40,8 @@ function getProjectDir(
       return (input.cwd as string) || process.cwd();
     case "gemini":
       return process.env.GEMINI_PROJECT_DIR || process.cwd();
+    case "qwen":
+      return process.env.QWEN_PROJECT_DIR || process.cwd();
     default:
       return process.env.CLAUDE_PROJECT_DIR || process.cwd();
   }

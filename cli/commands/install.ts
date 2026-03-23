@@ -164,7 +164,12 @@ export async function install(): Promise<void> {
 
       // Install vendor-specific adaptations (agents, routers, hooks, CLAUDE.md)
       spinner.start("Installing vendor adaptations...");
-      installVendorAdaptations(repoDir, cwd, ["claude", "codex", "gemini"]);
+      installVendorAdaptations(repoDir, cwd, [
+        "claude",
+        "codex",
+        "gemini",
+        "qwen",
+      ]);
       spinner.stop("Vendor adaptations installed!");
 
       const sharedLayoutMigrations = migrateSharedLayout(cwd);

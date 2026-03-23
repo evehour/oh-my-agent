@@ -543,6 +543,48 @@ function installGeminiHooks(sourceDir: string, targetDir: string): void {
   });
 }
 
+/**
+ * Install Qwen Code hooks and settings.json.
+ * Qwen Code is a Claude Code fork — uses same event names, hookSpecificOutput format.
+ */
+function installQwenHooks(sourceDir: string, targetDir: string): void {
+  const hooksDir = join(targetDir, ".qwen", "hooks");
+  copyHookScripts(sourceDir, hooksDir);
+
+  mergeHooksIntoSettings(join(targetDir, ".qwen", "settings.json"), {
+    UserPromptSubmit: [
+      {
+        hooks: [
+          {
+            type: "command",
+            command: bunHookCmd(
+              "QWEN_PROJECT_DIR",
+              ".qwen",
+              "keyword-detector.ts",
+            ),
+            timeout: 5,
+          },
+        ],
+      },
+    ],
+    Stop: [
+      {
+        hooks: [
+          {
+            type: "command",
+            command: bunHookCmd(
+              "QWEN_PROJECT_DIR",
+              ".qwen",
+              "persistent-mode.ts",
+            ),
+            timeout: 5,
+          },
+        ],
+      },
+    ],
+  });
+}
+
 const OMA_START = "<!-- OMA:START";
 const OMA_END = "<!-- OMA:END -->";
 
@@ -602,6 +644,9 @@ export function installVendorAdaptations(
         break;
       case "gemini":
         installGeminiHooks(sourceDir, targetDir);
+        break;
+      case "qwen":
+        installQwenHooks(sourceDir, targetDir);
         break;
     }
   }

@@ -1,9 +1,9 @@
 // Claude Code Hook Types for oh-my-agent
-// Shared across Claude Code, Codex CLI, and Gemini CLI
+// Shared across Claude Code, Codex CLI, Gemini CLI, and Qwen Code
 
 // --- Vendor Detection ---
 
-export type Vendor = "claude" | "codex" | "gemini";
+export type Vendor = "claude" | "codex" | "gemini" | "qwen";
 
 // --- Hook Input (unified) ---
 
@@ -11,13 +11,12 @@ export interface HookInput {
   prompt?: string;
   sessionId?: string;
   session_id?: string;
-  // Codex: snake_case fields
   hook_event_name?: string;
   cwd?: string;
   // Gemini: AfterAgent fields
   prompt_response?: string;
   stop_hook_active?: boolean;
-  // Claude: Stop fields
+  // Claude/Qwen: Stop fields
   stopReason?: string;
 }
 
@@ -44,6 +43,14 @@ export function makePromptOutput(
           additionalContext,
         },
       });
+    case "qwen":
+      // Qwen Code fork uses hookSpecificOutput (same as Codex)
+      return JSON.stringify({
+        hookSpecificOutput: {
+          hookEventName: "UserPromptSubmit",
+          additionalContext,
+        },
+      });
   }
 }
 
@@ -51,6 +58,7 @@ export function makeBlockOutput(vendor: Vendor, reason: string): string {
   switch (vendor) {
     case "claude":
     case "codex":
+    case "qwen":
       return JSON.stringify({ decision: "block", reason });
     case "gemini":
       // Gemini AfterAgent uses "deny" to reject response and force retry

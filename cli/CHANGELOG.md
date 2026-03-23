@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.5.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.4.0...cli-v4.5.0) (2026-03-23)
+
+
+### Features
+
+* add OMA HUD statusline for Claude Code ([6f4cbf8](https://github.com/first-fluke/oh-my-agent/commit/6f4cbf8c8d3c7bf43673f88eb194a2f697116a57))
+
+
+### Bug Fixes
+
+* add plugin hooks.json and tighten orchestrate triggers ([9760f1a](https://github.com/first-fluke/oh-my-agent/commit/9760f1a354d76eeecd2e3d53ecb86b38bef4038b))
+
+
+### Refactoring
+
+* add HUD to CLAUDE.md template, deduplicate settings merge ([8b812de](https://github.com/first-fluke/oh-my-agent/commit/8b812def8b033ee709976957c9523aad103e27ef))
+
 ## [4.4.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.3.1...cli-v4.4.0) (2026-03-23)
 
 

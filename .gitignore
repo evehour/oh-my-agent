@@ -29,6 +29,7 @@ bin/*.js
 
 # OMA runtime state (hook persistent mode)
 .agents/state/
+.agents/results/
 
 # IDE
 .vscode/
@@ -48,6 +49,7 @@ yarn-error.log*
 # Testing
 coverage/
 .nyc_output/
+test-results/
 
 # Temporary files
 *.tmp

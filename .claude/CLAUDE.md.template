@@ -51,6 +51,10 @@ Trigger keywords are defined in `.claude/hooks/triggers.json` (multi-language su
 - Results: synchronous return, written to `.agents/results/result-{agent}.md`
 - Subagents require Charter Preflight (`CHARTER_CHECK`)
 
+## HUD Statusline
+The `[OMA]` indicator in the status bar confirms oh-my-agent is active.
+It shows: model name, context usage (green/yellow/red), and active workflow state.
+
 ## Rules
 1. **Do not modify `.agents/` files** — SSOT protection
 2. Domain skills load only via explicit invocation or agent `skills` field

@@ -398,12 +398,15 @@ function copyHookScripts(sourceDir: string, hooksDest: string): void {
 }
 
 /**
- * Merge hook entries into a JSON settings file (preserve existing settings).
+ * Merge hook entries (and optional extra fields) into a JSON settings file.
+ * Preserves existing settings outside the hooks/extra keys.
  */
-function mergeHooksIntoSettings(
+function mergeIntoSettings(
   settingsPath: string,
   // biome-ignore lint/suspicious/noExplicitAny: hook config varies by vendor
   hookEntries: Record<string, any>,
+  // biome-ignore lint/suspicious/noExplicitAny: extra fields like statusLine
+  extra?: Record<string, any>,
 ): void {
   // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
   let settings: any = {};
@@ -417,6 +420,7 @@ function mergeHooksIntoSettings(
   }
 
   settings.hooks = { ...(settings.hooks || {}), ...hookEntries };
+  if (extra) Object.assign(settings, extra);
   writeFileSync(settingsPath, `${JSON.stringify(settings, null, 2)}\n`);
 }
 
@@ -431,61 +435,47 @@ function bunHookCmd(envVar: string, vendorDir: string, script: string): string {
 function installClaudeHooks(sourceDir: string, targetDir: string): void {
   copyHookScripts(sourceDir, join(targetDir, ".claude", "hooks"));
 
-  // Merge hooks + statusLine into settings.json
-  const settingsPath = join(targetDir, ".claude", "settings.json");
-  // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
-  let settings: any = {};
-
-  if (existsSync(settingsPath)) {
-    try {
-      settings = JSON.parse(readFileSync(settingsPath, "utf-8"));
-    } catch {
-      // Corrupted — start fresh
-    }
-  }
-
-  // Hooks
-  const omaHooks = {
-    UserPromptSubmit: [
-      {
-        hooks: [
-          {
-            type: "command",
-            command: bunHookCmd(
-              "CLAUDE_PROJECT_DIR",
-              ".claude",
-              "keyword-detector.ts",
-            ),
-            timeout: 5,
-          },
-        ],
+  mergeIntoSettings(
+    join(targetDir, ".claude", "settings.json"),
+    {
+      UserPromptSubmit: [
+        {
+          hooks: [
+            {
+              type: "command",
+              command: bunHookCmd(
+                "CLAUDE_PROJECT_DIR",
+                ".claude",
+                "keyword-detector.ts",
+              ),
+              timeout: 5,
+            },
+          ],
+        },
+      ],
+      Stop: [
+        {
+          hooks: [
+            {
+              type: "command",
+              command: bunHookCmd(
+                "CLAUDE_PROJECT_DIR",
+                ".claude",
+                "persistent-mode.ts",
+              ),
+              timeout: 5,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      statusLine: {
+        type: "command",
+        command: bunHookCmd("CLAUDE_PROJECT_DIR", ".claude", "hud.ts"),
       },
-    ],
-    Stop: [
-      {
-        hooks: [
-          {
-            type: "command",
-            command: bunHookCmd(
-              "CLAUDE_PROJECT_DIR",
-              ".claude",
-              "persistent-mode.ts",
-            ),
-            timeout: 5,
-          },
-        ],
-      },
-    ],
-  };
-  settings.hooks = { ...(settings.hooks || {}), ...omaHooks };
-
-  // HUD statusline
-  settings.statusLine = {
-    type: "command",
-    command: bunHookCmd("CLAUDE_PROJECT_DIR", ".claude", "hud.ts"),
-  };
-
-  writeFileSync(settingsPath, `${JSON.stringify(settings, null, 2)}\n`);
+    },
+  );
 }
 
 /**
@@ -497,7 +487,7 @@ function installCodexHooks(sourceDir: string, targetDir: string): void {
   copyHookScripts(sourceDir, hooksDir);
 
   // Codex uses hooks.json (discovered from .codex/)
-  mergeHooksIntoSettings(join(targetDir, ".codex", "hooks.json"), {
+  mergeIntoSettings(join(targetDir, ".codex", "hooks.json"), {
     UserPromptSubmit: [
       {
         hooks: [
@@ -530,7 +520,7 @@ function installGeminiHooks(sourceDir: string, targetDir: string): void {
   const hooksDir = join(targetDir, ".gemini", "hooks");
   copyHookScripts(sourceDir, hooksDir);
 
-  mergeHooksIntoSettings(join(targetDir, ".gemini", "settings.json"), {
+  mergeIntoSettings(join(targetDir, ".gemini", "settings.json"), {
     BeforeAgent: [
       {
         matcher: "*",
@@ -574,7 +564,7 @@ function installQwenHooks(sourceDir: string, targetDir: string): void {
   const hooksDir = join(targetDir, ".qwen", "hooks");
   copyHookScripts(sourceDir, hooksDir);
 
-  mergeHooksIntoSettings(join(targetDir, ".qwen", "settings.json"), {
+  mergeIntoSettings(join(targetDir, ".qwen", "settings.json"), {
     UserPromptSubmit: [
       {
         hooks: [

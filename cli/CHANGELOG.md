@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.11.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.10.3...cli-v4.11.0) (2026-03-26)
+
+
+### Features
+
+* add oma-ralph persistent self-referential execution loop ([cf42146](https://github.com/first-fluke/oh-my-agent/commit/cf42146c1a51ce4b8ffef903a17824517ea8c8c7))
+
 ## [4.10.3](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.10.2...cli-v4.10.3) (2026-03-26)
 
 

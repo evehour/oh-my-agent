@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.10.3](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.10.2...cli-v4.10.3) (2026-03-26)
+
+
+### Bug Fixes
+
+* **cli:** remove skill symlinks from repo to fix update error ([be16d10](https://github.com/first-fluke/oh-my-agent/commit/be16d10bb705dfa0d49f9dbc7e75fd3b53e8ecf9))
+
 ## [4.10.2](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.10.1...cli-v4.10.2) (2026-03-26)
 
 

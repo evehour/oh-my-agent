@@ -28,6 +28,12 @@ export const SKILLS: SkillsRegistry = {
     },
     { name: "oma-mobile", desc: "Flutter/Dart mobile specialist" },
   ],
+  design: [
+    {
+      name: "oma-design",
+      desc: "Design system, DESIGN.md, accessibility, anti-pattern enforcement",
+    },
+  ],
   coordination: [
     { name: "oma-brainstorm", desc: "Design-first ideation before planning" },
     { name: "oma-pm", desc: "Product manager - task decomposition" },
@@ -55,6 +61,7 @@ export const SKILLS: SkillsRegistry = {
 export const PRESETS: Record<string, string[]> = {
   fullstack: [
     "oma-brainstorm",
+    "oma-design",
     "oma-frontend",
     "oma-backend",
     "oma-db",
@@ -67,6 +74,7 @@ export const PRESETS: Record<string, string[]> = {
   ],
   frontend: [
     "oma-brainstorm",
+    "oma-design",
     "oma-frontend",
     "oma-pm",
     "oma-qa",
@@ -102,6 +110,7 @@ export const PRESETS: Record<string, string[]> = {
   ],
   all: [
     ...SKILLS.domain,
+    ...SKILLS.design,
     ...SKILLS.coordination,
     ...SKILLS.utility,
     ...SKILLS.infrastructure,
@@ -724,6 +733,7 @@ function clearConflictingEntries(sourceDir: string, destDir: string): void {
 export function getAllSkills(): SkillInfo[] {
   return [
     ...SKILLS.domain,
+    ...SKILLS.design,
     ...SKILLS.coordination,
     ...SKILLS.utility,
     ...SKILLS.infrastructure,

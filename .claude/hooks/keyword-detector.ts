@@ -14,7 +14,6 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
-import { parse } from "yaml";
 import { type Vendor, type ModeState, makePromptOutput } from "./types.ts";
 
 // ── Vendor Detection ──────────────────────────────────────────
@@ -84,8 +83,9 @@ function detectLanguage(projectDir: string): string {
   );
   if (!existsSync(prefsPath)) return "en";
   try {
-    const prefs = parse(readFileSync(prefsPath, "utf-8"));
-    return prefs?.language ?? "en";
+    const content = readFileSync(prefsPath, "utf-8");
+    const match = content.match(/^language:\s*(\S+)/m);
+    return match?.[1] ?? "en";
   } catch {
     return "en";
   }

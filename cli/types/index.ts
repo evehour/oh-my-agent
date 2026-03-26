@@ -71,6 +71,7 @@ export interface SkillInfo {
 
 export interface SkillsRegistry {
   domain: SkillInfo[];
+  design: SkillInfo[];
   coordination: SkillInfo[];
   utility: SkillInfo[];
   infrastructure: SkillInfo[];

@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.12.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.11.0...cli-v4.12.0) (2026-03-27)
+
+
+### Features
+
+* **cli:** add agent:review command and rename -v to -m flag ([1b48055](https://github.com/first-fluke/oh-my-agent/commit/1b480555eca21e60aa19f26ab066fc1f208ba589))
+
+
+### Miscellaneous
+
+* add docs/plans/ to gitignore ([1135a5f](https://github.com/first-fluke/oh-my-agent/commit/1135a5f664a8a18557e321a2f2adc79fdc89cb22))
+* **main:** release action 1.1.1 ([a582b9b](https://github.com/first-fluke/oh-my-agent/commit/a582b9b84c979860a3d6551ea4e09b7743c0261e))
+* **main:** release action 1.1.1 ([1d7fee0](https://github.com/first-fluke/oh-my-agent/commit/1d7fee08c061b8b7fef695fca3ac1c660a819a24))
+
 ## [4.11.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.10.3...cli-v4.11.0) (2026-03-26)
 
 

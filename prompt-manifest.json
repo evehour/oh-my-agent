@@ -1,7 +1,7 @@
 {
   "name": "oh-my-agent",
-  "version": "4.11.0",
-  "releaseDate": "2026-03-27T00:10:18.928Z",
+  "version": "4.12.0",
+  "releaseDate": "2026-03-26T09:42:28.151Z",
   "repository": "https://github.com/first-fluke/oh-my-agent",
   "files": [
     {
@@ -586,8 +586,8 @@
     },
     {
       "path": ".agents/skills/oma-orchestrator/config/cli-config.yaml",
-      "sha256": "294169a2bf973451af3f9f2b61166f3faf0997b3f3c2e578f380593763156574",
-      "size": 1935
+      "sha256": "238812ff6889f947fe00687005b7eacf6018786e83eee36b82ecce5bf48af229",
+      "size": 1933
     },
     {
       "path": ".agents/skills/oma-orchestrator/resources/memory-schema.md",

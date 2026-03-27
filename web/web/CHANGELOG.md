@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.9](https://github.com/first-fluke/oh-my-agent/compare/web-v0.3.8...web-v0.3.9) (2026-03-27)
+
+
+### Documentation
+
+* **action:** use marketplace action slug in examples ([33e3399](https://github.com/first-fluke/oh-my-agent/commit/33e3399d63ecebffed93fe554b6711afd2785b41))
+* update CLI docs for -m/--model flag and add agent:review command ([43ff752](https://github.com/first-fluke/oh-my-agent/commit/43ff752e5a6faf39eeba7072b52a467ca08038aa))
+
 ## [0.3.8](https://github.com/first-fluke/oh-my-agent/compare/web-v0.3.7...web-v0.3.8) (2026-03-26)
 
 

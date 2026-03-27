@@ -270,7 +270,7 @@ oma retro 7d --json
 启动子智能体进程。
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 **参数：**
@@ -285,10 +285,10 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | 标志 | 说明 |
 |:-----|:-----|
-| `-v, --vendor <vendor>` | CLI 供应商覆盖：`gemini`、`claude`、`codex`、`qwen` |
+| `-m, --model <vendor>` | CLI 供应商覆盖：`gemini`、`claude`、`codex`、`qwen` |
 | `-w, --workspace <path>` | 智能体的工作目录。如省略，从 monorepo 配置自动检测。 |
 
-**供应商解析顺序：** `--vendor` 标志 > user-preferences.yaml 中的 `agent_cli_mapping` > `default_cli` > cli-config.yaml 中的 `active_vendor` > `gemini`。
+**供应商解析顺序：** `--model` 标志 > user-preferences.yaml 中的 `agent_cli_mapping` > `default_cli` > cli-config.yaml 中的 `active_vendor` > `gemini`。
 
 **提示词解析：** 如果提示词参数是现有文件的路径，则使用文件内容作为提示词。否则，参数作为内联文本使用。供应商特定的执行协议会自动追加。
 
@@ -301,7 +301,7 @@ oma agent:spawn backend "Implement /api/users CRUD endpoint" session-20260324-14
 oma agent:spawn frontend ./prompts/dashboard.md session-20260324-143000 -w ./apps/web
 
 # 覆盖供应商为 Claude
-oma agent:spawn backend "Implement auth" session-20260324-143000 -v claude -w ./api
+oma agent:spawn backend "Implement auth" session-20260324-143000 -m claude -w ./api
 
 # Mobile 智能体，自动检测工作区
 oma agent:spawn mobile "Add biometric login" session-20260324-143000
@@ -353,7 +353,7 @@ oma agent:status session-20260324-143000 qa -r /path/to/project
 并行运行多个子智能体。
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 **参数：**
@@ -366,7 +366,7 @@ oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
 
 | 标志 | 说明 |
 |:-----|:-----|
-| `-v, --vendor <vendor>` | 所有智能体的 CLI 供应商覆盖 |
+| `-m, --model <vendor>` | 所有智能体的 CLI 供应商覆盖 |
 | `-i, --inline` | 内联模式：将任务指定为 `agent:task[:workspace]` 参数 |
 | `--no-wait` | 后台模式 —— 启动智能体后立即返回 |
 
@@ -397,7 +397,7 @@ oma agent:parallel --inline "backend:Implement auth API:./api" "frontend:Build l
 oma agent:parallel tasks.yaml --no-wait
 
 # 覆盖所有智能体的供应商
-oma agent:parallel tasks.yaml -v claude
+oma agent:parallel tasks.yaml -m claude
 ```
 
 ---

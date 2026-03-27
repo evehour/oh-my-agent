@@ -89,12 +89,12 @@ oma retro [window] [--json] [--output <format>] [--interactive] [--compare]
 ### agent:spawn
 
 ```bash
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 `agent-id`: `backend`, `frontend`, `mobile`, `qa`, `debug`, `pm`.
 
-Определение вендора: `--vendor` > `agent_cli_mapping` > `default_cli` > `active_vendor` > `gemini`.
+Определение вендора: `--model` > `agent_cli_mapping` > `default_cli` > `active_vendor` > `gemini`.
 
 Промпт: инлайн-текст или путь к файлу. Вендор-протоколы добавляются автоматически.
 
@@ -109,7 +109,7 @@ oma agent:status <session-id> [agent-ids...] [-r <root>]
 ### agent:parallel
 
 ```bash
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 YAML-файл задач или инлайн `agent:task[:workspace]`. Результаты: `.agents/results/parallel-{timestamp}/`.

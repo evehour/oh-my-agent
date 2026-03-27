@@ -90,7 +90,7 @@ Format argumentu window: `7d` (7 dni), `2w` (2 tygodnie), `1m` (1 miesiąc).
 
 | Flaga | Skrót | Opis |
 |:-----|:------|:-----------|
-| `--vendor` | `-v` | Nadpisanie dostawcy CLI. Musi być: `gemini`, `claude`, `codex`, `qwen`. |
+| `--model` | `-m` | Nadpisanie dostawcy CLI. Musi być: `gemini`, `claude`, `codex`, `qwen`. |
 | `--workspace` | `-w` | Katalog roboczy. Auto-wykrywany z konfiguracji monorepo jeśli pominięty. |
 
 **Zachowanie specyficzne dla dostawcy:**
@@ -112,7 +112,7 @@ Format argumentu window: `7d` (7 dni), `2w` (2 tygodnie), `1m` (1 miesiąc).
 
 | Flaga | Skrót | Opis |
 |:-----|:------|:-----------|
-| `--vendor` | `-v` | Nadpisanie dostawcy dla wszystkich agentów. |
+| `--model` | `-m` | Nadpisanie dostawcy dla wszystkich agentów. |
 | `--inline` | `-i` | Interpretuj argumenty jako ciągi `agent:task[:workspace]`. |
 | `--no-wait` | | Tryb w tle. Uruchom i powróć natychmiast. |
 

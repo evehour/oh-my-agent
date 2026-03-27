@@ -266,7 +266,7 @@ agent_cli_mapping:
 
 Al generar un agente, el proveedor CLI se determina por este orden de prioridad (el más alto primero):
 
-1. Flag `--vendor` pasado a `oma agent:spawn`
+1. Flag `--model` pasado a `oma agent:spawn`
 2. Entrada `agent_cli_mapping` para ese agente específico en `user-preferences.yaml`
 3. Configuración `default_cli` en `user-preferences.yaml`
 4. `active_vendor` en `cli-config.yaml` (respaldo legacy)

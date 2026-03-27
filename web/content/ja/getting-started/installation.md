@@ -266,7 +266,7 @@ agent_cli_mapping:
 
 エージェントをスポーンする際、CLIベンダーは以下の優先順位で決定されます（高い順）：
 
-1. `oma agent:spawn`に渡された`--vendor`フラグ
+1. `oma agent:spawn`に渡された`--model`フラグ
 2. `user-preferences.yaml`のそのエージェント固有の`agent_cli_mapping`エントリ
 3. `user-preferences.yaml`の`default_cli`設定
 4. `cli-config.yaml`の`active_vendor`（レガシーフォールバック）

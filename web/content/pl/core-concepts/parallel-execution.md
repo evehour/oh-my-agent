@@ -31,7 +31,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [opcje]
 | Flaga | Skrót | Opis |
 |------|-------|-------------|
 | `--workspace <ścieżka>` | `-w` | Katalog roboczy dla agenta. Agenci modyfikują pliki tylko w tym katalogu. |
-| `--vendor <nazwa>` | `-v` | Nadpisanie dostawcy CLI dla tego konkretnego uruchomienia. Opcje: `gemini`, `claude`, `codex`, `qwen`. |
+| `--model <nazwa>` | `-m` | Nadpisanie dostawcy CLI dla tego konkretnego uruchomienia. Opcje: `gemini`, `claude`, `codex`, `qwen`. |
 | `--max-turns <n>` | `-t` | Nadpisanie domyślnego limitu tur dla tego agenta. |
 | `--json` | | Wyjście jako JSON (przydatne do skryptowania). |
 | `--no-wait` | | Wystrzel i zapomnij — powróć natychmiast bez czekania na zakończenie. |
@@ -46,7 +46,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # Nadpisz dostawcę dla tego konkretnego agenta
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # Ustaw wyższy limit tur dla złożonego zadania
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -162,13 +162,13 @@ Gdy `oma agent:spawn` określa którego CLI użyć, podąża za tym priorytetem 
 
 | Priorytet | Źródło | Przykład |
 |----------|--------|---------|
-| 1 (najwyższy) | Flaga `--vendor` | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1 (najwyższy) | Flaga `--model` | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` w user-preferences.yaml |
 | 3 | `default_cli` | `default_cli: gemini` w user-preferences.yaml |
 | 4 | `active_vendor` | Stare ustawienie z `cli-config.yaml` |
 | 5 (najniższy) | Zakodowany fallback | `gemini` |
 
-Oznacza to, że flaga `--vendor` zawsze wygrywa. Jeśli flaga nie jest podana, system sprawdza mapowanie per agent, potem domyślne, potem starszą konfigurację, a na końcu fallback do Gemini.
+Oznacza to, że flaga `--model` zawsze wygrywa. Jeśli flaga nie jest podana, system sprawdza mapowanie per agent, potem domyślne, potem starszą konfigurację, a na końcu fallback do Gemini.
 
 ---
 

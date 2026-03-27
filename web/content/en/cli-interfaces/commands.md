@@ -270,7 +270,7 @@ oma retro 7d --json
 Spawn a subagent process.
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 **Arguments:**
@@ -285,10 +285,10 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | Flag | Description |
 |:-----|:-----------|
-| `-v, --vendor <vendor>` | CLI vendor override: `gemini`, `claude`, `codex`, `qwen` |
+| `-m, --model <vendor>` | CLI vendor override: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | Working directory for the agent. Auto-detected from monorepo config if omitted. |
 
-**Vendor resolution order:** `--vendor` flag > `agent_cli_mapping` in user-preferences.yaml > `default_cli` > `active_vendor` in cli-config.yaml > `gemini`.
+**Vendor resolution order:** `--model` flag > `agent_cli_mapping` in user-preferences.yaml > `default_cli` > `active_vendor` in cli-config.yaml > `gemini`.
 
 **Prompt resolution:** If the prompt argument is a path to an existing file, the file contents are used as the prompt. Otherwise, the argument is used as inline text. Vendor-specific execution protocols are appended automatically.
 
@@ -301,7 +301,7 @@ oma agent:spawn backend "Implement /api/users CRUD endpoint" session-20260324-14
 oma agent:spawn frontend ./prompts/dashboard.md session-20260324-143000 -w ./apps/web
 
 # Override vendor to Claude
-oma agent:spawn backend "Implement auth" session-20260324-143000 -v claude -w ./api
+oma agent:spawn backend "Implement auth" session-20260324-143000 -m claude -w ./api
 
 # Mobile agent with auto-detected workspace
 oma agent:spawn mobile "Add biometric login" session-20260324-143000
@@ -353,7 +353,7 @@ oma agent:status session-20260324-143000 qa -r /path/to/project
 Run multiple subagents in parallel.
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 **Arguments:**
@@ -366,7 +366,7 @@ oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
 
 | Flag | Description |
 |:-----|:-----------|
-| `-v, --vendor <vendor>` | CLI vendor override for all agents |
+| `-m, --model <vendor>` | CLI vendor override for all agents |
 | `-i, --inline` | Inline mode: specify tasks as `agent:task[:workspace]` arguments |
 | `--no-wait` | Background mode — start agents and return immediately |
 
@@ -397,7 +397,52 @@ oma agent:parallel --inline "backend:Implement auth API:./api" "frontend:Build l
 oma agent:parallel tasks.yaml --no-wait
 
 # Override vendor for all agents
-oma agent:parallel tasks.yaml -v claude
+oma agent:parallel tasks.yaml -m claude
+```
+
+### agent:review
+
+Run a code review using an external AI CLI (codex, claude, gemini, or qwen).
+
+```
+oma agent:review [-m <vendor>] [-p <prompt>] [-w <path>] [--no-uncommitted]
+```
+
+**Options:**
+
+| Flag | Description |
+|:-----|:-----------|
+| `-m, --model <vendor>` | CLI vendor to use: `codex`, `claude`, `gemini`, `qwen`. Defaults to resolved vendor from config. |
+| `-p, --prompt <prompt>` | Custom review prompt. If omitted, a default code review prompt is used. |
+| `-w, --workspace <path>` | Path to review. Defaults to the current working directory. |
+| `--no-uncommitted` | Skip uncommitted changes review. When set, only committed changes in the session are reviewed. |
+
+**What it does:**
+- Detects the current session ID automatically from the environment or recent git activity.
+- For `codex`: uses the native `codex review` subcommand.
+- For `claude`, `gemini`, `qwen`: constructs a prompt-based review request and invokes the CLI with the review prompt.
+- By default, reviews uncommitted changes in the working directory.
+- With `--no-uncommitted`, restricts review to changes committed within the current session.
+
+**Examples:**
+```bash
+# Review uncommitted changes with default vendor
+oma agent:review
+
+# Review with codex (uses native codex review command)
+oma agent:review -m codex
+
+# Review with claude using a custom prompt
+oma agent:review -m claude -p "Focus on security vulnerabilities and input validation"
+
+# Review a specific path
+oma agent:review -w ./apps/api
+
+# Review only committed changes (skip working tree)
+oma agent:review --no-uncommitted
+
+# Review committed changes in a specific workspace with gemini
+oma agent:review -m gemini -w ./apps/web --no-uncommitted
 ```
 
 ---

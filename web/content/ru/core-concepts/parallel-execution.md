@@ -31,7 +31,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [options]
 | Флаг | Сокращение | Описание |
 |------|-----------|---------|
 | `--workspace <path>` | `-w` | Рабочая директория агента. Агенты модифицируют файлы только в этой директории |
-| `--vendor <name>` | `-v` | Переопределение CLI-вендора: `gemini`, `claude`, `codex`, `qwen` |
+| `--model <name>` | `-m` | Переопределение CLI-вендора: `gemini`, `claude`, `codex`, `qwen` |
 | `--max-turns <n>` | `-t` | Переопределение лимита ходов по умолчанию |
 | `--json` | | Вывод результата в JSON |
 | `--no-wait` | | Запустить и забыть — вернуться немедленно |
@@ -46,7 +46,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # Переопределение вендора
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # Увеличенный лимит ходов
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -138,7 +138,7 @@ agent_cli_mapping:
 
 | Приоритет | Источник | Пример |
 |-----------|---------|--------|
-| 1 (высший) | Флаг `--vendor` | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1 (высший) | Флаг `--model` | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` |
 | 3 | `default_cli` | `default_cli: gemini` |
 | 4 | `active_vendor` | Устаревшая `cli-config.yaml` |

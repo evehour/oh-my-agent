@@ -154,12 +154,12 @@ oma usage:anti [--json] [--output <format>] [--raw]
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | 플래그 | 축약 | 설명 | 기본값 |
 |:-------|:-----|:-----|:-------|
-| `--vendor` | `-v` | CLI 벤더 오버라이드. `gemini`, `claude`, `codex`, `qwen` 중 하나여야 합니다. 모든 설정 기반 벤더 해석을 오버라이드합니다. | 설정에서 해석 |
+| `--model` | `-m` | CLI 벤더 오버라이드. `gemini`, `claude`, `codex`, `qwen` 중 하나여야 합니다. 모든 설정 기반 벤더 해석을 오버라이드합니다. | 설정에서 해석 |
 | `--workspace` | `-w` | 에이전트의 작업 디렉토리. 생략하거나 `.`로 설정하면 CLI가 모노레포 설정 파일(pnpm-workspace.yaml, package.json, lerna.json, nx.json, turbo.json, mise.toml)에서 워크스페이스를 자동 감지합니다. | 자동 감지 또는 `.` |
 
 **유효성 검사:**
@@ -196,12 +196,12 @@ oma agent:status <session-id> [agent-ids...] [-r <root>]
 ### agent:parallel
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 | 플래그 | 축약 | 설명 | 기본값 |
 |:-------|:-----|:-----|:-------|
-| `--vendor` | `-v` | 모든 생성된 에이전트에 적용되는 CLI 벤더 오버라이드. | 설정에서 에이전트별로 해석 |
+| `--model` | `-m` | 모든 생성된 에이전트에 적용되는 CLI 벤더 오버라이드. | 설정에서 에이전트별로 해석 |
 | `--inline` | `-i` | 태스크 인자를 파일 경로가 아닌 `agent:task[:workspace]` 문자열로 해석합니다. | `false` |
 | `--no-wait` | | 백그라운드 모드. 모든 에이전트를 시작하고 완료를 기다리지 않고 즉시 반환합니다. PID 목록과 로그는 `.agents/results/parallel-{timestamp}/`에 저장됩니다. | `false` (완료 대기) |
 

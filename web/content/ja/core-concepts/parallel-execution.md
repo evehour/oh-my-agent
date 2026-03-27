@@ -30,7 +30,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [options]
 | フラグ | 短縮形 | 説明 |
 |------|-------|-------------|
 | `--workspace <path>` | `-w` | エージェントの作業ディレクトリ。このディレクトリ内のファイルのみ変更。 |
-| `--vendor <name>` | `-v` | CLIベンダーオーバーライド。選択肢：`gemini`、`claude`、`codex`、`qwen`。 |
+| `--model <name>` | `-m` | CLIベンダーオーバーライド。選択肢：`gemini`、`claude`、`codex`、`qwen`。 |
 | `--max-turns <n>` | `-t` | デフォルトターン制限をオーバーライド。 |
 | `--json` | | 結果をJSONで出力。 |
 | `--no-wait` | | 完了を待たずに即座にリターン。 |
@@ -45,7 +45,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # ベンダーオーバーライド
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # 高いターン制限
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -133,7 +133,7 @@ agent_cli_mapping:
 
 | 優先度 | ソース | 例 |
 |----------|--------|---------|
-| 1（最高） | `--vendor`フラグ | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1（最高） | `--model`フラグ | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | user-preferences.yamlの設定 |
 | 3 | `default_cli` | user-preferences.yamlの設定 |
 | 4 | `active_vendor` | レガシー`cli-config.yaml` |

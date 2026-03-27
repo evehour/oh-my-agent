@@ -95,12 +95,12 @@ oma agent:spawn backend "Implement user auth API with JWT" session-20260324-1430
 
 | 플래그 | 설명 |
 |:-------|:-----|
-| `-v, --vendor <vendor>` | CLI 벤더 오버라이드 (gemini/claude/codex/qwen). 모든 설정을 오버라이드. |
+| `-m, --model <vendor>` | CLI 벤더 오버라이드 (gemini/claude/codex/qwen). 모든 설정을 오버라이드. |
 | `-w, --workspace <path>` | 에이전트의 작업 디렉토리. 생략 시 모노레포 설정에서 자동 감지. |
 
 **벤더 해석 순서** (첫 번째 매치 사용):
 
-1. 커맨드 라인의 `--vendor` 플래그
+1. 커맨드 라인의 `--model` 플래그
 2. `user-preferences.yaml`의 해당 에이전트 타입에 대한 `agent_cli_mapping`
 3. `user-preferences.yaml`의 `default_cli`
 4. `cli-config.yaml`의 `active_vendor`
@@ -248,7 +248,7 @@ ultrawork 워크플로우에서 이러한 조건은 진행 전 모든 항목이 
 oma agent:spawn backend "Implement /api/users CRUD endpoint per API contract" session-20260324-143000
 
 # Claude로 프론트엔드 에이전트 생성, 명시적 워크스페이스
-oma agent:spawn frontend "Build user dashboard with React" session-20260324-143000 -v claude -w ./apps/web
+oma agent:spawn frontend "Build user dashboard with React" session-20260324-143000 -m claude -w ./apps/web
 
 # 프롬프트 파일에서 생성
 oma agent:spawn backend ./prompts/auth-api.md session-20260324-143000 -w ./api
@@ -295,7 +295,7 @@ oma agent:parallel tasks.yaml --no-wait
 벤더 오버라이드:
 
 ```bash
-oma agent:parallel tasks.yaml -v claude
+oma agent:parallel tasks.yaml -m claude
 ```
 
 ---

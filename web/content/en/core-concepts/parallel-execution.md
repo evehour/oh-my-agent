@@ -31,7 +31,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [options]
 | Flag | Short | Description |
 |------|-------|-------------|
 | `--workspace <path>` | `-w` | Working directory for the agent. Agents only modify files within this directory. |
-| `--vendor <name>` | `-v` | Override CLI vendor for this specific spawn. Options: `gemini`, `claude`, `codex`, `qwen`. |
+| `--model <name>` | `-m` | Override CLI vendor for this specific spawn. Options: `gemini`, `claude`, `codex`, `qwen`. |
 | `--max-turns <n>` | `-t` | Override default turn limit for this agent. |
 | `--json` | | Output result as JSON (useful for scripting). |
 | `--no-wait` | | Fire and forget — return immediately without waiting for completion. |
@@ -46,7 +46,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # Override vendor for this specific agent
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # Set a higher turn limit for a complex task
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -162,13 +162,13 @@ When `oma agent:spawn` determines which CLI to use, it follows this priority (hi
 
 | Priority | Source | Example |
 |----------|--------|---------|
-| 1 (highest) | `--vendor` flag | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1 (highest) | `--model` flag | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in user-preferences.yaml |
 | 3 | `default_cli` | `default_cli: gemini` in user-preferences.yaml |
 | 4 | `active_vendor` | Legacy `cli-config.yaml` setting |
 | 5 (lowest) | Hardcoded fallback | `gemini` |
 
-This means a `--vendor` flag always wins. If no flag is provided, the system checks agent-specific mapping, then the default, then legacy config, and finally falls back to Gemini.
+This means a `--model` flag always wins. If no flag is provided, the system checks agent-specific mapping, then the default, then legacy config, and finally falls back to Gemini.
 
 ---
 

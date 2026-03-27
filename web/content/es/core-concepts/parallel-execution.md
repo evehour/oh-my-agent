@@ -31,7 +31,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [opciones]
 | Flag | Corto | Descripción |
 |------|-------|-------------|
 | `--workspace <path>` | `-w` | Directorio de trabajo para el agente. Los agentes solo modifican archivos dentro de este directorio. |
-| `--vendor <name>` | `-v` | Sobrescribir proveedor CLI para esta generación específica. Opciones: `gemini`, `claude`, `codex`, `qwen`. |
+| `--model <name>` | `-m` | Sobrescribir proveedor CLI para esta generación específica. Opciones: `gemini`, `claude`, `codex`, `qwen`. |
 | `--max-turns <n>` | `-t` | Sobrescribir límite de turnos por defecto para este agente. |
 | `--json` | | Salida del resultado como JSON (útil para scripting). |
 | `--no-wait` | | Disparar y olvidar — retorna inmediatamente sin esperar completación. |
@@ -46,7 +46,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # Sobrescribir proveedor para este agente específico
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # Establecer un límite de turnos más alto para una tarea compleja
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -162,13 +162,13 @@ Cuando `oma agent:spawn` determina qué CLI usar, sigue esta prioridad (el más 
 
 | Prioridad | Fuente | Ejemplo |
 |-----------|--------|---------|
-| 1 (más alta) | flag `--vendor` | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1 (más alta) | flag `--model` | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` en user-preferences.yaml |
 | 3 | `default_cli` | `default_cli: gemini` en user-preferences.yaml |
 | 4 | `active_vendor` | Configuración legacy en `cli-config.yaml` |
 | 5 (más baja) | Respaldo fijo | `gemini` |
 
-Esto significa que un flag `--vendor` siempre gana. Si no se proporciona flag, el sistema verifica el mapeo específico del agente, luego el predeterminado, luego la configuración legacy, y finalmente recurre a Gemini.
+Esto significa que un flag `--model` siempre gana. Si no se proporciona flag, el sistema verifica el mapeo específico del agente, luego el predeterminado, luego la configuración legacy, y finalmente recurre a Gemini.
 
 ---
 

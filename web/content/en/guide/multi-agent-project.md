@@ -95,12 +95,12 @@ oma agent:spawn backend "Implement user auth API with JWT" session-20260324-1430
 
 | Flag | Description |
 |:-----|:-----------|
-| `-v, --vendor <vendor>` | CLI vendor override (gemini/claude/codex/qwen). Overrides all config. |
+| `-m, --model <vendor>` | CLI vendor override (gemini/claude/codex/qwen). Overrides all config. |
 | `-w, --workspace <path>` | Working directory for the agent. Auto-detected from monorepo config if omitted. |
 
 **Vendor resolution order** (first match wins):
 
-1. `--vendor` flag on the command line
+1. `--model` flag on the command line
 2. `agent_cli_mapping` in `user-preferences.yaml` for this specific agent type
 3. `default_cli` in `user-preferences.yaml`
 4. `active_vendor` in `cli-config.yaml`
@@ -248,7 +248,7 @@ In the ultrawork workflow, these translate into explicit **phase gates** (PLAN_G
 oma agent:spawn backend "Implement /api/users CRUD endpoint per API contract" session-20260324-143000
 
 # Spawn frontend agent with Claude, explicit workspace
-oma agent:spawn frontend "Build user dashboard with React" session-20260324-143000 -v claude -w ./apps/web
+oma agent:spawn frontend "Build user dashboard with React" session-20260324-143000 -m claude -w ./apps/web
 
 # Spawn from a prompt file
 oma agent:spawn backend ./prompts/auth-api.md session-20260324-143000 -w ./api
@@ -295,7 +295,7 @@ oma agent:parallel tasks.yaml --no-wait
 With vendor override:
 
 ```bash
-oma agent:parallel tasks.yaml -v claude
+oma agent:parallel tasks.yaml -m claude
 ```
 
 ---

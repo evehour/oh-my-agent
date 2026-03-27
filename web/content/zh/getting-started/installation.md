@@ -266,7 +266,7 @@ agent_cli_mapping:
 
 启动智能体时，CLI 供应商按以下优先级顺序确定（从高到低）：
 
-1. 传递给 `oma agent:spawn` 的 `--vendor` 参数
+1. 传递给 `oma agent:spawn` 的 `--model` 参数
 2. `user-preferences.yaml` 中该特定智能体的 `agent_cli_mapping` 条目
 3. `user-preferences.yaml` 中的 `default_cli` 设置
 4. `cli-config.yaml` 中的 `active_vendor`（旧版回退）

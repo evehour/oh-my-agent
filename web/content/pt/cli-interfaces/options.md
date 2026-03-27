@@ -154,12 +154,12 @@ oma usage:anti [--json] [--output <format>] [--raw]
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | Flag | Curta | Descrição | Padrão |
 |:-----|:------|:----------|:-------|
-| `--vendor` | `-v` | Sobrescrita de vendor CLI. Deve ser um de: `gemini`, `claude`, `codex`, `qwen`. Sobrescreve toda resolução de vendor baseada em config. | Resolvido da config |
+| `--model` | `-m` | Sobrescrita de vendor CLI. Deve ser um de: `gemini`, `claude`, `codex`, `qwen`. Sobrescreve toda resolução de vendor baseada em config. | Resolvido da config |
 | `--workspace` | `-w` | Diretório de trabalho para o agente. Se omitido ou definido como `.`, o CLI auto-detecta o workspace de arquivos de configuração monorepo. | Auto-detectado ou `.` |
 
 **Validação:**
@@ -194,12 +194,12 @@ oma agent:status <session-id> [agent-ids...] [-r <root>]
 ### agent:parallel
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 | Flag | Curta | Descrição | Padrão |
 |:-----|:------|:----------|:-------|
-| `--vendor` | `-v` | Sobrescrita de vendor CLI aplicada a todos os agentes spawnados. | Resolvido por agente da config |
+| `--model` | `-m` | Sobrescrita de vendor CLI aplicada a todos os agentes spawnados. | Resolvido por agente da config |
 | `--inline` | `-i` | Interpretar argumentos de tarefa como strings `agent:task[:workspace]` em vez de caminho de arquivo. | `false` |
 | `--no-wait` | | Modo background. Inicia todos os agentes e retorna imediatamente sem esperar conclusão. Lista de PIDs e logs são salvos em `.agents/results/parallel-{timestamp}/`. | `false` (espera conclusão) |
 

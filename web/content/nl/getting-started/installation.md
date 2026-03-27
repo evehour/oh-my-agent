@@ -266,7 +266,7 @@ agent_cli_mapping:
 
 Bij het spawnen van een agent wordt de CLI-leverancier bepaald door deze prioriteitsvolgorde (hoogste eerst):
 
-1. `--vendor`-vlag meegegeven aan `oma agent:spawn`
+1. `--model`-vlag meegegeven aan `oma agent:spawn`
 2. `agent_cli_mapping`-vermelding voor die specifieke agent in `user-preferences.yaml`
 3. `default_cli`-instelling in `user-preferences.yaml`
 4. `active_vendor` in `cli-config.yaml` (legacy fallback)

@@ -103,7 +103,7 @@ oma update [-f | --force] [--ci]
 
 | Vlag | Beschrijving | Standaard |
 |:-----|:-----------|:--------|
-| `--vendor` / `-v` | CLI-leverancier: `gemini`, `claude`, `codex`, `qwen` | Uit config |
+| `--model` / `-m` | CLI-leverancier: `gemini`, `claude`, `codex`, `qwen` | Uit config |
 | `--workspace` / `-w` | Werkdirectory. Auto-gedetecteerd uit monorepo-config indien weggelaten. | Auto of `.` |
 
 **Leverancierspecifiek gedrag:**
@@ -127,7 +127,7 @@ oma update [-f | --force] [--ci]
 
 | Vlag | Beschrijving |
 |:-----|:-----------|
-| `--vendor` / `-v` | CLI-leverancier voor alle agenten |
+| `--model` / `-m` | CLI-leverancier voor alle agenten |
 | `--inline` / `-i` | Inline modus: `agent:task[:workspace]` |
 | `--no-wait` | Achtergrondmodus — start en keer onmiddellijk terug |
 

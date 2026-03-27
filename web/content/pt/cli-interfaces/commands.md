@@ -190,7 +190,7 @@ oma retro [window] [--json] [--output <format>] [--interactive] [--compare]
 Spawnar um processo de subagente.
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 **Argumentos:**
@@ -205,7 +205,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | Flag | Descrição |
 |:-----|:-----------|
-| `-v, --vendor <vendor>` | Sobrescrita de vendor CLI: `gemini`, `claude`, `codex`, `qwen` |
+| `-m, --model <vendor>` | Sobrescrita de vendor CLI: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | Diretório de trabalho para o agente. Auto-detectado de config monorepo se omitido. |
 
 **Exemplos:**
@@ -217,7 +217,7 @@ oma agent:spawn backend "Implement /api/users CRUD endpoint" session-20260324-14
 oma agent:spawn frontend ./prompts/dashboard.md session-20260324-143000 -w ./apps/web
 
 # Sobrescrever vendor para Claude
-oma agent:spawn backend "Implement auth" session-20260324-143000 -v claude -w ./api
+oma agent:spawn backend "Implement auth" session-20260324-143000 -m claude -w ./api
 ```
 
 ### agent:status
@@ -240,14 +240,14 @@ oma agent:status <session-id> [agent-ids...] [-r <root>]
 Executar múltiplos subagentes em paralelo.
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 **Opções:**
 
 | Flag | Descrição |
 |:-----|:-----------|
-| `-v, --vendor <vendor>` | Sobrescrita de vendor CLI para todos os agentes |
+| `-m, --model <vendor>` | Sobrescrita de vendor CLI para todos os agentes |
 | `-i, --inline` | Modo inline: especificar tarefas como argumentos `agent:task[:workspace]` |
 | `--no-wait` | Modo background — iniciar agentes e retornar imediatamente |
 
@@ -274,7 +274,7 @@ oma agent:parallel --inline "backend:Implement auth API:./api" "frontend:Build l
 oma agent:parallel tasks.yaml --no-wait
 
 # Sobrescrever vendor para todos os agentes
-oma agent:parallel tasks.yaml -v claude
+oma agent:parallel tasks.yaml -m claude
 ```
 
 ---

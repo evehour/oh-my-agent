@@ -87,7 +87,7 @@ Engineering retrospectief. Vensterformaat: `7d`, `2w`, `1m`. Toont samenvatting,
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | Argument | Vereist | Beschrijving |
@@ -98,7 +98,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | Vlag | Beschrijving |
 |:-----|:-----------|
-| `-v, --vendor` | CLI-leverancier: `gemini`, `claude`, `codex`, `qwen` |
+| `-m, --model` | CLI-leverancier: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace` | Werkdirectory (auto-gedetecteerd uit monorepo-config indien weggelaten) |
 
 ### agent:status
@@ -112,7 +112,7 @@ Uitvoerformaat: een regel per agent: `{agent-id}:{status}` (completed/running/cr
 ### agent:parallel
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 YAML-takenbestand of inline modus (`agent:task[:workspace]`).

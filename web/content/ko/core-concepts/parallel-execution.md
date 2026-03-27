@@ -31,7 +31,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [options]
 | 플래그 | 단축 | 설명 |
 |------|-------|-------------|
 | `--workspace <path>` | `-w` | 에이전트의 작업 디렉토리. 에이전트는 이 디렉토리 내의 파일만 수정합니다. |
-| `--vendor <name>` | `-v` | 이 스폰에 대한 CLI 벤더 오버라이드. 옵션: `gemini`, `claude`, `codex`, `qwen`. |
+| `--model <name>` | `-m` | 이 스폰에 대한 CLI 벤더 오버라이드. 옵션: `gemini`, `claude`, `codex`, `qwen`. |
 | `--max-turns <n>` | `-t` | 이 에이전트의 기본 턴 제한 오버라이드. |
 | `--json` | | 결과를 JSON으로 출력 (스크립팅에 유용). |
 | `--no-wait` | | 완료를 기다리지 않고 즉시 반환. |
@@ -46,7 +46,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # 이 특정 에이전트에 대해 벤더 오버라이드
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # 복잡한 태스크를 위해 턴 제한 상향
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -162,13 +162,13 @@ agent_cli_mapping:
 
 | 우선순위 | 소스 | 예시 |
 |----------|--------|---------|
-| 1 (최고) | `--vendor` 플래그 | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1 (최고) | `--model` 플래그 | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | user-preferences.yaml의 `agent_cli_mapping.backend: gemini` |
 | 3 | `default_cli` | user-preferences.yaml의 `default_cli: gemini` |
 | 4 | `active_vendor` | 레거시 `cli-config.yaml` 설정 |
 | 5 (최저) | 하드코딩된 폴백 | `gemini` |
 
-`--vendor` 플래그가 항상 우선합니다. 플래그가 없으면 에이전트별 매핑, 기본값, 레거시 설정, Gemini 폴백 순으로 확인합니다.
+`--model` 플래그가 항상 우선합니다. 플래그가 없으면 에이전트별 매핑, 기본값, 레거시 설정, Gemini 폴백 순으로 확인합니다.
 
 ---
 

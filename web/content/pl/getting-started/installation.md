@@ -266,7 +266,7 @@ agent_cli_mapping:
 
 Przy uruchamianiu agenta, dostawca CLI jest określany według tego priorytetu (od najwyższego):
 
-1. Flaga `--vendor` przekazana do `oma agent:spawn`
+1. Flaga `--model` przekazana do `oma agent:spawn`
 2. Wpis `agent_cli_mapping` dla konkretnego agenta w `user-preferences.yaml`
 3. Ustawienie `default_cli` w `user-preferences.yaml`
 4. `active_vendor` w `cli-config.yaml` (awaryjne zachowanie wsteczne)

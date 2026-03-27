@@ -88,7 +88,7 @@ Opcje: `--interactive` (ręczne wpisy), `--compare` (porównanie z poprzednim ok
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | Argument | Wymagany | Opis |
@@ -97,7 +97,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 | `prompt` | Tak | Opis zadania. Tekst inline lub ścieżka do pliku. |
 | `session-id` | Tak | Identyfikator sesji (format: `session-YYYYMMDD-HHMMSS`) |
 
-Opcje: `-v, --vendor` (nadpisanie dostawcy), `-w, --workspace` (katalog roboczy, auto-wykrywany z konfiguracji monorepo).
+Opcje: `-m, --model` (nadpisanie dostawcy), `-w, --workspace` (katalog roboczy, auto-wykrywany z konfiguracji monorepo).
 
 ### agent:status
 
@@ -110,7 +110,7 @@ Statusy: `completed`, `running`, `crashed`. Wyjście: `{agent-id}:{status}` per 
 ### agent:parallel
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 Tryb inline: `agent:task[:workspace]`. Tryb YAML: plik z kluczem `tasks`. Tryb `--no-wait`: uruchom i powróć natychmiast.

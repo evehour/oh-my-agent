@@ -94,7 +94,7 @@ oma retro [window] [--json] [--output <format>] [--interactive] [--compare]
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | 引数 | 必須 | 説明 |
@@ -105,7 +105,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | フラグ | 説明 |
 |:-----|:-----------|
-| `-v, --vendor` | CLIベンダーオーバーライド |
+| `-m, --model` | CLIベンダーオーバーライド |
 | `-w, --workspace` | 作業ディレクトリ |
 
 ### agent:status
@@ -119,7 +119,7 @@ oma agent:status <session-id> [agent-ids...] [-r <root>]
 ### agent:parallel
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 YAML形式またはインライン（`agent:task[:workspace]`）でタスク指定。`--no-wait`でバックグラウンド実行。

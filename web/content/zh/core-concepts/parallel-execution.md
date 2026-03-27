@@ -31,7 +31,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [options]
 | 标志 | 缩写 | 说明 |
 |------|------|------|
 | `--workspace <path>` | `-w` | 智能体的工作目录。智能体只修改此目录内的文件。 |
-| `--vendor <name>` | `-v` | 覆盖此次启动的 CLI 供应商。选项：`gemini`、`claude`、`codex`、`qwen`。 |
+| `--model <name>` | `-m` | 覆盖此次启动的 CLI 供应商。选项：`gemini`、`claude`、`codex`、`qwen`。 |
 | `--max-turns <n>` | `-t` | 覆盖此智能体的默认轮次限制。 |
 | `--json` | | 以 JSON 格式输出结果（适用于脚本化场景）。 |
 | `--no-wait` | | 即发即忘 —— 立即返回，不等待完成。 |
@@ -46,7 +46,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # 为此特定智能体覆盖供应商
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # 为复杂任务设置更高的轮次限制
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -162,13 +162,13 @@ agent_cli_mapping:
 
 | 优先级 | 来源 | 示例 |
 |--------|------|------|
-| 1（最高） | `--vendor` 标志 | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1（最高） | `--model` 标志 | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | user-preferences.yaml 中的 `agent_cli_mapping.backend: gemini` |
 | 3 | `default_cli` | user-preferences.yaml 中的 `default_cli: gemini` |
 | 4 | `active_vendor` | 旧版 `cli-config.yaml` 设置 |
 | 5（最低） | 硬编码回退 | `gemini` |
 
-这意味着 `--vendor` 标志始终优先。如果未提供标志，系统依次检查智能体特定映射、默认值、旧版配置，最后回退到 Gemini。
+这意味着 `--model` 标志始终优先。如果未提供标志，系统依次检查智能体特定映射、默认值、旧版配置，最后回退到 Gemini。
 
 ---
 

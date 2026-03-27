@@ -154,12 +154,12 @@ oma usage:anti [--json] [--output <format>] [--raw]
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | Flag | Short | Description | Default |
 |:-----|:------|:-----------|:--------|
-| `--vendor` | `-v` | CLI vendor override. Must be one of: `gemini`, `claude`, `codex`, `qwen`. Overrides all config-based vendor resolution. | Resolved from config |
+| `--model` | `-m` | CLI vendor override. Must be one of: `gemini`, `claude`, `codex`, `qwen`. Overrides all config-based vendor resolution. | Resolved from config |
 | `--workspace` | `-w` | Working directory for the agent. If omitted or set to `.`, the CLI auto-detects the workspace from monorepo configuration files (pnpm-workspace.yaml, package.json, lerna.json, nx.json, turbo.json, mise.toml). | Auto-detected or `.` |
 
 **Validation:**
@@ -196,12 +196,12 @@ oma agent:status <session-id> [agent-ids...] [-r <root>]
 ### agent:parallel
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 | Flag | Short | Description | Default |
 |:-----|:------|:-----------|:--------|
-| `--vendor` | `-v` | CLI vendor override applied to all spawned agents. | Resolved per-agent from config |
+| `--model` | `-m` | CLI vendor override applied to all spawned agents. | Resolved per-agent from config |
 | `--inline` | `-i` | Interpret task arguments as `agent:task[:workspace]` strings instead of a file path. | `false` |
 | `--no-wait` | | Background mode. Starts all agents and returns immediately without waiting for completion. PID list and logs are saved to `.agents/results/parallel-{timestamp}/`. | `false` (waits for completion) |
 

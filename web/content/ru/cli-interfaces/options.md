@@ -119,12 +119,12 @@ oma cleanup [--dry-run] [-y | --yes] [--json]
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | Флаг | Описание |
 |------|---------|
-| `--vendor` / `-v` | Переопределение вендора: `gemini`, `claude`, `codex`, `qwen` |
+| `--model` / `-m` | Переопределение вендора: `gemini`, `claude`, `codex`, `qwen` |
 | `--workspace` / `-w` | Рабочая директория. Автоопределение из конфигов монорепозитория |
 
 **Валидация:** `agent-id` из списка, `session-id` без `..`, `?`, `#`, `%`, управляющих символов.
@@ -152,7 +152,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | Флаг | Описание |
 |------|---------|
-| `--vendor` / `-v` | Вендор для всех агентов |
+| `--model` / `-m` | Вендор для всех агентов |
 | `--inline` / `-i` | Инлайн-формат `agent:task[:workspace]` |
 | `--no-wait` | Фоновый режим — запуск без ожидания |
 

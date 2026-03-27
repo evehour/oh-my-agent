@@ -270,7 +270,7 @@ oma retro 7d --json
 서브에이전트 프로세스를 생성합니다.
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 **인자:**
@@ -285,10 +285,10 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | 플래그 | 설명 |
 |:-------|:-----|
-| `-v, --vendor <vendor>` | CLI 벤더 오버라이드: `gemini`, `claude`, `codex`, `qwen` |
+| `-m, --model <vendor>` | CLI 벤더 오버라이드: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | 에이전트의 작업 디렉토리. 생략 시 모노레포 설정에서 자동 감지. |
 
-**벤더 해석 순서:** `--vendor` 플래그 > user-preferences.yaml의 `agent_cli_mapping` > `default_cli` > cli-config.yaml의 `active_vendor` > `gemini`.
+**벤더 해석 순서:** `--model` 플래그 > user-preferences.yaml의 `agent_cli_mapping` > `default_cli` > cli-config.yaml의 `active_vendor` > `gemini`.
 
 **프롬프트 해석:** 프롬프트 인자가 기존 파일의 경로이면 파일 내용이 프롬프트로 사용됩니다. 그렇지 않으면 인자가 인라인 텍스트로 사용됩니다. 벤더별 실행 프로토콜이 자동으로 추가됩니다.
 
@@ -301,7 +301,7 @@ oma agent:spawn backend "Implement /api/users CRUD endpoint" session-20260324-14
 oma agent:spawn frontend ./prompts/dashboard.md session-20260324-143000 -w ./apps/web
 
 # 벤더를 Claude로 오버라이드
-oma agent:spawn backend "Implement auth" session-20260324-143000 -v claude -w ./api
+oma agent:spawn backend "Implement auth" session-20260324-143000 -m claude -w ./api
 
 # 워크스페이스 자동 감지 모바일 에이전트
 oma agent:spawn mobile "Add biometric login" session-20260324-143000
@@ -353,7 +353,7 @@ oma agent:status session-20260324-143000 qa -r /path/to/project
 여러 서브에이전트를 병렬로 실행합니다.
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 **인자:**
@@ -366,7 +366,7 @@ oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
 
 | 플래그 | 설명 |
 |:-------|:-----|
-| `-v, --vendor <vendor>` | 모든 에이전트에 대한 CLI 벤더 오버라이드 |
+| `-m, --model <vendor>` | 모든 에이전트에 대한 CLI 벤더 오버라이드 |
 | `-i, --inline` | 인라인 모드: 태스크를 `agent:task[:workspace]` 인자로 지정 |
 | `--no-wait` | 백그라운드 모드 — 에이전트를 시작하고 즉시 반환 |
 
@@ -397,7 +397,7 @@ oma agent:parallel --inline "backend:Implement auth API:./api" "frontend:Build l
 oma agent:parallel tasks.yaml --no-wait
 
 # 모든 에이전트에 벤더 오버라이드
-oma agent:parallel tasks.yaml -v claude
+oma agent:parallel tasks.yaml -m claude
 ```
 
 ---

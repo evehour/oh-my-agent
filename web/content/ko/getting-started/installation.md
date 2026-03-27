@@ -266,7 +266,7 @@ agent_cli_mapping:
 
 에이전트를 스폰할 때 CLI 벤더는 다음 우선순위 순서로 결정됩니다(높은 것이 우선):
 
-1. `oma agent:spawn`에 전달된 `--vendor` 플래그
+1. `oma agent:spawn`에 전달된 `--model` 플래그
 2. `user-preferences.yaml`의 해당 에이전트에 대한 `agent_cli_mapping` 항목
 3. `user-preferences.yaml`의 `default_cli` 설정
 4. `cli-config.yaml`의 `active_vendor` (레거시 폴백)

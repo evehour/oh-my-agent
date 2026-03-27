@@ -31,7 +31,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [opties]
 | Vlag | Kort | Beschrijving |
 |------|------|-------------|
 | `--workspace <pad>` | `-w` | Werkdirectory voor de agent. Agenten wijzigen alleen bestanden binnen deze directory. |
-| `--vendor <naam>` | `-v` | Overschrijf CLI-leverancier voor deze specifieke spawn. Opties: `gemini`, `claude`, `codex`, `qwen`. |
+| `--model <naam>` | `-m` | Overschrijf CLI-leverancier voor deze specifieke spawn. Opties: `gemini`, `claude`, `codex`, `qwen`. |
 | `--max-turns <n>` | `-t` | Overschrijf standaard beurtlimiet voor deze agent. |
 | `--json` | | Uitvoer als JSON (nuttig voor scripting). |
 | `--no-wait` | | Vuur en vergeet — keer onmiddellijk terug zonder te wachten op voltooiing. |
@@ -46,7 +46,7 @@ oma agent:spawn backend "Implement JWT authentication API with refresh tokens" s
 oma agent:spawn backend "Auth API + DB migration" session-01 -w ./apps/api
 
 # Overschrijf leverancier voor deze specifieke agent
-oma agent:spawn frontend "Build login form" session-01 -v claude -w ./apps/web
+oma agent:spawn frontend "Build login form" session-01 -m claude -w ./apps/web
 
 # Stel een hogere beurtlimiet in voor een complexe taak
 oma agent:spawn backend "Implement payment gateway integration" session-01 -t 30
@@ -139,7 +139,7 @@ agent_cli_mapping:
 
 | Prioriteit | Bron | Voorbeeld |
 |------------|------|---------|
-| 1 (hoogste) | `--vendor` vlag | `oma agent:spawn backend "task" session-01 -v claude` |
+| 1 (hoogste) | `--model` vlag | `oma agent:spawn backend "task" session-01 -m claude` |
 | 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in user-preferences.yaml |
 | 3 | `default_cli` | `default_cli: gemini` in user-preferences.yaml |
 | 4 | `active_vendor` | Legacy `cli-config.yaml` instelling |

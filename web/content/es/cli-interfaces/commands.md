@@ -270,7 +270,7 @@ oma retro 7d --json
 Spawn a subagent process.
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 **Arguments:**
@@ -285,10 +285,10 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
 
 | Flag | Description |
 |:-----|:-----------|
-| `-v, --vendor <vendor>` | CLI vendor override: `gemini`, `claude`, `codex`, `qwen` |
+| `-m, --model <vendor>` | CLI vendor override: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | Working directory for the agent. Auto-detected from monorepo config if omitted. |
 
-**Vendor resolution order:** `--vendor` flag > `agent_cli_mapping` in user-preferences.yaml > `default_cli` > `active_vendor` in cli-config.yaml > `gemini`.
+**Vendor resolution order:** `--model` flag > `agent_cli_mapping` in user-preferences.yaml > `default_cli` > `active_vendor` in cli-config.yaml > `gemini`.
 
 **Prompt resolution:** If the prompt argument is a path to an existing file, the file contents are used as the prompt. Otherwise, the argument is used as inline text. Vendor-specific execution protocols are appended automatically.
 
@@ -301,7 +301,7 @@ oma agent:spawn backend "Implement /api/users CRUD endpoint" session-20260324-14
 oma agent:spawn frontend ./prompts/dashboard.md session-20260324-143000 -w ./apps/web
 
 # Override vendor to Claude
-oma agent:spawn backend "Implement auth" session-20260324-143000 -v claude -w ./api
+oma agent:spawn backend "Implement auth" session-20260324-143000 -m claude -w ./api
 
 # Mobile agent with auto-detected workspace
 oma agent:spawn mobile "Add biometric login" session-20260324-143000
@@ -353,7 +353,7 @@ oma agent:status session-20260324-143000 qa -r /path/to/project
 Run multiple subagents in parallel.
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 **Arguments:**
@@ -366,7 +366,7 @@ oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
 
 | Flag | Description |
 |:-----|:-----------|
-| `-v, --vendor <vendor>` | CLI vendor override for all agents |
+| `-m, --model <vendor>` | CLI vendor override for all agents |
 | `-i, --inline` | Inline mode: specify tasks as `agent:task[:workspace]` arguments |
 | `--no-wait` | Background mode — start agents and return immediately |
 
@@ -397,7 +397,7 @@ oma agent:parallel --inline "backend:Implement auth API:./api" "frontend:Build l
 oma agent:parallel tasks.yaml --no-wait
 
 # Override vendor for all agents
-oma agent:parallel tasks.yaml -v claude
+oma agent:parallel tasks.yaml -m claude
 ```
 
 ---

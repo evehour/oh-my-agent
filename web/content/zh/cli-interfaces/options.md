@@ -154,12 +154,12 @@ oma usage:anti [--json] [--output <format>] [--raw]
 ### agent:spawn
 
 ```
-oma agent:spawn <agent-id> <prompt> <session-id> [-v <vendor>] [-w <workspace>]
+oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 ```
 
 | 标志 | 缩写 | 说明 | 默认值 |
 |:-----|:-----|:-----|:-------|
-| `--vendor` | `-v` | CLI 供应商覆盖。必须是：`gemini`、`claude`、`codex`、`qwen` 之一。覆盖所有基于配置的供应商解析。 | 从配置解析 |
+| `--model` | `-m` | CLI 供应商覆盖。必须是：`gemini`、`claude`、`codex`、`qwen` 之一。覆盖所有基于配置的供应商解析。 | 从配置解析 |
 | `--workspace` | `-w` | 智能体的工作目录。如果省略或设为 `.`，CLI 从 monorepo 配置文件自动检测工作区（pnpm-workspace.yaml、package.json、lerna.json、nx.json、turbo.json、mise.toml）。 | 自动检测或 `.` |
 
 **验证：**
@@ -196,12 +196,12 @@ oma agent:status <session-id> [agent-ids...] [-r <root>]
 ### agent:parallel
 
 ```
-oma agent:parallel [tasks...] [-v <vendor>] [-i | --inline] [--no-wait]
+oma agent:parallel [tasks...] [-m <vendor>] [-i | --inline] [--no-wait]
 ```
 
 | 标志 | 缩写 | 说明 | 默认值 |
 |:-----|:-----|:-----|:-------|
-| `--vendor` | `-v` | 应用于所有启动智能体的 CLI 供应商覆盖。 | 按智能体从配置解析 |
+| `--model` | `-m` | 应用于所有启动智能体的 CLI 供应商覆盖。 | 按智能体从配置解析 |
 | `--inline` | `-i` | 将任务参数解释为 `agent:task[:workspace]` 字符串而非文件路径。 | `false` |
 | `--no-wait` | | 后台模式。启动所有智能体后立即返回，不等待完成。PID 列表和日志保存到 `.agents/results/parallel-{timestamp}/`。 | `false`（等待完成） |
 

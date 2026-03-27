@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.12.1](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.12.0...cli-v4.12.1) (2026-03-27)
+
+
+### Miscellaneous
+
+* **main:** release web 0.3.9 ([0974500](https://github.com/first-fluke/oh-my-agent/commit/09745007a3c118ed5960242a6768563f46be6b89))
+
 ## [4.12.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.11.0...cli-v4.12.0) (2026-03-27)
 
 

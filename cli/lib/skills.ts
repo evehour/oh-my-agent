@@ -648,16 +648,17 @@ const OMA_START = "<!-- OMA:START";
 const OMA_END = "<!-- OMA:END -->";
 
 /**
- * Merge OMA instructions into the project's CLAUDE.md using markers.
+ * Merge OMA instructions into the user-level ~/.claude/CLAUDE.md using markers.
  * Preserves any user content outside the OMA block.
  * Source: .claude/CLAUDE.md.template (from downloaded repo)
  */
-function mergeClaudeMd(sourceDir: string, targetDir: string): void {
+function mergeClaudeMd(sourceDir: string): void {
   const templatePath = join(sourceDir, ".claude", "CLAUDE.md.template");
   if (!existsSync(templatePath)) return;
 
+  const homeDir = process.env.HOME || process.env.USERPROFILE || "";
   const omaBlock = readFileSync(templatePath, "utf-8").trim();
-  const claudeMdPath = join(targetDir, "CLAUDE.md");
+  const claudeMdPath = join(homeDir, ".claude", "CLAUDE.md");
 
   if (existsSync(claudeMdPath)) {
     const existing = readFileSync(claudeMdPath, "utf-8");
@@ -696,7 +697,7 @@ export function installVendorAdaptations(
         installClaudeAgents(agentsDir, targetDir);
         installClaudeWorkflowRouters(workflowsDir, targetDir);
         installClaudeHooks(sourceDir, targetDir);
-        mergeClaudeMd(sourceDir, targetDir);
+        mergeClaudeMd(sourceDir);
         break;
       case "codex":
         installCodexHooks(sourceDir, targetDir);

@@ -1,5 +1,5 @@
 import { execSync } from "node:child_process";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
@@ -114,6 +114,7 @@ async function checkGlobalWorkflows(): Promise<{
 
 export async function doctor(jsonMode = false): Promise<void> {
   const cwd = process.cwd();
+  const homeDir = process.env.HOME || process.env.USERPROFILE || "";
 
   const clis = await Promise.all([
     checkCLI("gemini", "gemini", "bun install --global @google/gemini-cli"),
@@ -154,6 +155,36 @@ export async function doctor(jsonMode = false): Promise<void> {
     rerereEnabled = val === "true";
   } catch {}
 
+  const hasClaude = clis.some((c) => c.name === "claude" && c.installed);
+  let recommendedSettingsOk = false;
+  let claudeMdOk = false;
+  const claudeSettingsPath = join(homeDir, ".claude", "settings.json");
+  const claudeMdPath = join(homeDir, ".claude", "CLAUDE.md");
+  if (hasClaude)
+    try {
+      if (existsSync(claudeSettingsPath)) {
+        const claudeSettings = JSON.parse(
+          readFileSync(claudeSettingsPath, "utf-8"),
+        );
+        recommendedSettingsOk =
+          (claudeSettings.env?.cleanupPeriodDays ?? 0) >= 180 &&
+          (claudeSettings.env?.CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS ?? 0) >=
+            100000 &&
+          (claudeSettings.env?.CLAUDE_AUTOCOMPACT_PCT_OVERRIDE ?? 0) >= 80 &&
+          !!claudeSettings.attribution?.commit &&
+          !!claudeSettings.attribution?.pr &&
+          claudeSettings.env?.DISABLE_TELEMETRY === "1" &&
+          claudeSettings.env?.DISABLE_ERROR_REPORTING === "1" &&
+          claudeSettings.env?.CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY === "1";
+      }
+    } catch {}
+  try {
+    if (existsSync(claudeMdPath)) {
+      const content = readFileSync(claudeMdPath, "utf-8");
+      claudeMdOk = content.includes("<!-- OMA:START");
+    }
+  } catch {}
+
   const serenaDir = join(cwd, ".serena", "memories");
   const hasSerena = existsSync(serenaDir);
   let serenaFileCount = 0;
@@ -177,7 +208,9 @@ export async function doctor(jsonMode = false): Promise<void> {
     missingCLIs.length +
     missingSkills.length +
     (globalWorkflows.installed ? 0 : 1) +
-    (rerereEnabled ? 0 : 1);
+    (rerereEnabled ? 0 : 1) +
+    (hasClaude && !recommendedSettingsOk ? 1 : 0) +
+    (hasClaude && !claudeMdOk ? 1 : 0);
 
   if (jsonMode) {
     const result = {
@@ -211,6 +244,8 @@ export async function doctor(jsonMode = false): Promise<void> {
       },
       serena: { exists: hasSerena, fileCount: serenaFileCount },
       gitRerere: { enabled: rerereEnabled },
+      recommendedSettings: { configured: recommendedSettingsOk },
+      claudeMd: { hasOmaBlock: claudeMdOk },
     };
     console.log(JSON.stringify(result, null, 2));
     process.exit(totalIssues === 0 ? 0 : 1);
@@ -417,6 +452,72 @@ export async function doctor(jsonMode = false): Promise<void> {
         p.note(
           `${pc.yellow("⚠️")} git rerere is not enabled\n${pc.dim("Run: git config --global rerere.enabled true")}`,
           "Git Config",
+        );
+      }
+    }
+
+    if (hasClaude) {
+      if (recommendedSettingsOk) {
+        p.note(
+          `${pc.green("✅")} Claude Code recommended settings applied`,
+          "Claude Config",
+        );
+      } else {
+        const shouldApply = await p.confirm({
+          message: "Apply recommended Claude Code settings?",
+          initialValue: true,
+        });
+
+        if (!p.isCancel(shouldApply) && shouldApply) {
+          try {
+            // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
+            let claudeSettings: any = {};
+            if (existsSync(claudeSettingsPath)) {
+              claudeSettings = JSON.parse(
+                readFileSync(claudeSettingsPath, "utf-8"),
+              );
+            }
+            claudeSettings.env = {
+              ...(claudeSettings.env || {}),
+              cleanupPeriodDays: 180,
+              CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS: 100000,
+              CLAUDE_AUTOCOMPACT_PCT_OVERRIDE: 80,
+              DISABLE_TELEMETRY: "1",
+              DISABLE_ERROR_REPORTING: "1",
+              CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY: "1",
+            };
+            claudeSettings.attribution = {
+              commit:
+                "Generated with oh-my-agent\n\nCo-Authored-By: First Fluke <our.first.fluke@gmail.com>",
+              pr: "Generated with [oh-my-agent](https://github.com/first-fluke/oh-my-agent)",
+            };
+            writeFileSync(
+              claudeSettingsPath,
+              `${JSON.stringify(claudeSettings, null, 2)}\n`,
+            );
+            p.log.success(
+              pc.green("Claude Code recommended settings applied!"),
+            );
+          } catch (err) {
+            p.log.error(`Failed to apply Claude Code settings: ${err}`);
+          }
+        } else {
+          p.note(
+            `${pc.yellow("⚠️")} Claude Code recommended settings not applied\n${pc.dim("Conversations are deleted after 30 days by default")}`,
+            "Claude Config",
+          );
+        }
+      }
+
+      if (claudeMdOk) {
+        p.note(
+          `${pc.green("✅")} OMA block found in ~/.claude/CLAUDE.md`,
+          "CLAUDE.md",
+        );
+      } else {
+        p.note(
+          `${pc.yellow("⚠️")} OMA block missing in ~/.claude/CLAUDE.md\n${pc.dim("Run 'oh-my-agent' to install or reinstall")}`,
+          "CLAUDE.md",
         );
       }
     }

@@ -242,6 +242,69 @@ export async function install(): Promise<void> {
 
     // --- MCP Configuration Setup ---
     const homeDir = process.env.HOME || process.env.USERPROFILE || "";
+
+    // --- Claude Code recommended settings ---
+    let hasClaude = false;
+    try {
+      execSync("claude --version", { stdio: "ignore" });
+      hasClaude = true;
+    } catch {}
+
+    const claudeSettingsPath = join(homeDir, ".claude", "settings.json");
+    if (hasClaude)
+      try {
+        // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
+        let claudeSettings: any = {};
+        if (existsSync(claudeSettingsPath)) {
+          claudeSettings = JSON.parse(
+            readFileSync(claudeSettingsPath, "utf-8"),
+          );
+        }
+
+        const needsClaudeSettings =
+          (claudeSettings.env?.cleanupPeriodDays ?? 0) < 180 ||
+          (claudeSettings.env?.CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS ?? 0) <
+            100000 ||
+          (claudeSettings.env?.CLAUDE_AUTOCOMPACT_PCT_OVERRIDE ?? 0) < 80 ||
+          !claudeSettings.attribution?.commit ||
+          !claudeSettings.attribution?.pr ||
+          claudeSettings.env?.DISABLE_TELEMETRY !== "1" ||
+          claudeSettings.env?.DISABLE_ERROR_REPORTING !== "1" ||
+          claudeSettings.env?.CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY !== "1";
+
+        if (needsClaudeSettings) {
+          const shouldApply = await p.confirm({
+            message: "Apply recommended Claude Code settings?",
+            initialValue: true,
+          });
+
+          if (!p.isCancel(shouldApply) && shouldApply) {
+            claudeSettings.env = {
+              ...(claudeSettings.env || {}),
+              cleanupPeriodDays: 180,
+              CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS: 100000,
+              CLAUDE_AUTOCOMPACT_PCT_OVERRIDE: 80,
+              DISABLE_TELEMETRY: "1",
+              DISABLE_ERROR_REPORTING: "1",
+              CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY: "1",
+            };
+            claudeSettings.attribution = {
+              commit:
+                "Generated with oh-my-agent\n\nCo-Authored-By: First Fluke <our.first.fluke@gmail.com>",
+              pr: "Generated with [oh-my-agent](https://github.com/first-fluke/oh-my-agent)",
+            };
+            writeFileSync(
+              claudeSettingsPath,
+              `${JSON.stringify(claudeSettings, null, 2)}\n`,
+            );
+            p.log.success(
+              pc.green("Claude Code recommended settings applied!"),
+            );
+          }
+        }
+      } catch (err) {
+        p.log.warn(`Could not configure Claude Code settings: ${err}`);
+      }
     const mcpConfigPath = join(
       homeDir,
       ".gemini",

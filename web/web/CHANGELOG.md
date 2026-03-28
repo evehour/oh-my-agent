@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.10](https://github.com/first-fluke/oh-my-agent/compare/web-v0.3.9...web-v0.3.10) (2026-03-28)
+
+
+### Documentation
+
+* review and improve translations across all 10 languages ([35eb06b](https://github.com/first-fluke/oh-my-agent/commit/35eb06b95d2252a4b8a653598fab330a9aa87ad1))
+
 ## [0.3.9](https://github.com/first-fluke/oh-my-agent/compare/web-v0.3.8...web-v0.3.9) (2026-03-27)
 
 

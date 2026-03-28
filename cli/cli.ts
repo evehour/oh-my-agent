@@ -592,15 +592,9 @@ program
 program
   .command("agent:review")
   .description("Run code review using external CLI (codex/claude/gemini)")
-  .option(
-    "-m, --model <vendor>",
-    "CLI vendor (codex/claude/gemini)",
-  )
+  .option("-m, --model <vendor>", "CLI vendor (codex/claude/gemini)")
   .option("-p, --prompt <prompt>", "Custom review prompt")
-  .option(
-    "-w, --workspace <path>",
-    "Working directory (default: current)",
-  )
+  .option("-w, --workspace <path>", "Working directory (default: current)")
   .option("--no-uncommitted", "Review committed changes only")
   .action(
     runAction(async (options) => {

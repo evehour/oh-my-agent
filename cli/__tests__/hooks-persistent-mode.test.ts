@@ -59,9 +59,7 @@ describe("persistent-mode", () => {
     });
 
     it("should return true for state exactly at 2 hours", () => {
-      const exactlyTwoHours = new Date(
-        Date.now() - 2 * 60 * 60 * 1000 - 1,
-      );
+      const exactlyTwoHours = new Date(Date.now() - 2 * 60 * 60 * 1000 - 1);
       const state: ModeState = {
         workflow: "orchestrate",
         sessionId: "test-session",

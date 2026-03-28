@@ -1,7 +1,4 @@
-import {
-  execSync,
-  spawn as spawnProcess,
-} from "node:child_process";
+import { execSync, spawn as spawnProcess } from "node:child_process";
 import fs from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -1200,7 +1197,10 @@ export async function reviewAgent(options: {
   const resolvedWorkspace = path.resolve(workspace);
 
   // Resolve vendor, falling back to codex if resolved vendor doesn't support review
-  const { vendor: resolvedVendor, config } = resolveVendor(agentId, options.model);
+  const { vendor: resolvedVendor, config } = resolveVendor(
+    agentId,
+    options.model,
+  );
   const vendor = REVIEW_SUPPORTED_VENDORS.includes(resolvedVendor)
     ? resolvedVendor
     : REVIEW_FALLBACK_VENDOR;
@@ -1230,7 +1230,9 @@ export async function reviewAgent(options: {
   console.log(color.dim(`  Session: ${sessionId}`));
   console.log(color.blue(`[${agentId}] Starting review...`));
   console.log(color.dim(`  Vendor: ${vendor}`));
-  console.log(color.dim(`  Command: ${command} ${args.slice(0, 2).join(" ")}...`));
+  console.log(
+    color.dim(`  Command: ${command} ${args.slice(0, 2).join(" ")}...`),
+  );
 
   const logStream = fs.openSync(logFile, "w");
 

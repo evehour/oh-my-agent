@@ -60,13 +60,13 @@ describe("keyword-detector", () => {
     it("should use word boundaries for non-CJK languages", () => {
       const keywords = { "*": ["debug"], en: ["fix bug"] };
       const patterns = buildPatterns(keywords, "en", ["ko", "ja", "zh"]);
-      expect(patterns[0]!.source).toContain("\\b");
+      expect(patterns[0]?.source).toContain("\\b");
     });
 
     it("should not use word boundaries for CJK languages", () => {
       const keywords = { ko: ["디버그"] };
       const patterns = buildPatterns(keywords, "ko", ["ko", "ja", "zh"]);
-      expect(patterns[0]!.source).not.toContain("\\b");
+      expect(patterns[0]?.source).not.toContain("\\b");
     });
 
     it("should return empty array when no keywords match language", () => {
@@ -242,12 +242,12 @@ describe("keyword-detector", () => {
   describe("DEACTIVATION_PHRASES", () => {
     it("should have English phrases", () => {
       expect(DEACTIVATION_PHRASES.en).toBeDefined();
-      expect(DEACTIVATION_PHRASES.en!.length).toBeGreaterThan(0);
+      expect(DEACTIVATION_PHRASES.en?.length).toBeGreaterThan(0);
     });
 
     it("should have Korean phrases", () => {
       expect(DEACTIVATION_PHRASES.ko).toBeDefined();
-      expect(DEACTIVATION_PHRASES.ko!.length).toBeGreaterThan(0);
+      expect(DEACTIVATION_PHRASES.ko?.length).toBeGreaterThan(0);
     });
 
     it("should cover all supported languages", () => {
@@ -266,7 +266,7 @@ describe("keyword-detector", () => {
       ];
       for (const lang of expectedLangs) {
         expect(DEACTIVATION_PHRASES[lang]).toBeDefined();
-        expect(DEACTIVATION_PHRASES[lang]!.length).toBeGreaterThan(0);
+        expect(DEACTIVATION_PHRASES[lang]?.length).toBeGreaterThan(0);
       }
     });
   });

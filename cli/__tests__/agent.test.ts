@@ -324,7 +324,7 @@ describe("agent command", () => {
 
       // Simulate non-zero exit
       expect(exitHandler).toBeDefined();
-      expect(() => exitHandler!(1)).toThrow("exit");
+      expect(() => exitHandler?.(1)).toThrow("exit");
 
       // Should have printed the log content
       expect(consoleSpy).toHaveBeenCalledWith(
@@ -623,7 +623,7 @@ describe("agent command", () => {
       await reviewAgent({ model: "codex", workspace: "/tmp" });
 
       expect(exitHandler).toBeDefined();
-      expect(() => exitHandler!(0)).toThrow("exit");
+      expect(() => exitHandler?.(0)).toThrow("exit");
 
       // Should print the review output even on success
       expect(consoleSpy).toHaveBeenCalledWith(

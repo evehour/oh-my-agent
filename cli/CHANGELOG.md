@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.15.2](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.15.1...cli-v4.15.2) (2026-03-29)
+
+
+### Refactoring
+
+* **skills:** remove hardcoded stack versions from oma-pm ([0f8d14e](https://github.com/first-fluke/oh-my-agent/commit/0f8d14eceac7bc9e21e0bfd149271f9444c6687a))
+
 ## [4.15.1](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.15.0...cli-v4.15.1) (2026-03-29)
 
 

@@ -8,11 +8,7 @@
 ```json
 {
   "project_name": "TODO App with JWT Auth",
-  "tech_stack": {
-    "frontend": "Next.js 16+ + TypeScript + TailwindCSS v4",
-    "backend": "FastAPI + PostgreSQL + Redis",
-    "testing": "pytest + Vitest + Playwright"
-  },
+  "tech_stack": "Resolve from each domain skill's resources/tech-stack.md at planning time",
   "tasks": [
     {
       "id": "task-1",

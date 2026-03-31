@@ -249,7 +249,6 @@ oma stats
 | `/debug` | 非持久化 | 结构化调试：复现、诊断、修复、回归测试、扫描 | 调查 bug 和错误 |
 | `/design` | 非持久化 | 7 阶段设计工作流，产出包含 token 的 DESIGN.md | 构建设计系统、着陆页、UI 重设计 |
 | `/commit` | 非持久化 | Conventional Commit，含自动类型/范围检测和功能拆分 | 完成代码变更后 |
-| `/setup` | 非持久化 | 交互式项目配置（语言、CLI、MCP） | 首次设置或重新配置 |
 | `/tools` | 非持久化 | MCP 工具可见性管理（启用/禁用组） | 控制智能体可用的 MCP 工具 |
 | `/stack-set` | 非持久化 | 自动检测项目技术栈并生成 backend 参考 | 设置语言特定的编码约定 |
 
@@ -419,9 +418,9 @@ oma dashboard:web
 | 自动检测触发了错误的工作流 | 关键词歧义 | 使用显式 `/command` 代替自然语言。报告误触发以改进。 |
 | 持久化工作流无法停止 | 状态文件仍然存在 | 在聊天中说 "workflow done"，或手动从 `.agents/state/` 删除状态文件 |
 | 智能体因 HIGH 澄清被阻塞 | 需求太模糊 | 提供智能体请求的具体答案，然后重新运行 |
-| MCP 工具不工作 | Serena 未配置或未运行 | 运行 `/setup` 步骤 3，使用 `oma doctor` 验证 MCP 配置 |
+| MCP 工具不工作 | Serena 未配置或未运行 | 使用 `oma doctor` 验证 MCP 配置 |
 | 智能体超出轮次限制 | 任务对默认轮次来说太复杂 | 使用 `-t 30` 标志增加轮次，或分解为更小的任务 |
-| 智能体使用了错误的 CLI | agent_cli_mapping 未配置 | 运行 `/setup` 步骤 4，或直接编辑 `user-preferences.yaml` |
+| 智能体使用了错误的 CLI | agent_cli_mapping 未配置 | 运行 `oma install` 进行配置，或直接编辑 `user-preferences.yaml` |
 
 ---
 

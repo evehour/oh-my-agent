@@ -63,7 +63,7 @@ bunx oh-my-agent
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Ваши настройки (создаётся через /setup)
+│   └── user-preferences.yaml      # Ваши настройки
 ├── skills/
 │   ├── _shared/                    # Общие ресурсы (устанавливаются всегда)
 │   │   ├── core/                   # skill-routing, context-loading и т.д.
@@ -185,41 +185,9 @@ bun install --global @qwen-code/qwen-code
 
 ---
 
-## Пост-установочная настройка: `/setup`
-
-После установки откройте проект в вашей ИИ-IDE и выполните команду `/setup`. Этот интерактивный рабочий процесс (определён в `.agents/workflows/setup.md`) проведёт вас через:
-
-### Шаг 1: Языковые настройки
-
-Устанавливает язык ответов для всех агентов и рабочих процессов. Поддерживаемые значения: `en`, `ko`, `ja`, `zh`, `es`, `fr`, `de`, `pt`, `ru`, `nl`, `pl`.
-
-### Шаг 2: Статус установки CLI
-
-Сканирует установленные CLI (`which gemini`, `which claude`, `which codex`) и отображает их версии. Предоставляет команды установки для отсутствующих CLI.
-
-### Шаг 3: Статус MCP-соединений
-
-Проверяет конфигурацию MCP-сервера для каждого CLI:
-- Gemini CLI: проверяет `~/.gemini/settings.json`
-- Claude CLI: проверяет `~/.claude.json` или `--mcp-config`
-- Codex CLI: проверяет `~/.codex/config.toml`
-- Antigravity IDE: проверяет `~/.gemini/antigravity/mcp_config.json`
-
-Предлагает настроить Serena MCP в режиме Command (простой, один процесс на сессию) или SSE (общий сервер, меньше памяти, требуется команда `oma bridge` для Antigravity).
-
-### Шаг 4: Маппинг агент-CLI
-
-Настраивает, какой CLI обрабатывает какого агента. Например, вы можете направить `frontend` и `qa` в Claude (лучше для рассуждений), а `backend` и `pm` — в Gemini (более быстрая генерация).
-
-### Шаг 5: Сводка
-
-Отображает полную конфигурацию и предлагает следующие шаги.
-
----
-
 ## user-preferences.yaml
 
-Рабочий процесс `/setup` создаёт `.agents/config/user-preferences.yaml`. Это центральный файл конфигурации для всего поведения oh-my-agent:
+Команда `oma install` создаёт `.agents/config/user-preferences.yaml`. Это центральный файл конфигурации для всего поведения oh-my-agent:
 
 ```yaml
 # Язык ответов для всех агентов и рабочих процессов

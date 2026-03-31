@@ -148,7 +148,6 @@ oma agent:spawn qa "Review notification feature across all platforms" session-no
 | `/debug` | Niet-persistent | Gestructureerd debuggen | Onderzoek van bugs en fouten |
 | `/design` | Niet-persistent | 7-fasen designworkflow met DESIGN.md | Designsystemen, landingspagina's |
 | `/commit` | Niet-persistent | Conventionele commit met auto type/scope-detectie | Na het voltooien van codewijzigingen |
-| `/setup` | Niet-persistent | Interactieve projectconfiguratie | Eerste setup of herconfiguratie |
 | `/tools` | Niet-persistent | MCP-toolzichtbaarheidsbeheer | MCP-tools beheren |
 | `/stack-set` | Niet-persistent | Auto-detectie tech stack en backend-referenties genereren | Taalspecifieke conventies instellen |
 

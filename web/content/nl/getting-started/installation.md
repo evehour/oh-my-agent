@@ -63,7 +63,7 @@ Na de installatie bevat je project:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Je voorkeuren (aangemaakt door /setup)
+│   └── user-preferences.yaml      # Je voorkeuren
 ├── skills/
 │   ├── _shared/                    # Gedeelde bronnen (altijd geinstalleerd)
 │   │   ├── core/                   # skill-routing, context-loading, etc.
@@ -185,41 +185,9 @@ Na installatie, voer `/auth` uit binnen de CLI om te authenticeren.
 
 ---
 
-## Post-Installatie Setup: `/setup`
-
-Na de installatie, open je project in je AI IDE en voer het `/setup`-commando uit. Deze interactieve workflow (gedefinieerd in `.agents/workflows/setup.md`) begeleidt je door:
-
-### Stap 1: Taalinstellingen
-
-Stelt de antwoordtaal in voor alle agenten en workflows. Ondersteunde waarden zijn onder andere: `en`, `ko`, `ja`, `zh`, `es`, `fr`, `de`, `pt`, `ru`, `nl`, `pl`.
-
-### Stap 2: CLI-Installatiestatus
-
-Scant naar geinstalleerde CLI's (`which gemini`, `which claude`, `which codex`) en toont hun versies. Biedt installatiecommando's voor ontbrekende CLI's.
-
-### Stap 3: MCP-Verbindingsstatus
-
-Verifieert MCP-serverconfiguratie voor elke CLI:
-- Gemini CLI: controleert `~/.gemini/settings.json`
-- Claude CLI: controleert `~/.claude.json` of `--mcp-config`
-- Codex CLI: controleert `~/.codex/config.toml`
-- Antigravity IDE: controleert `~/.gemini/antigravity/mcp_config.json`
-
-Biedt aan om Serena MCP te configureren in Command-modus (eenvoudig, een proces per sessie) of SSE-modus (gedeelde server, lager geheugengebruik, vereist het `oma bridge`-commando voor Antigravity).
-
-### Stap 4: Agent-CLI Mapping
-
-Configureert welke CLI welke agent afhandelt. Bijvoorbeeld, je zou `frontend` en `qa` naar Claude kunnen routeren (beter in redeneren) en `backend` en `pm` naar Gemini (snellere generatie).
-
-### Stap 5: Samenvatting
-
-Toont de volledige configuratie en stelt volgende stappen voor.
-
----
-
 ## user-preferences.yaml
 
-De `/setup`-workflow maakt `.agents/config/user-preferences.yaml` aan. Dit is het centrale configuratiebestand voor al het oh-my-agent gedrag:
+Het `oma install`-commando maakt `.agents/config/user-preferences.yaml` aan. Dit is het centrale configuratiebestand voor al het oh-my-agent gedrag:
 
 ```yaml
 # Antwoordtaal voor alle agenten en workflows

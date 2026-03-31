@@ -112,7 +112,7 @@ your-project/
 
 ### workflows/
 
-14 Markdown-файлов. Постоянные: `orchestrate.md`, `coordinate.md`, `ultrawork.md`. Непостоянные: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `setup.md`, `tools.md`, `stack-set.md`.
+14 Markdown-файлов. Постоянные: `orchestrate.md`, `coordinate.md`, `ultrawork.md`. Непостоянные: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `tools.md`, `stack-set.md`.
 
 ### agents/
 

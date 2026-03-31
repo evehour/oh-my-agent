@@ -305,18 +305,6 @@ Persistent workflows keep running until all tasks are done. They maintain state 
 
 ---
 
-### /setup
-
-**Description:** Interactive project configuration.
-
-**Trigger keywords:** None (excluded from auto-detection).
-
-**Steps:** Language settings -> CLI installation status check -> MCP connection status (Serena in Command or SSE mode) -> Agent-CLI mapping -> Summary -> Ask about starring repository.
-
-**Output:** `.agents/config/user-preferences.yaml`.
-
----
-
 ### /tools
 
 **Description:** Manage MCP tool visibility and restrictions.
@@ -396,7 +384,6 @@ If the input matches both a workflow keyword and an informational pattern, the i
 
 The following workflows are excluded from auto-detection and must be invoked with explicit `/command`:
 - `/commit`
-- `/setup`
 - `/tools`
 - `/stack-set`
 - `/exec-plan`
@@ -463,7 +450,7 @@ The workflow can also end naturally when all steps are completed and the final g
 
 ### New Codebase Setup
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → CLI and MCP configuration
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```
 
 ### Guaranteed Completion

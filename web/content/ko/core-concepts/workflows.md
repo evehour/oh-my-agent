@@ -297,18 +297,6 @@ description: oh-my-agent 15개 워크플로우 완전 레퍼런스 — 슬래시
 
 ---
 
-### /setup
-
-**설명:** 대화형 프로젝트 설정.
-
-**트리거 키워드:** 없음 (자동 감지에서 제외).
-
-**단계:** 언어 설정 -> CLI 설치 상태 확인 -> MCP 연결 상태(Serena Command 또는 SSE 모드) -> 에이전트-CLI 매핑 -> 요약 -> 리포지토리 스타 안내.
-
-**출력:** `.agents/config/user-preferences.yaml`.
-
----
-
 ### /tools
 
 **설명:** MCP 도구 가시성 및 제한 관리.
@@ -384,7 +372,7 @@ oh-my-agent는 각 사용자 메시지가 처리되기 전에 실행되는 `User
 
 ### 제외된 워크플로우
 
-자동 감지에서 제외되며 명시적 `/command`로만 호출: `/commit`, `/setup`, `/tools`, `/stack-set`, `/exec-plan`.
+자동 감지에서 제외되며 명시적 `/command`로만 호출: `/commit`, `/tools`, `/stack-set`, `/exec-plan`.
 
 ---
 
@@ -453,5 +441,5 @@ oh-my-agent는 각 사용자 메시지가 처리되기 전에 실행되는 `User
 
 ### 새 코드베이스 설정
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → CLI 및 MCP 설정
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```

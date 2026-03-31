@@ -840,11 +840,6 @@
       "size": 4827
     },
     {
-      "path": ".agents/workflows/setup.md",
-      "sha256": "9e14cc44ac8760cbc3b87cf53d0bb70683d06d8b1f434ca004580fc8bb89c9be",
-      "size": 8028
-    },
-    {
       "path": ".agents/workflows/stack-set.md",
       "sha256": "b5e33d0c7084e65f16c2fe4a5e9d00a1275eb8cb2720039c43aa91f7494adfda",
       "size": 2832
@@ -923,11 +918,6 @@
       "path": ".claude/skills/review/SKILL.md",
       "sha256": "b6019ea6fb17efc24afb51fc58ae966c36e427e842bf77d18c2864d09d422fb0",
       "size": 228
-    },
-    {
-      "path": ".claude/skills/setup/SKILL.md",
-      "sha256": "1f33ed785eaf7fe9c307558de8c12b3ede6a6b25b45072c9aeecfd861ee82084",
-      "size": 191
     },
     {
       "path": ".claude/skills/stack-set/SKILL.md",

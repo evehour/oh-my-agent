@@ -63,7 +63,7 @@ After installation, your project will contain:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Your preferences (created by /setup)
+│   └── user-preferences.yaml      # Your preferences
 ├── skills/
 │   ├── _shared/                    # Shared resources (always installed)
 │   │   ├── core/                   # skill-routing, context-loading, etc.
@@ -185,41 +185,9 @@ After install, run `/auth` inside the CLI to authenticate.
 
 ---
 
-## Post-Install Setup: `/setup`
-
-After installation, open your project in your AI IDE and run the `/setup` command. This interactive workflow (defined in `.agents/workflows/setup.md`) walks you through:
-
-### Step 1: Language Settings
-
-Sets the response language for all agents and workflows. Supported values include: `en`, `ko`, `ja`, `zh`, `es`, `fr`, `de`, `pt`, `ru`, `nl`, `pl`.
-
-### Step 2: CLI Installation Status
-
-Scans for installed CLIs (`which gemini`, `which claude`, `which codex`) and displays their versions. Provides install commands for any missing CLIs.
-
-### Step 3: MCP Connection Status
-
-Verifies MCP server configuration for each CLI:
-- Gemini CLI: checks `~/.gemini/settings.json`
-- Claude CLI: checks `~/.claude.json` or `--mcp-config`
-- Codex CLI: checks `~/.codex/config.toml`
-- Antigravity IDE: checks `~/.gemini/antigravity/mcp_config.json`
-
-Offers to configure Serena MCP in either Command mode (simple, one process per session) or SSE mode (shared server, lower memory, requires the `oma bridge` command for Antigravity).
-
-### Step 4: Agent-CLI Mapping
-
-Configures which CLI handles which agent. For example, you might route `frontend` and `qa` to Claude (better at reasoning) and `backend` and `pm` to Gemini (faster generation).
-
-### Step 5: Summary
-
-Displays the complete configuration and suggests next steps.
-
----
-
 ## user-preferences.yaml
 
-The `/setup` workflow creates `.agents/config/user-preferences.yaml`. This is the central configuration file for all oh-my-agent behavior:
+The `oma install` command creates `.agents/config/user-preferences.yaml`. This is the central configuration file for all oh-my-agent behavior:
 
 ```yaml
 # Response language for all agents and workflows

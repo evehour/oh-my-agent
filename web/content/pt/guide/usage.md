@@ -249,7 +249,6 @@ oma stats
 | `/debug` | Não-persistente | Debugging estruturado: reproduzir, diagnosticar, corrigir, teste de regressão, varredura | Investigando bugs e erros |
 | `/design` | Não-persistente | Workflow de design em 7 fases produzindo DESIGN.md com tokens | Construir sistemas de design, landing pages, redesigns de UI |
 | `/commit` | Não-persistente | Commit convencional com auto-detecção de tipo/escopo e divisão por funcionalidade | Após completar mudanças de código |
-| `/setup` | Não-persistente | Configuração interativa do projeto (idioma, CLI, MCP) | Setup inicial ou reconfiguração |
 | `/tools` | Não-persistente | Gerenciamento de visibilidade de ferramentas MCP (enable/disable grupos) | Controlar quais ferramentas MCP agentes podem usar |
 | `/stack-set` | Não-persistente | Auto-detectar stack tecnológico do projeto e gerar referências backend | Configurar convenções de codificação específicas de linguagem |
 
@@ -419,9 +418,9 @@ A flag `-w` em `agent:spawn` isola um agente em um diretório específico. Isso 
 | Auto-detecção aciona workflow errado | Ambiguidade de palavra-chave | Use `/command` explícito em vez de linguagem natural. Reporte falsos acionamentos para melhoria. |
 | Workflow persistente não para | Arquivo de estado ainda existe | Diga "workflow done" no chat, ou delete manualmente o arquivo de estado de `.agents/state/` |
 | Agente bloqueado em HIGH clarification | Requisitos muito ambíguos | Forneça as respostas específicas que o agente solicitou, depois re-execute |
-| Ferramentas MCP não funcionam | Serena não configurado ou não executando | Execute `/setup` Step 3, verifique config MCP com `oma doctor` |
+| Ferramentas MCP não funcionam | Serena não configurado ou não executando | Verifique config MCP com `oma doctor` |
 | Agente excede limite de turnos | Tarefa muito complexa para turnos padrão | Aumente turnos com flag `-t 30`, ou decomponha em tarefas menores |
-| CLI errada usada para agente | agent_cli_mapping não configurado | Execute `/setup` Step 4, ou edite `user-preferences.yaml` diretamente |
+| CLI errada usada para agente | agent_cli_mapping não configurado | Execute `oma install` para configurar, ou edite `user-preferences.yaml` diretamente |
 
 ---
 

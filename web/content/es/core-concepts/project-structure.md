@@ -218,7 +218,6 @@ your-project/
 │   │   ├── debug.md                  ← Structured debugging
 │   │   ├── design.md                 ← 7-phase design workflow
 │   │   ├── commit.md                 ← Conventional commits
-│   │   ├── setup.md                  ← Project configuration
 │   │   ├── tools.md                  ← MCP tool management
 │   │   └── stack-set.md              ← Tech stack configuration
 │   │
@@ -310,7 +309,7 @@ Donde reside la experiencia de los agentes. 15 directorios en total: 14 habilida
 - Definiciones de puertas (para flujos persistentes)
 
 Flujos persistentes: `orchestrate.md`, `coordinate.md`, `ultrawork.md`.
-No persistentes: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `setup.md`, `tools.md`, `stack-set.md`.
+No persistentes: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `tools.md`, `stack-set.md`.
 
 ### agents/
 

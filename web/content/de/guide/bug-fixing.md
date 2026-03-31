@@ -269,7 +269,7 @@ Der Bug tritt nur in der Produktion auf, und eine lokale Reproduktion ist nicht 
 
 Der Regressionstest kann nicht geschrieben werden, weil die Testinfrastruktur defekt, fehlend oder unzureichend ist.
 
-**Aktion:** Zuerst die Testinfrastruktur reparieren (oder `/setup` zur Konfiguration verwenden), dann zum Debug-Workflow zurückkehren.
+**Aktion:** Zuerst die Testinfrastruktur reparieren (oder `oma install` zur Konfiguration verwenden), dann zum Debug-Workflow zurückkehren.
 
 ---
 

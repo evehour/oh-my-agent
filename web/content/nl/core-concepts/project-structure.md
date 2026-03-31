@@ -90,7 +90,6 @@ your-project/
 │   │   ├── debug.md                  ← Gestructureerd debuggen
 │   │   ├── design.md                 ← 7-fasen designworkflow
 │   │   ├── commit.md                 ← Conventionele commits
-│   │   ├── setup.md                  ← Projectconfiguratie
 │   │   ├── tools.md                  ← MCP-toolbeheer
 │   │   └── stack-set.md              ← Tech-stackconfiguratie
 │   │
@@ -156,7 +155,7 @@ Waar agentexpertise leeft. 15 directory's totaal: 14 agent-skills + 1 gedeelde b
 
 ### workflows/
 
-14 Markdown-bestanden die slash-commandogedrag definieren. Persistente workflows: `orchestrate.md`, `coordinate.md`, `ultrawork.md`. Niet-persistent: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `setup.md`, `tools.md`, `stack-set.md`.
+14 Markdown-bestanden die slash-commandogedrag definieren. Persistente workflows: `orchestrate.md`, `coordinate.md`, `ultrawork.md`. Niet-persistent: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `tools.md`, `stack-set.md`.
 
 ### agents/
 

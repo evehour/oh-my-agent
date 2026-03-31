@@ -63,7 +63,7 @@ Nach der Installation enthält Ihr Projekt:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Ihre Einstellungen (erstellt durch /setup)
+│   └── user-preferences.yaml      # Ihre Einstellungen
 ├── skills/
 │   ├── _shared/                    # Gemeinsame Ressourcen (immer installiert)
 │   │   ├── core/                   # skill-routing, context-loading usw.
@@ -185,41 +185,9 @@ Nach der Installation `/auth` innerhalb der CLI zur Authentifizierung ausführen
 
 ---
 
-## Einrichtung nach der Installation: `/setup`
-
-Nach der Installation Ihr Projekt in Ihrer KI-IDE öffnen und den Befehl `/setup` ausführen. Dieser interaktive Workflow (definiert in `.agents/workflows/setup.md`) führt Sie durch:
-
-### Schritt 1: Spracheinstellungen
-
-Legt die Antwortsprache für alle Agenten und Workflows fest. Unterstützte Werte sind unter anderem: `en`, `ko`, `ja`, `zh`, `es`, `fr`, `de`, `pt`, `ru`, `nl`, `pl`.
-
-### Schritt 2: CLI-Installationsstatus
-
-Scannt nach installierten CLIs (`which gemini`, `which claude`, `which codex`) und zeigt deren Versionen an. Liefert Installationsbefehle für fehlende CLIs.
-
-### Schritt 3: MCP-Verbindungsstatus
-
-Verifiziert die MCP-Server-Konfiguration für jede CLI:
-- Gemini CLI: prüft `~/.gemini/settings.json`
-- Claude CLI: prüft `~/.claude.json` oder `--mcp-config`
-- Codex CLI: prüft `~/.codex/config.toml`
-- Antigravity IDE: prüft `~/.gemini/antigravity/mcp_config.json`
-
-Bietet die Konfiguration von Serena MCP im Command-Modus (einfach, ein Prozess pro Sitzung) oder SSE-Modus (gemeinsamer Server, weniger Speicherverbrauch, erfordert den Befehl `oma bridge` für Antigravity).
-
-### Schritt 4: Agenten-CLI-Zuordnung
-
-Konfiguriert, welche CLI welchen Agenten bedient. Beispielsweise könnten Sie `frontend` und `qa` an Claude weiterleiten (besseres Reasoning) und `backend` und `pm` an Gemini (schnellere Generierung).
-
-### Schritt 5: Zusammenfassung
-
-Zeigt die vollständige Konfiguration an und schlägt nächste Schritte vor.
-
----
-
 ## user-preferences.yaml
 
-Der `/setup`-Workflow erstellt `.agents/config/user-preferences.yaml`. Dies ist die zentrale Konfigurationsdatei für das gesamte Verhalten von oh-my-agent:
+Der Befehl `oma install` erstellt `.agents/config/user-preferences.yaml`. Dies ist die zentrale Konfigurationsdatei für das gesamte Verhalten von oh-my-agent:
 
 ```yaml
 # Antwortsprache für alle Agenten und Workflows

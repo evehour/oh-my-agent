@@ -218,7 +218,6 @@ your-project/
 │   │   ├── debug.md                  ← Structured debugging
 │   │   ├── design.md                 ← 7-phase design workflow
 │   │   ├── commit.md                 ← Conventional commits
-│   │   ├── setup.md                  ← Project configuration
 │   │   ├── tools.md                  ← MCP tool management
 │   │   └── stack-set.md              ← Tech stack configuration
 │   │
@@ -310,7 +309,7 @@ Where agent expertise lives. 15 directories total: 14 agent skills + 1 shared re
 - Gate definitions (for persistent workflows)
 
 Persistent workflows: `orchestrate.md`, `coordinate.md`, `ultrawork.md`.
-Non-persistent: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `setup.md`, `tools.md`, `stack-set.md`.
+Non-persistent: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `tools.md`, `stack-set.md`.
 
 ### agents/
 

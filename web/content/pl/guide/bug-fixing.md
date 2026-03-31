@@ -267,7 +267,7 @@ Błąd występuje tylko w produkcji i nie można go odtworzyć lokalnie. Sygnał
 
 Testu regresji nie można napisać, ponieważ infrastruktura testowa jest uszkodzona, brakuje jej lub jest niewystarczająca.
 
-**Akcja:** Najpierw napraw infrastrukturę testową (lub użyj `/setup` do jej skonfigurowania), a potem wróć do workflow debugowania.
+**Akcja:** Najpierw napraw infrastrukturę testową (lub użyj `oma install` do jej skonfigurowania), a potem wróć do workflow debugowania.
 
 ---
 

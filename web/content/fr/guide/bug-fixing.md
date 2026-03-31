@@ -269,7 +269,7 @@ Le bug ne se produit qu'en production et vous ne pouvez pas le reproduire locale
 
 Le test de régression ne peut pas être écrit car l'infrastructure de test est cassée, manquante ou inadéquate.
 
-**Action :** Corriger l'infrastructure de test d'abord (ou utiliser `/setup` pour la configurer), puis revenir au workflow de débogage.
+**Action :** Corriger l'infrastructure de test d'abord (ou utiliser `oma install` pour la configurer), puis revenir au workflow de débogage.
 
 ---
 

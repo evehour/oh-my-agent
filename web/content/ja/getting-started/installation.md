@@ -63,7 +63,7 @@ bunx oh-my-agent
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # 設定（/setupで作成）
+│   └── user-preferences.yaml      # 設定
 ├── skills/
 │   ├── _shared/                    # 共有リソース（常にインストール）
 │   │   ├── core/                   # skill-routing、context-loadingなど
@@ -185,41 +185,9 @@ bun install --global @qwen-code/qwen-code
 
 ---
 
-## インストール後のセットアップ：`/setup`
-
-インストール後、AI IDEでプロジェクトを開き`/setup`コマンドを実行します。このインタラクティブワークフロー（`.agents/workflows/setup.md`で定義）は以下の手順を案内します：
-
-### ステップ1：言語設定
-
-すべてのエージェントとワークフローの応答言語を設定します。サポートされる値：`en`、`ko`、`ja`、`zh`、`es`、`fr`、`de`、`pt`、`ru`、`nl`、`pl`。
-
-### ステップ2：CLIインストール状態
-
-インストール済みCLI（`which gemini`、`which claude`、`which codex`）をスキャンし、バージョンを表示します。未インストールのCLIにはインストールコマンドを提供します。
-
-### ステップ3：MCP接続状態
-
-各CLIのMCPサーバー設定を検証します：
-- Gemini CLI：`~/.gemini/settings.json`を確認
-- Claude CLI：`~/.claude.json`または`--mcp-config`を確認
-- Codex CLI：`~/.codex/config.toml`を確認
-- Antigravity IDE：`~/.gemini/antigravity/mcp_config.json`を確認
-
-Serena MCPをCommandモード（シンプル、セッションごとに1プロセス）またはSSEモード（共有サーバー、低メモリ、Antigravityには`oma bridge`コマンドが必要）で設定するオプションを提供します。
-
-### ステップ4：エージェント-CLIマッピング
-
-どのCLIがどのエージェントを処理するかを設定します。例えば、`frontend`と`qa`をClaude（推論に優れる）に、`backend`と`pm`をGemini（高速生成）にルーティングできます。
-
-### ステップ5：サマリー
-
-完全な設定を表示し、次のステップを提案します。
-
----
-
 ## user-preferences.yaml
 
-`/setup`ワークフローは`.agents/config/user-preferences.yaml`を作成します。これはoh-my-agentのすべての動作の中央設定ファイルです：
+`oma install`コマンドは`.agents/config/user-preferences.yaml`を作成します。これはoh-my-agentのすべての動作の中央設定ファイルです：
 
 ```yaml
 # すべてのエージェントとワークフローの応答言語

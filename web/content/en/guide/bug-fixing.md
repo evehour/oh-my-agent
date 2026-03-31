@@ -269,7 +269,7 @@ The bug only occurs in production, and you cannot reproduce it locally. Signals 
 
 The regression test cannot be written because the test infrastructure is broken, missing, or inadequate.
 
-**Action:** Fix the test infrastructure first (or use `/setup` to configure it), then return to the debug workflow.
+**Action:** Fix the test infrastructure first (or use `oma install` to configure it), then return to the debug workflow.
 
 ---
 

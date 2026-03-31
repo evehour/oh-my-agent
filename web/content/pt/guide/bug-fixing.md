@@ -269,7 +269,7 @@ O bug só ocorre em produção, e você não consegue reproduzi-lo localmente. O
 
 O teste de regressão não pode ser escrito porque a infraestrutura de testes está quebrada, ausente ou inadequada.
 
-**Ação:** Corrigir a infraestrutura de testes primeiro (ou usar `/setup` para configurá-la), depois retornar ao workflow de debug.
+**Ação:** Corrigir a infraestrutura de testes primeiro (ou usar `oma install` para configurá-la), depois retornar ao workflow de debug.
 
 ---
 

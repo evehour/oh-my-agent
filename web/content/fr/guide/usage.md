@@ -118,7 +118,6 @@ Tapez-les dans votre IDE IA pour declencher des processus structures :
 | `/debug` | Debogage structure de cause racine | Enquete sur des bugs |
 | `/design` | Workflow design 7 phases → `DESIGN.md` | Construction de systemes de design |
 | `/commit` | Commit conventionnel avec analyse type/scope | Commit de changements |
-| `/setup` | Configuration du projet | Premiere configuration |
 | `/tools` | Gestion des serveurs MCP | Ajout d'outils externes |
 | `/stack-set` | Configuration du stack technique | Definition des preferences langage/framework |
 | `/deepinit` | Initialisation complete du projet | Configuration dans un codebase existant |

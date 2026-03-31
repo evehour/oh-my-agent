@@ -271,18 +271,6 @@ Los flujos persistentes continúan ejecutándose hasta que todas las tareas est�
 
 ---
 
-### /setup
-
-**Descripción:** Configuración interactiva del proyecto.
-
-**Palabras clave de activación:** Ninguna (excluido de auto-detección).
-
-**Pasos:** Configuración de idioma -> Verificación de estado de instalación de CLIs -> Estado de conexión MCP (Serena en modo Command o SSE) -> Mapeo agente-CLI -> Resumen -> Preguntar sobre dar estrella al repositorio.
-
-**Salida:** `.agents/config/user-preferences.yaml`.
-
----
-
 ### /tools
 
 **Descripción:** Gestionar visibilidad y restricciones de herramientas MCP.
@@ -362,7 +350,6 @@ Si la entrada coincide tanto con una palabra clave de flujo como con un patrón 
 
 Los siguientes flujos están excluidos de la auto-detección y deben invocarse con `/command` explícito:
 - `/commit`
-- `/setup`
 - `/tools`
 - `/stack-set`
 - `/exec-plan`
@@ -428,5 +415,5 @@ El flujo también puede terminar naturalmente cuando todos los pasos están comp
 
 ### Configuración de Nuevo Codebase
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → configuración de CLI y MCP
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```

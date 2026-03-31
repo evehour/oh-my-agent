@@ -114,10 +114,6 @@ oma update --ci
 oma update --ci --force
 ```
 
-### setup (工作流)
-
-`/setup` 工作流（在智能体会话内调用）提供语言、CLI 安装、MCP 连接和智能体-CLI 映射的交互式配置。这与 `oma`（安装器）不同 —— `/setup` 配置已安装的实例。
-
 ---
 
 ## 监控与指标

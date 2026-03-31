@@ -218,7 +218,6 @@ your-project/
 │   │   ├── debug.md                  ← 结构化调试
 │   │   ├── design.md                 ← 7 阶段设计工作流
 │   │   ├── commit.md                 ← Conventional Commits
-│   │   ├── setup.md                  ← 项目配置
 │   │   ├── tools.md                  ← MCP 工具管理
 │   │   └── stack-set.md              ← 技术栈配置
 │   │
@@ -310,7 +309,7 @@ your-project/
 - 关卡定义（持久化工作流）
 
 持久化工作流：`orchestrate.md`、`coordinate.md`、`ultrawork.md`。
-非持久化：`plan.md`、`exec-plan.md`、`brainstorm.md`、`deepinit.md`、`review.md`、`debug.md`、`design.md`、`commit.md`、`setup.md`、`tools.md`、`stack-set.md`。
+非持久化：`plan.md`、`exec-plan.md`、`brainstorm.md`、`deepinit.md`、`review.md`、`debug.md`、`design.md`、`commit.md`、`tools.md`、`stack-set.md`。
 
 ### agents/
 

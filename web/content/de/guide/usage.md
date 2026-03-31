@@ -118,7 +118,6 @@ Tippe diese in deiner KI-IDE, um strukturierte Prozesse auszuloesen:
 | `/debug` | Strukturiertes Grundursachen-Debugging | Bugs untersuchen |
 | `/design` | 7-Phasen-Design-Workflow → `DESIGN.md` | Design-Systeme aufbauen |
 | `/commit` | Konventioneller Commit mit Typ/Scope-Analyse | Aenderungen committen |
-| `/setup` | Projektkonfiguration | Ersteinrichtung |
 | `/tools` | MCP-Server-Verwaltung | Externe Tools hinzufuegen |
 | `/stack-set` | Tech-Stack-Konfiguration | Sprach-/Framework-Praeferenzen festlegen |
 | `/deepinit` | Vollstaendige Projektinitialisierung | Setup in einer bestehenden Codebase |

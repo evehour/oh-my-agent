@@ -129,7 +129,6 @@ oma agent:spawn qa "Review notification feature across all platforms" session-no
 | `/debug` | 非永続 | 構造化デバッグ | バグやエラーの調査 |
 | `/design` | 非永続 | 7フェーズデザインワークフロー | デザインシステム構築 |
 | `/commit` | 非永続 | Conventional Commit | コード変更完了後 |
-| `/setup` | 非永続 | プロジェクト設定 | 初回セットアップまたは再設定 |
 | `/tools` | 非永続 | MCPツール管理 | ツール可視性制御 |
 | `/stack-set` | 非永続 | 技術スタック検出 | 言語固有コーディング規約のセットアップ |
 
@@ -198,7 +197,7 @@ oma agent:spawn qa "Review notification feature across all platforms" session-no
 | 自動検出が誤ったワークフローをトリガー | キーワードの曖昧さ | 明示的`/command`を使用 |
 | 永続ワークフローが停止しない | 状態ファイルが残存 | 「workflow done」と発言、または`.agents/state/`から状態ファイルを手動削除 |
 | エージェントがHIGH明確化でブロック | 要件が曖昧すぎる | エージェントが要求した回答を提供して再実行 |
-| MCPツールが動作しない | Serena未設定 | `/setup`のStep 3を実行、`oma doctor`で確認 |
+| MCPツールが動作しない | Serena未設定 | `oma doctor`でMCP設定を確認 |
 | エージェントがターン制限を超過 | タスクが複雑すぎる | `-t 30`フラグで増やすか、小さいタスクに分解 |
 
 ---

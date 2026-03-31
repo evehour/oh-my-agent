@@ -218,7 +218,6 @@ your-project/
 │   │   ├── debug.md                  ← 구조화된 디버깅
 │   │   ├── design.md                 ← 7단계 디자인 워크플로우
 │   │   ├── commit.md                 ← Conventional commits
-│   │   ├── setup.md                  ← 프로젝트 설정
 │   │   ├── tools.md                  ← MCP 도구 관리
 │   │   └── stack-set.md              ← 기술 스택 설정
 │   │
@@ -310,7 +309,7 @@ your-project/
 - 게이트 정의 (영구 워크플로우용)
 
 영구 워크플로우: `orchestrate.md`, `coordinate.md`, `ultrawork.md`.
-비영구: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `setup.md`, `tools.md`, `stack-set.md`.
+비영구: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `review.md`, `debug.md`, `design.md`, `commit.md`, `tools.md`, `stack-set.md`.
 
 ### agents/
 

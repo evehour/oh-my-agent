@@ -176,7 +176,7 @@ De bug treedt alleen op in productie en is lokaal niet te reproduceren. Signalen
 
 De regressietest kan niet worden geschreven omdat de testinfrastructuur kapot, afwezig of ontoereikend is.
 
-**Actie:** Fix eerst de testinfrastructuur (of gebruik `/setup` om deze te configureren) en keer daarna terug naar de debug-workflow.
+**Actie:** Fix eerst de testinfrastructuur (of gebruik `oma install` om deze te configureren) en keer daarna terug naar de debug-workflow.
 
 ---
 

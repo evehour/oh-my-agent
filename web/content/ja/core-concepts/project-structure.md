@@ -89,7 +89,6 @@ your-project/
 │   │   ├── debug.md
 │   │   ├── design.md
 │   │   ├── commit.md
-│   │   ├── setup.md
 │   │   ├── tools.md
 │   │   └── stack-set.md
 │   │

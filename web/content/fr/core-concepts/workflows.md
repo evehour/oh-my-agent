@@ -271,18 +271,6 @@ Les workflows persistants continuent de s'exécuter jusqu'à ce que toutes les t
 
 ---
 
-### /setup
-
-**Description :** Configuration interactive du projet.
-
-**Mots-clés de déclenchement :** Aucun (exclu de la détection automatique).
-
-**Étapes :** Paramètres de langue -> Vérification du statut d'installation des CLI -> Statut de connexion MCP (Serena en mode Command ou SSE) -> Mapping agent-CLI -> Résumé -> Demander à propos de l'ajout d'étoile au dépôt.
-
-**Sortie :** `.agents/config/user-preferences.yaml`.
-
----
-
 ### /tools
 
 **Description :** Gérer la visibilité et les restrictions des outils MCP.
@@ -362,7 +350,6 @@ Si l'entrée correspond à la fois à un mot-clé de workflow et à un pattern i
 
 Les workflows suivants sont exclus de la détection automatique et doivent être invoqués avec une commande explicite `/command` :
 - `/commit`
-- `/setup`
 - `/tools`
 - `/stack-set`
 - `/exec-plan`
@@ -428,5 +415,5 @@ Le workflow peut également se terminer naturellement lorsque toutes les étapes
 
 ### Mise en place d'un nouveau code source
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → configuration CLI et MCP
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```

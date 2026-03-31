@@ -63,7 +63,7 @@ Po instalacji projekt będzie zawierał:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Preferencje (tworzone przez /setup)
+│   └── user-preferences.yaml      # Preferencje
 ├── skills/
 │   ├── _shared/                    # Zasoby współdzielone (zawsze instalowane)
 │   │   ├── core/                   # skill-routing, context-loading, itd.
@@ -185,41 +185,9 @@ Po instalacji uruchom `/auth` wewnątrz CLI aby się uwierzytelnić.
 
 ---
 
-## Konfiguracja po instalacji: `/setup`
-
-Po instalacji otwórz projekt w IDE AI i uruchom polecenie `/setup`. Ten interaktywny workflow (zdefiniowany w `.agents/workflows/setup.md`) przeprowadzi Cię przez:
-
-### Krok 1: Ustawienia języka
-
-Ustawia język odpowiedzi dla wszystkich agentów i workflow. Obsługiwane wartości to m.in.: `en`, `ko`, `ja`, `zh`, `es`, `fr`, `de`, `pt`, `ru`, `nl`, `pl`.
-
-### Krok 2: Stan instalacji CLI
-
-Skanuje zainstalowane CLI (`which gemini`, `which claude`, `which codex`) i wyświetla ich wersje. Podaje polecenia instalacji dla brakujących CLI.
-
-### Krok 3: Stan połączenia MCP
-
-Weryfikuje konfigurację serwera MCP dla każdego CLI:
-- Gemini CLI: sprawdza `~/.gemini/settings.json`
-- Claude CLI: sprawdza `~/.claude.json` lub `--mcp-config`
-- Codex CLI: sprawdza `~/.codex/config.toml`
-- Antigravity IDE: sprawdza `~/.gemini/antigravity/mcp_config.json`
-
-Oferuje skonfigurowanie Serena MCP w trybie Command (prosty, jeden proces na sesję) lub SSE (współdzielony serwer, mniejsze zużycie pamięci, wymaga polecenia `oma bridge` dla Antigravity).
-
-### Krok 4: Mapowanie Agent-CLI
-
-Konfiguruje, które CLI obsługuje którego agenta. Na przykład możesz kierować `frontend` i `qa` do Claude (lepsze wnioskowanie) a `backend` i `pm` do Gemini (szybsze generowanie).
-
-### Krok 5: Podsumowanie
-
-Wyświetla kompletną konfigurację i sugeruje następne kroki.
-
----
-
 ## user-preferences.yaml
 
-Workflow `/setup` tworzy plik `.agents/config/user-preferences.yaml`. To centralny plik konfiguracyjny dla całego zachowania oh-my-agent:
+Polecenie `oma install` tworzy plik `.agents/config/user-preferences.yaml`. To centralny plik konfiguracyjny dla całego zachowania oh-my-agent:
 
 ```yaml
 # Język odpowiedzi dla wszystkich agentów i workflow

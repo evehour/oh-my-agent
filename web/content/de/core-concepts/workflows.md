@@ -271,18 +271,6 @@ Persistente Workflows laufen weiter, bis alle Aufgaben erledigt sind. Sie halten
 
 ---
 
-### /setup
-
-**Beschreibung:** Interaktive Projektkonfiguration.
-
-**Trigger-Keywords:** Keine (von der Auto-Erkennung ausgeschlossen).
-
-**Schritte:** Spracheinstellungen -> CLI-Installationsstatusprüfung -> MCP-Verbindungsstatus (Serena im Command- oder SSE-Modus) -> Agenten-CLI-Zuordnung -> Zusammenfassung -> Frage zum Repository-Stern.
-
-**Ausgabe:** `.agents/config/user-preferences.yaml`.
-
----
-
 ### /tools
 
 **Beschreibung:** MCP-Tool-Sichtbarkeit und -Einschränkungen verwalten.
@@ -362,7 +350,6 @@ Wenn die Eingabe sowohl einem Workflow-Keyword als auch einem informationellen M
 
 Die folgenden Workflows sind von der Auto-Erkennung ausgeschlossen und müssen mit einem expliziten `/command` aufgerufen werden:
 - `/commit`
-- `/setup`
 - `/tools`
 - `/stack-set`
 - `/exec-plan`
@@ -428,5 +415,5 @@ Der Workflow kann auch natürlich enden, wenn alle Schritte abgeschlossen sind u
 
 ### Neue-Codebasis-Einrichtung
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → CLI- und MCP-Konfiguration
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```

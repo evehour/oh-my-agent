@@ -267,7 +267,7 @@ El bug solo ocurre en producción y no se puede reproducir localmente. Las seña
 
 La prueba de regresión no puede escribirse porque la infraestructura de pruebas está rota, faltante o inadecuada.
 
-**Acción:** Corregir la infraestructura de pruebas primero (o usar `/setup` para configurarla), luego volver al flujo de depuración.
+**Acción:** Corregir la infraestructura de pruebas primero (o usar `oma install` para configurarla), luego volver al flujo de depuración.
 
 ---
 

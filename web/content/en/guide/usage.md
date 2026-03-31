@@ -249,7 +249,6 @@ oma stats
 | `/debug` | Non-persistent | Structured debugging: reproduce, diagnose, fix, regression test, scan | Investigating bugs and errors |
 | `/design` | Non-persistent | 7-phase design workflow producing DESIGN.md with tokens | Building design systems, landing pages, UI redesigns |
 | `/commit` | Non-persistent | Conventional commit with auto type/scope detection and feature splitting | After completing code changes |
-| `/setup` | Non-persistent | Interactive project configuration (language, CLI, MCP) | First-time setup or reconfiguration |
 | `/tools` | Non-persistent | MCP tool visibility management (enable/disable groups) | Controlling which MCP tools agents can use |
 | `/stack-set` | Non-persistent | Auto-detect project tech stack and generate backend references | Setting up language-specific coding conventions |
 | `/ralph` | Persistent | Self-referential completion loop wrapping ultrawork with independent judge | When agents must keep working until verifiable criteria pass |
@@ -423,9 +422,9 @@ The `-w` flag on `agent:spawn` isolates an agent to a specific directory. This i
 | Auto-detection triggers wrong workflow | Keyword ambiguity | Use explicit `/command` instead of natural language. Report false triggers for improvement. |
 | Persistent workflow will not stop | State file still exists | Say "workflow done" in the chat, or manually delete the state file from `.agents/state/` |
 | Agent blocked on HIGH clarification | Requirements too ambiguous | Provide the specific answers the agent requested, then re-run |
-| MCP tools not working | Serena not configured or not running | Run `/setup` Step 3, verify MCP config with `oma doctor` |
+| MCP tools not working | Serena not configured or not running | Run `oma doctor` to verify MCP config |
 | Agent exceeds turn limit | Task too complex for default turns | Increase turns with `-t 30` flag, or decompose into smaller tasks |
-| Wrong CLI used for agent | agent_cli_mapping not configured | Run `/setup` Step 4, or edit `user-preferences.yaml` directly |
+| Wrong CLI used for agent | agent_cli_mapping not configured | Run `oma install` to configure, or edit `user-preferences.yaml` directly |
 
 ---
 

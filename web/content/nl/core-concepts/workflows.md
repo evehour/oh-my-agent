@@ -220,18 +220,6 @@ Persistente workflows blijven draaien totdat alle taken klaar zijn. Ze behouden 
 
 ---
 
-### /setup
-
-**Beschrijving:** Interactieve projectconfiguratie.
-
-**Triggertrefwoorden:** Geen (uitgesloten van auto-detectie).
-
-**Stappen:** Taalinstellingen -> CLI-installatiestatus controleren -> MCP-verbindingsstatus (Serena in Command- of SSE-modus) -> Agent-CLI-mapping -> Samenvatting -> Vragen over repository een ster geven.
-
-**Uitvoer:** `.agents/config/user-preferences.yaml`.
-
----
-
 ### /tools
 
 **Beschrijving:** Beheer MCP-toolzichtbaarheid en -beperkingen.
@@ -295,7 +283,7 @@ oh-my-agent gebruikt een `UserPromptSubmit`-hook die draait voordat elk gebruike
 
 ### Uitgesloten Workflows
 
-Vereisen expliciet `/command`: `/commit`, `/setup`, `/tools`, `/stack-set`, `/exec-plan`.
+Vereisen expliciet `/command`: `/commit`, `/tools`, `/stack-set`, `/exec-plan`.
 
 ---
 
@@ -358,5 +346,5 @@ De workflow kan ook op natuurlijke wijze eindigen wanneer alle stappen zijn volt
 
 ### Nieuwe Codebase Setup
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → CLI en MCP configuratie
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```

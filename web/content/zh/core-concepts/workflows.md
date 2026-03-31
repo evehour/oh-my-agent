@@ -271,18 +271,6 @@ description: 全部 14 个 oh-my-agent 工作流的完整参考 —— 斜杠命
 
 ---
 
-### /setup
-
-**说明：** 交互式项目配置。
-
-**触发关键词：** 无（排除在自动检测之外）。
-
-**步骤：** 语言设置 -> CLI 安装状态检查 -> MCP 连接状态（Serena 的 Command 或 SSE 模式）-> 智能体-CLI 映射 -> 摘要 -> 询问是否给仓库加星。
-
-**输出：** `.agents/config/user-preferences.yaml`。
-
----
-
 ### /tools
 
 **说明：** 管理 MCP 工具的可见性和限制。
@@ -362,7 +350,6 @@ oh-my-agent 使用 `UserPromptSubmit` 钩子，在处理每条用户消息之前
 
 以下工作流排除在自动检测之外，必须使用显式 `/command` 调用：
 - `/commit`
-- `/setup`
 - `/tools`
 - `/stack-set`
 - `/exec-plan`
@@ -428,5 +415,5 @@ oh-my-agent 使用 `UserPromptSubmit` 钩子，在处理每条用户消息之前
 
 ### 新代码库设置
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → CLI 和 MCP 配置
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```

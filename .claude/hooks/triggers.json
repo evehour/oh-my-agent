@@ -225,7 +225,7 @@
     "nl": ["wat is", "hoe", "leg uit", "sleutelwoord", "vals positief", "gedetecteerd"],
     "pl": ["co to", "jak", "wyjaśnij", "słowo kluczowe", "fałszywy alarm", "wykryto"]
   },
-  "excludedWorkflows": ["commit", "setup", "tools", "stack-set", "exec-plan"],
+  "excludedWorkflows": ["commit", "tools", "stack-set", "exec-plan"],
   "cjkScripts": ["ko", "ja", "zh"],
   "extensionRouting": {
     "frontend-engineer": ["tsx", "jsx", "css", "scss", "less", "vue", "svelte", "html"],

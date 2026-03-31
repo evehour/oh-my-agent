@@ -271,18 +271,6 @@ Trwałe workflow działają do momentu zakończenia wszystkich zadań. Utrzymuj�
 
 ---
 
-### /setup
-
-**Opis:** Interaktywna konfiguracja projektu.
-
-**Słowa kluczowe wyzwalające:** Brak (wykluczony z automatycznego wykrywania).
-
-**Kroki:** Ustawienia języka -> Sprawdzenie stanu instalacji CLI -> Stan połączenia MCP (Serena w trybie Command lub SSE) -> Mapowanie Agent-CLI -> Podsumowanie -> Pytanie o oznaczenie gwiazdką repozytorium.
-
-**Wyjście:** `.agents/config/user-preferences.yaml`.
-
----
-
 ### /tools
 
 **Opis:** Zarządzanie widocznością i ograniczeniami narzędzi MCP.
@@ -362,7 +350,6 @@ Jeśli dane wejściowe pasują zarówno do słowa kluczowego workflow jak i wzor
 
 Następujące workflow są wykluczone z automatycznego wykrywania i muszą być wywoływane jawną `/komendą`:
 - `/commit`
-- `/setup`
 - `/tools`
 - `/stack-set`
 - `/exec-plan`
@@ -428,5 +415,5 @@ Workflow może też zakończyć się naturalnie gdy wszystkie kroki zostaną uko
 
 ### Konfiguracja nowej bazy kodu
 ```
-/deepinit → AGENTS.md + ARCHITECTURE.md + docs/ → /setup → konfiguracja CLI i MCP
+/deepinit → AGENTS.md + ARCHITECTURE.md + docs/
 ```

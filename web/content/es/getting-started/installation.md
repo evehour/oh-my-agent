@@ -63,7 +63,7 @@ Después de la instalación, tu proyecto contendrá:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Tus preferencias (creado por /setup)
+│   └── user-preferences.yaml      # Tus preferencias
 ├── skills/
 │   ├── _shared/                    # Recursos compartidos (siempre instalados)
 │   │   ├── core/                   # skill-routing, context-loading, etc.
@@ -185,41 +185,9 @@ Después de instalar, ejecuta `/auth` dentro del CLI para autenticarte.
 
 ---
 
-## Configuración Post-Instalación: `/setup`
-
-Después de la instalación, abre tu proyecto en tu IDE de IA y ejecuta el comando `/setup`. Este flujo interactivo (definido en `.agents/workflows/setup.md`) te guía a través de:
-
-### Paso 1: Configuración de Idioma
-
-Establece el idioma de respuesta para todos los agentes y flujos de trabajo. Los valores soportados incluyen: `en`, `ko`, `ja`, `zh`, `es`, `fr`, `de`, `pt`, `ru`, `nl`, `pl`.
-
-### Paso 2: Estado de Instalación de CLIs
-
-Escanea los CLIs instalados (`which gemini`, `which claude`, `which codex`) y muestra sus versiones. Proporciona comandos de instalación para cualquier CLI faltante.
-
-### Paso 3: Estado de Conexión MCP
-
-Verifica la configuración del servidor MCP para cada CLI:
-- Gemini CLI: verifica `~/.gemini/settings.json`
-- Claude CLI: verifica `~/.claude.json` o `--mcp-config`
-- Codex CLI: verifica `~/.codex/config.toml`
-- Antigravity IDE: verifica `~/.gemini/antigravity/mcp_config.json`
-
-Ofrece configurar Serena MCP en modo Command (simple, un proceso por sesión) o modo SSE (servidor compartido, menor memoria, requiere el comando `oma bridge` para Antigravity).
-
-### Paso 4: Mapeo Agente-CLI
-
-Configura qué CLI maneja qué agente. Por ejemplo, podrías dirigir `frontend` y `qa` a Claude (mejor en razonamiento) y `backend` y `pm` a Gemini (generación más rápida).
-
-### Paso 5: Resumen
-
-Muestra la configuración completa y sugiere los próximos pasos.
-
----
-
 ## user-preferences.yaml
 
-El flujo `/setup` crea `.agents/config/user-preferences.yaml`. Este es el archivo de configuración central para todo el comportamiento de oh-my-agent:
+El comando `oma install` crea `.agents/config/user-preferences.yaml`. Este es el archivo de configuración central para todo el comportamiento de oh-my-agent:
 
 ```yaml
 # Idioma de respuesta para todos los agentes y flujos

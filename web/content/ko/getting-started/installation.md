@@ -63,7 +63,7 @@ bunx oh-my-agent
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # 사용자 설정 (/setup에서 생성)
+│   └── user-preferences.yaml      # 사용자 설정
 ├── skills/
 │   ├── _shared/                    # 공유 리소스 (항상 설치)
 │   │   ├── core/                   # skill-routing, context-loading 등
@@ -185,41 +185,9 @@ bun install --global @qwen-code/qwen-code
 
 ---
 
-## 설치 후 설정: `/setup`
-
-설치 후 AI IDE에서 프로젝트를 열고 `/setup` 명령을 실행하세요. 이 대화형 워크플로우(`.agents/workflows/setup.md`에 정의됨)가 다음 과정을 안내합니다:
-
-### 단계 1: 언어 설정
-
-모든 에이전트와 워크플로우의 응답 언어를 설정합니다. 지원 값: `en`, `ko`, `ja`, `zh`, `es`, `fr`, `de`, `pt`, `ru`, `nl`, `pl`.
-
-### 단계 2: CLI 설치 상태
-
-설치된 CLI(`which gemini`, `which claude`, `which codex`)를 스캔하고 버전을 표시합니다. 누락된 CLI에 대한 설치 명령을 제공합니다.
-
-### 단계 3: MCP 연결 상태
-
-각 CLI의 MCP 서버 설정을 확인합니다:
-- Gemini CLI: `~/.gemini/settings.json` 확인
-- Claude CLI: `~/.claude.json` 또는 `--mcp-config` 확인
-- Codex CLI: `~/.codex/config.toml` 확인
-- Antigravity IDE: `~/.gemini/antigravity/mcp_config.json` 확인
-
-Serena MCP를 Command 모드(단순, 세션당 프로세스 하나) 또는 SSE 모드(서버 공유, 메모리 사용량 적음, Antigravity에서는 `oma bridge` 명령 필요)로 설정할 수 있습니다.
-
-### 단계 4: 에이전트-CLI 매핑
-
-어떤 CLI가 어떤 에이전트를 처리할지 설정합니다. 예를 들어, `frontend`와 `qa`는 Claude(추론에 강함)로, `backend`와 `pm`은 Gemini(생성이 빠름)로 라우팅할 수 있습니다.
-
-### 단계 5: 요약
-
-전체 설정을 표시하고 다음 단계를 제안합니다.
-
----
-
 ## user-preferences.yaml
 
-`/setup` 워크플로우는 `.agents/config/user-preferences.yaml`을 생성합니다. 이 파일은 모든 oh-my-agent 동작의 중앙 설정 파일입니다:
+`oma install` 명령은 `.agents/config/user-preferences.yaml`을 생성합니다. 이 파일은 모든 oh-my-agent 동작의 중앙 설정 파일입니다:
 
 ```yaml
 # 모든 에이전트와 워크플로우의 응답 언어

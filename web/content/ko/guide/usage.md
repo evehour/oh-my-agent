@@ -249,7 +249,6 @@ oma stats
 | `/debug` | 비영구 | 구조화된 디버깅: 재현, 진단, 수정, 회귀 테스트, 스캔 | 버그와 에러 조사 |
 | `/design` | 비영구 | 토큰이 포함된 DESIGN.md를 생성하는 7단계 디자인 워크플로우 | 디자인 시스템, 랜딩 페이지, UI 재설계 |
 | `/commit` | 비영구 | 자동 type/scope 감지와 기능 분할이 포함된 Conventional Commit | 코드 변경 완료 후 |
-| `/setup` | 비영구 | 대화형 프로젝트 설정 (언어, CLI, MCP) | 최초 설정 또는 재설정 |
 | `/tools` | 비영구 | MCP 도구 가시성 관리 (그룹 활성화/비활성화) | 에이전트가 사용할 수 있는 MCP 도구 제어 |
 | `/stack-set` | 비영구 | 프로젝트 기술 스택 자동 감지 및 백엔드 레퍼런스 생성 | 언어별 코딩 규칙 설정 |
 | `/ralph` | 영구 | ultrawork를 감싸는 자기 참조 완료 루프와 독립 심판 | 검증 가능한 기준이 통과할 때까지 에이전트가 계속 작업해야 할 때 |
@@ -423,9 +422,9 @@ oma dashboard:web
 | 자동 감지가 잘못된 워크플로우 트리거 | 키워드 모호성 | 자연어 대신 명시적 `/command` 사용. 오탐 보고. |
 | 영구 워크플로우가 중단되지 않음 | 상태 파일이 여전히 존재 | 채팅에서 "workflow done"이라고 말하거나 `.agents/state/`에서 상태 파일 수동 삭제 |
 | 에이전트가 HIGH 명확화로 차단됨 | 요구사항이 너무 모호 | 에이전트가 요청한 구체적인 답변 제공 후 재실행 |
-| MCP 도구가 작동하지 않음 | Serena가 설정되지 않았거나 실행 중이지 않음 | `/setup` Step 3 실행, `oma doctor`로 MCP 설정 확인 |
+| MCP 도구가 작동하지 않음 | Serena가 설정되지 않았거나 실행 중이지 않음 | `oma doctor`로 MCP 설정 확인 |
 | 에이전트가 턴 제한 초과 | 태스크가 기본 턴에 비해 너무 복잡 | `-t 30` 플래그로 턴 증가, 또는 더 작은 태스크로 분해 |
-| 에이전트에 잘못된 CLI 사용 | agent_cli_mapping 미설정 | `/setup` Step 4 실행, 또는 `user-preferences.yaml` 직접 편집 |
+| 에이전트에 잘못된 CLI 사용 | agent_cli_mapping 미설정 | `oma install`로 설정, 또는 `user-preferences.yaml` 직접 편집 |
 
 ---
 

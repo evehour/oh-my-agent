@@ -114,10 +114,6 @@ oma update --ci
 oma update --ci --force
 ```
 
-### setup (Workflow)
-
-Der `/setup`-Workflow (innerhalb einer Agenten-Sitzung aufgerufen) bietet interaktive Konfiguration von Sprache, CLI-Installationen, MCP-Verbindungen und Agenten-CLI-Zuordnung. Dies unterscheidet sich von `oma` (dem Installer) — `/setup` konfiguriert eine bereits installierte Instanz.
-
 ---
 
 ## Überwachung und Metriken

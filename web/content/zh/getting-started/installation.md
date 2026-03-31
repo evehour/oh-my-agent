@@ -63,7 +63,7 @@ bunx oh-my-agent
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # 你的偏好设置（由 /setup 创建）
+│   └── user-preferences.yaml      # 你的偏好设置
 ├── skills/
 │   ├── _shared/                    # 共享资源（始终安装）
 │   │   ├── core/                   # skill-routing、context-loading 等
@@ -185,41 +185,9 @@ bun install --global @qwen-code/qwen-code
 
 ---
 
-## 安装后设置：`/setup`
-
-安装完成后，在你的 AI IDE 中打开项目并运行 `/setup` 命令。这个交互式工作流（定义在 `.agents/workflows/setup.md`）将引导你完成：
-
-### 步骤 1：语言设置
-
-设置所有智能体和工作流的响应语言。支持的值包括：`en`、`ko`、`ja`、`zh`、`es`、`fr`、`de`、`pt`、`ru`、`nl`、`pl`。
-
-### 步骤 2：CLI 安装状态
-
-扫描已安装的 CLI（`which gemini`、`which claude`、`which codex`）并显示版本信息。为缺失的 CLI 提供安装命令。
-
-### 步骤 3：MCP 连接状态
-
-验证每个 CLI 的 MCP 服务器配置：
-- Gemini CLI：检查 `~/.gemini/settings.json`
-- Claude CLI：检查 `~/.claude.json` 或 `--mcp-config`
-- Codex CLI：检查 `~/.codex/config.toml`
-- Antigravity IDE：检查 `~/.gemini/antigravity/mcp_config.json`
-
-提供以命令模式（简单，每次会话一个进程）或 SSE 模式（共享服务器，内存更低，Antigravity 需要 `oma bridge` 命令）配置 Serena MCP 的选项。
-
-### 步骤 4：智能体-CLI 映射
-
-配置哪个 CLI 处理哪个智能体。例如，你可以将 `frontend` 和 `qa` 路由到 Claude（推理能力更强），将 `backend` 和 `pm` 路由到 Gemini（生成速度更快）。
-
-### 步骤 5：总结
-
-显示完整配置并建议后续步骤。
-
----
-
 ## user-preferences.yaml
 
-`/setup` 工作流创建 `.agents/config/user-preferences.yaml`。这是控制所有 oh-my-agent 行为的中心配置文件：
+`oma install` 命令创建 `.agents/config/user-preferences.yaml`。这是控制所有 oh-my-agent 行为的中心配置文件：
 
 ```yaml
 # 所有智能体和工作流的响应语言

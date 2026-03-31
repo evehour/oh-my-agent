@@ -88,7 +88,6 @@ your-project/
 │   │   ├── debug.md                  ← Debugging estruturado
 │   │   ├── design.md                 ← Workflow de design em 7 fases
 │   │   ├── commit.md                 ← Commits convencionais
-│   │   ├── setup.md                  ← Configuração do projeto
 │   │   ├── tools.md                  ← Gerenciamento de ferramentas MCP
 │   │   └── stack-set.md              ← Configuração de stack tecnológico
 │   │

@@ -296,6 +296,7 @@ export async function update(force = false, ci = false): Promise<void> {
             }
 
             if (shouldApply) {
+              mkdirSync(join(homeDir, ".claude"), { recursive: true });
               claudeSettings.env = {
                 ...(claudeSettings.env || {}),
                 cleanupPeriodDays: 180,
@@ -319,6 +320,43 @@ export async function update(force = false, ci = false): Promise<void> {
         } catch {
           // Best-effort — don't fail update for settings
         }
+
+      // --- Codex Plugin for Claude Code ---
+      if (hasClaude) {
+        let hasCodex = false;
+        try {
+          execSync("which codex", { stdio: "ignore" });
+          hasCodex = true;
+        } catch {}
+
+        if (hasCodex) {
+          let codexPluginInstalled = false;
+          try {
+            const pluginList = execSync("claude plugin list", {
+              encoding: "utf-8",
+              stdio: ["pipe", "pipe", "ignore"],
+            });
+            codexPluginInstalled = pluginList.includes("codex");
+          } catch {}
+
+          if (codexPluginInstalled) {
+            try {
+              execSync("claude plugin update codex@openai-codex", {
+                stdio: "ignore",
+              });
+            } catch {}
+          } else {
+            try {
+              execSync("claude plugin marketplace add openai/codex-plugin-cc", {
+                stdio: "ignore",
+              });
+              execSync("claude plugin install codex@openai-codex", {
+                stdio: "ignore",
+              });
+            } catch {}
+          }
+        }
+      }
 
       const cliTools = detectExistingCliSymlinkDirs(cwd);
 

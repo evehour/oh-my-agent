@@ -305,6 +305,41 @@ export async function install(): Promise<void> {
       } catch (err) {
         p.log.warn(`Could not configure Claude Code settings: ${err}`);
       }
+
+    // --- Codex Plugin for Claude Code ---
+    if (hasClaude) {
+      let hasCodex = false;
+      try {
+        execSync("which codex", { stdio: "ignore" });
+        hasCodex = true;
+      } catch {}
+
+      if (hasCodex) {
+        let codexPluginInstalled = false;
+        try {
+          const pluginList = execSync("claude plugin list", {
+            encoding: "utf-8",
+            stdio: ["pipe", "pipe", "ignore"],
+          });
+          codexPluginInstalled = pluginList.includes("codex");
+        } catch {}
+
+        if (!codexPluginInstalled) {
+          try {
+            execSync("claude plugin marketplace add openai/codex-plugin-cc", {
+              stdio: "ignore",
+            });
+            execSync("claude plugin install codex@openai-codex", {
+              stdio: "ignore",
+            });
+            p.log.success(pc.green("Codex plugin installed for Claude Code!"));
+          } catch (err) {
+            p.log.warn(`Could not install Codex plugin: ${err}`);
+          }
+        }
+      }
+    }
+
     const mcpConfigPath = join(
       homeDir,
       ".gemini",

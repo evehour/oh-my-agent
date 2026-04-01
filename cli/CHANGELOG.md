@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.18.2](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.18.1...cli-v4.18.2) (2026-04-01)
+
+
+### Bug Fixes
+
+* **cli:** improve agent stability and Claude Code integration ([17655fb](https://github.com/first-fluke/oh-my-agent/commit/17655fbc604513d0e6b0d87bdadadc2507b418ad))
+* **cli:** inline omc uninstall to avoid ETIMEDOUT from curl|bash ([955eef5](https://github.com/first-fluke/oh-my-agent/commit/955eef533b81e4dfa2be493d6eaca493d0dab66d))
+* **cli:** preserve oma skill routers when removing omc skills ([91fa766](https://github.com/first-fluke/oh-my-agent/commit/91fa76651441581c74ae4aa0acd1a3c7724fec9e))
+
+
+### Miscellaneous
+
+* **main:** release web 0.3.12 ([1b85118](https://github.com/first-fluke/oh-my-agent/commit/1b851183a38c5032a992062d33efc77d17b33bf6))
+
 ## [4.18.1](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.18.0...cli-v4.18.1) (2026-03-31)
 
 

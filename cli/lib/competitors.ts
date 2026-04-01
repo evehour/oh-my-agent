@@ -67,11 +67,22 @@ function detectCompetitors(cwd: string): Competitor[] {
           if (existsSync(cmdPath)) rmSync(cmdPath, { force: true });
         }
 
-        // Remove skills
+        // Remove omc-only skills (skip directories that contain oma's SKILL.md router)
         for (const skill of ["ultrawork", "git-master", "frontend-ui-ux"]) {
           const skillPath = join(claudeDir, "skills", skill);
-          if (existsSync(skillPath))
-            rmSync(skillPath, { recursive: true, force: true });
+          if (!existsSync(skillPath)) continue;
+
+          const skillMd = join(skillPath, "SKILL.md");
+          if (existsSync(skillMd)) {
+            try {
+              const content = readFileSync(skillMd, "utf-8");
+              if (content.includes(".agents/workflows/")) continue;
+            } catch {
+              // can't read — skip to be safe
+              continue;
+            }
+          }
+          rmSync(skillPath, { recursive: true, force: true });
         }
 
         // Remove hooks

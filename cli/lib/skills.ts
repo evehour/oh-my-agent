@@ -266,10 +266,14 @@ export function installClaudeSkills(
 }
 
 // Default Claude frontmatter for each agent role
-const CLAUDE_AGENT_DEFAULTS: Record<
-  string,
-  { tools: string; model: string; maxTurns: number }
-> = {
+type ClaudeAgentDefaults = {
+  tools: string;
+  model: string;
+  maxTurns: number;
+  effort?: string;
+};
+
+const CLAUDE_AGENT_DEFAULTS: Record<string, ClaudeAgentDefaults> = {
   "backend-engineer": {
     tools: "Read, Write, Edit, Bash, Grep, Glob",
     model: "sonnet",
@@ -304,6 +308,7 @@ const CLAUDE_AGENT_DEFAULTS: Record<
     tools: "Read, Grep, Glob, Bash",
     model: "sonnet",
     maxTurns: 15,
+    effort: "low",
   },
 };
 
@@ -336,6 +341,9 @@ function installClaudeAgents(agentsDir: string, targetDir: string): void {
       model: defaults.model,
       maxTurns: defaults.maxTurns,
     };
+    if (defaults.effort) {
+      claudeFm.effort = defaults.effort;
+    }
     if (frontmatter.skills) {
       claudeFm.skills = frontmatter.skills;
     }
@@ -482,6 +490,14 @@ function installClaudeHooks(sourceDir: string, targetDir: string): void {
       statusLine: {
         type: "command",
         command: bunHookCmd("CLAUDE_PROJECT_DIR", ".claude", "hud.ts"),
+      },
+      permissions: {
+        allow: [
+          "Bash(bun run:*)",
+          "Bash(bunx tsx:*)",
+          "Bash(git add:*)",
+          "mcp__serena__*",
+        ],
       },
     },
   );

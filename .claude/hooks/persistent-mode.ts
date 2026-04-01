@@ -17,7 +17,7 @@ import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { type Vendor, type ModeState, makeBlockOutput, resolveGitRoot } from "./types.ts";
 
-const MAX_REINFORCEMENTS = 20;
+const MAX_REINFORCEMENTS = 5;
 const STALE_HOURS = 2;
 
 // ── Config Loading ────────────────────────────────────────────

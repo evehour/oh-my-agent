@@ -100,7 +100,9 @@ describe("keyword-detector", () => {
       const metaPatterns = [/\bkeyword\b/i, /키워드/i];
       const prompt = "keyword-detector가 orchestrate 키워드를 감지";
       const matchIndex = prompt.indexOf("orchestrate");
-      expect(isInformationalContext(prompt, matchIndex, metaPatterns)).toBe(true);
+      expect(isInformationalContext(prompt, matchIndex, metaPatterns)).toBe(
+        true,
+      );
     });
 
     it("should detect meta-discussion with 'false positive' near match", () => {
@@ -114,7 +116,9 @@ describe("keyword-detector", () => {
       const padding = "x".repeat(200);
       const prompt = `keyword issue ${padding} orchestrate the deploy`;
       const matchIndex = prompt.indexOf("orchestrate");
-      expect(isInformationalContext(prompt, matchIndex, metaPatterns)).toBe(false);
+      expect(isInformationalContext(prompt, matchIndex, metaPatterns)).toBe(
+        false,
+      );
     });
   });
 
@@ -287,7 +291,9 @@ describe("keyword-detector", () => {
     });
 
     it("should detect extensions in full paths", () => {
-      expect(detectExtensions("fix src/components/Button.tsx")).toEqual(["tsx"]);
+      expect(detectExtensions("fix src/components/Button.tsx")).toEqual([
+        "tsx",
+      ]);
     });
 
     it("should detect multiple extensions", () => {
@@ -325,19 +331,25 @@ describe("keyword-detector", () => {
       "backend-engineer": ["go", "py", "java", "rs", "controller", "service"],
       "db-engineer": ["sql", "prisma", "graphql"],
       "mobile-engineer": ["dart", "swift", "kt"],
-      "designer": ["figma", "sketch", "svg"],
+      designer: ["figma", "sketch", "svg"],
     };
 
     it("should resolve single frontend extension", () => {
-      expect(resolveAgentFromExtensions(["tsx"], routing)).toBe("frontend-engineer");
+      expect(resolveAgentFromExtensions(["tsx"], routing)).toBe(
+        "frontend-engineer",
+      );
     });
 
     it("should resolve single backend extension", () => {
-      expect(resolveAgentFromExtensions(["go"], routing)).toBe("backend-engineer");
+      expect(resolveAgentFromExtensions(["go"], routing)).toBe(
+        "backend-engineer",
+      );
     });
 
     it("should resolve by highest score when mixed", () => {
-      expect(resolveAgentFromExtensions(["tsx", "css", "go"], routing)).toBe("frontend-engineer");
+      expect(resolveAgentFromExtensions(["tsx", "css", "go"], routing)).toBe(
+        "frontend-engineer",
+      );
     });
 
     it("should return null for empty extensions", () => {
@@ -353,11 +365,15 @@ describe("keyword-detector", () => {
     });
 
     it("should resolve mobile extensions correctly", () => {
-      expect(resolveAgentFromExtensions(["dart", "swift"], routing)).toBe("mobile-engineer");
+      expect(resolveAgentFromExtensions(["dart", "swift"], routing)).toBe(
+        "mobile-engineer",
+      );
     });
 
     it("should resolve compound extension to backend", () => {
-      expect(resolveAgentFromExtensions(["controller", "ts"], routing)).toBe("backend-engineer");
+      expect(resolveAgentFromExtensions(["controller", "ts"], routing)).toBe(
+        "backend-engineer",
+      );
     });
   });
 

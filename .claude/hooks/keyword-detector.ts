@@ -152,9 +152,11 @@ export function isInformationalContext(
 
 export function stripCodeBlocks(text: string): string {
   return text
-    .replace(/```[\s\S]*?```/g, "")
-    .replace(/`[^`]+`/g, "")
-    .replace(/"[^"\n]*"/g, "");
+    .replace(/(`{3,})[^\n]*\n[\s\S]*?\1/g, "")  // multiline fenced blocks (3+ backticks, matched closing)
+    .replace(/(`{3,})[^\n]*\n[\s\S]*/g, "")      // unclosed fenced blocks (strip to end)
+    .replace(/`{3,}[^`]*`{3,}/g, "")             // single-line fenced blocks (```...```)
+    .replace(/`[^`\n]+`/g, "")                    // inline code (no newlines allowed)
+    .replace(/"[^"\n]*"/g, "");                    // quoted strings
 }
 
 export function startsWithSlashCommand(prompt: string): boolean {

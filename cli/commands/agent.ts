@@ -202,6 +202,20 @@ function resolveVendor(
     cliConfig?.active_vendor ||
     "gemini";
 
+  if (
+    !vendorOverride &&
+    !mappedVendor &&
+    !userPrefs?.default_cli &&
+    !cliConfig?.active_vendor
+  ) {
+    console.error(
+      color.yellow(
+        `[oma] No vendor configured for agent "${agentId}". Falling back to "gemini".\n` +
+          `      Set default_cli in .agents/config/user-preferences.yaml or use --vendor flag.`,
+      ),
+    );
+  }
+
   return { vendor: vendor.toLowerCase(), config: cliConfig };
 }
 
@@ -728,16 +742,20 @@ export async function checkStatus(
 
     if (fs.existsSync(resultFile)) {
       const content = fs.readFileSync(resultFile, "utf-8");
-      // grep "^## Status:" "$RESULT" | head -1 | awk '{print $3}'
       const match = content.match(/^## Status:\s*(\S+)/m);
       if (match?.[1]) {
-        // Use the status from the file to be more precise if possible
-        // But script logic was:
-        // STATUS=$(grep "^## Status:" "$RESULT" | head -1 | awk '{print $3}')
-        // echo "${agent}:${STATUS}"
         results[agent] = match[1];
       } else {
-        results[agent] = `completed`; // Fallback if status header missing but file exists
+        // Result file exists but no Status header — check if agent is still writing
+        const pidContent = fs.existsSync(pidFile)
+          ? fs.readFileSync(pidFile, "utf-8").trim()
+          : "";
+        const pid = parseInt(pidContent, 10);
+        if (!Number.isNaN(pid) && isProcessRunning(pid)) {
+          results[agent] = "running";
+        } else {
+          results[agent] = "completed";
+        }
       }
     } else if (fs.existsSync(pidFile)) {
       // Logic for checking PID
@@ -981,7 +999,7 @@ export async function parallelRun(
     const child = spawnProcess(command, args, {
       cwd: resolvedWorkspace,
       stdio: ["ignore", logStream, logStream],
-      detached: false,
+      detached: true,
       env,
     });
 
@@ -1036,13 +1054,18 @@ export async function parallelRun(
     for (const { pid, agent } of childProcesses) {
       if (isProcessRunning(pid)) {
         try {
-          process.kill(pid);
-          console.log(
-            `${color.yellow("[Parallel]")} Killed PID ${pid} (${agent})`,
-          );
+          // Kill process group to also terminate any child processes
+          process.kill(-pid, "SIGTERM");
         } catch {
-          // empty
+          try {
+            process.kill(pid, "SIGTERM");
+          } catch {
+            // empty
+          }
         }
+        console.log(
+          `${color.yellow("[Parallel]")} Killed PID ${pid} (${agent})`,
+        );
       }
     }
     try {

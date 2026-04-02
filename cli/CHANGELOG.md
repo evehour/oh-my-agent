@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.22.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.21.0...cli-v4.22.0) (2026-04-02)
+
+
+### Features
+
+* auto-register Serena project during install and update ([b868047](https://github.com/first-fluke/oh-my-agent/commit/b868047878d2b95b8b77ab2988ae0983b2df69a7))
+
 ## [4.21.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.20.2...cli-v4.21.0) (2026-04-02)
 
 

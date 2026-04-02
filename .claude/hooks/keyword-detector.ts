@@ -150,6 +150,54 @@ export function isInformationalContext(
   return infoPatterns.some((p) => p.test(window));
 }
 
+/**
+ * For persistent workflows (orchestrate, ultrawork, coordinate, ralph),
+ * only match keywords in the first N chars of the user's prompt.
+ * Keywords deep in the prompt are likely from pasted content, not user intent.
+ */
+const PERSISTENT_MATCH_LIMIT = 200;
+
+export function isPastedContent(
+  matchIndex: number,
+  isPersistent: boolean,
+  promptLength: number,
+): boolean {
+  if (!isPersistent) return false;
+  if (promptLength <= PERSISTENT_MATCH_LIMIT) return false;
+  return matchIndex > PERSISTENT_MATCH_LIMIT;
+}
+
+/**
+ * Check if the prompt's first line looks like an analytical/research question.
+ * Questions about analysis, comparison, or references are not action requests.
+ */
+const QUESTION_PATTERNS: RegExp[] = [
+  // Korean question patterns
+  /^.*참고할/,
+  /^.*비교해/,
+  /^.*분석해/,
+  /^.*있냐/,
+  /^.*있나\?/,
+  /^.*있는지/,
+  /^.*있을까/,
+  /^.*볼만한/,
+  /^.*쓸만한/,
+  /^.*뭐가\s*있/,
+  /^.*어떤\s*(게|것|거)\s*있/,
+  /^.*차이가?\s*뭐/,
+  // English question patterns
+  /^.*\bis there\b/i,
+  /^.*\bare there\b/i,
+  /^.*\banything worth\b/i,
+  /^.*\bwhat.*(feature|difference|reference)/i,
+  /^.*\bcompare\b/i,
+];
+
+export function isAnalyticalQuestion(prompt: string): boolean {
+  const firstLine = prompt.split("\n")[0].trim();
+  return QUESTION_PATTERNS.some((p) => p.test(firstLine));
+}
+
 export function stripCodeBlocks(text: string): string {
   return text
     .replace(/(`{3,})[^\n]*\n[\s\S]*?\1/g, "")  // multiline fenced blocks (3+ backticks, matched closing)
@@ -309,8 +357,14 @@ async function main() {
   const cleaned = stripCodeBlocks(prompt);
   const excluded = new Set(config.excludedWorkflows);
 
+  // Skip persistent workflows entirely if the prompt is an analytical question
+  const analytical = isAnalyticalQuestion(cleaned);
+
   for (const [workflow, def] of Object.entries(config.workflows)) {
     if (excluded.has(workflow)) continue;
+
+    // Analytical questions should never trigger persistent workflows
+    if (analytical && def.persistent) continue;
 
     const patterns = buildPatterns(def.keywords, lang, config.cjkScripts);
 
@@ -318,6 +372,8 @@ async function main() {
       const match = pattern.exec(cleaned);
       if (!match) continue;
       if (isInformationalContext(cleaned, match.index, infoPatterns)) continue;
+      // Keywords deep in long prompts are likely pasted content, not user intent
+      if (isPastedContent(match.index, def.persistent, cleaned.length)) continue;
 
       if (def.persistent) {
         activateMode(projectDir, workflow, sessionId);

@@ -13,12 +13,25 @@
  * exit 2 = block stop
  */
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, unlinkSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { type Vendor, type ModeState, makeBlockOutput, resolveGitRoot } from "./types.ts";
+import { DEACTIVATION_PHRASES, isDeactivationRequest } from "./keyword-detector.ts";
 
 const MAX_REINFORCEMENTS = 5;
 const STALE_HOURS = 2;
+
+function detectLanguage(projectDir: string): string {
+  const prefsPath = join(projectDir, ".agents", "config", "user-preferences.yaml");
+  if (!existsSync(prefsPath)) return "en";
+  try {
+    const content = readFileSync(prefsPath, "utf-8");
+    const match = content.match(/^language:\s*(\S+)/m);
+    return match?.[1] ?? "en";
+  } catch {
+    return "en";
+  }
+}
 
 // ── Config Loading ────────────────────────────────────────────
 
@@ -135,6 +148,35 @@ async function main() {
   const vendor = detectVendor(input);
   const projectDir = getProjectDir(vendor, input);
   const sessionId = getSessionId(input);
+  const lang = detectLanguage(projectDir);
+
+  // Check all text fields in stdin for deactivation phrases.
+  // The assistant may have included "workflow done" in its response,
+  // or it may appear in transcript/content fields depending on vendor.
+  const textToCheck = [
+    input.prompt_response,  // Gemini AfterAgent
+    input.response,
+    input.content,
+    input.message,
+    input.transcript,
+  ]
+    .filter((v): v is string => typeof v === "string")
+    .join(" ");
+
+  if (textToCheck && isDeactivationRequest(textToCheck, lang)) {
+    // Deactivate all persistent workflows
+    const stateDir = join(projectDir, ".agents", "state");
+    if (existsSync(stateDir)) {
+      try {
+        for (const file of readdirSync(stateDir)) {
+          if (file.endsWith("-state.json")) {
+            unlinkSync(join(stateDir, file));
+          }
+        }
+      } catch { /* ignore */ }
+    }
+    process.exit(0);
+  }
 
   const persistentWorkflows = loadPersistentWorkflows();
 
@@ -154,12 +196,13 @@ async function main() {
 
     incrementReinforcement(projectDir, workflow, state);
 
+    const stateFile = `.agents/state/${workflow}-state.json`;
     const reason = [
       `[OMA PERSISTENT MODE: ${workflow.toUpperCase()}]`,
       `The /${workflow} workflow is still active (reinforcement ${state.reinforcementCount}/${MAX_REINFORCEMENTS}).`,
-      `Continue executing the workflow. If all tasks are genuinely complete, run:`,
-      `  "워크플로우 완료" or "workflow done"`,
-      `to deactivate persistent mode.`,
+      `Continue executing the workflow. If all tasks are genuinely complete:`,
+      `  1. Delete the state file: Bash \`rm ${stateFile}\``,
+      `  2. Or ask the user to say "워크플로우 완료" / "workflow done"`,
     ].join("\n");
 
     process.stdout.write(makeBlockOutput(vendor, reason));

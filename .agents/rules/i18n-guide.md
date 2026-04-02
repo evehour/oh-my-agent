@@ -1,6 +1,11 @@
+---
+trigger: always_on
+description: Response language rules for agents and workflows
+---
+
 # i18n Guide — Response Language Rules
 
-Single source of truth for agent/workflow response language handling.
+Rules for determining and applying response language across agents and workflows.
 
 ## Language Resolution
 

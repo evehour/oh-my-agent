@@ -1,7 +1,7 @@
 {
   "name": "oh-my-agent",
   "version": "4.19.0",
-  "releaseDate": "2026-04-02T13:29:08.147Z",
+  "releaseDate": "2026-04-02T13:48:09.557Z",
   "repository": "https://github.com/first-fluke/oh-my-agent",
   "files": [
     {
@@ -46,8 +46,8 @@
     },
     {
       "path": ".agents/mcp.json",
-      "sha256": "84e2ab4da765272962f70c7c6ce8efc379c18b5ae2963c804b65c484c350343b",
-      "size": 1405
+      "sha256": "be15d13ea8ce650b1aabba2b47f1b54725abdcfb60ecf0597c7bffa332fd74b9",
+      "size": 1925
     },
     {
       "path": ".agents/rules/i18n-guide.md",

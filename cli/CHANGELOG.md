@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.22.4](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.22.3...cli-v4.22.4) (2026-04-05)
+
+
+### Bug Fixes
+
+* use session-scoped naming for state and result files ([ff8e5b7](https://github.com/first-fluke/oh-my-agent/commit/ff8e5b79add74c299b6b0bff8d9b73141ed79688))
+
 ## [4.22.3](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.22.2...cli-v4.22.3) (2026-04-04)
 
 

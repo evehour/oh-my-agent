@@ -45,6 +45,10 @@ export const SKILLS: SkillsRegistry = {
     { name: "oma-debug", desc: "Bug fixing specialist" },
     { name: "oma-commit", desc: "Conventional Commits helper" },
     { name: "oma-translator", desc: "Context-aware multilingual translation" },
+    {
+      name: "oma-pdf",
+      desc: "PDF to Markdown conversion via opendataloader-pdf",
+    },
   ],
   infrastructure: [
     {

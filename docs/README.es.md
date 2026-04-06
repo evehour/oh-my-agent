@@ -35,21 +35,21 @@ Elige un preset y listo:
 
 | Agente | Qué Hace |
 |-------|-------------|
-| **oma-brainstorm** | Explora ideas antes de que te lances a construir |
-| **oma-pm** | Planifica tareas, desglosa requisitos, define contratos de API |
-| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
 | **oma-backend** | APIs en Python, Node.js o Rust |
-| **oma-db** | Diseño de esquemas, migraciones, indexación, vector DB |
-| **oma-mobile** | Apps multiplataforma con Flutter |
-| **oma-design** | Sistemas de diseño, tokens, accesibilidad, responsive |
-| **oma-qa** | Seguridad OWASP, rendimiento, revisión de accesibilidad |
-| **oma-debug** | Análisis de causa raíz, correcciones, tests de regresión |
-| **oma-tf-infra** | IaC multi-cloud con Terraform |
-| **oma-dev-workflow** | CI/CD, releases, automatización de monorepo |
-| **oma-translator** | Traducción multilingüe natural |
-| **oma-orchestrator** | Ejecución paralela de agentes vía CLI |
+| **oma-brainstorm** | Explora ideas antes de que te lances a construir |
 | **oma-commit** | Commits convencionales limpios |
+| **oma-db** | Diseño de esquemas, migraciones, indexación, vector DB |
+| **oma-debug** | Análisis de causa raíz, correcciones, tests de regresión |
+| **oma-design** | Sistemas de diseño, tokens, accesibilidad, responsive |
+| **oma-dev-workflow** | CI/CD, releases, automatización de monorepo |
+| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
+| **oma-mobile** | Apps multiplataforma con Flutter |
+| **oma-orchestrator** | Ejecución paralela de agentes vía CLI |
 | **oma-pdf** | Conversión de PDF a Markdown |
+| **oma-pm** | Planifica tareas, desglosa requisitos, define contratos de API |
+| **oma-qa** | Seguridad OWASP, rendimiento, revisión de accesibilidad |
+| **oma-tf-infra** | IaC multi-cloud con Terraform |
+| **oma-translator** | Traducción multilingüe natural |
 
 ## Cómo Funciona
 

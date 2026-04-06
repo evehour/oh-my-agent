@@ -35,21 +35,21 @@ Kies een preset en je bent klaar:
 
 | Agent | Wat ze doen |
 |-------|-------------|
-| **oma-brainstorm** | Verkent ideeen voordat je begint met bouwen |
-| **oma-pm** | Plant taken, splitst requirements op, definieert API-contracten |
-| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
 | **oma-backend** | API's in Python, Node.js of Rust |
-| **oma-db** | Schema-ontwerp, migraties, indexering, vector DB |
-| **oma-mobile** | Cross-platform apps met Flutter |
-| **oma-design** | Design systems, tokens, toegankelijkheid, responsive |
-| **oma-qa** | OWASP-beveiliging, performance, toegankelijkheidsreview |
-| **oma-debug** | Root cause-analyse, fixes, regressietests |
-| **oma-tf-infra** | Multi-cloud Terraform IaC |
-| **oma-dev-workflow** | CI/CD, releases, monorepo-automatisering |
-| **oma-translator** | Natuurlijke meertalige vertaling |
-| **oma-orchestrator** | Parallelle agent-uitvoering via CLI |
+| **oma-brainstorm** | Verkent ideeen voordat je begint met bouwen |
 | **oma-commit** | Nette conventional commits |
+| **oma-db** | Schema-ontwerp, migraties, indexering, vector DB |
+| **oma-debug** | Root cause-analyse, fixes, regressietests |
+| **oma-design** | Design systems, tokens, toegankelijkheid, responsive |
+| **oma-dev-workflow** | CI/CD, releases, monorepo-automatisering |
+| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
+| **oma-mobile** | Cross-platform apps met Flutter |
+| **oma-orchestrator** | Parallelle agent-uitvoering via CLI |
 | **oma-pdf** | PDF naar Markdown conversie |
+| **oma-pm** | Plant taken, splitst requirements op, definieert API-contracten |
+| **oma-qa** | OWASP-beveiliging, performance, toegankelijkheidsreview |
+| **oma-tf-infra** | Multi-cloud Terraform IaC |
+| **oma-translator** | Natuurlijke meertalige vertaling |
 
 ## Hoe het werkt
 

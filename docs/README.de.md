@@ -35,21 +35,21 @@ Wähl ein Preset und los geht's:
 
 | Agent | Was Er Macht |
 |-------|-------------|
-| **oma-brainstorm** | Erkundet Ideen, bevor du loslegst |
-| **oma-pm** | Plant Aufgaben, zerlegt Anforderungen, definiert API-Verträge |
-| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
 | **oma-backend** | APIs in Python, Node.js oder Rust |
-| **oma-db** | Schema-Design, Migrationen, Indexierung, Vector DB |
-| **oma-mobile** | Plattformübergreifende Apps mit Flutter |
-| **oma-design** | Design-Systeme, Tokens, Barrierefreiheit, Responsive |
-| **oma-qa** | OWASP-Sicherheit, Performance, Barrierefreiheits-Review |
-| **oma-debug** | Ursachenanalyse, Fixes, Regressionstests |
-| **oma-tf-infra** | Multi-Cloud IaC mit Terraform |
-| **oma-dev-workflow** | CI/CD, Releases, Monorepo-Automatisierung |
-| **oma-translator** | Natürliche mehrsprachige Übersetzung |
-| **oma-orchestrator** | Parallele Agentenausführung über CLI |
+| **oma-brainstorm** | Erkundet Ideen, bevor du loslegst |
 | **oma-commit** | Saubere konventionelle Commits |
+| **oma-db** | Schema-Design, Migrationen, Indexierung, Vector DB |
+| **oma-debug** | Ursachenanalyse, Fixes, Regressionstests |
+| **oma-design** | Design-Systeme, Tokens, Barrierefreiheit, Responsive |
+| **oma-dev-workflow** | CI/CD, Releases, Monorepo-Automatisierung |
+| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
+| **oma-mobile** | Plattformübergreifende Apps mit Flutter |
+| **oma-orchestrator** | Parallele Agentenausführung über CLI |
 | **oma-pdf** | PDF-zu-Markdown-Konvertierung |
+| **oma-pm** | Plant Aufgaben, zerlegt Anforderungen, definiert API-Verträge |
+| **oma-qa** | OWASP-Sicherheit, Performance, Barrierefreiheits-Review |
+| **oma-tf-infra** | Multi-Cloud IaC mit Terraform |
+| **oma-translator** | Natürliche mehrsprachige Übersetzung |
 
 ## So Funktioniert's
 

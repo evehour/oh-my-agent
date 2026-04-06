@@ -37,21 +37,21 @@ bunx oh-my-agent@latest
 
 | 에이전트 | 하는 일 |
 |----------|------|
-| **oma-brainstorm** | 구현 전에 아이디어를 탐색 |
-| **oma-pm** | 작업 계획, 요구사항 분석, API 계약 정의 |
-| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
 | **oma-backend** | Python, Node.js, Rust로 API 개발 |
-| **oma-db** | 스키마 설계, 마이그레이션, 인덱싱, vector DB |
-| **oma-mobile** | Flutter 크로스플랫폼 앱 |
-| **oma-design** | 디자인 시스템, 토큰, 접근성, 반응형 |
-| **oma-qa** | OWASP 보안, 성능, 접근성 리뷰 |
-| **oma-debug** | 근본 원인 분석, 수정, 회귀 테스트 |
-| **oma-tf-infra** | 멀티 클라우드 Terraform IaC |
-| **oma-dev-workflow** | CI/CD, 릴리스, 모노레포 자동화 |
-| **oma-translator** | 자연스러운 다국어 번역 |
-| **oma-orchestrator** | CLI를 통한 병렬 에이전트 실행 |
+| **oma-brainstorm** | 구현 전에 아이디어를 탐색 |
 | **oma-commit** | 깔끔한 conventional commit |
+| **oma-db** | 스키마 설계, 마이그레이션, 인덱싱, vector DB |
+| **oma-debug** | 근본 원인 분석, 수정, 회귀 테스트 |
+| **oma-design** | 디자인 시스템, 토큰, 접근성, 반응형 |
+| **oma-dev-workflow** | CI/CD, 릴리스, 모노레포 자동화 |
+| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
+| **oma-mobile** | Flutter 크로스플랫폼 앱 |
+| **oma-orchestrator** | CLI를 통한 병렬 에이전트 실행 |
 | **oma-pdf** | PDF를 Markdown으로 변환 |
+| **oma-pm** | 작업 계획, 요구사항 분석, API 계약 정의 |
+| **oma-qa** | OWASP 보안, 성능, 접근성 리뷰 |
+| **oma-tf-infra** | 멀티 클라우드 Terraform IaC |
+| **oma-translator** | 자연스러운 다국어 번역 |
 
 ## 작동 방식
 

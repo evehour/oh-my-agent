@@ -35,21 +35,21 @@ bunx oh-my-agent@latest
 
 | エージェント | 役割 |
 |-------------|------|
-| **oma-brainstorm** | 実装前にアイデアを探索 |
-| **oma-pm** | タスク計画、要件分解、APIコントラクト定義 |
-| **oma-frontend** | React/Next.js、TypeScript、Tailwind CSS v4、shadcn/ui |
 | **oma-backend** | Python、Node.js、RustでAPI開発 |
-| **oma-db** | スキーマ設計、マイグレーション、インデックス、vector DB |
-| **oma-mobile** | Flutterクロスプラットフォームアプリ |
-| **oma-design** | デザインシステム、トークン、アクセシビリティ、レスポンシブ |
-| **oma-qa** | OWASPセキュリティ、パフォーマンス、アクセシビリティレビュー |
-| **oma-debug** | 根本原因分析、修正、リグレッションテスト |
-| **oma-tf-infra** | マルチクラウドTerraform IaC |
-| **oma-dev-workflow** | CI/CD、リリース、モノレポ自動化 |
-| **oma-translator** | 自然な多言語翻訳 |
-| **oma-orchestrator** | CLI経由の並列エージェント実行 |
+| **oma-brainstorm** | 実装前にアイデアを探索 |
 | **oma-commit** | きれいなconventional commit |
+| **oma-db** | スキーマ設計、マイグレーション、インデックス、vector DB |
+| **oma-debug** | 根本原因分析、修正、リグレッションテスト |
+| **oma-design** | デザインシステム、トークン、アクセシビリティ、レスポンシブ |
+| **oma-dev-workflow** | CI/CD、リリース、モノレポ自動化 |
+| **oma-frontend** | React/Next.js、TypeScript、Tailwind CSS v4、shadcn/ui |
+| **oma-mobile** | Flutterクロスプラットフォームアプリ |
+| **oma-orchestrator** | CLI経由の並列エージェント実行 |
 | **oma-pdf** | PDFからMarkdownへの変換 |
+| **oma-pm** | タスク計画、要件分解、APIコントラクト定義 |
+| **oma-qa** | OWASPセキュリティ、パフォーマンス、アクセシビリティレビュー |
+| **oma-tf-infra** | マルチクラウドTerraform IaC |
+| **oma-translator** | 自然な多言語翻訳 |
 
 ## 仕組み
 

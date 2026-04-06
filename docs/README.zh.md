@@ -35,21 +35,21 @@ bunx oh-my-agent@latest
 
 | Agent | 职责 |
 |-------|------|
-| **oma-brainstorm** | 动手之前先探索想法 |
-| **oma-pm** | 任务规划、需求拆解、API 契约定义 |
-| **oma-frontend** | React/Next.js、TypeScript、Tailwind CSS v4、shadcn/ui |
 | **oma-backend** | 用 Python、Node.js 或 Rust 开发 API |
-| **oma-db** | Schema 设计、迁移、索引、vector DB |
-| **oma-mobile** | Flutter 跨平台应用 |
-| **oma-design** | 设计系统、token、无障碍、响应式 |
-| **oma-qa** | OWASP 安全、性能、无障碍审查 |
-| **oma-debug** | 根因分析、修复、回归测试 |
-| **oma-tf-infra** | 多云 Terraform IaC |
-| **oma-dev-workflow** | CI/CD、发布、monorepo 自动化 |
-| **oma-translator** | 自然的多语言翻译 |
-| **oma-orchestrator** | 通过 CLI 并行执行 agent |
+| **oma-brainstorm** | 动手之前先探索想法 |
 | **oma-commit** | 干净的 conventional commit |
+| **oma-db** | Schema 设计、迁移、索引、vector DB |
+| **oma-debug** | 根因分析、修复、回归测试 |
+| **oma-design** | 设计系统、token、无障碍、响应式 |
+| **oma-dev-workflow** | CI/CD、发布、monorepo 自动化 |
+| **oma-frontend** | React/Next.js、TypeScript、Tailwind CSS v4、shadcn/ui |
+| **oma-mobile** | Flutter 跨平台应用 |
+| **oma-orchestrator** | 通过 CLI 并行执行 agent |
 | **oma-pdf** | PDF 转 Markdown |
+| **oma-pm** | 任务规划、需求拆解、API 契约定义 |
+| **oma-qa** | OWASP 安全、性能、无障碍审查 |
+| **oma-tf-infra** | 多云 Terraform IaC |
+| **oma-translator** | 自然的多语言翻译 |
 
 ## 工作原理
 

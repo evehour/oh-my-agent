@@ -35,21 +35,21 @@ Chọn một preset và bạn đã sẵn sàng:
 
 | Agent | Chức năng |
 |-------|----------|
-| **oma-brainstorm** | Khám phá ý tưởng trước khi bắt tay vào xây dựng |
-| **oma-pm** | Lập kế hoạch, phân tích yêu cầu, định nghĩa API contract |
-| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
 | **oma-backend** | Xây dựng API bằng Python, Node.js hoặc Rust |
-| **oma-db** | Thiết kế schema, migration, indexing, vector DB |
-| **oma-mobile** | Ứng dụng đa nền tảng với Flutter |
-| **oma-design** | Hệ thống thiết kế, token, accessibility, responsive |
-| **oma-qa** | Đánh giá bảo mật OWASP, hiệu suất, accessibility |
-| **oma-debug** | Phân tích nguyên nhân gốc, sửa lỗi, regression test |
-| **oma-tf-infra** | Terraform IaC đa đám mây |
-| **oma-dev-workflow** | CI/CD, release, tự động hóa monorepo |
-| **oma-translator** | Dịch thuật đa ngôn ngữ tự nhiên |
-| **oma-orchestrator** | Thực thi agent song song qua CLI |
+| **oma-brainstorm** | Khám phá ý tưởng trước khi bắt tay vào xây dựng |
 | **oma-commit** | Conventional commit gọn gàng |
+| **oma-db** | Thiết kế schema, migration, indexing, vector DB |
+| **oma-debug** | Phân tích nguyên nhân gốc, sửa lỗi, regression test |
+| **oma-design** | Hệ thống thiết kế, token, accessibility, responsive |
+| **oma-dev-workflow** | CI/CD, release, tự động hóa monorepo |
+| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
+| **oma-mobile** | Ứng dụng đa nền tảng với Flutter |
+| **oma-orchestrator** | Thực thi agent song song qua CLI |
 | **oma-pdf** | Chuyển đổi PDF sang Markdown |
+| **oma-pm** | Lập kế hoạch, phân tích yêu cầu, định nghĩa API contract |
+| **oma-qa** | Đánh giá bảo mật OWASP, hiệu suất, accessibility |
+| **oma-tf-infra** | Terraform IaC đa đám mây |
+| **oma-translator** | Dịch thuật đa ngôn ngữ tự nhiên |
 
 ## Cách hoạt động
 

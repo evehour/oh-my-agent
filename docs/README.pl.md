@@ -35,21 +35,21 @@ Wybierz preset i gotowe:
 
 | Agent | Co robi |
 |-------|-------------|
-| **oma-brainstorm** | Eksploruje pomysly, zanim zaczniesz budowac |
-| **oma-pm** | Planuje zadania, rozbija wymagania, definiuje kontrakty API |
-| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
 | **oma-backend** | API w Python, Node.js lub Rust |
-| **oma-db** | Projektowanie schematow, migracje, indeksowanie, vector DB |
-| **oma-mobile** | Wieloplatformowe aplikacje we Flutter |
-| **oma-design** | Design systemy, tokeny, dostepnosc, responsywnosc |
-| **oma-qa** | Bezpieczenstwo OWASP, wydajnosc, przeglad dostepnosci |
-| **oma-debug** | Analiza przyczyn, poprawki, testy regresji |
-| **oma-tf-infra** | Wielochmurowy IaC z Terraform |
-| **oma-dev-workflow** | CI/CD, releasy, automatyzacja monorepo |
-| **oma-translator** | Naturalne tlumaczenie wielojezyczne |
-| **oma-orchestrator** | Rownolegle uruchamianie agentow przez CLI |
+| **oma-brainstorm** | Eksploruje pomysly, zanim zaczniesz budowac |
 | **oma-commit** | Czyste conventional commits |
+| **oma-db** | Projektowanie schematow, migracje, indeksowanie, vector DB |
+| **oma-debug** | Analiza przyczyn, poprawki, testy regresji |
+| **oma-design** | Design systemy, tokeny, dostepnosc, responsywnosc |
+| **oma-dev-workflow** | CI/CD, releasy, automatyzacja monorepo |
+| **oma-frontend** | React/Next.js, TypeScript, Tailwind CSS v4, shadcn/ui |
+| **oma-mobile** | Wieloplatformowe aplikacje we Flutter |
+| **oma-orchestrator** | Rownolegle uruchamianie agentow przez CLI |
 | **oma-pdf** | Konwersja PDF do Markdown |
+| **oma-pm** | Planuje zadania, rozbija wymagania, definiuje kontrakty API |
+| **oma-qa** | Bezpieczenstwo OWASP, wydajnosc, przeglad dostepnosci |
+| **oma-tf-infra** | Wielochmurowy IaC z Terraform |
+| **oma-translator** | Naturalne tlumaczenie wielojezyczne |
 
 ## Jak to dziala
 

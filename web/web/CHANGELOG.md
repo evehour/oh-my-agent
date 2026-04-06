@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.16](https://github.com/first-fluke/oh-my-agent/compare/web-v0.3.15...web-v0.3.16) (2026-04-06)
+
+
+### Refactoring
+
+* rename /coordinate workflow to /work ([15e9b8e](https://github.com/first-fluke/oh-my-agent/commit/15e9b8e9166d097ada043864669a0c9fb5a48c5c))
+
 ## [0.3.15](https://github.com/first-fluke/oh-my-agent/compare/web-v0.3.14...web-v0.3.15) (2026-04-06)
 
 

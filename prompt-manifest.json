@@ -1,7 +1,7 @@
 {
   "name": "oh-my-agent",
   "version": "4.23.0",
-  "releaseDate": "2026-04-05T22:51:23.907Z",
+  "releaseDate": "2026-04-06T03:47:49.346Z",
   "repository": "https://github.com/first-fluke/oh-my-agent",
   "files": [
     {
@@ -40,19 +40,19 @@
       "size": 1900
     },
     {
-      "path": ".agents/config/user-preferences.yaml",
-      "sha256": "65659e9ed1c114aec5e60f8fd4e35d21127d8b33a7cb02a8bcdf3a7d0d3fbb7b",
-      "size": 570
-    },
-    {
       "path": ".agents/mcp.json",
       "sha256": "be15d13ea8ce650b1aabba2b47f1b54725abdcfb60ecf0597c7bffa332fd74b9",
       "size": 1925
     },
     {
+      "path": ".agents/oma-config.yaml",
+      "sha256": "65659e9ed1c114aec5e60f8fd4e35d21127d8b33a7cb02a8bcdf3a7d0d3fbb7b",
+      "size": 570
+    },
+    {
       "path": ".agents/rules/i18n-guide.md",
-      "sha256": "89102519c47c0c6b6026564e81825a4d44df785616073bf80099bef165b953ab",
-      "size": 2893
+      "sha256": "d3080f86f963a68e7c407f642470ccc46cf21a814ddf5e7848a09802ab4e148f",
+      "size": 2848
     },
     {
       "path": ".agents/skills/_shared/README.md",
@@ -261,8 +261,8 @@
     },
     {
       "path": ".agents/skills/oma-commit/SKILL.md",
-      "sha256": "c5a8468b0a34acb75df5613a9a8e68e19e91233faff25d1d3012123dd32d6d44",
-      "size": 3198
+      "sha256": "aa9436c26a2954babce5514273371f34b9db5139c7abfd3928c410f4d1a12742",
+      "size": 3192
     },
     {
       "path": ".agents/skills/oma-commit/config/commit-config.yaml",
@@ -276,8 +276,8 @@
     },
     {
       "path": ".agents/skills/oma-coordination/SKILL.md",
-      "sha256": "99114ca409e1a82b1bceff310d5d18af4aa57c11d4b4bc07794e94936f777c67",
-      "size": 2146
+      "sha256": "c5cb5744ea63d41ee83a0060bb8118271ea9dccc60b7a27aeddcbe750fa7bfac",
+      "size": 2140
     },
     {
       "path": ".agents/skills/oma-coordination/resources/examples.md",
@@ -591,8 +591,8 @@
     },
     {
       "path": ".agents/skills/oma-orchestrator/config/cli-config.yaml",
-      "sha256": "294169a2bf973451af3f9f2b61166f3faf0997b3f3c2e578f380593763156574",
-      "size": 1935
+      "sha256": "41e69a95d5131a7784c54b7cfdbd3250c277e0ab2b1e456ce32fd0dd979dd1f5",
+      "size": 1916
     },
     {
       "path": ".agents/skills/oma-orchestrator/resources/memory-schema.md",
@@ -801,53 +801,53 @@
     },
     {
       "path": ".agents/workflows/brainstorm.md",
-      "sha256": "e991b1d2e1312c59fd4fcb188e66d8e961c6ce5127faa2afb477db226321c08c",
-      "size": 3059
+      "sha256": "df8b2af0cb76c8dc79dfe218f909520fa58ce25f3f3739939817686ced103504",
+      "size": 3046
     },
     {
       "path": ".agents/workflows/commit.md",
-      "sha256": "8f0a0a3f81e0d98417a3323093e8bd44317d0ff9d39635dba65827d45efd07ad",
-      "size": 1941
+      "sha256": "8675e4c5bd43adc5a56b83eb7271c1a15eecb7b6cd0dfbc084eba1f7693f443b",
+      "size": 1928
     },
     {
       "path": ".agents/workflows/coordinate.md",
-      "sha256": "33be4f572b81edd47d336066058d7b525fcf3e59eca5f891cc75f98a60bc093d",
-      "size": 5541
+      "sha256": "bffeee6891c2793e5f49bc13de4d03de2ab024f2faeb09e67e3378568fda88b3",
+      "size": 5528
     },
     {
       "path": ".agents/workflows/debug.md",
-      "sha256": "793847bdb5114601f58eedfbb00fe21cc09c438117f906cea2ba519abc7fe76d",
-      "size": 3649
+      "sha256": "e368e294d2d5de764c0cd2a7e18ccfea3c6c153d7ed297a4005016e93ecb0cb0",
+      "size": 3636
     },
     {
       "path": ".agents/workflows/deepinit.md",
-      "sha256": "a81c3427d9782bd0c3541f180fd3faf278a79b1a34d1e2097483bc06fbf0d332",
-      "size": 14320
+      "sha256": "ddfdcb5cc8e1bf8c6f0294fd83df8d098fd14e8bfc397e6b771baa5a056c20b3",
+      "size": 14307
     },
     {
       "path": ".agents/workflows/design.md",
-      "sha256": "2138df45db2fb0335ad0f955ca3f20e7a9eba38dbc825826680f9d21359dc49f",
-      "size": 4410
+      "sha256": "3d09aeed742e1cb20949bd1842ccae8622d7503345ebdb3a840fd19ec58cd9c9",
+      "size": 4397
     },
     {
       "path": ".agents/workflows/exec-plan.md",
-      "sha256": "bc6ecc92709ebbd7ea56223d5f2773a581a016d4a10ef61424ee327d272f98a5",
-      "size": 4823
+      "sha256": "ddb7c2dbc5a9a5fed4d59d59b7049d3a864b4719283d32b0c4579f7f158aa6e2",
+      "size": 4810
     },
     {
       "path": ".agents/workflows/orchestrate.md",
-      "sha256": "c4bb40e26438d55125efc7ece9b1ce61fe80e2477ea0973ddf79e1add7bc3435",
-      "size": 6926
+      "sha256": "3b01d2c703af0060185a248333325cc5ce7c35717f289fb2af0ad0935c2ed286",
+      "size": 6900
     },
     {
       "path": ".agents/workflows/pdf.md",
-      "sha256": "ecea1d9141d7fc51c3cd7f82f6ab11f1bd4515f952a3ea0011a71e1d69555543",
-      "size": 3888
+      "sha256": "af3d2cd44b310b4f4cb8cb4f9d6378b608f4452a75e928c8c4339d5d6147a8c9",
+      "size": 3875
     },
     {
       "path": ".agents/workflows/plan.md",
-      "sha256": "586335ca594ffcc09ac3b3c493ebbf4f939b6fa5af482621fe6b368d562c0021",
-      "size": 2701
+      "sha256": "a763b471438281d0a4d4d70553519efb4acdfab6db10d7a25f37d56b631ac61f",
+      "size": 2688
     },
     {
       "path": ".agents/workflows/ralph/resources/judge-protocol.md",
@@ -856,13 +856,13 @@
     },
     {
       "path": ".agents/workflows/ralph.md",
-      "sha256": "228913341253c3944dc29041f8937d5a6862bf62d6bf6b5549a996f22cfe2a9d",
-      "size": 7836
+      "sha256": "2418c8254896041b18dc26f7c8517d217245769cdeff4506dd251ac6f1361e0b",
+      "size": 7823
     },
     {
       "path": ".agents/workflows/review.md",
-      "sha256": "cee1616e9380eabe8d175aa9a2d556b9c1c3f0fae3658546422ba53c6004fb07",
-      "size": 4827
+      "sha256": "1aaa14ced9d16a5d28257ddd96df8d075ce04b6b7942bf7ab7bbff229e577e3e",
+      "size": 4814
     },
     {
       "path": ".agents/workflows/stack-set.md",
@@ -871,8 +871,8 @@
     },
     {
       "path": ".agents/workflows/tools.md",
-      "sha256": "949ab9cb01722a08c6b036e0d96f0ff86352a0d166913a6c66bf9cfc58f71410",
-      "size": 5085
+      "sha256": "903fc9e26de1ef1d4b8e23f1a1c40ecbf025c0a7f01100f54c133dc0816fcc81",
+      "size": 5072
     },
     {
       "path": ".agents/workflows/ultrawork/resources/multi-review-protocol.md",
@@ -886,8 +886,8 @@
     },
     {
       "path": ".agents/workflows/ultrawork.md",
-      "sha256": "add1f726e35660cef4bfe5b4c68def8679ba6fab6ffa01acfbacd1e00434fdb7",
-      "size": 15793
+      "sha256": "c87771cae8ee78ff234410696740b9d0dc84b6f440edbcbc993ff27ccb3f912a",
+      "size": 15780
     },
     {
       "path": ".claude/skills/brainstorm/SKILL.md",

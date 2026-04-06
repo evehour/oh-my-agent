@@ -59,7 +59,7 @@ oma doctor   # wyjście JSON
 
 | Flaga | Skrót | Opis | Domyślna |
 |:-----|:------|:-----------|:--------|
-| `--force` | `-f` | Nadpisz niestandardowe pliki konfiguracyjne. Dotyczy: `user-preferences.yaml`, `mcp.json`, katalogi `stack/`. | `false` |
+| `--force` | `-f` | Nadpisz niestandardowe pliki konfiguracyjne. Dotyczy: `oma-config.yaml`, `mcp.json`, katalogi `stack/`. | `false` |
 | `--ci` | | Tryb nieinteraktywny CI. Pomija podpowiedzi, zwykłe wyjście konsolowe. | `false` |
 
 ### stats

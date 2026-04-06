@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Complete installation guide for oh-my-agent — three install methods, all six presets with their skill lists, CLI tool requirements for all four vendors, post-install configuration, user-preferences.yaml fields, and verification with oma doctor.
+description: Complete installation guide for oh-my-agent — three install methods, all six presets with their skill lists, CLI tool requirements for all four vendors, post-install configuration, oma-config.yaml fields, and verification with oma doctor.
 ---
 
 # Installation
@@ -65,7 +65,7 @@ After installation, your project will contain:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Your preferences
+│   └── oma-config.yaml      # Your preferences
 ├── skills/
 │   ├── _shared/                    # Shared resources (always installed)
 │   │   ├── core/                   # skill-routing, context-loading, etc.
@@ -187,9 +187,9 @@ After install, run `/auth` inside the CLI to authenticate.
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-The `oma install` command creates `.agents/config/user-preferences.yaml`. This is the central configuration file for all oh-my-agent behavior:
+The `oma install` command creates `.agents/oma-config.yaml`. This is the central configuration file for all oh-my-agent behavior:
 
 ```yaml
 # Response language for all agents and workflows
@@ -237,8 +237,8 @@ agent_cli_mapping:
 When spawning an agent, the CLI vendor is determined by this priority order (highest first):
 
 1. `--model` flag passed to `oma agent:spawn`
-2. `agent_cli_mapping` entry for that specific agent in `user-preferences.yaml`
-3. `default_cli` setting in `user-preferences.yaml`
+2. `agent_cli_mapping` entry for that specific agent in `oma-config.yaml`
+3. `default_cli` setting in `oma-config.yaml`
 4. `active_vendor` in `cli-config.yaml` (legacy fallback)
 5. `gemini` (hardcoded final fallback)
 
@@ -259,7 +259,7 @@ This command checks:
 - Symlinks in `.claude/skills/` point to valid targets
 - Hooks are properly configured in `.claude/settings.json`
 - Memory provider is reachable (Serena MCP)
-- `user-preferences.yaml` is valid YAML with required fields
+- `oma-config.yaml` is valid YAML with required fields
 
 If anything is wrong, `oma doctor` tells you exactly what to fix, with copy-paste commands.
 
@@ -283,7 +283,7 @@ Skills and workflows within a project can be updated via the GitHub Action (`act
 bunx oh-my-agent@latest
 ```
 
-The installer detects existing installations and offers to update while preserving your `user-preferences.yaml` and any custom configuration.
+The installer detects existing installations and offers to update while preserving your `oma-config.yaml` and any custom configuration.
 
 ---
 

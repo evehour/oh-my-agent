@@ -1,6 +1,6 @@
 ---
 title: Instalação
-description: "Guia completo de instalação do oh-my-agent — três métodos de instalação, todos os seis presets com suas listas de habilidades, requisitos de ferramentas CLI para os quatro fornecedores, configuração pós-instalação, campos do user-preferences.yaml e verificação com oma doctor."
+description: "Guia completo de instalação do oh-my-agent — três métodos de instalação, todos os seis presets com suas listas de habilidades, requisitos de ferramentas CLI para os quatro fornecedores, configuração pós-instalação, campos do oma-config.yaml e verificação com oma doctor."
 ---
 
 # Instalação
@@ -63,7 +63,7 @@ Após a instalação, seu projeto conterá:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Suas preferências
+│   └── oma-config.yaml      # Suas preferências
 ├── skills/
 │   ├── _shared/                    # Recursos compartilhados (sempre instalados)
 │   │   ├── core/                   # skill-routing, context-loading, etc.
@@ -185,9 +185,9 @@ Após a instalação, execute `/auth` dentro do CLI para autenticar.
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-O comando `oma install` cria `.agents/config/user-preferences.yaml`. Este é o arquivo de configuração central para todo o comportamento do oh-my-agent:
+O comando `oma install` cria `.agents/oma-config.yaml`. Este é o arquivo de configuração central para todo o comportamento do oh-my-agent:
 
 ```yaml
 # Idioma de resposta para todos os agentes e workflows
@@ -235,8 +235,8 @@ agent_cli_mapping:
 Ao executar um agente, o fornecedor CLI é determinado por esta ordem de prioridade (maior primeiro):
 
 1. Flag `--model` passada para `oma agent:spawn`
-2. Entrada `agent_cli_mapping` para aquele agente específico em `user-preferences.yaml`
-3. Configuração `default_cli` em `user-preferences.yaml`
+2. Entrada `agent_cli_mapping` para aquele agente específico em `oma-config.yaml`
+3. Configuração `default_cli` em `oma-config.yaml`
 4. `active_vendor` em `cli-config.yaml` (fallback legado)
 5. `gemini` (fallback codificado final)
 
@@ -257,7 +257,7 @@ Este comando verifica:
 - Symlinks em `.claude/skills/` apontam para alvos válidos
 - Hooks estão corretamente configurados em `.claude/settings.json`
 - Provedor de memória é alcançável (Serena MCP)
-- `user-preferences.yaml` é YAML válido com campos obrigatórios
+- `oma-config.yaml` é YAML válido com campos obrigatórios
 
 Se algo estiver errado, `oma doctor` informa exatamente o que corrigir, com comandos para copiar e colar.
 
@@ -281,7 +281,7 @@ Habilidades e workflows dentro de um projeto podem ser atualizados via GitHub Ac
 bunx oh-my-agent@latest
 ```
 
-O instalador detecta instalações existentes e oferece atualizar preservando seu `user-preferences.yaml` e qualquer configuração personalizada.
+O instalador detecta instalações existentes e oferece atualizar preservando seu `oma-config.yaml` e qualquer configuração personalizada.
 
 ---
 

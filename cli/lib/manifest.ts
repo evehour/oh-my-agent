@@ -37,7 +37,7 @@ export function hasInstalledProject(targetDir: string): boolean {
   if (!existsSync(skillsDir)) return false;
 
   const installationMarkers = [
-    join(targetDir, ".agents", "config", "user-preferences.yaml"),
+    join(targetDir, ".agents", "oma-config.yaml"),
     join(targetDir, ".agents", "mcp.json"),
     join(targetDir, ".agents", "workflows"),
   ];

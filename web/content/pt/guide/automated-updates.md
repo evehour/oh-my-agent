@@ -46,7 +46,7 @@ Essa é a configuração mínima. Cria um PR com configurações padrão quando 
 |:------|:-----|:-----------|:-------|:-----------|
 | `mode` | string | Não | `"pr"` | Como aplicar mudanças. `"pr"` cria um pull request. `"commit"` faz push direto para a branch base. |
 | `base-branch` | string | Não | `"main"` | Branch base para o PR (no modo `pr`) ou branch alvo para commits diretos (no modo `commit`). |
-| `force` | string | Não | `"false"` | Passa `--force` para `oma update`. Quando `"true"`, sobrescreve arquivos de config customizados (`user-preferences.yaml`, `mcp.json`) e diretórios `stack/`. Normalmente estes são preservados. |
+| `force` | string | Não | `"false"` | Passa `--force` para `oma update`. Quando `"true"`, sobrescreve arquivos de config customizados (`oma-config.yaml`, `mcp.json`) e diretórios `stack/`. Normalmente estes são preservados. |
 | `pr-title` | string | Não | `"chore(deps): update oh-my-agent skills"` | Título customizado para o pull request. Usado apenas no modo `pr`. |
 | `pr-labels` | string | Não | `"dependencies,automated"` | Labels separadas por vírgula para adicionar ao PR. Usado apenas no modo `pr`. |
 | `commit-message` | string | Não | `"chore(deps): update oh-my-agent skills"` | Mensagem de commit customizada. Usada em ambos os modos. |
@@ -198,7 +198,7 @@ jobs:
           pr-labels: "dependencies,automated,force-update"
 ```
 
-**Aviso:** Modo force sobrescreve `user-preferences.yaml`, `mcp.json` e diretórios `stack/`. Use apenas quando quiser resetar todas as customizações para padrões.
+**Aviso:** Modo force sobrescreve `oma-config.yaml`, `mcp.json` e diretórios `stack/`. Use apenas quando quiser resetar todas as customizações para padrões.
 
 ---
 

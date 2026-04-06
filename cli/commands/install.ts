@@ -64,12 +64,7 @@ export function scanLanguages(
 }
 
 export function getExistingLanguage(targetDir: string): string | null {
-  const prefsPath = join(
-    targetDir,
-    ".agents",
-    "config",
-    "user-preferences.yaml",
-  );
+  const prefsPath = join(targetDir, ".agents", "oma-config.yaml");
   if (!existsSync(prefsPath)) return null;
 
   try {
@@ -264,13 +259,8 @@ export async function install(): Promise<void> {
       ]);
       spinner.stop("Vendor adaptations installed!");
 
-      // Patch user-preferences.yaml with selected language
-      const userPrefsPath = join(
-        cwd,
-        ".agents",
-        "config",
-        "user-preferences.yaml",
-      );
+      // Patch oma-config.yaml with selected language
+      const userPrefsPath = join(cwd, ".agents", "oma-config.yaml");
       if (existsSync(userPrefsPath)) {
         const prefs = readFileSync(userPrefsPath, "utf-8");
         writeFileSync(

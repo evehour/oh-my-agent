@@ -424,7 +424,7 @@ The `-w` flag on `agent:spawn` isolates an agent to a specific directory. This i
 | Agent blocked on HIGH clarification | Requirements too ambiguous | Provide the specific answers the agent requested, then re-run |
 | MCP tools not working | Serena not configured or not running | Run `oma doctor` to verify MCP config |
 | Agent exceeds turn limit | Task too complex for default turns | Increase turns with `-t 30` flag, or decompose into smaller tasks |
-| Wrong CLI used for agent | agent_cli_mapping not configured | Run `oma install` to configure, or edit `user-preferences.yaml` directly |
+| Wrong CLI used for agent | agent_cli_mapping not configured | Run `oma install` to configure, or edit `oma-config.yaml` directly |
 
 ---
 

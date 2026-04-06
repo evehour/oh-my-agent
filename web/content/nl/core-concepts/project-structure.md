@@ -15,7 +15,7 @@ Na het installeren van oh-my-agent krijgt je project drie directorystructuren: `
 your-project/
 ├── .agents/                          ← Single Source of Truth (SSOT)
 │   ├── config/
-│   │   └── user-preferences.yaml    ← Taal, tijdzone, CLI-mapping
+│   │   └── oma-config.yaml    ← Taal, tijdzone, CLI-mapping
 │   │
 │   ├── skills/
 │   │   ├── _shared/                  ← Bronnen gebruikt door ALLE agenten
@@ -140,7 +140,7 @@ Dit is de kerndirectory. Alles wat agenten nodig hebben bevindt zich hier. Het i
 
 ### config/
 
-**`user-preferences.yaml`** — Centraal configuratiebestand met: `language` (antwoordtaalcode), `date_format` (tijdstempelnotatie), `timezone` (tijdzone-identificator), `default_cli` (fallback CLI-leverancier), `agent_cli_mapping` (per-agent CLI-routering).
+**`oma-config.yaml`** — Centraal configuratiebestand met: `language` (antwoordtaalcode), `date_format` (tijdstempelnotatie), `timezone` (tijdzone-identificator), `default_cli` (fallback CLI-leverancier), `agent_cli_mapping` (per-agent CLI-routering).
 
 ### skills/
 

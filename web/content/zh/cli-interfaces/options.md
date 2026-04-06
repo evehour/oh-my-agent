@@ -83,11 +83,11 @@ oma update [-f | --force] [--ci]
 
 | 标志 | 缩写 | 说明 | 默认值 |
 |:-----|:-----|:-----|:-------|
-| `--force` | `-f` | 更新时覆盖用户自定义的配置文件。影响：`user-preferences.yaml`、`mcp.json`、`stack/` 目录。不使用此标志时，这些文件在更新前备份并在之后恢复。 | `false` |
+| `--force` | `-f` | 更新时覆盖用户自定义的配置文件。影响：`oma-config.yaml`、`mcp.json`、`stack/` 目录。不使用此标志时，这些文件在更新前备份并在之后恢复。 | `false` |
 | `--ci` | | 以非交互 CI 模式运行。跳过所有确认提示，使用纯控制台输出而非动画。CI/CD 流水线中 stdin 不可用时必需。 | `false` |
 
 **使用 --force 时的行为：**
-- `user-preferences.yaml` 被替换为注册表默认值。
+- `oma-config.yaml` 被替换为注册表默认值。
 - `mcp.json` 被替换为注册表默认值。
 - Backend `stack/` 目录（语言特定资源）被替换。
 - 所有其他文件无论此标志如何都会更新。

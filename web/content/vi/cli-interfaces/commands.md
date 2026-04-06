@@ -100,7 +100,7 @@ oma update [-f | --force] [--ci]
 
 | Flag | Mô tả |
 |:-----|:-----------|
-| `-f, --force` | Ghi đè file config tùy chỉnh (`user-preferences.yaml`, `mcp.json`, thư mục `stack/`) |
+| `-f, --force` | Ghi đè file config tùy chỉnh (`oma-config.yaml`, `mcp.json`, thư mục `stack/`) |
 | `--ci` | Chạy ở chế độ CI không tương tác (bỏ qua prompt, đầu ra text thuần) |
 
 **Hoạt động:**
@@ -298,7 +298,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 | `-m, --model <vendor>` | Ghi đè vendor CLI: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | Thư mục làm việc cho agent. Tự phát hiện từ config monorepo nếu bỏ qua. |
 
-**Thứ tự phân giải vendor:** Flag `--model` > `agent_cli_mapping` trong user-preferences.yaml > `default_cli` > `active_vendor` trong cli-config.yaml > `gemini`.
+**Thứ tự phân giải vendor:** Flag `--model` > `agent_cli_mapping` trong oma-config.yaml > `default_cli` > `active_vendor` trong cli-config.yaml > `gemini`.
 
 **Phân giải prompt:** Nếu đối số prompt là đường dẫn đến file tồn tại, nội dung file được dùng làm prompt. Ngược lại, đối số được dùng làm text trực tiếp. Quy trình thực thi đặc thù vendor được tự động thêm vào.
 

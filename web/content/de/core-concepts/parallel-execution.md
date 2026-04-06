@@ -125,7 +125,7 @@ Nicht alle KI-CLIs sind domänenübergreifend gleich leistungsfähig. oh-my-agen
 ### Vollständiges Konfigurationsbeispiel
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 
 # Antwortsprache
 language: en
@@ -163,8 +163,8 @@ Wenn `oma agent:spawn` bestimmt, welche CLI verwendet wird, folgt es dieser Prio
 | Priorität | Quelle | Beispiel |
 |----------|--------|---------|
 | 1 (höchste) | `--model`-Flag | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in user-preferences.yaml |
-| 3 | `default_cli` | `default_cli: gemini` in user-preferences.yaml |
+| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in oma-config.yaml |
+| 3 | `default_cli` | `default_cli: gemini` in oma-config.yaml |
 | 4 | `active_vendor` | Legacy-Einstellung in `cli-config.yaml` |
 | 5 (niedrigste) | Fest codierter Fallback | `gemini` |
 

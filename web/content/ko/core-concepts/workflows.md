@@ -40,14 +40,14 @@ description: oh-my-agent 15개 워크플로우 완전 레퍼런스 — 슬래시
 **단계:**
 1. **Step 0 — 준비:** 코디네이션 스킬, 컨텍스트 로딩 가이드, 메모리 프로토콜 읽기. 벤더 감지.
 2. **Step 1 — 계획 로딩/생성:** `.agents/plan.json` 확인. 없으면 `/plan`을 먼저 실행하도록 안내.
-3. **Step 2 — 세션 초기화:** `user-preferences.yaml` 로딩, CLI 매핑 테이블 표시, 세션 ID(`session-YYYYMMDD-HHMMSS`) 생성, 메모리에 `orchestrator-session.md`와 `task-board.md` 생성.
+3. **Step 2 — 세션 초기화:** `oma-config.yaml` 로딩, CLI 매핑 테이블 표시, 세션 ID(`session-YYYYMMDD-HHMMSS`) 생성, 메모리에 `orchestrator-session.md`와 `task-board.md` 생성.
 4. **Step 3 — 에이전트 스폰:** 각 우선순위 티어(P0 먼저, 그 다음 P1...)에 대해 벤더에 맞는 방식으로 에이전트 스폰. MAX_PARALLEL을 초과하지 않음.
 5. **Step 4 — 모니터링:** `progress-{agent}.md` 파일 폴링, `task-board.md` 업데이트. 완료, 실패, 크래시 감시.
 6. **Step 5 — 검증:** 완료된 에이전트별로 `verify.sh {agent-type} {workspace}` 실행. 실패 시 에러 컨텍스트와 함께 재스폰 (최대 2회 재시도). 2회 재시도 후에도 실패하면 Exploration Loop 활성화: 2-3개 가설 생성, 병렬 실험 스폰, 점수 매기기, 최적 선택.
 7. **Step 6 — 수집:** 모든 `result-{agent}.md` 파일 읽기, 요약 정리.
 8. **Step 7 — 최종 보고서:** 세션 요약 제시. Quality Score가 측정된 경우 Experiment Ledger 요약 포함 및 교훈 자동 생성.
 
-**읽는 파일:** `.agents/plan.json`, `.agents/config/user-preferences.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**읽는 파일:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **쓰는 파일:** `orchestrator-session.md`, `task-board.md` (메모리), 최종 보고서.
 
 **사용 시기:** 자동화된 조율과 최대 병렬성이 필요한 대규모 프로젝트.

@@ -3,7 +3,7 @@
 
 ## Architecture
 - **SSOT**: `.agents/` directory (do not modify directly)
-- **Response language**: Follows `language` in `.agents/config/user-preferences.yaml`
+- **Response language**: Follows `language` in `.agents/oma-config.yaml`
 - **Domain Skills**: `.agents/skills/` (exposed to `.claude/skills/` via symlinks)
 - **Workflows**: `.agents/workflows/` (mapped to `.claude/skills/` as thin routers)
 - **Subagents**: `.claude/agents/` (spawned via Task tool)

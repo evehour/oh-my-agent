@@ -83,11 +83,11 @@ oma update [-f | --force] [--ci]
 
 | Flag | Short | Description | Default |
 |:-----|:------|:-----------|:--------|
-| `--force` | `-f` | Overwrite user-customized config files during update. Affects: `user-preferences.yaml`, `mcp.json`, `stack/` directories. Without this flag, these files are backed up before the update and restored afterward. | `false` |
+| `--force` | `-f` | Overwrite user-customized config files during update. Affects: `oma-config.yaml`, `mcp.json`, `stack/` directories. Without this flag, these files are backed up before the update and restored afterward. | `false` |
 | `--ci` | | Run in non-interactive CI mode. Skips all confirmation prompts, uses plain console output instead of spinners and animations. Required for CI/CD pipelines where stdin is not available. | `false` |
 
 **Behavior with --force:**
-- `user-preferences.yaml` is replaced with the registry default.
+- `oma-config.yaml` is replaced with the registry default.
 - `mcp.json` is replaced with the registry default.
 - Backend `stack/` directory (language-specific resources) is replaced.
 - All other files are always updated regardless of this flag.

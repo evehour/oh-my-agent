@@ -40,14 +40,14 @@ Persistente workflows blijven draaien totdat alle taken klaar zijn. Ze behouden 
 **Stappen:**
 1. **Stap 0 — Voorbereiding:** Lees coordinatieskill, contextladingsgids, geheugenprotocol. Detecteer leverancier.
 2. **Stap 1 — Plan Laden/Aanmaken:** Controleer op `.agents/plan.json`. Indien afwezig, vraag gebruiker eerst `/plan` uit te voeren.
-3. **Stap 2 — Sessie Initialiseren:** Laad `user-preferences.yaml`, toon CLI-mappingtabel, genereer sessie-ID (`session-JJJJMMDD-UUMMSS`), maak `orchestrator-session.md` en `task-board.md` aan in geheugen.
+3. **Stap 2 — Sessie Initialiseren:** Laad `oma-config.yaml`, toon CLI-mappingtabel, genereer sessie-ID (`session-JJJJMMDD-UUMMSS`), maak `orchestrator-session.md` en `task-board.md` aan in geheugen.
 4. **Stap 3 — Agenten Spawnen:** Voor elke prioriteitstier (P0 eerst, dan P1...), spawn agenten met leverancier-geschikte methode. Overschrijd nooit MAX_PARALLEL.
 5. **Stap 4 — Monitoren:** Poll `progress-{agent}.md`-bestanden, werk `task-board.md` bij. Let op voltooiingen, fouten, crashes.
 6. **Stap 5 — Verifieren:** Draai `verify.sh {agent-type} {workspace}` per voltooide agent. Bij falen, herspawn met foutcontext (max 2 herhaalpogingen). Na 2 herhaalpogingen, activeer Exploratieslus.
 7. **Stap 6 — Verzamelen:** Lees alle `result-{agent}.md`-bestanden, stel samenvatting samen.
 8. **Stap 7 — Eindrapport:** Presenteer sessiesamenvatting. Indien Quality Score gemeten, voeg Experiment Ledger-samenvatting toe.
 
-**Gelezen bestanden:** `.agents/plan.json`, `.agents/config/user-preferences.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Gelezen bestanden:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Geschreven bestanden:** `orchestrator-session.md`, `task-board.md` (geheugen), eindrapport.
 
 **Wanneer gebruiken:** Grote projecten die maximale parallelisme vereisen met geautomatiseerde coordinatie.

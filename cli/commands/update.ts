@@ -24,6 +24,7 @@ import {
   saveLocalVersion,
 } from "../lib/manifest.js";
 import { migrateSharedLayout, migrateToAgents } from "../lib/migrate.js";
+import { runMigrations } from "./migrations/index.js";
 import { ensureSerenaProject, inferSerenaLanguages } from "../lib/serena.js";
 import {
   createCliSymlinks,
@@ -148,13 +149,11 @@ export async function update(force = false, ci = false): Promise<void> {
     try {
       spinner.message("Copying files...");
 
+      // Run migrations (e.g. legacy config path rename)
+      runMigrations(cwd);
+
       // Preserve user-customized config files before bulk copy
-      const userPrefsPath = join(
-        cwd,
-        ".agents",
-        "config",
-        "user-preferences.yaml",
-      );
+      const userPrefsPath = join(cwd, ".agents", "oma-config.yaml");
       const mcpPath = join(cwd, ".agents", "mcp.json");
       const savedUserPrefs =
         !force && existsSync(userPrefsPath)

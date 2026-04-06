@@ -86,7 +86,7 @@ oma update [-f | --force] [--ci]
 
 | Flag | Descripción |
 |:-----|:-----------|
-| `-f, --force` | Sobrescribir archivos de configuración personalizados (`user-preferences.yaml`, `mcp.json`, directorios `stack/`) |
+| `-f, --force` | Sobrescribir archivos de configuración personalizados (`oma-config.yaml`, `mcp.json`, directorios `stack/`) |
 | `--ci` | Ejecutar en modo CI no interactivo (omitir prompts, salida en texto plano) |
 
 **Qué hace:**
@@ -284,7 +284,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 | `-m, --model <vendor>` | Proveedor CLI: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | Directorio de trabajo del agente. Se auto-detecta desde la configuración del monorepo si se omite. |
 
-**Orden de resolución del proveedor:** flag `--model` > `agent_cli_mapping` en user-preferences.yaml > `default_cli` > `active_vendor` en cli-config.yaml > `gemini`.
+**Orden de resolución del proveedor:** flag `--model` > `agent_cli_mapping` en oma-config.yaml > `default_cli` > `active_vendor` en cli-config.yaml > `gemini`.
 
 **Resolución del prompt:** Si el argumento prompt es una ruta a un archivo existente, se usa el contenido del archivo como prompt. De lo contrario, el argumento se usa como texto inline. Los protocolos de ejecución específicos del proveedor se agregan automáticamente.
 

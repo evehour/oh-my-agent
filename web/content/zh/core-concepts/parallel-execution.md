@@ -125,7 +125,7 @@ oma agent:parallel -i \
 ### 完整配置示例
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 
 # 响应语言
 language: en
@@ -163,8 +163,8 @@ agent_cli_mapping:
 | 优先级 | 来源 | 示例 |
 |--------|------|------|
 | 1（最高） | `--model` 标志 | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | user-preferences.yaml 中的 `agent_cli_mapping.backend: gemini` |
-| 3 | `default_cli` | user-preferences.yaml 中的 `default_cli: gemini` |
+| 2 | `agent_cli_mapping` | oma-config.yaml 中的 `agent_cli_mapping.backend: gemini` |
+| 3 | `default_cli` | oma-config.yaml 中的 `default_cli: gemini` |
 | 4 | `active_vendor` | 旧版 `cli-config.yaml` 设置 |
 | 5（最低） | 硬编码回退 | `gemini` |
 

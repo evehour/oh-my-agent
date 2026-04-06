@@ -186,7 +186,7 @@ done
 
 ```bash
 mkdir -p /path/to/your/project/.agents/config
-cat > /path/to/your/project/.agents/config/user-preferences.yaml << 'EOF'
+cat > /path/to/your/project/.agents/oma-config.yaml << 'EOF'
 language: en
 date_format: ISO
 timezone: UTC
@@ -246,7 +246,7 @@ ls .agents/skills/
 ls -la .claude/skills/
 
 # 验证配置存在
-cat .agents/config/user-preferences.yaml
+cat .agents/oma-config.yaml
 
 # 验证内存目录
 ls .serena/memories/ 2>/dev/null || echo "Memory not initialized"
@@ -272,7 +272,7 @@ your-project/
       qa-reviewer.md
       ...
     config/                         # 配置
-      user-preferences.yaml
+      oma-config.yaml
     mcp.json                        # MCP 服务器配置
     plan.json                       # 当前计划（由 /plan 生成）
     skills/                         # 已安装技能
@@ -400,7 +400,7 @@ oma dashboard:web
 
 ### 6. 配置安装
 
-`installConfigs()` 将默认配置文件复制到 `.agents/config/`，包括 `user-preferences.yaml` 和 `mcp.json`。如果这些文件已存在，除非使用 `--force`，否则保留（不覆盖）。
+`installConfigs()` 将默认配置文件复制到 `.agents/config/`，包括 `oma-config.yaml` 和 `mcp.json`。如果这些文件已存在，除非使用 `--force`，否则保留（不覆盖）。
 
 ### 7. 技能安装
 

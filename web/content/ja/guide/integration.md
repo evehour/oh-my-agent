@@ -75,7 +75,7 @@ ln -sf ../../.agents/skills/oma-frontend /path/to/your/project/.claude/skills/om
 
 # 設定ファイル作成
 mkdir -p /path/to/your/project/.agents/config
-# user-preferences.yamlを作成
+# oma-config.yamlを作成
 
 # メモリディレクトリ初期化
 oma memory:init
@@ -97,7 +97,7 @@ oma doctor --json # CI向けJSON出力
 ls -la .agents/           # ディレクトリ存在確認
 ls .agents/skills/        # スキルインストール確認
 ls -la .claude/skills/    # シンボリックリンク確認
-cat .agents/config/user-preferences.yaml  # 設定確認
+cat .agents/oma-config.yaml  # 設定確認
 ```
 
 ---

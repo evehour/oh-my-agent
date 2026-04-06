@@ -1,6 +1,6 @@
 ---
 title: インストール
-description: oh-my-agentの完全インストールガイド — 3つのインストール方法、6つのプリセットとスキルリスト、4つのベンダー向けCLIツール要件、インストール後の設定、user-preferences.yamlフィールド、oma doctorによる検証。
+description: oh-my-agentの完全インストールガイド — 3つのインストール方法、6つのプリセットとスキルリスト、4つのベンダー向けCLIツール要件、インストール後の設定、oma-config.yamlフィールド、oma doctorによる検証。
 ---
 
 # インストール
@@ -63,7 +63,7 @@ bunx oh-my-agent@latest
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # 設定
+│   └── oma-config.yaml      # 設定
 ├── skills/
 │   ├── _shared/                    # 共有リソース（常にインストール）
 │   │   ├── core/                   # skill-routing、context-loadingなど
@@ -185,9 +185,9 @@ bun install --global @qwen-code/qwen-code
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-`oma install`コマンドは`.agents/config/user-preferences.yaml`を作成します。これはoh-my-agentのすべての動作の中央設定ファイルです：
+`oma install`コマンドは`.agents/oma-config.yaml`を作成します。これはoh-my-agentのすべての動作の中央設定ファイルです：
 
 ```yaml
 # すべてのエージェントとワークフローの応答言語
@@ -235,8 +235,8 @@ agent_cli_mapping:
 エージェントをスポーンする際、CLIベンダーは以下の優先順位で決定されます（高い順）：
 
 1. `oma agent:spawn`に渡された`--model`フラグ
-2. `user-preferences.yaml`のそのエージェント固有の`agent_cli_mapping`エントリ
-3. `user-preferences.yaml`の`default_cli`設定
+2. `oma-config.yaml`のそのエージェント固有の`agent_cli_mapping`エントリ
+3. `oma-config.yaml`の`default_cli`設定
 4. `cli-config.yaml`の`active_vendor`（レガシーフォールバック）
 5. `gemini`（ハードコードされた最終フォールバック）
 
@@ -257,7 +257,7 @@ oma doctor
 - `.claude/skills/`のシンボリックリンクが有効なターゲットを指していること
 - `.claude/settings.json`でフックが適切に設定されていること
 - メモリプロバイダーが到達可能であること（Serena MCP）
-- `user-preferences.yaml`が必要なフィールドを持つ有効なYAMLであること
+- `oma-config.yaml`が必要なフィールドを持つ有効なYAMLであること
 
 問題がある場合、`oma doctor`は修正方法をコピペ可能なコマンドとともに正確に示します。
 
@@ -281,7 +281,7 @@ oma update
 bunx oh-my-agent@latest
 ```
 
-インストーラーは既存のインストールを検出し、`user-preferences.yaml`やカスタム設定を保持したまま更新を提案します。
+インストーラーは既存のインストールを検出し、`oma-config.yaml`やカスタム設定を保持したまま更新を提案します。
 
 ---
 

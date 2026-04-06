@@ -97,7 +97,7 @@ oh-my-agent 所需的一切都存放在 `.agents/` 目录中：
 
 ```
 .agents/
-├── config/                 # user-preferences.yaml
+├── config/                 # oma-config.yaml
 ├── skills/                 # 15 个技能目录（14 个智能体 + _shared）
 │   ├── _shared/            # 所有智能体使用的核心资源
 │   └── oma-{agent}/        # 每个智能体的 SKILL.md + resources/

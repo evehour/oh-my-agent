@@ -57,7 +57,7 @@ sync:
   target_dir: "."
   backup_existing: true
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"
 ```
 
@@ -80,7 +80,7 @@ sync:
 | **Проверка контрольной суммы** | Да — SHA256 | Нет |
 | **Откат** | Смена версии в `.agent-registry.yml` | Реверт коммита обновления |
 | **Аудит** | PR с фиксированными версиями и лейблами | История коммитов |
-| **Сохранение файлов** | Настраиваемые glob-паттерны | Встроенное: `user-preferences.yaml`, `mcp.json`, `stack/` |
+| **Сохранение файлов** | Настраиваемые glob-паттерны | Встроенное: `oma-config.yaml`, `mcp.json`, `stack/` |
 | **Источник обновлений** | GitHub Release (тарбол) | npm-реестр |
 | **Воздушный зазор** | Возможно — скачать тарбол вручную | Требуется доступ к npm |
 

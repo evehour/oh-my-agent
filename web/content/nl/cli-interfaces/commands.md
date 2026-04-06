@@ -41,7 +41,7 @@ oma update [-f | --force] [--ci]
 
 | Vlag | Beschrijving |
 |:-----|:-----------|
-| `-f, --force` | Overschrijf gebruikersaanpassingen (user-preferences.yaml, mcp.json, stack/) |
+| `-f, --force` | Overschrijf gebruikersaanpassingen (oma-config.yaml, mcp.json, stack/) |
 | `--ci` | Niet-interactieve CI-modus (geen prompts, platte tekst) |
 
 ---

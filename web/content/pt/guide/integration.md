@@ -158,7 +158,7 @@ done
 
 ```bash
 mkdir -p /path/to/your/project/.agents/config
-cat > /path/to/your/project/.agents/config/user-preferences.yaml << 'EOF'
+cat > /path/to/your/project/.agents/oma-config.yaml << 'EOF'
 language: en
 date_format: ISO
 timezone: UTC
@@ -218,7 +218,7 @@ ls .agents/skills/
 ls -la .claude/skills/
 
 # Verificar se config existe
-cat .agents/config/user-preferences.yaml
+cat .agents/oma-config.yaml
 
 # Verificar diretório de memória
 ls .serena/memories/ 2>/dev/null || echo "Memory not initialized"

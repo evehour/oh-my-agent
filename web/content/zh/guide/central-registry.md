@@ -187,7 +187,7 @@ sync:
   # 同步期间保留的文件/目录（glob 模式）
   # 这些不会被注册表覆盖
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"
 ```
 
@@ -197,7 +197,7 @@ sync:
 - **`auto_update.enabled`** —— 为 true 时，检查工作流按计划运行。
 - **`auto_update.schedule`** —— 检查频率的 cron 表达式。默认每周一 UTC 9:00。
 - **`auto_update.pr.auto_merge`** —— 设计上始终为 `false`。更新需要手动审查。
-- **`sync.preserve`** —— 同步期间不应被覆盖的文件的 glob 模式。通常包括项目的 `user-preferences.yaml` 和任何本地配置覆盖。
+- **`sync.preserve`** —— 同步期间不应被覆盖的文件的 glob 模式。通常包括项目的 `oma-config.yaml` 和任何本地配置覆盖。
 
 ### 工作流角色
 
@@ -252,7 +252,7 @@ sync:
 | **校验和验证** | 是 —— 解压前验证 SHA256 | 否 —— 依赖 npm 注册表 |
 | **回滚** | 更改 `.agent-registry.yml` 中的版本 | 还原更新提交 |
 | **审计轨迹** | 带标签的版本锁定 PR | 提交历史 |
-| **保留文件** | `.agent-registry.yml` 中可配置的 glob 模式 | 内置：`user-preferences.yaml`、`mcp.json`、`stack/` |
+| **保留文件** | `.agent-registry.yml` 中可配置的 glob 模式 | 内置：`oma-config.yaml`、`mcp.json`、`stack/` |
 | **更新来源** | GitHub Release 产物（tarball） | npm 注册表（oh-my-agent 包） |
 | **审批流程** | 需要 PR 审查（自动合并禁用） | 可配置（PR 模式或直接提交） |
 | **多项目** | 每个项目有自己锁定的版本 | 每个项目独立运行 |

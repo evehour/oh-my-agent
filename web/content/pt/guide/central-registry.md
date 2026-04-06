@@ -119,7 +119,7 @@ sync:
   target_dir: "."
   backup_existing: true
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"
 ```
 
@@ -170,7 +170,7 @@ sync:
 | **Verificação de checksum** | Sim — SHA256 verificado antes da extração | Não — depende do registro npm |
 | **Rollback** | Mudar versão em `.agent-registry.yml` | Reverter o commit de atualização |
 | **Trilha de auditoria** | PRs com fixação de versão e labels | Histórico de commits |
-| **Arquivos preservados** | Padrões glob configuráveis | Integrado: `user-preferences.yaml`, `mcp.json`, `stack/` |
+| **Arquivos preservados** | Padrões glob configuráveis | Integrado: `oma-config.yaml`, `mcp.json`, `stack/` |
 | **Fluxo de aprovação** | Revisão de PR obrigatória (auto-merge desabilitado) | Configurável (modo PR ou commit direto) |
 | **Melhor para** | Organizações multi-projeto, necessidades de conformidade | Maioria dos projetos, setup simples |
 

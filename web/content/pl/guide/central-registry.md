@@ -55,7 +55,7 @@ sync:
   target_dir: "."
   backup_existing: true
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"
 ```
 

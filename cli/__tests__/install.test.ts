@@ -110,14 +110,14 @@ describe("getExistingLanguage", () => {
     tempRoots.length = 0;
   });
 
-  it("reads the current language from user-preferences.yaml", () => {
+  it("reads the current language from oma-config.yaml", () => {
     const root = mkdtempSync(join(tmpdir(), "oma-language-"));
     tempRoots.push(root);
 
-    const configDir = join(root, ".agents", "config");
-    mkdirSync(configDir, { recursive: true });
+    const agentsDir = join(root, ".agents");
+    mkdirSync(agentsDir, { recursive: true });
     writeFileSync(
-      join(configDir, "user-preferences.yaml"),
+      join(agentsDir, "oma-config.yaml"),
       "language: ko\ntimezone: Asia/Seoul\n",
       "utf-8",
     );

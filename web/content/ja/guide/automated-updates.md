@@ -109,7 +109,7 @@ jobs:
     pr-title: "chore(deps): force-update oh-my-agent skills (reset configs)"
 ```
 
-**注意：** forceモードは`user-preferences.yaml`、`mcp.json`、`stack/`を上書きします。
+**注意：** forceモードは`oma-config.yaml`、`mcp.json`、`stack/`を上書きします。
 
 ---
 

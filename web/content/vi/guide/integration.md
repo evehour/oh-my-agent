@@ -63,7 +63,7 @@ sha256sum -c agent-skills.tar.gz.sha256
 tar -xzf agent-skills.tar.gz
 ```
 
-Sau đó sao chép file, tạo symlink và cấu hình user-preferences.yaml.
+Sau đó sao chép file, tạo symlink và cấu hình oma-config.yaml.
 
 ---
 

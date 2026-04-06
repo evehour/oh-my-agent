@@ -97,7 +97,7 @@ Mọi thứ oh-my-agent cần đều nằm trong thư mục `.agents/`:
 
 ```
 .agents/
-├── config/                 # user-preferences.yaml
+├── config/                 # oma-config.yaml
 ├── skills/                 # 15 thư mục skill (14 agent + _shared)
 │   ├── _shared/            # Tài nguyên cốt lõi dùng chung cho tất cả agent
 │   └── oma-{agent}/        # SKILL.md + resources/ theo từng agent

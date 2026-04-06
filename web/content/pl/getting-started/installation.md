@@ -1,6 +1,6 @@
 ---
 title: Instalacja
-description: Kompletny przewodnik instalacji oh-my-agent — trzy metody instalacji, wszystkie sześć presetów z listami umiejętności, wymagania narzędzi CLI dla czterech dostawców, konfiguracja po instalacji, pola user-preferences.yaml oraz weryfikacja za pomocą oma doctor.
+description: Kompletny przewodnik instalacji oh-my-agent — trzy metody instalacji, wszystkie sześć presetów z listami umiejętności, wymagania narzędzi CLI dla czterech dostawców, konfiguracja po instalacji, pola oma-config.yaml oraz weryfikacja za pomocą oma doctor.
 ---
 
 # Instalacja
@@ -63,7 +63,7 @@ Po instalacji projekt będzie zawierał:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Preferencje
+│   └── oma-config.yaml      # Preferencje
 ├── skills/
 │   ├── _shared/                    # Zasoby współdzielone (zawsze instalowane)
 │   │   ├── core/                   # skill-routing, context-loading, itd.
@@ -185,9 +185,9 @@ Po instalacji uruchom `/auth` wewnątrz CLI aby się uwierzytelnić.
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-Polecenie `oma install` tworzy plik `.agents/config/user-preferences.yaml`. To centralny plik konfiguracyjny dla całego zachowania oh-my-agent:
+Polecenie `oma install` tworzy plik `.agents/oma-config.yaml`. To centralny plik konfiguracyjny dla całego zachowania oh-my-agent:
 
 ```yaml
 # Język odpowiedzi dla wszystkich agentów i workflow
@@ -235,8 +235,8 @@ agent_cli_mapping:
 Przy uruchamianiu agenta, dostawca CLI jest określany według tego priorytetu (od najwyższego):
 
 1. Flaga `--model` przekazana do `oma agent:spawn`
-2. Wpis `agent_cli_mapping` dla konkretnego agenta w `user-preferences.yaml`
-3. Ustawienie `default_cli` w `user-preferences.yaml`
+2. Wpis `agent_cli_mapping` dla konkretnego agenta w `oma-config.yaml`
+3. Ustawienie `default_cli` w `oma-config.yaml`
 4. `active_vendor` w `cli-config.yaml` (awaryjne zachowanie wsteczne)
 5. `gemini` (zakodowany na stałe ostateczny fallback)
 
@@ -257,7 +257,7 @@ To polecenie sprawdza:
 - Czy dowiązania symboliczne w `.claude/skills/` wskazują na poprawne cele
 - Czy hooki są prawidłowo skonfigurowane w `.claude/settings.json`
 - Czy dostawca pamięci jest osiągalny (Serena MCP)
-- Czy `user-preferences.yaml` jest poprawnym YAML z wymaganymi polami
+- Czy `oma-config.yaml` jest poprawnym YAML z wymaganymi polami
 
 Jeśli coś jest nie tak, `oma doctor` powie dokładnie co naprawić, z gotowymi poleceniami do skopiowania.
 
@@ -281,7 +281,7 @@ Umiejętności i workflow w projekcie mogą być aktualizowane przez GitHub Acti
 bunx oh-my-agent@latest
 ```
 
-Instalator wykrywa istniejące instalacje i oferuje aktualizację z zachowaniem `user-preferences.yaml` i dowolnej niestandardowej konfiguracji.
+Instalator wykrywa istniejące instalacje i oferuje aktualizację z zachowaniem `oma-config.yaml` i dowolnej niestandardowej konfiguracji.
 
 ---
 

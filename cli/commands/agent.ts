@@ -170,7 +170,7 @@ function findConfigFileUp(
 function readUserPreferences(cwd: string): UserPreferences | null {
   const configPath = findConfigFileUp(
     cwd,
-    path.join(".agents", "config", "user-preferences.yaml"),
+    path.join(".agents", "oma-config.yaml"),
   );
   if (!configPath) return null;
   try {
@@ -229,7 +229,7 @@ function resolveVendor(
     console.error(
       color.yellow(
         `[oma] No vendor configured for agent "${agentId}". Falling back to "gemini".\n` +
-          `      Set default_cli in .agents/config/user-preferences.yaml or use --vendor flag.`,
+          `      Set default_cli in .agents/oma-config.yaml or use --vendor flag.`,
       ),
     );
   }

@@ -125,7 +125,7 @@ No todos los CLIs de IA rinden igual en todos los dominios. oh-my-agent te permi
 ### Ejemplo de Configuración Completa
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 
 # Idioma de respuesta
 language: en
@@ -163,8 +163,8 @@ Cuando `oma agent:spawn` determina qué CLI usar, sigue esta prioridad (el más 
 | Prioridad | Fuente | Ejemplo |
 |-----------|--------|---------|
 | 1 (más alta) | flag `--model` | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` en user-preferences.yaml |
-| 3 | `default_cli` | `default_cli: gemini` en user-preferences.yaml |
+| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` en oma-config.yaml |
+| 3 | `default_cli` | `default_cli: gemini` en oma-config.yaml |
 | 4 | `active_vendor` | Configuración legacy en `cli-config.yaml` |
 | 5 (más baja) | Respaldo fijo | `gemini` |
 

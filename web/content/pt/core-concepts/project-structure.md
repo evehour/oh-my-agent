@@ -15,7 +15,7 @@ Após instalar o oh-my-agent, seu projeto ganha três árvores de diretórios: `
 your-project/
 ├── .agents/                          ← Única Fonte de Verdade (SSOT)
 │   ├── config/
-│   │   └── user-preferences.yaml    ← Idioma, fuso horário, mapeamento CLI
+│   │   └── oma-config.yaml    ← Idioma, fuso horário, mapeamento CLI
 │   │
 │   ├── skills/
 │   │   ├── _shared/                  ← Recursos usados por TODOS os agentes
@@ -141,7 +141,7 @@ Este é o diretório central. Tudo que os agentes precisam reside aqui. É o ún
 
 ### config/
 
-**`user-preferences.yaml`** — Arquivo de configuração central com:
+**`oma-config.yaml`** — Arquivo de configuração central com:
 - `language`: Código do idioma de resposta (en, ko, ja, zh, es, fr, de, pt, ru, nl, pl)
 - `date_format`: Formato de timestamp (padrão: `YYYY-MM-DD`)
 - `timezone`: Identificador de fuso horário (padrão: `UTC`)

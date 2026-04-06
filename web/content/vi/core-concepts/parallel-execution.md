@@ -125,7 +125,7 @@ Không phải tất cả AI CLI đều hoạt động tốt như nhau ở mọi 
 ### Ví dụ cấu hình đầy đủ
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 
 # Ngôn ngữ phản hồi
 language: en
@@ -163,8 +163,8 @@ Khi `oma agent:spawn` xác định CLI nào sử dụng, nó theo ưu tiên sau 
 | Ưu tiên | Nguồn | Ví dụ |
 |----------|--------|---------|
 | 1 (cao nhất) | Flag `--model` | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` trong user-preferences.yaml |
-| 3 | `default_cli` | `default_cli: gemini` trong user-preferences.yaml |
+| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` trong oma-config.yaml |
+| 3 | `default_cli` | `default_cli: gemini` trong oma-config.yaml |
 | 4 | `active_vendor` | Cài đặt cũ `cli-config.yaml` |
 | 5 (thấp nhất) | Dự phòng cứng | `gemini` |
 

@@ -57,7 +57,7 @@ oma update [-f | --force] [--ci]
 
 | フラグ | 説明 | デフォルト |
 |:-----|:-----------|:--------|
-| `--force` / `-f` | ユーザーカスタム設定を上書き。`user-preferences.yaml`、`mcp.json`、`stack/`が対象。 | `false` |
+| `--force` / `-f` | ユーザーカスタム設定を上書き。`oma-config.yaml`、`mcp.json`、`stack/`が対象。 | `false` |
 | `--ci` | 非インタラクティブCIモード。確認プロンプトスキップ、プレーンテキスト出力。 | `false` |
 
 ### stats

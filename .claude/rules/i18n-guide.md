@@ -3,7 +3,7 @@
 ## Language Resolution (priority order)
 
 1. User prompt language (implicit)
-2. `.agents/config/user-preferences.yaml` → `language` field
+2. `.agents/oma-config.yaml` → `language` field
 3. Fallback: English
 
 ## Quick Rules

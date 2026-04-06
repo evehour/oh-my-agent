@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Vollständige Installationsanleitung für oh-my-agent — drei Installationsmethoden, alle sechs Presets mit ihren Skill-Listen, CLI-Tool-Anforderungen für alle vier Anbieter, Konfiguration nach der Installation, Felder der user-preferences.yaml und Verifikation mit oma doctor.
+description: Vollständige Installationsanleitung für oh-my-agent — drei Installationsmethoden, alle sechs Presets mit ihren Skill-Listen, CLI-Tool-Anforderungen für alle vier Anbieter, Konfiguration nach der Installation, Felder der oma-config.yaml und Verifikation mit oma doctor.
 ---
 
 # Installation
@@ -63,7 +63,7 @@ Nach der Installation enthält Ihr Projekt:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Ihre Einstellungen
+│   └── oma-config.yaml      # Ihre Einstellungen
 ├── skills/
 │   ├── _shared/                    # Gemeinsame Ressourcen (immer installiert)
 │   │   ├── core/                   # skill-routing, context-loading usw.
@@ -185,9 +185,9 @@ Nach der Installation `/auth` innerhalb der CLI zur Authentifizierung ausführen
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-Der Befehl `oma install` erstellt `.agents/config/user-preferences.yaml`. Dies ist die zentrale Konfigurationsdatei für das gesamte Verhalten von oh-my-agent:
+Der Befehl `oma install` erstellt `.agents/oma-config.yaml`. Dies ist die zentrale Konfigurationsdatei für das gesamte Verhalten von oh-my-agent:
 
 ```yaml
 # Antwortsprache für alle Agenten und Workflows
@@ -235,8 +235,8 @@ agent_cli_mapping:
 Beim Starten eines Agenten wird der CLI-Anbieter durch diese Prioritätsreihenfolge bestimmt (höchste zuerst):
 
 1. `--model`-Flag an `oma agent:spawn` übergeben
-2. `agent_cli_mapping`-Eintrag für den spezifischen Agenten in `user-preferences.yaml`
-3. `default_cli`-Einstellung in `user-preferences.yaml`
+2. `agent_cli_mapping`-Eintrag für den spezifischen Agenten in `oma-config.yaml`
+3. `default_cli`-Einstellung in `oma-config.yaml`
 4. `active_vendor` in `cli-config.yaml` (Legacy-Fallback)
 5. `gemini` (fest codierter endgültiger Fallback)
 
@@ -257,7 +257,7 @@ Dieser Befehl prüft:
 - Symlinks in `.claude/skills/` zeigen auf gültige Ziele
 - Hooks sind korrekt in `.claude/settings.json` konfiguriert
 - Memory-Provider ist erreichbar (Serena MCP)
-- `user-preferences.yaml` ist gültiges YAML mit erforderlichen Feldern
+- `oma-config.yaml` ist gültiges YAML mit erforderlichen Feldern
 
 Falls etwas nicht stimmt, sagt `oma doctor` genau, was zu reparieren ist, mit kopierbereiten Befehlen.
 
@@ -281,7 +281,7 @@ Skills und Workflows innerhalb eines Projekts können über die GitHub Action (`
 bunx oh-my-agent@latest
 ```
 
-Der Installer erkennt vorhandene Installationen und bietet eine Aktualisierung an, wobei Ihre `user-preferences.yaml` und benutzerdefinierte Konfigurationen erhalten bleiben.
+Der Installer erkennt vorhandene Installationen und bietet eine Aktualisierung an, wobei Ihre `oma-config.yaml` und benutzerdefinierte Konfigurationen erhalten bleiben.
 
 ---
 

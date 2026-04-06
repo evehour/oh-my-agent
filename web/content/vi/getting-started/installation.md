@@ -1,6 +1,6 @@
 ---
 title: Cài đặt
-description: Hướng dẫn cài đặt đầy đủ cho oh-my-agent — ba phương pháp cài đặt, tất cả sáu preset với danh sách skill, yêu cầu công cụ CLI cho bốn vendor, cấu hình sau cài đặt, các trường user-preferences.yaml, và xác minh với oma doctor.
+description: Hướng dẫn cài đặt đầy đủ cho oh-my-agent — ba phương pháp cài đặt, tất cả sáu preset với danh sách skill, yêu cầu công cụ CLI cho bốn vendor, cấu hình sau cài đặt, các trường oma-config.yaml, và xác minh với oma doctor.
 ---
 
 # Cài đặt
@@ -63,7 +63,7 @@ Sau khi cài đặt, dự án của bạn sẽ chứa:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Tùy chọn của bạn
+│   └── oma-config.yaml      # Tùy chọn của bạn
 ├── skills/
 │   ├── _shared/                    # Tài nguyên dùng chung (luôn được cài)
 │   │   ├── core/                   # skill-routing, context-loading, v.v.
@@ -185,9 +185,9 @@ Sau khi cài, chạy `/auth` trong CLI để xác thực.
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-Lệnh `oma install` tạo `.agents/config/user-preferences.yaml`. Đây là file cấu hình trung tâm cho toàn bộ hành vi oh-my-agent:
+Lệnh `oma install` tạo `.agents/oma-config.yaml`. Đây là file cấu hình trung tâm cho toàn bộ hành vi oh-my-agent:
 
 ```yaml
 # Ngôn ngữ phản hồi cho tất cả agent và workflow
@@ -235,8 +235,8 @@ agent_cli_mapping:
 Khi spawn agent, vendor CLI được xác định theo thứ tự ưu tiên (cao nhất trước):
 
 1. Flag `--model` truyền vào `oma agent:spawn`
-2. Mục `agent_cli_mapping` cho agent cụ thể đó trong `user-preferences.yaml`
-3. Cài đặt `default_cli` trong `user-preferences.yaml`
+2. Mục `agent_cli_mapping` cho agent cụ thể đó trong `oma-config.yaml`
+3. Cài đặt `default_cli` trong `oma-config.yaml`
 4. `active_vendor` trong `cli-config.yaml` (dự phòng cũ)
 5. `gemini` (dự phòng cứng)
 
@@ -257,7 +257,7 @@ Lệnh này kiểm tra:
 - Symlink trong `.claude/skills/` trỏ đến đích hợp lệ
 - Hook được cấu hình đúng trong `.claude/settings.json`
 - Nhà cung cấp bộ nhớ có thể kết nối (Serena MCP)
-- `user-preferences.yaml` là YAML hợp lệ với các trường bắt buộc
+- `oma-config.yaml` là YAML hợp lệ với các trường bắt buộc
 
 Nếu có vấn đề, `oma doctor` cho bạn biết chính xác cần sửa gì, kèm lệnh sao chép-dán.
 
@@ -281,7 +281,7 @@ Skill và workflow trong dự án có thể được cập nhật qua GitHub Act
 bunx oh-my-agent@latest
 ```
 
-Trình cài đặt phát hiện cài đặt hiện có và đề xuất cập nhật trong khi bảo toàn `user-preferences.yaml` và mọi cấu hình tùy chỉnh.
+Trình cài đặt phát hiện cài đặt hiện có và đề xuất cập nhật trong khi bảo toàn `oma-config.yaml` và mọi cấu hình tùy chỉnh.
 
 ---
 

@@ -172,7 +172,7 @@ sync:
 
   # Dateien/Verzeichnisse, die bei Synchronisierung beibehalten werden (Glob-Muster)
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"
 ```
 
@@ -182,7 +182,7 @@ sync:
 - **`auto_update.enabled`** — Bei true läuft der Prüf-Workflow nach Zeitplan.
 - **`auto_update.schedule`** — Cron-Ausdruck für die Prüfhäufigkeit. Standard ist wöchentlich Montag um 9 Uhr UTC.
 - **`auto_update.pr.auto_merge`** — Bewusst immer `false`. Updates erfordern manuelle Überprüfung.
-- **`sync.preserve`** — Glob-Muster für Dateien, die bei Synchronisierung nicht überschrieben werden sollen. Typischerweise die `user-preferences.yaml` und lokale Konfigurationsüberschreibungen.
+- **`sync.preserve`** — Glob-Muster für Dateien, die bei Synchronisierung nicht überschrieben werden sollen. Typischerweise die `oma-config.yaml` und lokale Konfigurationsüberschreibungen.
 
 ### Workflow-Rollen
 
@@ -237,7 +237,7 @@ sync:
 | **Prüfsummenverifikation** | Ja — SHA256 vor dem Entpacken verifiziert | Nein — verlässt sich auf npm-Registry |
 | **Rollback** | Version in `.agent-registry.yml` ändern | Update-Commit rückgängig machen |
 | **Audit-Trail** | Versionsgepinnte PRs mit Labels | Commit-Verlauf |
-| **Bewahrte Dateien** | Konfigurierbare Glob-Muster in `.agent-registry.yml` | Eingebaut: `user-preferences.yaml`, `mcp.json`, `stack/` |
+| **Bewahrte Dateien** | Konfigurierbare Glob-Muster in `.agent-registry.yml` | Eingebaut: `oma-config.yaml`, `mcp.json`, `stack/` |
 | **Update-Quelle** | GitHub-Release-Artefakte (Tarball) | npm-Registry (oh-my-agent-Paket) |
 | **Genehmigungsfluss** | PR-Review erforderlich (Auto-Merge deaktiviert) | Konfigurierbar (PR-Modus oder direkter Commit) |
 | **Mehrere Projekte** | Jedes Projekt hat seine eigene gepinnte Version | Jedes Projekt läuft unabhängig |

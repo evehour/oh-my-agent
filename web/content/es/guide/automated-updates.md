@@ -46,7 +46,7 @@ Esa es la configuracion minima. Crea un PR con configuracion por defecto cuando 
 |:------|:-----|:---------|:--------|:-----------|
 | `mode` | string | No | `"pr"` | How to apply changes. `"pr"` creates a pull request. `"commit"` pushes directly to the base branch. |
 | `base-branch` | string | No | `"main"` | Base branch for the PR (in `pr` mode) or the target branch for direct commits (in `commit` mode). |
-| `force` | string | No | `"false"` | Pass `--force` to `oma update`. When `"true"`, overwrites user-customized config files (`user-preferences.yaml`, `mcp.json`) and `stack/` directories. Normally these are preserved. |
+| `force` | string | No | `"false"` | Pass `--force` to `oma update`. When `"true"`, overwrites user-customized config files (`oma-config.yaml`, `mcp.json`) and `stack/` directories. Normally these are preserved. |
 | `pr-title` | string | No | `"chore(deps): update oh-my-agent skills"` | Custom title for the pull request. Only used in `pr` mode. |
 | `pr-labels` | string | No | `"dependencies,automated"` | Comma-separated labels to add to the PR. Only used in `pr` mode. |
 | `commit-message` | string | No | `"chore(deps): update oh-my-agent skills"` | Custom commit message. Used in both modes — as the PR commit message or the direct commit message. |
@@ -217,7 +217,7 @@ jobs:
           commit-message: "chore(deps): force-update oh-my-agent skills"
 ```
 
-**Warning:** Force mode overwrites `user-preferences.yaml`, `mcp.json`, and `stack/` directories. Use this only when you want to reset all customizations to defaults. For regular updates, omit the `force` input.
+**Warning:** Force mode overwrites `oma-config.yaml`, `mcp.json`, and `stack/` directories. Use this only when you want to reset all customizations to defaults. For regular updates, omit the `force` input.
 
 ---
 
@@ -259,7 +259,7 @@ What `oma update --ci` does internally:
 2. Compares with the local version in `.agents/skills/_version.json`.
 3. If versions match, exits with "Already up to date."
 4. If a new version is available, downloads and extracts the latest tarball.
-5. Preserves user-customized files (unless `--force`): `user-preferences.yaml`, `mcp.json`, `stack/` directories.
+5. Preserves user-customized files (unless `--force`): `oma-config.yaml`, `mcp.json`, `stack/` directories.
 6. Copies new files over the existing `.agents/` directory.
 7. Restores preserved files.
 8. Updates vendor adaptations (hooks, settings, agent definitions) for all vendors.
@@ -295,7 +295,7 @@ After this, depending on the `mode` input:
 | **Update source** | npm registry | GitHub Release artifacts |
 | **Version pinning** | No — always latest | Yes — explicit in .agent-registry.yml |
 | **Checksum verification** | No | Yes — SHA256 |
-| **Config preservation** | Automatic (user-preferences.yaml, mcp.json, stack/) | Manual (configure preserve patterns) |
+| **Config preservation** | Automatic (oma-config.yaml, mcp.json, stack/) | Manual (configure preserve patterns) |
 | **PR creation** | Built-in (peter-evans/create-pull-request) | Built-in (gh pr create) |
 | **Direct commit option** | Yes (mode: commit) | Not built-in (sync always commits) |
 | **Force update** | Yes (force: true) | Always overwrites except preserved patterns |

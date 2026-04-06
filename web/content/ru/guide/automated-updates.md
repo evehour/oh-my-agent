@@ -45,7 +45,7 @@ jobs:
 |------|-----|-------------|---------|
 | `mode` | string | `"pr"` | `"pr"` — PR, `"commit"` — прямой коммит |
 | `base-branch` | string | `"main"` | Целевая ветка |
-| `force` | string | `"false"` | `"true"` — перезаписать конфиги (`user-preferences.yaml`, `mcp.json`, `stack/`) |
+| `force` | string | `"false"` | `"true"` — перезаписать конфиги (`oma-config.yaml`, `mcp.json`, `stack/`) |
 | `pr-title` | string | `"chore(deps): update oh-my-agent skills"` | Заголовок PR |
 | `pr-labels` | string | `"dependencies,automated"` | Лейблы PR через запятую |
 | `commit-message` | string | `"chore(deps): update oh-my-agent skills"` | Сообщение коммита |
@@ -113,7 +113,7 @@ jobs:
     pr-labels: "dependencies,automated,force-update"
 ```
 
-**Внимание:** Force-режим перезаписывает `user-preferences.yaml`, `mcp.json` и `stack/`.
+**Внимание:** Force-режим перезаписывает `oma-config.yaml`, `mcp.json` и `stack/`.
 
 ---
 

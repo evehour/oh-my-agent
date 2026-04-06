@@ -187,7 +187,7 @@ sync:
   # 동기화 중 보존할 파일/디렉토리 (글로브 패턴)
   # 레지스트리에서 덮어쓰지 않음
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"
 ```
 
@@ -197,7 +197,7 @@ sync:
 - **`auto_update.enabled`** — true이면 확인 워크플로우가 스케줄에 따라 실행됩니다.
 - **`auto_update.schedule`** — 확인 빈도를 위한 cron 표현식. 기본값은 매주 월요일 오전 9시 UTC입니다.
 - **`auto_update.pr.auto_merge`** — 설계상 항상 `false`. 업데이트에는 수동 검토가 필요합니다.
-- **`sync.preserve`** — 동기화 중 덮어쓰지 않아야 할 파일의 글로브 패턴. 일반적으로 프로젝트의 `user-preferences.yaml`과 로컬 설정 오버라이드를 포함합니다.
+- **`sync.preserve`** — 동기화 중 덮어쓰지 않아야 할 파일의 글로브 패턴. 일반적으로 프로젝트의 `oma-config.yaml`과 로컬 설정 오버라이드를 포함합니다.
 
 ### 워크플로우 역할
 
@@ -252,7 +252,7 @@ sync:
 | **체크섬 검증** | 예 — 추출 전 SHA256 검증 | 아니요 — npm 레지스트리에 의존 |
 | **롤백** | `.agent-registry.yml`에서 버전 변경 | 업데이트 커밋 되돌리기 |
 | **감사 추적** | 라벨이 있는 버전 고정 PR | 커밋 히스토리 |
-| **보존 파일** | `.agent-registry.yml`에서 설정 가능한 글로브 패턴 | 내장: `user-preferences.yaml`, `mcp.json`, `stack/` |
+| **보존 파일** | `.agent-registry.yml`에서 설정 가능한 글로브 패턴 | 내장: `oma-config.yaml`, `mcp.json`, `stack/` |
 | **업데이트 소스** | GitHub Release 아티팩트 (tarball) | npm 레지스트리 (oh-my-agent 패키지) |
 | **승인 흐름** | PR 검토 필수 (자동 머지 비활성화) | 설정 가능 (PR 모드 또는 직접 커밋) |
 | **여러 프로젝트** | 각 프로젝트가 자체 고정 버전을 가짐 | 각 프로젝트가 독립적으로 실행 |

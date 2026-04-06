@@ -112,7 +112,7 @@ oma agent:parallel -i \
 ### Полный пример
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 language: en
 date_format: "YYYY-MM-DD"
 timezone: "Asia/Seoul"

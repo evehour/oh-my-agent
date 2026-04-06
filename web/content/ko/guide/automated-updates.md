@@ -46,7 +46,7 @@ jobs:
 |:-----|:-----|:-----|:-------|:-----|
 | `mode` | string | 아니요 | `"pr"` | 변경 적용 방법. `"pr"`은 풀 리퀘스트를 생성합니다. `"commit"`은 베이스 브랜치에 직접 푸시합니다. |
 | `base-branch` | string | 아니요 | `"main"` | PR의 베이스 브랜치(`pr` 모드) 또는 직접 커밋의 대상 브랜치(`commit` 모드). |
-| `force` | string | 아니요 | `"false"` | `oma update`에 `--force`를 전달합니다. `"true"`이면 사용자가 커스터마이즈한 설정 파일(`user-preferences.yaml`, `mcp.json`)과 `stack/` 디렉토리를 덮어씁니다. 일반적으로 이들은 보존됩니다. |
+| `force` | string | 아니요 | `"false"` | `oma update`에 `--force`를 전달합니다. `"true"`이면 사용자가 커스터마이즈한 설정 파일(`oma-config.yaml`, `mcp.json`)과 `stack/` 디렉토리를 덮어씁니다. 일반적으로 이들은 보존됩니다. |
 | `pr-title` | string | 아니요 | `"chore(deps): update oh-my-agent skills"` | 풀 리퀘스트의 커스텀 제목. `pr` 모드에서만 사용됩니다. |
 | `pr-labels` | string | 아니요 | `"dependencies,automated"` | PR에 추가할 쉼표로 구분된 라벨. `pr` 모드에서만 사용됩니다. |
 | `commit-message` | string | 아니요 | `"chore(deps): update oh-my-agent skills"` | 커스텀 커밋 메시지. 두 모드 모두에서 사용됩니다 — PR 커밋 메시지 또는 직접 커밋 메시지로. |
@@ -217,7 +217,7 @@ jobs:
           commit-message: "chore(deps): force-update oh-my-agent skills"
 ```
 
-**경고:** 강제 모드는 `user-preferences.yaml`, `mcp.json`, `stack/` 디렉토리를 덮어씁니다. 모든 커스터마이징을 기본값으로 리셋하려는 경우에만 사용하세요. 일반 업데이트에서는 `force` 입력을 생략하세요.
+**경고:** 강제 모드는 `oma-config.yaml`, `mcp.json`, `stack/` 디렉토리를 덮어씁니다. 모든 커스터마이징을 기본값으로 리셋하려는 경우에만 사용하세요. 일반 업데이트에서는 `force` 입력을 생략하세요.
 
 ---
 
@@ -259,7 +259,7 @@ oma update $FLAGS
 2. `.agents/skills/_version.json`의 로컬 버전과 비교합니다.
 3. 버전이 일치하면 "Already up to date."로 종료합니다.
 4. 새 버전이 사용 가능하면 최신 tarball을 다운로드하고 추출합니다.
-5. 사용자가 커스터마이즈한 파일을 보존합니다(`--force` 제외): `user-preferences.yaml`, `mcp.json`, `stack/` 디렉토리.
+5. 사용자가 커스터마이즈한 파일을 보존합니다(`--force` 제외): `oma-config.yaml`, `mcp.json`, `stack/` 디렉토리.
 6. 기존 `.agents/` 디렉토리 위에 새 파일을 복사합니다.
 7. 보존된 파일을 복원합니다.
 8. 모든 벤더의 벤더 적응(훅, 설정, 에이전트 정의)을 업데이트합니다.
@@ -295,7 +295,7 @@ fi
 | **업데이트 소스** | npm 레지스트리 | GitHub Release 아티팩트 |
 | **버전 고정** | 아니요 — 항상 최신 | 예 — .agent-registry.yml에서 명시적 |
 | **체크섬 검증** | 아니요 | 예 — SHA256 |
-| **설정 보존** | 자동 (user-preferences.yaml, mcp.json, stack/) | 수동 (보존 패턴 설정) |
+| **설정 보존** | 자동 (oma-config.yaml, mcp.json, stack/) | 수동 (보존 패턴 설정) |
 | **PR 생성** | 내장 (peter-evans/create-pull-request) | 내장 (gh pr create) |
 | **직접 커밋 옵션** | 예 (mode: commit) | 미지원 (sync 시 항상 커밋됨) |
 | **강제 업데이트** | 예 (force: true) | 보존 패턴 외 항상 덮어쓰기 |

@@ -74,7 +74,7 @@ oma update [-f | --force] [--ci]
 
 | Vlag | Beschrijving | Standaard |
 |:-----|:-----------|:--------|
-| `--force` / `-f` | Overschrijft user-preferences.yaml, mcp.json, stack/. Zonder deze vlag worden deze bestanden geback-upt en hersteld. | `false` |
+| `--force` / `-f` | Overschrijft oma-config.yaml, mcp.json, stack/. Zonder deze vlag worden deze bestanden geback-upt en hersteld. | `false` |
 | `--ci` | Niet-interactieve CI-modus. Slaat bevestigingsprompts over, gebruikt platte console-uitvoer. | `false` |
 
 ### stats

@@ -100,7 +100,7 @@ oma update [-f | --force] [--ci]
 
 | Flag | Description |
 |:-----|:-----------|
-| `-f, --force` | Overwrite user-customized config files (`user-preferences.yaml`, `mcp.json`, `stack/` directories) |
+| `-f, --force` | Overwrite user-customized config files (`oma-config.yaml`, `mcp.json`, `stack/` directories) |
 | `--ci` | Run in non-interactive CI mode (skip prompts, plain text output) |
 
 **What it does:**
@@ -298,7 +298,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 | `-m, --model <vendor>` | CLI vendor override: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | Working directory for the agent. Auto-detected from monorepo config if omitted. |
 
-**Vendor resolution order:** `--model` flag > `agent_cli_mapping` in user-preferences.yaml > `default_cli` > `active_vendor` in cli-config.yaml > `gemini`.
+**Vendor resolution order:** `--model` flag > `agent_cli_mapping` in oma-config.yaml > `default_cli` > `active_vendor` in cli-config.yaml > `gemini`.
 
 **Prompt resolution:** If the prompt argument is a path to an existing file, the file contents are used as the prompt. Otherwise, the argument is used as inline text. Vendor-specific execution protocols are appended automatically.
 

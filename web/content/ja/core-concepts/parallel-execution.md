@@ -107,7 +107,7 @@ oma agent:parallel -i \
 ## マルチCLI設定
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 language: en
 date_format: "YYYY-MM-DD"
 timezone: "Asia/Seoul"
@@ -134,8 +134,8 @@ agent_cli_mapping:
 | 優先度 | ソース | 例 |
 |----------|--------|---------|
 | 1（最高） | `--model`フラグ | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | user-preferences.yamlの設定 |
-| 3 | `default_cli` | user-preferences.yamlの設定 |
+| 2 | `agent_cli_mapping` | oma-config.yamlの設定 |
+| 3 | `default_cli` | oma-config.yamlの設定 |
 | 4 | `active_vendor` | レガシー`cli-config.yaml` |
 | 5（最低） | ハードコード | `gemini` |
 

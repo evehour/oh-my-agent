@@ -125,7 +125,7 @@ oma agent:parallel -i \
 ### 전체 설정 예시
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 
 # 응답 언어
 language: en
@@ -163,8 +163,8 @@ agent_cli_mapping:
 | 우선순위 | 소스 | 예시 |
 |----------|--------|---------|
 | 1 (최고) | `--model` 플래그 | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | user-preferences.yaml의 `agent_cli_mapping.backend: gemini` |
-| 3 | `default_cli` | user-preferences.yaml의 `default_cli: gemini` |
+| 2 | `agent_cli_mapping` | oma-config.yaml의 `agent_cli_mapping.backend: gemini` |
+| 3 | `default_cli` | oma-config.yaml의 `default_cli: gemini` |
 | 4 | `active_vendor` | 레거시 `cli-config.yaml` 설정 |
 | 5 (최저) | 하드코딩된 폴백 | `gemini` |
 

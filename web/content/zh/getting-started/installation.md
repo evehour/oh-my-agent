@@ -1,6 +1,6 @@
 ---
 title: 安装
-description: oh-my-agent 完整安装指南 —— 三种安装方式、全部六个预设及其技能列表、四个供应商的 CLI 工具要求、安装后配置、user-preferences.yaml 字段说明以及 oma doctor 验证。
+description: oh-my-agent 完整安装指南 —— 三种安装方式、全部六个预设及其技能列表、四个供应商的 CLI 工具要求、安装后配置、oma-config.yaml 字段说明以及 oma doctor 验证。
 ---
 
 # 安装
@@ -63,7 +63,7 @@ bunx oh-my-agent@latest
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # 你的偏好设置
+│   └── oma-config.yaml      # 你的偏好设置
 ├── skills/
 │   ├── _shared/                    # 共享资源（始终安装）
 │   │   ├── core/                   # skill-routing、context-loading 等
@@ -185,9 +185,9 @@ bun install --global @qwen-code/qwen-code
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-`oma install` 命令创建 `.agents/config/user-preferences.yaml`。这是控制所有 oh-my-agent 行为的中心配置文件：
+`oma install` 命令创建 `.agents/oma-config.yaml`。这是控制所有 oh-my-agent 行为的中心配置文件：
 
 ```yaml
 # 所有智能体和工作流的响应语言
@@ -235,8 +235,8 @@ agent_cli_mapping:
 启动智能体时，CLI 供应商按以下优先级顺序确定（从高到低）：
 
 1. 传递给 `oma agent:spawn` 的 `--model` 参数
-2. `user-preferences.yaml` 中该特定智能体的 `agent_cli_mapping` 条目
-3. `user-preferences.yaml` 中的 `default_cli` 设置
+2. `oma-config.yaml` 中该特定智能体的 `agent_cli_mapping` 条目
+3. `oma-config.yaml` 中的 `default_cli` 设置
 4. `cli-config.yaml` 中的 `active_vendor`（旧版回退）
 5. `gemini`（硬编码的最终回退）
 
@@ -257,7 +257,7 @@ oma doctor
 - `.claude/skills/` 中的符号链接指向有效目标
 - 钩子在 `.claude/settings.json` 中正确配置
 - 内存提供者可达（Serena MCP）
-- `user-preferences.yaml` 是有效的 YAML 且包含必需字段
+- `oma-config.yaml` 是有效的 YAML 且包含必需字段
 
 如果有任何问题，`oma doctor` 会准确告诉你需要修复什么，并附带可直接复制粘贴的命令。
 
@@ -281,7 +281,7 @@ oma update
 bunx oh-my-agent@latest
 ```
 
-安装程序会检测现有安装并提供更新选项，同时保留你的 `user-preferences.yaml` 和任何自定义配置。
+安装程序会检测现有安装并提供更新选项，同时保留你的 `oma-config.yaml` 和任何自定义配置。
 
 ---
 

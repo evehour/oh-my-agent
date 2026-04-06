@@ -186,7 +186,7 @@ done
 
 ```bash
 mkdir -p /path/to/your/project/.agents/config
-cat > /path/to/your/project/.agents/config/user-preferences.yaml << 'EOF'
+cat > /path/to/your/project/.agents/oma-config.yaml << 'EOF'
 language: en
 date_format: ISO
 timezone: UTC
@@ -246,7 +246,7 @@ ls .agents/skills/
 ls -la .claude/skills/
 
 # Konfiguration existiert
-cat .agents/config/user-preferences.yaml
+cat .agents/oma-config.yaml
 
 # Memory-Verzeichnis
 ls .serena/memories/ 2>/dev/null || echo "Memory nicht initialisiert"
@@ -272,7 +272,7 @@ your-project/
       qa-reviewer.md
       ...
     config/                         # Konfiguration
-      user-preferences.yaml
+      oma-config.yaml
     mcp.json                        # MCP-Server-Konfiguration
     plan.json                       # Aktueller Plan (generiert durch /plan)
     skills/                         # Installierte Skills
@@ -400,7 +400,7 @@ Der Installer lädt das neueste Release-Tarball aus den oh-my-agent GitHub-Relea
 
 ### 6. Konfigurationsinstallation
 
-`installConfigs()` kopiert Standard-Konfigurationsdateien nach `.agents/config/`, einschließlich `user-preferences.yaml` und `mcp.json`. Existieren diese Dateien bereits, werden sie beibehalten (nicht überschrieben), es sei denn `--force` wird verwendet.
+`installConfigs()` kopiert Standard-Konfigurationsdateien nach `.agents/config/`, einschließlich `oma-config.yaml` und `mcp.json`. Existieren diese Dateien bereits, werden sie beibehalten (nicht überschrieben), es sei denn `--force` wird verwendet.
 
 ### 7. Skill-Installation
 

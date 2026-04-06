@@ -100,7 +100,7 @@ ln -sf ../../.agents/skills/_shared /path/to/your/project/.claude/skills/_shared
 
 ```bash
 mkdir -p /path/to/your/project/.agents/config
-cat > /path/to/your/project/.agents/config/user-preferences.yaml << 'EOF'
+cat > /path/to/your/project/.agents/oma-config.yaml << 'EOF'
 language: en
 date_format: ISO
 timezone: UTC
@@ -185,7 +185,7 @@ oma dashboard:web    # Веб на http://localhost:9847
 3. **Скачивание тарбола** — последний релиз с GitHub
 4. **Установка общих ресурсов** — `_shared/` с core/, runtime/, conditional/
 5. **Установка рабочих процессов** — все 14 определений
-6. **Установка конфигов** — `user-preferences.yaml`, `mcp.json` (без перезаписи существующих)
+6. **Установка конфигов** — `oma-config.yaml`, `mcp.json` (без перезаписи существующих)
 7. **Установка навыков** — выбранные навыки + языковые варианты
 8. **Вендорные адаптации** — файлы для Claude, Codex, Gemini, Qwen
 9. **Символические ссылки CLI** — `.claude/skills/`, `.claude/agents/`

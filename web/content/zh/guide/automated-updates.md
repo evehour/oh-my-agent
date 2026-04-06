@@ -46,7 +46,7 @@ jobs:
 |:-----|:-----|:-----|:-------|:-----|
 | `mode` | string | 否 | `"pr"` | 如何应用变更。`"pr"` 创建 Pull Request。`"commit"` 直接推送到基础分支。 |
 | `base-branch` | string | 否 | `"main"` | PR 的基础分支（`pr` 模式）或直接提交的目标分支（`commit` 模式）。 |
-| `force` | string | 否 | `"false"` | 传递 `--force` 给 `oma update`。为 `"true"` 时，覆盖用户自定义的配置文件（`user-preferences.yaml`、`mcp.json`）和 `stack/` 目录。正常情况下这些会被保留。 |
+| `force` | string | 否 | `"false"` | 传递 `--force` 给 `oma update`。为 `"true"` 时，覆盖用户自定义的配置文件（`oma-config.yaml`、`mcp.json`）和 `stack/` 目录。正常情况下这些会被保留。 |
 | `pr-title` | string | 否 | `"chore(deps): update oh-my-agent skills"` | Pull Request 的自定义标题。仅在 `pr` 模式下使用。 |
 | `pr-labels` | string | 否 | `"dependencies,automated"` | 添加到 PR 的逗号分隔标签。仅在 `pr` 模式下使用。 |
 | `commit-message` | string | 否 | `"chore(deps): update oh-my-agent skills"` | 自定义提交消息。两种模式都使用 —— 作为 PR 提交消息或直接提交消息。 |
@@ -217,7 +217,7 @@ jobs:
           commit-message: "chore(deps): force-update oh-my-agent skills"
 ```
 
-**警告：** 强制模式会覆盖 `user-preferences.yaml`、`mcp.json` 和 `stack/` 目录。仅在你想重置所有自定义到默认值时使用。常规更新请省略 `force` 输入。
+**警告：** 强制模式会覆盖 `oma-config.yaml`、`mcp.json` 和 `stack/` 目录。仅在你想重置所有自定义到默认值时使用。常规更新请省略 `force` 输入。
 
 ---
 
@@ -259,7 +259,7 @@ oma update $FLAGS
 2. 与 `.agents/skills/_version.json` 中的本地版本比较。
 3. 如果版本匹配，以"已是最新"退出。
 4. 如果有新版本可用，下载并解压最新 tarball。
-5. 保留用户自定义文件（除非 `--force`）：`user-preferences.yaml`、`mcp.json`、`stack/` 目录。
+5. 保留用户自定义文件（除非 `--force`）：`oma-config.yaml`、`mcp.json`、`stack/` 目录。
 6. 将新文件覆盖到现有 `.agents/` 目录。
 7. 恢复保留的文件。
 8. 更新所有供应商的供应商适配（钩子、设置、智能体定义）。
@@ -295,7 +295,7 @@ fi
 | **更新来源** | npm 注册表 | GitHub Release 产物 |
 | **版本锁定** | 否 —— 始终最新 | 是 —— 在 .agent-registry.yml 中显式 |
 | **校验和验证** | 否 | 是 —— SHA256 |
-| **配置保留** | 自动（user-preferences.yaml、mcp.json、stack/） | 手动（配置 preserve 模式） |
+| **配置保留** | 自动（oma-config.yaml、mcp.json、stack/） | 手动（配置 preserve 模式） |
 | **PR 创建** | 内置（peter-evans/create-pull-request） | 内置（gh pr create） |
 | **直接提交选项** | 是（mode: commit） | 非内置（sync 始终提交） |
 | **强制更新** | 是（force: true） | 始终覆盖除保留模式外的内容 |

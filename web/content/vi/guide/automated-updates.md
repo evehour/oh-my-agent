@@ -73,7 +73,7 @@ jobs:
 | **Nguồn cập nhật** | npm registry | GitHub Release artifact |
 | **Pin phiên bản** | Không — luôn mới nhất | Có — tường minh trong .agent-registry.yml |
 | **Xác minh checksum** | Không | Có — SHA256 |
-| **Bảo toàn config** | Tự động (user-preferences.yaml, mcp.json, stack/) | Thủ công (cấu hình mẫu preserve) |
+| **Bảo toàn config** | Tự động (oma-config.yaml, mcp.json, stack/) | Thủ công (cấu hình mẫu preserve) |
 | **Tạo PR** | Tích hợp sẵn | Tích hợp sẵn |
 | **Phù hợp nhất** | Dự án đơn giản, đội đơn | Tổ chức nhiều dự án, nhu cầu compliance |
 

@@ -97,7 +97,7 @@ Alles, was oh-my-agent benötigt, befindet sich im `.agents/`-Verzeichnis:
 
 ```
 .agents/
-├── config/                 # user-preferences.yaml
+├── config/                 # oma-config.yaml
 ├── skills/                 # 15 Skill-Verzeichnisse (14 Agenten + _shared)
 │   ├── _shared/            # Kernressourcen für alle Agenten
 │   └── oma-{agent}/        # Pro-Agent SKILL.md + resources/

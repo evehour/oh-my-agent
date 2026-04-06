@@ -46,7 +46,7 @@ Dies ist die Minimalkonfiguration. Sie erstellt einen PR mit Standardeinstellung
 |:------|:-----|:---------|:--------|:-----------|
 | `mode` | String | Nein | `"pr"` | Wie Änderungen angewendet werden. `"pr"` erstellt einen Pull Request. `"commit"` pusht direkt in den Basis-Branch. |
 | `base-branch` | String | Nein | `"main"` | Basis-Branch für den PR (im `pr`-Modus) oder der Ziel-Branch für direkte Commits (im `commit`-Modus). |
-| `force` | String | Nein | `"false"` | Übergibt `--force` an `oma update`. Bei `"true"` werden benutzerdefinierte Konfigurationsdateien (`user-preferences.yaml`, `mcp.json`) und `stack/`-Verzeichnisse überschrieben. Normalerweise werden diese beibehalten. |
+| `force` | String | Nein | `"false"` | Übergibt `--force` an `oma update`. Bei `"true"` werden benutzerdefinierte Konfigurationsdateien (`oma-config.yaml`, `mcp.json`) und `stack/`-Verzeichnisse überschrieben. Normalerweise werden diese beibehalten. |
 | `pr-title` | String | Nein | `"chore(deps): update oh-my-agent skills"` | Benutzerdefinierter Titel für den Pull Request. Nur im `pr`-Modus verwendet. |
 | `pr-labels` | String | Nein | `"dependencies,automated"` | Kommagetrennte Labels für den PR. Nur im `pr`-Modus verwendet. |
 | `commit-message` | String | Nein | `"chore(deps): update oh-my-agent skills"` | Benutzerdefinierte Commit-Nachricht. In beiden Modi verwendet — als PR-Commit-Nachricht oder direkte Commit-Nachricht. |
@@ -217,7 +217,7 @@ jobs:
           commit-message: "chore(deps): force-update oh-my-agent skills"
 ```
 
-**Warnung:** Force-Modus überschreibt `user-preferences.yaml`, `mcp.json` und `stack/`-Verzeichnisse. Verwenden Sie dies nur, wenn Sie alle Anpassungen auf Standards zurücksetzen möchten. Für reguläre Updates lassen Sie die `force`-Eingabe weg.
+**Warnung:** Force-Modus überschreibt `oma-config.yaml`, `mcp.json` und `stack/`-Verzeichnisse. Verwenden Sie dies nur, wenn Sie alle Anpassungen auf Standards zurücksetzen möchten. Für reguläre Updates lassen Sie die `force`-Eingabe weg.
 
 ---
 
@@ -259,7 +259,7 @@ Was `oma update --ci` intern tut:
 2. Vergleicht mit der lokalen Version in `.agents/skills/_version.json`.
 3. Bei übereinstimmenden Versionen wird mit "Bereits aktuell" beendet.
 4. Bei neuer Version wird das neueste Tarball heruntergeladen und entpackt.
-5. Bewahrt benutzerdefinierte Dateien auf (außer bei `--force`): `user-preferences.yaml`, `mcp.json`, `stack/`-Verzeichnisse.
+5. Bewahrt benutzerdefinierte Dateien auf (außer bei `--force`): `oma-config.yaml`, `mcp.json`, `stack/`-Verzeichnisse.
 6. Kopiert neue Dateien über das vorhandene `.agents/`-Verzeichnis.
 7. Stellt aufbewahrte Dateien wieder her.
 8. Aktualisiert Vendor-Anpassungen (Hooks, Einstellungen, Agenten-Definitionen) für alle Anbieter.
@@ -295,7 +295,7 @@ Danach, abhängig von der `mode`-Eingabe:
 | **Update-Quelle** | npm-Registry | GitHub-Release-Artefakte |
 | **Versions-Pinning** | Nein — immer neueste | Ja — explizit in .agent-registry.yml |
 | **Prüfsummenverifikation** | Nein | Ja — SHA256 |
-| **Konfigurationsbewahrung** | Automatisch (user-preferences.yaml, mcp.json, stack/) | Manuell (Bewahrungsmuster konfigurieren) |
+| **Konfigurationsbewahrung** | Automatisch (oma-config.yaml, mcp.json, stack/) | Manuell (Bewahrungsmuster konfigurieren) |
 | **PR-Erstellung** | Eingebaut (peter-evans/create-pull-request) | Eingebaut (gh pr create) |
 | **Direkt-Commit-Option** | Ja (mode: commit) | Nicht eingebaut (Sync committet immer) |
 | **Force-Update** | Ja (force: true) | Überschreibt immer außer bewahrte Muster |

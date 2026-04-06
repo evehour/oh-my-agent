@@ -1,6 +1,6 @@
 ---
 title: 설치
-description: oh-my-agent 설치 가이드 — 세 가지 설치 방법, 6개 프리셋과 포함 스킬 목록, 4개 벤더별 CLI 도구 요구사항, 설치 후 설정, user-preferences.yaml 필드, oma doctor를 통한 검증.
+description: oh-my-agent 설치 가이드 — 세 가지 설치 방법, 6개 프리셋과 포함 스킬 목록, 4개 벤더별 CLI 도구 요구사항, 설치 후 설정, oma-config.yaml 필드, oma doctor를 통한 검증.
 ---
 
 # 설치
@@ -65,7 +65,7 @@ bunx oh-my-agent@latest
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # 사용자 설정
+│   └── oma-config.yaml      # 사용자 설정
 ├── skills/
 │   ├── _shared/                    # 공유 리소스 (항상 설치)
 │   │   ├── core/                   # skill-routing, context-loading 등
@@ -187,9 +187,9 @@ bun install --global @qwen-code/qwen-code
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-`oma install` 명령은 `.agents/config/user-preferences.yaml`을 생성합니다. 이 파일은 모든 oh-my-agent 동작의 중앙 설정 파일입니다:
+`oma install` 명령은 `.agents/oma-config.yaml`을 생성합니다. 이 파일은 모든 oh-my-agent 동작의 중앙 설정 파일입니다:
 
 ```yaml
 # 모든 에이전트와 워크플로우의 응답 언어
@@ -237,8 +237,8 @@ agent_cli_mapping:
 에이전트를 스폰할 때 CLI 벤더는 다음 우선순위 순서로 결정됩니다(높은 것이 우선):
 
 1. `oma agent:spawn`에 전달된 `--model` 플래그
-2. `user-preferences.yaml`의 해당 에이전트에 대한 `agent_cli_mapping` 항목
-3. `user-preferences.yaml`의 `default_cli` 설정
+2. `oma-config.yaml`의 해당 에이전트에 대한 `agent_cli_mapping` 항목
+3. `oma-config.yaml`의 `default_cli` 설정
 4. `cli-config.yaml`의 `active_vendor` (레거시 폴백)
 5. `gemini` (하드코딩된 최종 폴백)
 
@@ -259,7 +259,7 @@ oma doctor
 - `.claude/skills/`의 심볼릭 링크가 유효한 대상을 가리키는지
 - `.claude/settings.json`에 훅이 올바르게 설정되어 있는지
 - 메모리 프로바이더에 연결 가능한지 (Serena MCP)
-- `user-preferences.yaml`이 필수 필드를 갖춘 유효한 YAML인지
+- `oma-config.yaml`이 필수 필드를 갖춘 유효한 YAML인지
 
 문제가 발견되면 `oma doctor`가 수정 방법을 복사해서 바로 쓸 수 있는 명령어와 함께 알려줍니다.
 
@@ -283,7 +283,7 @@ oma update
 bunx oh-my-agent@latest
 ```
 
-설치 프로그램은 기존 설치를 감지하고 `user-preferences.yaml` 및 사용자 지정 설정을 유지하면서 업데이트를 제안합니다.
+설치 프로그램은 기존 설치를 감지하고 `oma-config.yaml` 및 사용자 지정 설정을 유지하면서 업데이트를 제안합니다.
 
 ---
 

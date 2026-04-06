@@ -40,14 +40,14 @@ Persistent workflows keep running until all tasks are done. They maintain state 
 **Steps:**
 1. **Step 0 — Preparation:** Read coordination skill, context-loading guide, memory protocol. Detect vendor.
 2. **Step 1 — Load/Create Plan:** Check for `.agents/plan.json`. If missing, prompt user to run `/plan` first.
-3. **Step 2 — Initialize Session:** Load `user-preferences.yaml`, display CLI mapping table, generate session ID (`session-YYYYMMDD-HHMMSS`), create `orchestrator-session.md` and `task-board.md` in memory.
+3. **Step 2 — Initialize Session:** Load `oma-config.yaml`, display CLI mapping table, generate session ID (`session-YYYYMMDD-HHMMSS`), create `orchestrator-session.md` and `task-board.md` in memory.
 4. **Step 3 — Spawn Agents:** For each priority tier (P0 first, then P1...), spawn agents using vendor-appropriate method (Agent tool for Claude Code, `oh-my-ag agent:spawn` for Gemini/Antigravity, model-mediated for Codex). Never exceed MAX_PARALLEL.
 5. **Step 4 — Monitor:** Poll `progress-{agent}.md` files, update `task-board.md`. Watch for completions, failures, crashes.
 6. **Step 5 — Verify:** Run `verify.sh {agent-type} {workspace}` per completed agent. On failure, re-spawn with error context (max 2 retries). After 2 retries, activate Exploration Loop: generate 2-3 hypotheses, spawn parallel experiments, score, keep best.
 7. **Step 6 — Collect:** Read all `result-{agent}.md` files, compile summary.
 8. **Step 7 — Final Report:** Present session summary. If Quality Score was measured, include Experiment Ledger summary and auto-generate lessons.
 
-**Files read:** `.agents/plan.json`, `.agents/config/user-preferences.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Files read:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Files written:** `orchestrator-session.md`, `task-board.md` (memory), final report.
 
 **When to use:** Large projects requiring maximum parallelism with automated coordination.

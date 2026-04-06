@@ -125,7 +125,7 @@ Not all AI CLIs perform equally across domains. oh-my-agent lets you route agent
 ### Full Configuration Example
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 
 # Response language
 language: en
@@ -163,8 +163,8 @@ When `oma agent:spawn` determines which CLI to use, it follows this priority (hi
 | Priority | Source | Example |
 |----------|--------|---------|
 | 1 (highest) | `--model` flag | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in user-preferences.yaml |
-| 3 | `default_cli` | `default_cli: gemini` in user-preferences.yaml |
+| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in oma-config.yaml |
+| 3 | `default_cli` | `default_cli: gemini` in oma-config.yaml |
 | 4 | `active_vendor` | Legacy `cli-config.yaml` setting |
 | 5 (lowest) | Hardcoded fallback | `gemini` |
 

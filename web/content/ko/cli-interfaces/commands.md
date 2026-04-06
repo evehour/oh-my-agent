@@ -98,7 +98,7 @@ oma update [-f | --force] [--ci]
 
 | 플래그 | 설명 |
 |:-------|:-----|
-| `-f, --force` | 사용자가 커스터마이즈한 설정 파일(`user-preferences.yaml`, `mcp.json`, `stack/` 디렉토리) 덮어쓰기 |
+| `-f, --force` | 사용자가 커스터마이즈한 설정 파일(`oma-config.yaml`, `mcp.json`, `stack/` 디렉토리) 덮어쓰기 |
 | `--ci` | 비대화형 CI 모드로 실행 (안내 건너뛰기, 일반 텍스트 출력) |
 
 **수행 내용:**
@@ -296,7 +296,7 @@ oma agent:spawn <agent-id> <prompt> <session-id> [-m <vendor>] [-w <workspace>]
 | `-m, --model <vendor>` | CLI 벤더 오버라이드: `gemini`, `claude`, `codex`, `qwen` |
 | `-w, --workspace <path>` | 에이전트의 작업 디렉토리. 생략하면 모노레포 설정에서 자동 감지. |
 
-**벤더 해석 순서:** `--model` 플래그 > user-preferences.yaml의 `agent_cli_mapping` > `default_cli` > cli-config.yaml의 `active_vendor` > `gemini`.
+**벤더 해석 순서:** `--model` 플래그 > oma-config.yaml의 `agent_cli_mapping` > `default_cli` > cli-config.yaml의 `active_vendor` > `gemini`.
 
 **프롬프트 해석:** 프롬프트 인자가 기존 파일의 경로이면 파일 내용이 프롬프트로 사용됩니다. 그렇지 않으면 인자가 인라인 텍스트로 사용됩니다. 벤더별 실행 프로토콜이 자동으로 추가됩니다.
 

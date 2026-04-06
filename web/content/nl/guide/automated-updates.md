@@ -41,7 +41,7 @@ jobs:
 |:------|:-----|:---------|:-----------|
 | `mode` | string | `"pr"` | `"pr"` maakt een pull request. `"commit"` pusht direct. |
 | `base-branch` | string | `"main"` | Basisbranch voor de PR of directe commits. |
-| `force` | string | `"false"` | Overschrijft gebruikersaanpassingen (user-preferences.yaml, mcp.json, stack/). |
+| `force` | string | `"false"` | Overschrijft gebruikersaanpassingen (oma-config.yaml, mcp.json, stack/). |
 | `pr-title` | string | `"chore(deps): update oh-my-agent skills"` | Aangepaste PR-titel. |
 | `pr-labels` | string | `"dependencies,automated"` | Kommagescheiden labels voor de PR. |
 | `commit-message` | string | `"chore(deps): update oh-my-agent skills"` | Aangepast commitbericht. |
@@ -104,7 +104,7 @@ jobs:
     pr-title: "chore(deps): force-update oh-my-agent skills (reset configs)"
 ```
 
-**Waarschuwing:** Force-modus overschrijft `user-preferences.yaml`, `mcp.json` en `stack/`-directory's.
+**Waarschuwing:** Force-modus overschrijft `oma-config.yaml`, `mcp.json` en `stack/`-directory's.
 
 ---
 

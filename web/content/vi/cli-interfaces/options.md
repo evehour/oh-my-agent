@@ -83,11 +83,11 @@ oma update [-f | --force] [--ci]
 
 | Flag | Viết tắt | Mô tả | Mặc định |
 |:-----|:------|:-----------|:--------|
-| `--force` | `-f` | Ghi đè file config tùy chỉnh khi cập nhật. Ảnh hưởng: `user-preferences.yaml`, `mcp.json`, thư mục `stack/`. Không có flag này, các file được sao lưu trước khi cập nhật và khôi phục sau. | `false` |
+| `--force` | `-f` | Ghi đè file config tùy chỉnh khi cập nhật. Ảnh hưởng: `oma-config.yaml`, `mcp.json`, thư mục `stack/`. Không có flag này, các file được sao lưu trước khi cập nhật và khôi phục sau. | `false` |
 | `--ci` | | Chạy ở chế độ CI không tương tác. Bỏ qua tất cả prompt xác nhận, dùng đầu ra console thuần thay vì spinner và animation. Cần thiết cho pipeline CI/CD khi stdin không có sẵn. | `false` |
 
 **Hành vi với --force:**
-- `user-preferences.yaml` được thay thế bằng mặc định registry.
+- `oma-config.yaml` được thay thế bằng mặc định registry.
 - `mcp.json` được thay thế bằng mặc định registry.
 - Thư mục `stack/` backend (tài nguyên theo ngôn ngữ) được thay thế.
 - Tất cả file khác luôn được cập nhật bất kể flag này.

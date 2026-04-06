@@ -1,6 +1,6 @@
 ---
 title: Installatie
-description: Volledige installatiegids voor oh-my-agent — drie installatiemethoden, alle zes presets met hun skill-lijsten, CLI-toolvereisten voor alle vier leveranciers, post-installatie configuratie, user-preferences.yaml velden en verificatie met oma doctor.
+description: Volledige installatiegids voor oh-my-agent — drie installatiemethoden, alle zes presets met hun skill-lijsten, CLI-toolvereisten voor alle vier leveranciers, post-installatie configuratie, oma-config.yaml velden en verificatie met oma doctor.
 ---
 
 # Installatie
@@ -63,7 +63,7 @@ Na de installatie bevat je project:
 ```
 .agents/
 ├── config/
-│   └── user-preferences.yaml      # Je voorkeuren
+│   └── oma-config.yaml      # Je voorkeuren
 ├── skills/
 │   ├── _shared/                    # Gedeelde bronnen (altijd geinstalleerd)
 │   │   ├── core/                   # skill-routing, context-loading, etc.
@@ -185,9 +185,9 @@ Na installatie, voer `/auth` uit binnen de CLI om te authenticeren.
 
 ---
 
-## user-preferences.yaml
+## oma-config.yaml
 
-Het `oma install`-commando maakt `.agents/config/user-preferences.yaml` aan. Dit is het centrale configuratiebestand voor al het oh-my-agent gedrag:
+Het `oma install`-commando maakt `.agents/oma-config.yaml` aan. Dit is het centrale configuratiebestand voor al het oh-my-agent gedrag:
 
 ```yaml
 # Antwoordtaal voor alle agenten en workflows
@@ -235,8 +235,8 @@ agent_cli_mapping:
 Bij het spawnen van een agent wordt de CLI-leverancier bepaald door deze prioriteitsvolgorde (hoogste eerst):
 
 1. `--model`-vlag meegegeven aan `oma agent:spawn`
-2. `agent_cli_mapping`-vermelding voor die specifieke agent in `user-preferences.yaml`
-3. `default_cli`-instelling in `user-preferences.yaml`
+2. `agent_cli_mapping`-vermelding voor die specifieke agent in `oma-config.yaml`
+3. `default_cli`-instelling in `oma-config.yaml`
 4. `active_vendor` in `cli-config.yaml` (legacy fallback)
 5. `gemini` (hardgecodeerde laatste fallback)
 
@@ -257,7 +257,7 @@ Dit commando controleert:
 - Symlinks in `.claude/skills/` verwijzen naar geldige doelen
 - Hooks zijn correct geconfigureerd in `.claude/settings.json`
 - Geheugenprovider is bereikbaar (Serena MCP)
-- `user-preferences.yaml` is geldige YAML met vereiste velden
+- `oma-config.yaml` is geldige YAML met vereiste velden
 
 Als er iets mis is, vertelt `oma doctor` je precies wat je moet repareren, met kopieer-en-plak commando's.
 
@@ -281,7 +281,7 @@ Skills en workflows binnen een project kunnen worden bijgewerkt via de GitHub Ac
 bunx oh-my-agent@latest
 ```
 
-De installer detecteert bestaande installaties en biedt aan bij te werken met behoud van je `user-preferences.yaml` en eventuele aangepaste configuratie.
+De installer detecteert bestaande installaties en biedt aan bij te werken met behoud van je `oma-config.yaml` en eventuele aangepaste configuratie.
 
 ---
 

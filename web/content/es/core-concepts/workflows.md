@@ -40,14 +40,14 @@ Los flujos persistentes continúan ejecutándose hasta que todas las tareas est�
 **Pasos:**
 1. **Paso 0 — Preparación:** Leer habilidad de coordinación, guía de carga de contexto, protocolo de memoria. Detectar proveedor.
 2. **Paso 1 — Cargar/Crear Plan:** Verificar `.agents/plan.json`. Si falta, pedir al usuario ejecutar `/plan` primero.
-3. **Paso 2 — Inicializar Sesión:** Cargar `user-preferences.yaml`, mostrar tabla de mapeo CLI, generar ID de sesión (`session-YYYYMMDD-HHMMSS`), crear `orchestrator-session.md` y `task-board.md` en memoria.
+3. **Paso 2 — Inicializar Sesión:** Cargar `oma-config.yaml`, mostrar tabla de mapeo CLI, generar ID de sesión (`session-YYYYMMDD-HHMMSS`), crear `orchestrator-session.md` y `task-board.md` en memoria.
 4. **Paso 3 — Generar Agentes:** Para cada nivel de prioridad (P0 primero, luego P1...), generar agentes usando método apropiado del proveedor (herramienta Agent para Claude Code, `oh-my-ag agent:spawn` para Gemini/Antigravity, mediado por modelo para Codex). Nunca exceder MAX_PARALLEL.
 5. **Paso 4 — Monitorear:** Sondear archivos `progress-{agent}.md`, actualizar `task-board.md`. Vigilar completaciones, fallos, crashes.
 6. **Paso 5 — Verificar:** Ejecutar `verify.sh {agent-type} {workspace}` por cada agente completado. En caso de fallo, regenerar con contexto de error (máximo 2 reintentos). Después de 2 reintentos, activar Bucle de Exploración: generar 2-3 hipótesis, generar experimentos paralelos, puntuar, conservar el mejor.
 7. **Paso 6 — Recopilar:** Leer todos los archivos `result-{agent}.md`, compilar resumen.
 8. **Paso 7 — Informe Final:** Presentar resumen de sesión. Si se midió Quality Score, incluir resumen del Ledger de Experimentos y auto-generar lecciones.
 
-**Archivos leídos:** `.agents/plan.json`, `.agents/config/user-preferences.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Archivos leídos:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Archivos escritos:** `orchestrator-session.md`, `task-board.md` (memoria), informe final.
 
 **Cuándo usar:** Proyectos grandes que requieren máximo paralelismo con coordinación automatizada.

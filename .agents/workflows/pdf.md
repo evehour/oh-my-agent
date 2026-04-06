@@ -4,7 +4,7 @@ description: Convert PDF to Markdown using opendataloader-pdf — extracts text,
 
 # MANDATORY RULES — VIOLATION IS FORBIDDEN
 
-- **Response language follows `language` setting in `.agents/config/user-preferences.yaml` if configured.**
+- **Response language follows `language` setting in `.agents/oma-config.yaml` if configured.**
 - **NEVER skip steps.** Execute from Step 1 in order.
 - **Default output location: same directory as input PDF.**
 

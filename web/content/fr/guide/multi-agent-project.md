@@ -101,8 +101,8 @@ oma agent:spawn backend "Implement user auth API with JWT" session-20260324-1430
 **Vendor resolution order** (first match wins):
 
 1. `--model` flag on the command line
-2. `agent_cli_mapping` in `user-preferences.yaml` for this specific agent type
-3. `default_cli` in `user-preferences.yaml`
+2. `agent_cli_mapping` in `oma-config.yaml` for this specific agent type
+3. `default_cli` in `oma-config.yaml`
 4. `active_vendor` in `cli-config.yaml`
 5. `gemini` (hardcoded default)
 

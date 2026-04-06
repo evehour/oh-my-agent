@@ -83,11 +83,11 @@ oma update [-f | --force] [--ci]
 
 | Flag | Curta | Descrição | Padrão |
 |:-----|:------|:----------|:-------|
-| `--force` | `-f` | Sobrescrever arquivos de config customizados durante atualização. Afeta: `user-preferences.yaml`, `mcp.json`, diretórios `stack/`. Sem esta flag, estes arquivos são backupeados antes da atualização e restaurados depois. | `false` |
+| `--force` | `-f` | Sobrescrever arquivos de config customizados durante atualização. Afeta: `oma-config.yaml`, `mcp.json`, diretórios `stack/`. Sem esta flag, estes arquivos são backupeados antes da atualização e restaurados depois. | `false` |
 | `--ci` | | Executar em modo CI não-interativo. Pula todos os prompts de confirmação, usa saída plain console em vez de spinners e animações. Necessário para pipelines CI/CD onde stdin não está disponível. | `false` |
 
 **Comportamento com --force:**
-- `user-preferences.yaml` é substituído pelo padrão do registro.
+- `oma-config.yaml` é substituído pelo padrão do registro.
 - `mcp.json` é substituído pelo padrão do registro.
 - Diretório `stack/` do backend (recursos específicos de linguagem) é substituído.
 - Todos os outros arquivos são sempre atualizados independente desta flag.

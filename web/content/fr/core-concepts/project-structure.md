@@ -15,7 +15,7 @@ Après l'installation d'oh-my-agent, votre projet acquiert trois arborescences d
 your-project/
 ├── .agents/                          ← Single Source of Truth (SSOT)
 │   ├── config/
-│   │   └── user-preferences.yaml    ← Language, timezone, CLI mapping
+│   │   └── oma-config.yaml    ← Language, timezone, CLI mapping
 │   │
 │   ├── skills/
 │   │   ├── _shared/                  ← Resources used by ALL agents
@@ -278,7 +278,7 @@ C'est le répertoire central. Tout ce dont les agents ont besoin s'y trouve. C'e
 
 ### config/
 
-**`user-preferences.yaml`** — Central configuration file with:
+**`oma-config.yaml`** — Central configuration file with:
 - `language`: Response language code (en, ko, ja, zh, es, fr, de, pt, ru, nl, pl)
 - `date_format`: Timestamp format string (default: `YYYY-MM-DD`)
 - `timezone`: Timezone identifier (default: `UTC`)

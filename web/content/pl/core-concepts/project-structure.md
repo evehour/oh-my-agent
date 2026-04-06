@@ -15,7 +15,7 @@ Po zainstalowaniu oh-my-agent, projekt zyskuje trzy drzewa katalogów: `.agents/
 your-project/
 ├── .agents/                          ← Jedno źródło prawdy (SSOT)
 │   ├── config/
-│   │   └── user-preferences.yaml    ← Język, strefa czasowa, mapowanie CLI
+│   │   └── oma-config.yaml    ← Język, strefa czasowa, mapowanie CLI
 │   │
 │   ├── skills/
 │   │   ├── _shared/                  ← Zasoby używane przez WSZYSTKICH agentów
@@ -89,7 +89,7 @@ To katalog główny. Wszystko czego agenci potrzebują, znajduje się tutaj. To 
 
 ### config/
 
-**`user-preferences.yaml`** — Centralny plik konfiguracyjny z:
+**`oma-config.yaml`** — Centralny plik konfiguracyjny z:
 - `language`: Kod języka odpowiedzi (en, ko, ja, zh, es, fr, de, pt, ru, nl, pl)
 - `date_format`: Format znacznika czasu (domyślnie: `YYYY-MM-DD`)
 - `timezone`: Identyfikator strefy czasowej (domyślnie: `UTC`)

@@ -40,14 +40,14 @@ Les workflows persistants continuent de s'exécuter jusqu'à ce que toutes les t
 **Étapes :**
 1. **Étape 0 -- Préparation :** Lire la compétence de coordination, le guide de chargement du contexte, le protocole de mémoire. Détecter le fournisseur.
 2. **Étape 1 -- Charger/Créer le plan :** Vérifier la présence de `.agents/plan.json`. Si absent, inviter l'utilisateur à exécuter `/plan` d'abord.
-3. **Étape 2 -- Initialiser la session :** Charger `user-preferences.yaml`, afficher le tableau de mapping CLI, générer l'identifiant de session (`session-YYYYMMDD-HHMMSS`), créer `orchestrator-session.md` et `task-board.md` en mémoire.
+3. **Étape 2 -- Initialiser la session :** Charger `oma-config.yaml`, afficher le tableau de mapping CLI, générer l'identifiant de session (`session-YYYYMMDD-HHMMSS`), créer `orchestrator-session.md` et `task-board.md` en mémoire.
 4. **Étape 3 -- Lancer les agents :** Pour chaque niveau de priorité (P0 d'abord, puis P1...), lancer les agents avec la méthode appropriée au fournisseur (outil Agent pour Claude Code, `oh-my-ag agent:spawn` pour Gemini/Antigravity, médié par le modèle pour Codex). Ne jamais dépasser MAX_PARALLEL.
 5. **Étape 4 -- Surveiller :** Interroger les fichiers `progress-{agent}.md`, mettre à jour `task-board.md`. Surveiller les complétions, échecs, plantages.
 6. **Étape 5 -- Vérifier :** Exécuter `verify.sh {agent-type} {workspace}` pour chaque agent terminé. En cas d'échec, relancer avec le contexte d'erreur (maximum 2 tentatives). Après 2 tentatives, activer la boucle d'exploration : générer 2 à 3 hypothèses, lancer des expériences parallèles, évaluer, garder la meilleure.
 7. **Étape 6 -- Rassembler :** Lire tous les fichiers `result-{agent}.md`, rassembler le résumé.
 8. **Étape 7 -- Rapport final :** Présenter le résumé de session. Si le Quality Score a été mesuré, inclure le résumé du registre d'expériences et auto-générer les enseignements.
 
-**Fichiers lus :** `.agents/plan.json`, `.agents/config/user-preferences.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Fichiers lus :** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Fichiers écrits :** `orchestrator-session.md`, `task-board.md` (mémoire), rapport final.
 
 **Quand l'utiliser :** Projets de grande envergure nécessitant un parallélisme maximal avec coordination automatisée.

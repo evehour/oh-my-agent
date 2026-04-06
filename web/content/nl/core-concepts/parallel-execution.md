@@ -113,7 +113,7 @@ oma agent:parallel -i \
 ## Multi-CLI Configuratie
 
 ```yaml
-# .agents/config/user-preferences.yaml
+# .agents/oma-config.yaml
 language: en
 date_format: "YYYY-MM-DD"
 timezone: "Asia/Seoul"
@@ -140,8 +140,8 @@ agent_cli_mapping:
 | Prioriteit | Bron | Voorbeeld |
 |------------|------|---------|
 | 1 (hoogste) | `--model` vlag | `oma agent:spawn backend "task" session-01 -m claude` |
-| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in user-preferences.yaml |
-| 3 | `default_cli` | `default_cli: gemini` in user-preferences.yaml |
+| 2 | `agent_cli_mapping` | `agent_cli_mapping.backend: gemini` in oma-config.yaml |
+| 3 | `default_cli` | `default_cli: gemini` in oma-config.yaml |
 | 4 | `active_vendor` | Legacy `cli-config.yaml` instelling |
 | 5 (laagste) | Hardgecodeerde fallback | `gemini` |
 

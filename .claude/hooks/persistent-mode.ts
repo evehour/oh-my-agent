@@ -22,7 +22,7 @@ const MAX_REINFORCEMENTS = 5;
 const STALE_HOURS = 2;
 
 function detectLanguage(projectDir: string): string {
-  const prefsPath = join(projectDir, ".agents", "config", "user-preferences.yaml");
+  const prefsPath = join(projectDir, ".agents", "oma-config.yaml");
   if (!existsSync(prefsPath)) return "en";
   try {
     const content = readFileSync(prefsPath, "utf-8");

@@ -15,7 +15,7 @@ description: Исчерпывающее дерево директорий уст
 your-project/
 ├── .agents/                          <- Единый источник истины (SSOT)
 │   ├── config/
-│   │   └── user-preferences.yaml    <- Язык, часовой пояс, маппинг CLI
+│   │   └── oma-config.yaml    <- Язык, часовой пояс, маппинг CLI
 │   ├── skills/
 │   │   ├── _shared/                  <- Ресурсы для ВСЕХ агентов
 │   │   │   ├── core/                 <- skill-routing, context-loading, prompt-structure,
@@ -89,7 +89,7 @@ your-project/
 
 ### config/
 
-**`user-preferences.yaml`** — Центральный файл конфигурации:
+**`oma-config.yaml`** — Центральный файл конфигурации:
 - `language`: Код языка (en, ko, ja, zh, es, fr, de, pt, ru, nl, pl)
 - `date_format`: Формат временных меток (по умолчанию: `YYYY-MM-DD`)
 - `timezone`: Часовой пояс (по умолчанию: `UTC`)

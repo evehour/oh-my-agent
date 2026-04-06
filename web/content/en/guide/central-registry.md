@@ -187,7 +187,7 @@ sync:
   # Files/directories to preserve during sync (glob patterns)
   # These won't be overwritten from the registry
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"
 ```
 
@@ -197,7 +197,7 @@ sync:
 - **`auto_update.enabled`** — When true, the check workflow runs on schedule.
 - **`auto_update.schedule`** — Cron expression for how often to check. Default is weekly on Monday at 9am UTC.
 - **`auto_update.pr.auto_merge`** — Always `false` by design. Updates require manual review.
-- **`sync.preserve`** — Glob patterns for files that should not be overwritten during sync. Typically includes your project's `user-preferences.yaml` and any local configuration overrides.
+- **`sync.preserve`** — Glob patterns for files that should not be overwritten during sync. Typically includes your project's `oma-config.yaml` and any local configuration overrides.
 
 ### Workflow Roles
 
@@ -252,7 +252,7 @@ sync:
 | **Checksum verification** | Yes — SHA256 verified before extraction | No — relies on npm registry |
 | **Rollback** | Change version in `.agent-registry.yml` | Revert the update commit |
 | **Audit trail** | Version-pinned PRs with labels | Commit history |
-| **Preserved files** | Configurable glob patterns in `.agent-registry.yml` | Built-in: `user-preferences.yaml`, `mcp.json`, `stack/` |
+| **Preserved files** | Configurable glob patterns in `.agent-registry.yml` | Built-in: `oma-config.yaml`, `mcp.json`, `stack/` |
 | **Update source** | GitHub Release artifacts (tarball) | npm registry (oh-my-agent package) |
 | **Approval flow** | PR review required (auto-merge disabled) | Configurable (PR mode or direct commit) |
 | **Multiple projects** | Each project has its own pinned version | Each project runs independently |

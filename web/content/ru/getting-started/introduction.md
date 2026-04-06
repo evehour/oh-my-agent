@@ -97,7 +97,7 @@ oh-my-agent использует двухуровневую архитектур
 
 ```
 .agents/
-├── config/                 # user-preferences.yaml
+├── config/                 # oma-config.yaml
 ├── skills/                 # 15 директорий навыков (14 агентов + _shared)
 │   ├── _shared/            # Основные ресурсы для всех агентов
 │   └── oma-{agent}/        # Для каждого агента: SKILL.md + resources/

@@ -123,10 +123,9 @@ describe("hasInstalledProject", () => {
     mkdirSync(join(root, ".agents", "skills", "oma-backend"), {
       recursive: true,
     });
-    mkdirSync(join(root, ".agents", "config"), { recursive: true });
     mkdirSync(join(root, ".agents", "workflows"), { recursive: true });
     writeFileSync(
-      join(root, ".agents", "config", "user-preferences.yaml"),
+      join(root, ".agents", "oma-config.yaml"),
       "language: ko\n",
       { encoding: "utf-8", flag: "w" },
     );

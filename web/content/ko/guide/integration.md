@@ -186,7 +186,7 @@ done
 
 ```bash
 mkdir -p /path/to/your/project/.agents/config
-cat > /path/to/your/project/.agents/config/user-preferences.yaml << 'EOF'
+cat > /path/to/your/project/.agents/oma-config.yaml << 'EOF'
 language: en
 date_format: ISO
 timezone: UTC
@@ -246,7 +246,7 @@ ls .agents/skills/
 ls -la .claude/skills/
 
 # 설정 존재 확인
-cat .agents/config/user-preferences.yaml
+cat .agents/oma-config.yaml
 
 # 메모리 디렉토리 확인
 ls .serena/memories/ 2>/dev/null || echo "Memory not initialized"
@@ -272,7 +272,7 @@ your-project/
       qa-reviewer.md
       ...
     config/                         # 설정
-      user-preferences.yaml
+      oma-config.yaml
     mcp.json                        # MCP 서버 설정
     plan.json                       # 현재 계획 (/plan으로 생성)
     skills/                         # 설치된 스킬
@@ -400,7 +400,7 @@ oma dashboard:web
 
 ### 6. 설정 설치
 
-`installConfigs()`가 기본 설정 파일을 `.agents/config/`에 복사합니다. `user-preferences.yaml`과 `mcp.json`을 포함합니다. 이 파일들이 이미 존재하면 `--force`를 사용하지 않는 한 보존됩니다(덮어쓰지 않음).
+`installConfigs()`가 기본 설정 파일을 `.agents/config/`에 복사합니다. `oma-config.yaml`과 `mcp.json`을 포함합니다. 이 파일들이 이미 존재하면 `--force`를 사용하지 않는 한 보존됩니다(덮어쓰지 않음).
 
 ### 7. 스킬 설치
 

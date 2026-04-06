@@ -45,5 +45,5 @@ sync:
   # Files/directories to preserve during sync (glob patterns)
   # These won't be overwritten from the registry
   preserve:
-    - ".agent/config/user-preferences.yaml"
+    - ".agent/oma-config.yaml"
     - ".agent/config/local-*"

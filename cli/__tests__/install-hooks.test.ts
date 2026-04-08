@@ -104,7 +104,7 @@ describe("installHooksFromVariant", () => {
     );
     expect(writeCall).toBeTruthy();
 
-    const settings = JSON.parse(writeCall![1] as string);
+    const settings = JSON.parse(writeCall?.[1] as string);
     expect(settings.hooks.BeforeAgent).toBeDefined();
     expect(settings.hooks.BeforeAgent[0].matcher).toBe("*");
     expect(settings.hooks.BeforeAgent[0].hooks[0].command).toContain(
@@ -133,7 +133,7 @@ describe("installHooksFromVariant", () => {
       (call: string[]) =>
         typeof call[0] === "string" && call[0].includes("settings.json"),
     );
-    const settings = JSON.parse(writeCall![1] as string);
+    const settings = JSON.parse(writeCall?.[1] as string);
     expect(settings.statusLine.command).toContain("hud.ts");
   });
 
@@ -164,7 +164,7 @@ describe("installHooksFromVariant", () => {
         typeof call[0] === "string" && call[0].includes("config.toml"),
     );
     expect(tomlWrite).toBeTruthy();
-    expect(tomlWrite![1]).toContain("codex_hooks = true");
+    expect(tomlWrite?.[1]).toContain("codex_hooks = true");
   });
 
   it("should use relative paths when projectDirEnv is null", () => {
@@ -192,7 +192,7 @@ describe("installHooksFromVariant", () => {
       (call: string[]) =>
         typeof call[0] === "string" && call[0].includes("hooks.json"),
     );
-    const settings = JSON.parse(writeCall![1] as string);
+    const settings = JSON.parse(writeCall?.[1] as string);
     const cmd = settings.hooks.UserPromptSubmit[0].hooks[0].command;
     expect(cmd).toBe("bun .codex/hooks/keyword-detector.ts");
     expect(cmd).not.toContain("$");

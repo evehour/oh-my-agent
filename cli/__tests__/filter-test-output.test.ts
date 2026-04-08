@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { execSync } from "node:child_process";
 import { join } from "node:path";
+import { describe, expect, it } from "vitest";
 
 const FILTER_PATH = join(
   __dirname,
@@ -32,10 +32,9 @@ describe("filter-test-output.sh", () => {
     });
 
     it("should remove PASS file headers", () => {
-      const input = [
-        " PASS src/utils.test.ts",
-        " FAIL src/hooks.test.ts",
-      ].join("\n");
+      const input = [" PASS src/utils.test.ts", " FAIL src/hooks.test.ts"].join(
+        "\n",
+      );
       const result = filter(input);
       expect(result).not.toContain("PASS src");
       expect(result).toContain("FAIL src");

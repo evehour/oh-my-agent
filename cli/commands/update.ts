@@ -33,11 +33,11 @@ import {
   detectExistingCliSymlinkDirs,
   getInstalledSkillNames,
   installVendorAdaptations,
-  readVendorsFromConfig,
   REPO,
+  readVendorsFromConfig,
 } from "../lib/skills.js";
-import type { VendorType } from "../types/index.js";
 import { downloadAndExtract } from "../lib/tarball.js";
+import type { VendorType } from "../types/index.js";
 import { runMigrations } from "./migrations/index.js";
 
 /** Thin UI abstraction: interactive (@clack/prompts) vs CI (plain console) */

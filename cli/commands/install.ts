@@ -31,8 +31,8 @@ import {
   REPO,
   writeVendorsToConfig,
 } from "../lib/skills.js";
-import type { CliVendor, VendorType } from "../types/index.js";
 import { downloadAndExtract } from "../lib/tarball.js";
+import type { CliVendor, VendorType } from "../types/index.js";
 import { runMigrations } from "./migrations/index.js";
 
 const LANGUAGE_NAMES: Record<string, string> = {
@@ -250,9 +250,7 @@ export async function install(): Promise<void> {
   }
 
   const vendors = selectedVendors as CliVendor[];
-  const hookVendors = vendors.filter(
-    (v): v is VendorType => v !== "copilot",
-  );
+  const hookVendors = vendors.filter((v): v is VendorType => v !== "copilot");
   const selectedClis: CliTool[] = [];
   if (vendors.includes("claude")) selectedClis.push("claude");
   if (vendors.includes("copilot")) selectedClis.push("copilot");

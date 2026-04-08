@@ -1,7 +1,7 @@
 {
   "name": "oh-my-agent",
-  "version": "4.23.4",
-  "releaseDate": "2026-04-08T05:31:18.383Z",
+  "version": "4.24.0",
+  "releaseDate": "2026-04-08T04:34:11.253Z",
   "repository": "https://github.com/first-fluke/oh-my-agent",
   "files": [
     {
@@ -38,66 +38,6 @@
       "path": ".agents/agents/qa-reviewer.md",
       "sha256": "0482d670ddcee366b073e65cd6b2c26ec16e76bf428af45ecdcbbbdff5a81183",
       "size": 1900
-    },
-    {
-      "path": ".agents/hooks/core/filter-test-output.sh",
-      "sha256": "b03fd019a4ab095f2eaf717d368be00825ce43be39942c5620a7cdf9192355e7",
-      "size": 1564
-    },
-    {
-      "path": ".agents/hooks/core/hud.ts",
-      "sha256": "489e5693bb45e9c3112f3c037e7319e9e065afbf68da789a4d947408605d1816",
-      "size": 3836
-    },
-    {
-      "path": ".agents/hooks/core/keyword-detector.ts",
-      "sha256": "c512baf4a036c77efa68fc18597a82bc9f1578bb385fd0c201b37d872736146b",
-      "size": 13440
-    },
-    {
-      "path": ".agents/hooks/core/persistent-mode.ts",
-      "sha256": "9e4fe8f17d69aa133802aaab450a9e2264710ff0c9c105a7552a7acaf51b4ec3",
-      "size": 6868
-    },
-    {
-      "path": ".agents/hooks/core/test-filter.ts",
-      "sha256": "d961b917a7731c076a760b2c98556be6cb1ba41134297bcab9242c7e7f5e50e3",
-      "size": 3387
-    },
-    {
-      "path": ".agents/hooks/core/triggers.json",
-      "sha256": "4236f8b728497279029cc70769e7d1c8521db6a949679f51269c31791e6c7451",
-      "size": 21133
-    },
-    {
-      "path": ".agents/hooks/core/types.ts",
-      "sha256": "d662b76fa69ada11f38a148f4b6767f44cc6877a57a328cebe3556cea3914280",
-      "size": 2977
-    },
-    {
-      "path": ".agents/hooks/variants/claude.json",
-      "sha256": "bcabe3c1c438fbaabadfd59efd17437b9839f226c52a32365dd4f25a05d5da4e",
-      "size": 709
-    },
-    {
-      "path": ".agents/hooks/variants/codex.json",
-      "sha256": "e09aebdf6980ad22a9f32cbf3b2d87b1854f1f2be6d110ca6f2abac47d0bed73",
-      "size": 599
-    },
-    {
-      "path": ".agents/hooks/variants/gemini.json",
-      "sha256": "25f58b21f6aa3c12f35308636354dd3e36f00253cd20f97a9d65447593eac9e4",
-      "size": 533
-    },
-    {
-      "path": ".agents/hooks/variants/hook-variant.schema.json",
-      "sha256": "37db0f528cfd101bf28b5d960c27757fbde308983d6ce30a949ea6bc42c962dd",
-      "size": 3738
-    },
-    {
-      "path": ".agents/hooks/variants/qwen.json",
-      "sha256": "818eebeeb200b9897d4acd599c73840783a4b895cd651bf0a37a0e37f36e90b5",
-      "size": 480
     },
     {
       "path": ".agents/mcp.json",
@@ -1071,6 +1011,6 @@
   "metadata": {
     "skillCount": 31,
     "workflowCount": 18,
-    "totalFiles": 212
+    "totalFiles": 200
   }
 }

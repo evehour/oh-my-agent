@@ -590,7 +590,7 @@ oma verify <agent-type> [-w <workspace>] [--json] [--output <format>]
 **Hoạt động:** Chạy script xác minh cho loại agent đã chỉ định, kiểm tra thành công build, kết quả test và tuân thủ phạm vi.
 
 **Kiểm tra chung (tất cả loại agent):**
-- **Kiểm tra phạm vi**: Đọc phạm vi task `.agents/plan.json`. So sánh file thay đổi `git diff` với mẫu phạm vi đã định nghĩa. Thất bại nếu file bị sửa ngoài phạm vi đã gán cho agent.
+- **Kiểm tra phạm vi**: Đọc phạm vi task `.agents/results/plan-{sessionId}.json`. So sánh file thay đổi `git diff` với mẫu phạm vi đã định nghĩa. Thất bại nếu file bị sửa ngoài phạm vi đã gán cho agent.
 - **Charter Preflight**: Xác minh `result-{agent}.md` chứa khối `CHARTER_CHECK:` đã điền đúng mà không có placeholder chưa điền.
 - **Secret cứng**: Quét file `.py`, `.ts`, `.tsx`, `.js`, `.dart` tìm mẫu như `password = "..."`, `api_key = "..."` (loại trừ file test/ví dụ).
 - **Comment TODO/FIXME**: Đếm comment `TODO`, `FIXME`, `HACK`, `XXX` (cảnh báo nếu tìm thấy).
@@ -604,7 +604,7 @@ oma verify <agent-type> [-w <workspace>] [--json] [--output <format>]
 | `mobile` | Phân tích Flutter/Dart (`flutter analyze` hoặc `dart analyze`), test Flutter (`flutter test`) |
 | `qa` | Xác minh tự kiểm tra |
 | `debug` | Chạy test Python hoặc test frontend dựa trên loại dự án phát hiện được |
-| `pm` | Xác thực `.agents/plan.json` tồn tại và là JSON hợp lệ |
+| `pm` | Xác thực `.agents/results/plan-{sessionId}.json` tồn tại và là JSON hợp lệ |
 
 **Định dạng đầu ra:**
 Mỗi kiểm tra báo cáo `PASS`, `FAIL`, `WARN` hoặc `SKIP` kèm thông báo chi tiết. Kết quả tổng thể là `ok: true` chỉ khi không có kiểm tra nào thất bại.

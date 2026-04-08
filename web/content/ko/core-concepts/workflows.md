@@ -39,7 +39,7 @@ description: oh-my-agent 15개 워크플로우 완전 레퍼런스 — 슬래시
 
 **단계:**
 1. **Step 0 — 준비:** 코디네이션 스킬, 컨텍스트 로딩 가이드, 메모리 프로토콜 읽기. 벤더 감지.
-2. **Step 1 — 계획 로딩/생성:** `.agents/plan.json` 확인. 없으면 `/plan`을 먼저 실행하도록 안내.
+2. **Step 1 — 계획 로딩/생성:** `.agents/results/plan-{sessionId}.json` 확인. 없으면 `/plan`을 먼저 실행하도록 안내.
 3. **Step 2 — 세션 초기화:** `oma-config.yaml` 로딩, CLI 매핑 테이블 표시, 세션 ID(`session-YYYYMMDD-HHMMSS`) 생성, 메모리에 `orchestrator-session.md`와 `task-board.md` 생성.
 4. **Step 3 — 에이전트 스폰:** 각 우선순위 티어(P0 먼저, 그 다음 P1...)에 대해 벤더에 맞는 방식으로 에이전트 스폰. MAX_PARALLEL을 초과하지 않음.
 5. **Step 4 — 모니터링:** `progress-{agent}.md` 파일 폴링, `task-board.md` 업데이트. 완료, 실패, 크래시 감시.
@@ -47,7 +47,7 @@ description: oh-my-agent 15개 워크플로우 완전 레퍼런스 — 슬래시
 7. **Step 6 — 수집:** 모든 `result-{agent}.md` 파일 읽기, 요약 정리.
 8. **Step 7 — 최종 보고서:** 세션 요약 제시. Quality Score가 측정된 경우 Experiment Ledger 요약 포함 및 교훈 자동 생성.
 
-**읽는 파일:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**읽는 파일:** `.agents/results/plan-{sessionId}.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **쓰는 파일:** `orchestrator-session.md`, `task-board.md` (메모리), 최종 보고서.
 
 **사용 시기:** 자동화된 조율과 최대 병렬성이 필요한 대규모 프로젝트.
@@ -74,7 +74,7 @@ description: oh-my-agent 15개 워크플로우 완전 레퍼런스 — 슬래시
 **단계:**
 1. **Step 0 — 준비:** 스킬, 컨텍스트 로딩, 메모리 프로토콜 읽기. 세션 시작 기록.
 2. **Step 1 — 요구사항 분석:** 관련 도메인 식별. 단일 도메인이면 직접 에이전트 사용 제안.
-3. **Step 2 — PM 에이전트 기획:** PM이 요구사항 분해, API 컨트랙트 정의, 우선순위 태스크 분해 생성, `.agents/plan.json`에 저장.
+3. **Step 2 — PM 에이전트 기획:** PM이 요구사항 분해, API 컨트랙트 정의, 우선순위 태스크 분해 생성, `.agents/results/plan-{sessionId}.json`에 저장.
 4. **Step 3 — 계획 리뷰:** 사용자에게 계획 제시. **진행 전 반드시 확인 필요.**
 5. **Step 4 — 에이전트 스폰:** 우선순위 티어별 스폰, 같은 티어 내 병렬, 별도 워크스페이스.
 6. **Step 5 — 모니터링:** 진행 파일 폴링, 에이전트 간 API 컨트랙트 정렬 확인.
@@ -171,7 +171,7 @@ description: oh-my-agent 15개 워크플로우 완전 레퍼런스 — 슬래시
 
 **단계:** 요구사항 수집 -> 기술 실현 가능성 분석 (MCP 코드 분석) -> API 컨트랙트 정의 -> 태스크 분해 -> 사용자 리뷰 -> 계획 저장.
 
-**출력:** `.agents/plan.json`, 메모리 기록, 복잡한 계획은 선택적으로 `docs/exec-plans/active/`.
+**출력:** `.agents/results/plan-{sessionId}.json`, 메모리 기록, 복잡한 계획은 선택적으로 `docs/exec-plans/active/`.
 
 **실행:** 인라인 (서브에이전트 스폰 없음). `/orchestrate` 또는 `/work`에서 소비.
 

@@ -64,7 +64,7 @@ Agenci w oh-my-agent to wyspecjalizowane role inżynierskie. Każdy agent ma zde
 - Zadania muszą być wykonalne przez jednego agenta
 - Generuj plan JSON + task-board.md dla kompatybilności z orkiestratorem
 
-**Wyjście:** `.agents/plan.json`, `.agents/brain/current-plan.md`, zapis do pamięci dla orkiestratora.
+**Wyjście:** `.agents/results/plan-{sessionId}.json`, `.agents/brain/current-plan.md`, zapis do pamięci dla orkiestratora.
 
 **Zasoby:** `execution-protocol.md`, `examples.md`, `iso-planning.md`, `task-template.json`, `../_shared/core/api-contracts/`.
 

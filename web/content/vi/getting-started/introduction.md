@@ -36,7 +36,7 @@ oh-my-agent giải quyết vấn đề này bằng chuyên biệt hóa:
 | Agent | Vai trò | Khả năng chính |
 |-------|------|-----------------|
 | **oma-brainstorm** | Khám phá ý tưởng ưu tiên thiết kế | Khám phá ý định người dùng, đề xuất 2-3 hướng tiếp cận với phân tích đánh đổi, tạo tài liệu thiết kế trước khi viết mã. Quy trình 6 giai đoạn: Context, Questions, Approaches, Design, Documentation, Chuyển sang `/plan`. |
-| **oma-pm** | Quản lý sản phẩm | Phân tách yêu cầu thành các task được ưu tiên với phụ thuộc. Định nghĩa API contract. Xuất `.agents/plan.json` và `task-board.md`. Hỗ trợ khái niệm ISO 21500, khung rủi ro ISO 31000, quản trị ISO 38500. |
+| **oma-pm** | Quản lý sản phẩm | Phân tách yêu cầu thành các task được ưu tiên với phụ thuộc. Định nghĩa API contract. Xuất `.agents/results/plan-{sessionId}.json` và `task-board.md`. Hỗ trợ khái niệm ISO 21500, khung rủi ro ISO 31000, quản trị ISO 38500. |
 
 ### Triển khai
 
@@ -103,7 +103,7 @@ Mọi thứ oh-my-agent cần đều nằm trong thư mục `.agents/`:
 │   └── oma-{agent}/        # SKILL.md + resources/ theo từng agent
 ├── workflows/              # 14 định nghĩa workflow
 ├── agents/                 # 7 định nghĩa subagent
-├── plan.json               # Kết quả kế hoạch đã tạo
+├── results/plan-{sessionId}.json               # Kết quả kế hoạch đã tạo
 ├── state/                  # File trạng thái workflow đang hoạt động
 ├── results/                # File kết quả agent
 └── mcp.json                # Cấu hình MCP server

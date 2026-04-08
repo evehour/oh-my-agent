@@ -319,7 +319,7 @@ Un flujo completo de ejecución paralela para construir una funcionalidad de aut
 ```bash
 # Paso 1: Planificar la funcionalidad
 # (En tu IDE de IA, ejecutar /plan o describir la funcionalidad)
-# Esto crea .agents/plan.json con desglose de tareas
+# Esto crea .agents/results/plan-{sessionId}.json con desglose de tareas
 
 # Paso 2: Generar agentes de implementación en paralelo
 oma agent:spawn backend "Implement JWT auth API with registration, login, refresh, and logout endpoints. Use bcrypt for password hashing. Follow the API contract in .agents/skills/_shared/core/api-contracts/" session-auth-01 -w ./apps/api &

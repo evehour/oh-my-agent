@@ -109,7 +109,7 @@ Tippe diese in deiner KI-IDE, um strukturierte Prozesse auszuloesen:
 | Befehl | Was Er Tut | Wann Verwenden |
 |--------|-----------|---------------|
 | `/brainstorm` | Freie Ideenfindung und Erkundung | Bevor du dich auf einen Ansatz festlegst |
-| `/plan` | PM-Aufgabenzerlegung → `.agents/plan.json` | Vor dem Start jedes komplexen Features |
+| `/plan` | PM-Aufgabenzerlegung → `.agents/results/plan-{sessionId}.json` | Vor dem Start jedes komplexen Features |
 | `/exec-plan` | Bestehenden Plan Schritt fuer Schritt ausfuehren | Nach `/plan` |
 | `/work` | Schrittweise Multi-Domain-Koordination | Features, die mehrere Agenten umfassen |
 | `/orchestrate` | Automatisierte parallele Agenten-Ausfuehrung | Grosse Projekte, maximale Parallelitaet |
@@ -145,7 +145,7 @@ Fragen wie "was ist orchestrate?" werden herausgefiltert — sie loesen keine Wo
 
 | Skill | Am Besten Fuer | Ausgabe |
 |-------|---------------|---------|
-| oma-pm | "plane das", "zerlege" | `.agents/plan.json` |
+| oma-pm | "plane das", "zerlege" | `.agents/results/plan-{sessionId}.json` |
 | oma-frontend | UI, Komponenten, Styling | React-Komponenten, Tests |
 | oma-backend | APIs, Datenbanken, Auth | Endpoints, Modelle, Tests |
 | oma-db | Schema, ERD, Migrationen | Schema-Design, Query-Optimierung |

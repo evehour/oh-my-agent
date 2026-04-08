@@ -28,7 +28,7 @@ Workflow `/plan` chạy inline và tạo kế hoạch có cấu trúc: thu thậ
 | Khía cạnh | /work | /orchestrate |
 |:-------|:-----------|:-------------|
 | **Tương tác** | Tương tác — người dùng xác nhận ở mỗi giai đoạn | Tự động — chạy đến hoàn thành |
-| **Lập kế hoạch PM** | Tích hợp sẵn | Cần plan.json từ /plan |
+| **Lập kế hoạch PM** | Tích hợp sẵn | Cần plan từ /plan |
 | **Phù hợp nhất** | Lần đầu, dự án phức tạp cần giám sát | Chạy lặp, task rõ ràng |
 
 ### Bước 3: agent:spawn — Quản lý agent cấp CLI
@@ -65,7 +65,7 @@ API contract là cơ chế đồng bộ giữa agent:
 
 ## Anti-pattern cần tránh
 
-1. **Bỏ qua lập kế hoạch** — Bắt đầu `/orchestrate` không có plan.json.
+1. **Bỏ qua lập kế hoạch** — Bắt đầu `/orchestrate` không có plan file.
 2. **Workspace chồng chéo** — Gán hai agent cùng thư mục workspace.
 3. **Thiếu API contract** — Spawn agent backend và frontend không định nghĩa contract trước.
 4. **Bỏ qua phát hiện QA** — Xem đánh giá QA là tùy chọn.

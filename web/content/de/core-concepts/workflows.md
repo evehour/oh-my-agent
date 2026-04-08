@@ -39,7 +39,7 @@ Persistente Workflows laufen weiter, bis alle Aufgaben erledigt sind. Sie halten
 
 **Schritte:**
 1. **Schritt 0 — Vorbereitung:** Koordinations-Skill, Context-Loading-Leitfaden, Memory-Protokoll lesen. Vendor erkennen.
-2. **Schritt 1 — Plan laden/erstellen:** Auf `.agents/plan.json` prüfen. Falls nicht vorhanden, Benutzer auffordern, zuerst `/plan` auszuführen.
+2. **Schritt 1 — Plan laden/erstellen:** Auf `.agents/results/plan-{sessionId}.json` prüfen. Falls nicht vorhanden, Benutzer auffordern, zuerst `/plan` auszuführen.
 3. **Schritt 2 — Sitzung initialisieren:** `oma-config.yaml` laden, CLI-Zuordnungstabelle anzeigen, Sitzungs-ID generieren (`session-YYYYMMDD-HHMMSS`), `orchestrator-session.md` und `task-board.md` im Memory erstellen.
 4. **Schritt 3 — Agenten starten:** Für jede Prioritätsstufe (P0 zuerst, dann P1...) Agenten mit der vendor-geeigneten Methode starten (Agent-Tool für Claude Code, `oma agent:spawn` für Gemini/Antigravity, modellvermittelt für Codex). MAX_PARALLEL niemals überschreiten.
 5. **Schritt 4 — Überwachen:** `progress-{agent}.md`-Dateien abfragen, `task-board.md` aktualisieren. Auf Abschlüsse, Fehler und Abstürze achten.
@@ -47,7 +47,7 @@ Persistente Workflows laufen weiter, bis alle Aufgaben erledigt sind. Sie halten
 7. **Schritt 6 — Zusammentragen:** Alle `result-{agent}.md`-Dateien lesen, Zusammenfassung zusammenstellen.
 8. **Schritt 7 — Abschlussbericht:** Sitzungszusammenfassung präsentieren. Falls die Qualitätsbewertung gemessen wurde, Experimentprotokoll-Zusammenfassung einbeziehen und automatisch Erkenntnisse generieren.
 
-**Gelesene Dateien:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Gelesene Dateien:** `.agents/results/plan-{sessionId}.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Geschriebene Dateien:** `orchestrator-session.md`, `task-board.md` (Memory), Abschlussbericht.
 
 **Einsatzbereich:** Große Projekte, die maximale Parallelität mit automatisierter Koordination erfordern.
@@ -74,7 +74,7 @@ Persistente Workflows laufen weiter, bis alle Aufgaben erledigt sind. Sie halten
 **Schritte:**
 1. **Schritt 0 — Vorbereitung:** Skills, Context-Loading, Memory-Protokoll lesen. Sitzungsstart aufzeichnen.
 2. **Schritt 1 — Anforderungen analysieren:** Beteiligte Domänen identifizieren. Bei einzelner Domäne direkte Agentenverwendung vorschlagen.
-3. **Schritt 2 — PM-Agent-Planung:** PM zerlegt Anforderungen, definiert API-Verträge, erstellt priorisierte Aufgabenaufschlüsselung, speichert in `.agents/plan.json`.
+3. **Schritt 2 — PM-Agent-Planung:** PM zerlegt Anforderungen, definiert API-Verträge, erstellt priorisierte Aufgabenaufschlüsselung, speichert in `.agents/results/plan-{sessionId}.json`.
 4. **Schritt 3 — Plan prüfen:** Plan dem Benutzer präsentieren. **Bestätigung muss vor dem Fortfahren eingeholt werden.**
 5. **Schritt 4 — Agenten starten:** Start nach Prioritätsstufe, parallel innerhalb derselben Stufe, separate Workspaces.
 6. **Schritt 5 — Überwachen:** Fortschrittsdateien abfragen, API-Vertrags-Übereinstimmung zwischen Agenten verifizieren.
@@ -143,7 +143,7 @@ Persistente Workflows laufen weiter, bis alle Aufgaben erledigt sind. Sie halten
 
 **Schritte:** Anforderungen erfassen -> Technische Machbarkeit analysieren (MCP-Code-Analyse) -> API-Verträge definieren -> In Aufgaben zerlegen -> Mit Benutzer prüfen -> Plan speichern.
 
-**Ausgabe:** `.agents/plan.json`, Memory-Eintrag, optional `docs/exec-plans/active/` für komplexe Pläne.
+**Ausgabe:** `.agents/results/plan-{sessionId}.json`, Memory-Eintrag, optional `docs/exec-plans/active/` für komplexe Pläne.
 
 **Ausführung:** Inline (kein Subagenten-Spawning). Wird von `/orchestrate` oder `/work` konsumiert.
 

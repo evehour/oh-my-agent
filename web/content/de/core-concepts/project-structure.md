@@ -100,7 +100,7 @@ your-project/
 │   │   ├── debug-investigator.md      <- Subagenten-Def.: Debug
 │   │   └── pm-planner.md             <- Subagenten-Def.: PM
 │   │
-│   ├── plan.json                      <- Generierter Plan-Output (befüllt durch /plan)
+│   ├── results/plan-{sessionId}.json                      <- Generierter Plan-Output (befüllt durch /plan)
 │   ├── state/                         <- Aktive Workflow-Zustandsdateien
 │   ├── results/                       <- Agenten-Ergebnisdateien
 │   └── mcp.json                       <- MCP-Server-Konfiguration
@@ -178,7 +178,7 @@ Nicht-persistente: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `r
 - Domänenspezifische Regeln (10 Regeln)
 - Anweisung: "Niemals `.agents/`-Dateien modifizieren"
 
-### plan.json
+### plan-{sessionId}.json
 
 Generiert durch den `/plan`-Workflow. Enthält die strukturierte Aufgabenzerlegung mit Agentenzuweisungen, Prioritäten, Abhängigkeiten und Akzeptanzkriterien. Wird von `/orchestrate`, `/work` und `/exec-plan` konsumiert.
 

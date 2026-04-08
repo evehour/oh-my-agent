@@ -39,9 +39,9 @@ description: 协调跨前端、后端、数据库、移动端和 QA 的多个领
 3. **定义 API 契约** —— 设计端点契约（方法、路径、请求/响应 schema、认证、错误响应），保存到 `.agents/skills/_shared/core/api-contracts/`。
 4. **分解为任务** —— 将项目分解为可执行任务，每个任务包含：分配的智能体、标题、验收标准、优先级（P0-P3）和依赖关系。
 5. **与用户审查计划** —— 展示完整计划供确认。没有用户明确批准，工作流不会继续。
-6. **保存计划** —— 将批准的计划写入 `.agents/plan.json` 并在内存中记录摘要。
+6. **保存计划** —— 将批准的计划写入 `.agents/results/plan-{sessionId}.json` 并在内存中记录摘要。
 
-输出的 `.agents/plan.json` 是 `/work` 和 `/orchestrate` 的输入。
+输出的 `.agents/results/plan-{sessionId}.json` 是 `/work` 和 `/orchestrate` 的输入。
 
 ### 步骤 2：/work 或 /orchestrate —— 执行
 
@@ -50,7 +50,7 @@ description: 协调跨前端、后端、数据库、移动端和 QA 的多个领
 | 方面 | /work | /orchestrate |
 |:-----|:-----------|:-------------|
 | **交互方式** | 交互式 —— 用户在每个阶段确认 | 自动化 —— 运行至完成 |
-| **PM 规划** | 内置（步骤 2 运行 PM 智能体） | 需要来自 /plan 的 plan.json |
+| **PM 规划** | 内置（步骤 2 运行 PM 智能体） | 需要来自 /plan 的 plan |
 | **用户检查点** | 计划审查后（步骤 3） | 启动前（计划必须存在） |
 | **持久化模式** | 是 —— 完成前不能终止 | 是 —— 完成前不能终止 |
 | **最适用于** | 首次使用、需要监督的复杂项目 | 重复运行、定义明确的任务 |
@@ -62,7 +62,7 @@ description: 协调跨前端、后端、数据库、移动端和 QA 的多个领
 ```
 
 1. 分析用户请求并识别涉及的领域。
-2. 运行 PM 智能体进行任务分解（创建 plan.json）。
+2. 运行 PM 智能体进行任务分解（创建 plan-{sessionId}.json）。
 3. 向用户展示计划供确认 —— **阻塞直到确认**。
 4. 按优先级层启动智能体（先 P0，然后 P1 等），同一优先级的任务并行运行。
 5. 通过内存文件监控智能体进度。
@@ -75,7 +75,7 @@ description: 协调跨前端、后端、数据库、移动端和 QA 的多个领
 /orchestrate
 ```
 
-1. 加载 `.agents/plan.json`（没有计划不会继续）。
+1. 加载 `.agents/results/plan-{sessionId}.json`（没有计划不会继续）。
 2. 初始化会话，ID 格式为 `session-YYYYMMDD-HHMMSS`。
 3. 在内存目录中创建 `orchestrator-session.md` 和 `task-board.md`。
 4. 按优先级层启动智能体，每个智能体获得：任务描述、API 契约和上下文。
@@ -304,7 +304,7 @@ oma agent:parallel tasks.yaml -m claude
 
 ### 1. 跳过计划
 
-在没有 plan.json 的情况下启动 `/orchestrate`。工作流会拒绝继续。始终先运行 `/plan`，或使用自带规划的 `/work`。
+在没有 plan 的情况下启动 `/orchestrate`。工作流会拒绝继续。始终先运行 `/plan`，或使用自带规划的 `/work`。
 
 ### 2. 工作区重叠
 

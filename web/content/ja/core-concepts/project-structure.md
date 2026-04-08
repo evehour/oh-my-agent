@@ -101,7 +101,7 @@ your-project/
 │   │   ├── debug-investigator.md
 │   │   └── pm-planner.md
 │   │
-│   ├── plan.json                      ← 生成されたプラン出力
+│   ├── results/plan-{sessionId}.json                      ← 生成されたプラン出力
 │   ├── state/                         ← アクティブワークフロー状態ファイル
 │   ├── results/                       ← エージェント結果ファイル
 │   └── mcp.json                       ← MCPサーバー設定
@@ -160,7 +160,7 @@ your-project/
 
 Task/Agentツールまたは CLIでサブエージェントをスポーンする際に使用される7つの定義ファイル。
 
-### plan.json
+### plan-{sessionId}.json
 
 `/plan`ワークフローで生成。エージェント割り当て、優先度、依存関係、受入基準を含む構造化タスク分解。
 

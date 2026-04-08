@@ -65,7 +65,7 @@ Build a TODO app with user authentication, task CRUD, and a mobile companion app
 
 **Używając `/work` (krok po kroku z kontrolą użytkownika):**
 
-3. **Krok 1 — Agent PM planuje:** Identyfikuje domeny, definiuje kontrakty API, tworzy priorytetyzowany rozkład zadań, zapisuje do `.agents/plan.json`
+3. **Krok 1 — Agent PM planuje:** Identyfikuje domeny, definiuje kontrakty API, tworzy priorytetyzowany rozkład zadań, zapisuje do `.agents/results/plan-{sessionId}.json`
 4. **Krok 2 — Przeglądasz i potwierdzasz plan**
 5. **Krok 3 — Agenci uruchamiani wg priorytetu** (P0 równolegle, potem P1...)
 6. **Krok 4 — Agent QA przegląda:** Bezpieczeństwo OWASP Top 10, wydajność, dostępność WCAG 2.1 AA, zgodność kontraktów API

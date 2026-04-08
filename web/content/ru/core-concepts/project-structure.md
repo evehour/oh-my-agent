@@ -51,7 +51,7 @@ your-project/
 │   ├── agents/                       <- 7 определений субагентов (backend-engineer,
 │   │                                    frontend-engineer, mobile-engineer, db-engineer,
 │   │                                    qa-reviewer, debug-investigator, pm-planner)
-│   ├── plan.json                     <- Сгенерированный план (от /plan)
+│   ├── results/plan-{sessionId}.json                     <- Сгенерированный план (от /plan)
 │   ├── state/                        <- Файлы состояния постоянных рабочих процессов
 │   ├── results/                      <- Файлы результатов агентов
 │   └── mcp.json                      <- Конфигурация MCP-сервера
@@ -118,7 +118,7 @@ your-project/
 
 7 файлов определений субагентов с идентичностью, протоколом выполнения, CHARTER_CHECK, архитектурой и правилами.
 
-### plan.json
+### plan-{sessionId}.json
 
 Структурированная разбивка задач от `/plan`. Потребляется `/orchestrate`, `/work`, `/exec-plan`.
 

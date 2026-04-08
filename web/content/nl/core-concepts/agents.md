@@ -64,7 +64,7 @@ Agenten in oh-my-agent zijn gespecialiseerde engineeringrollen. Elke agent heeft
 - Taken moeten door een enkele agent voltooid kunnen worden
 - Lever JSON-plan + task-board.md voor orchestratorcompatibiliteit
 
-**Uitvoer:** `.agents/plan.json`, `.agents/brain/current-plan.md`, geheugen schrijven voor orchestrator.
+**Uitvoer:** `.agents/results/plan-{sessionId}.json`, `.agents/brain/current-plan.md`, geheugen schrijven voor orchestrator.
 
 **Bronnen:** `execution-protocol.md`, `examples.md`, `iso-planning.md`, `task-template.json`, `../_shared/core/api-contracts/`.
 

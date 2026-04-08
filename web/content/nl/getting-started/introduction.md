@@ -36,7 +36,7 @@ oh-my-agent lost dit op met specialisatie:
 | Agent | Rol | Belangrijkste Mogelijkheden |
 |-------|-----|---------------------------|
 | **oma-brainstorm** | Design-first ideevorming | Verkent gebruikersintentie, stelt 2-3 benaderingen voor met afwegingsanalyse, produceert ontwerpdocumenten voordat er code wordt geschreven. 6-fasen workflow: Context, Vragen, Benaderingen, Ontwerp, Documentatie, Overgang naar `/plan`. |
-| **oma-pm** | Productmanager | Ontleedt requirements in geprioriteerde taken met afhankelijkheden. Definieert API-contracten. Levert `.agents/plan.json` en `task-board.md`. Ondersteunt ISO 21500-concepten, ISO 31000-risicokader, ISO 38500-governance. |
+| **oma-pm** | Productmanager | Ontleedt requirements in geprioriteerde taken met afhankelijkheden. Definieert API-contracten. Levert `.agents/results/plan-{sessionId}.json` en `task-board.md`. Ondersteunt ISO 21500-concepten, ISO 31000-risicokader, ISO 38500-governance. |
 
 ### Implementatie
 
@@ -103,7 +103,7 @@ Alles wat oh-my-agent nodig heeft bevindt zich in de `.agents/`-directory:
 │   └── oma-{agent}/        # Per-agent SKILL.md + resources/
 ├── workflows/              # 14 workflowdefinities
 ├── agents/                 # 7 subagentdefinities
-├── plan.json               # Gegenereerde planuitvoer
+├── results/plan-{sessionId}.json               # Gegenereerde planuitvoer
 ├── state/                  # Actieve workflowstatusbestanden
 ├── results/                # Agentresultaatbestanden
 └── mcp.json                # MCP-serverconfiguratie

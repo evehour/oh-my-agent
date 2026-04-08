@@ -36,7 +36,7 @@ oh-my-agent 通过专业化解决这些问题：
 | 智能体 | 角色 | 核心能力 |
 |-------|------|---------|
 | **oma-brainstorm** | 设计优先的构思 | 探索用户意图，提出 2-3 种方案并进行权衡分析，在编写任何代码之前产出设计文档。6 阶段工作流：上下文、提问、方案、设计、文档、过渡到 `/plan`。 |
-| **oma-pm** | 产品经理 | 将需求分解为带优先级和依赖关系的任务。定义 API 契约。输出 `.agents/plan.json` 和 `task-board.md`。支持 ISO 21500 概念、ISO 31000 风险框架、ISO 38500 治理。 |
+| **oma-pm** | 产品经理 | 将需求分解为带优先级和依赖关系的任务。定义 API 契约。输出 `.agents/results/plan-{sessionId}.json` 和 `task-board.md`。支持 ISO 21500 概念、ISO 31000 风险框架、ISO 38500 治理。 |
 
 ### 实现
 
@@ -103,7 +103,7 @@ oh-my-agent 所需的一切都存放在 `.agents/` 目录中：
 │   └── oma-{agent}/        # 每个智能体的 SKILL.md + resources/
 ├── workflows/              # 14 个工作流定义
 ├── agents/                 # 7 个子智能体定义
-├── plan.json               # 生成的计划输出
+├── results/plan-{sessionId}.json               # 生成的计划输出
 ├── state/                  # 活跃工作流状态文件
 ├── results/                # 智能体结果文件
 └── mcp.json                # MCP 服务器配置

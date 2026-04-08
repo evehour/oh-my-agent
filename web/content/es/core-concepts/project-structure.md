@@ -230,7 +230,7 @@ your-project/
 │   │   ├── debug-investigator.md      ← Subagent def: debug
 │   │   └── pm-planner.md             ← Subagent def: PM
 │   │
-│   ├── plan.json                      ← Generated plan output (populated by /plan)
+│   ├── results/plan-{sessionId}.json                      ← Generated plan output (populated by /plan)
 │   ├── state/                         ← Active workflow state files
 │   │   ├── orchestrate-state.json     ← (exists only when workflow is active)
 │   │   ├── ultrawork-state.json
@@ -321,7 +321,7 @@ No persistentes: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `rev
 - Reglas especificas del dominio (10 reglas)
 - Declaracion: "Nunca modificar archivos de `.agents/`"
 
-### plan.json
+### plan-{sessionId}.json
 
 Generado por el flujo `/plan`. Contiene el desglose estructurado de tareas con asignaciones de agentes, prioridades, dependencias y criterios de aceptacion. Consumido por `/orchestrate`, `/work` y `/exec-plan`.
 

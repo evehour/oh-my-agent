@@ -319,7 +319,7 @@ oma agent:status <session-id> <agent-id>
 ```bash
 # 步骤 1：规划功能
 # （在你的 AI IDE 中，运行 /plan 或描述功能）
-# 这会创建包含任务分解的 .agents/plan.json
+# 这会创建包含任务分解的 .agents/results/plan-{sessionId}.json
 
 # 步骤 2：并行启动实现智能体
 oma agent:spawn backend "Implement JWT auth API with registration, login, refresh, and logout endpoints. Use bcrypt for password hashing. Follow the API contract in .agents/skills/_shared/core/api-contracts/" session-auth-01 -w ./apps/api &

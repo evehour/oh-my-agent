@@ -64,7 +64,7 @@ Agent trong oh-my-agent là các vai trò kỹ sư chuyên biệt. Mỗi agent c
 - Task phải hoàn thành được bởi một agent duy nhất
 - Xuất JSON plan + task-board.md cho tương thích orchestrator
 
-**Đầu ra:** `.agents/plan.json`, `.agents/results/result-pm.md`, ghi vào bộ nhớ cho orchestrator.
+**Đầu ra:** `.agents/results/plan-{sessionId}.json`, `.agents/results/result-pm.md`, ghi vào bộ nhớ cho orchestrator.
 
 **Tài nguyên:** `execution-protocol.md`, `examples.md`, `iso-planning.md`, `task-template.json`, `../_shared/core/api-contracts/`.
 

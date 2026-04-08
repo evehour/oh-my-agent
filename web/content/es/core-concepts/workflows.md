@@ -39,7 +39,7 @@ Los flujos persistentes continúan ejecutándose hasta que todas las tareas est�
 
 **Pasos:**
 1. **Paso 0 — Preparación:** Leer habilidad de coordinación, guía de carga de contexto, protocolo de memoria. Detectar proveedor.
-2. **Paso 1 — Cargar/Crear Plan:** Verificar `.agents/plan.json`. Si falta, pedir al usuario ejecutar `/plan` primero.
+2. **Paso 1 — Cargar/Crear Plan:** Verificar `.agents/results/plan-{sessionId}.json`. Si falta, pedir al usuario ejecutar `/plan` primero.
 3. **Paso 2 — Inicializar Sesión:** Cargar `oma-config.yaml`, mostrar tabla de mapeo CLI, generar ID de sesión (`session-YYYYMMDD-HHMMSS`), crear `orchestrator-session.md` y `task-board.md` en memoria.
 4. **Paso 3 — Generar Agentes:** Para cada nivel de prioridad (P0 primero, luego P1...), generar agentes usando método apropiado del proveedor (herramienta Agent para Claude Code, `oma agent:spawn` para Gemini/Antigravity, mediado por modelo para Codex). Nunca exceder MAX_PARALLEL.
 5. **Paso 4 — Monitorear:** Sondear archivos `progress-{agent}.md`, actualizar `task-board.md`. Vigilar completaciones, fallos, crashes.
@@ -47,7 +47,7 @@ Los flujos persistentes continúan ejecutándose hasta que todas las tareas est�
 7. **Paso 6 — Recopilar:** Leer todos los archivos `result-{agent}.md`, compilar resumen.
 8. **Paso 7 — Informe Final:** Presentar resumen de sesión. Si se midió Quality Score, incluir resumen del Ledger de Experimentos y auto-generar lecciones.
 
-**Archivos leídos:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Archivos leídos:** `.agents/results/plan-{sessionId}.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Archivos escritos:** `orchestrator-session.md`, `task-board.md` (memoria), informe final.
 
 **Cuándo usar:** Proyectos grandes que requieren máximo paralelismo con coordinación automatizada.
@@ -74,7 +74,7 @@ Los flujos persistentes continúan ejecutándose hasta que todas las tareas est�
 **Pasos:**
 1. **Paso 0 — Preparación:** Leer habilidades, carga de contexto, protocolo de memoria. Registrar inicio de sesión.
 2. **Paso 1 — Analizar Requisitos:** Identificar dominios involucrados. Si es dominio único, sugerir uso directo del agente.
-3. **Paso 2 — Planificación del Agente PM:** El PM descompone requisitos, define contratos de API, crea desglose priorizado de tareas, guarda en `.agents/plan.json`.
+3. **Paso 2 — Planificación del Agente PM:** El PM descompone requisitos, define contratos de API, crea desglose priorizado de tareas, guarda en `.agents/results/plan-{sessionId}.json`.
 4. **Paso 3 — Revisar Plan:** Presentar plan al usuario. **Debe obtener confirmación antes de proceder.**
 5. **Paso 4 — Generar Agentes:** Generar por nivel de prioridad, paralelo dentro del mismo nivel, workspaces separados.
 6. **Paso 5 — Monitorear:** Sondear archivos de progreso, verificar alineación de contratos API entre agentes.
@@ -143,7 +143,7 @@ Los flujos persistentes continúan ejecutándose hasta que todas las tareas est�
 
 **Pasos:** Recopilar requisitos -> Analizar viabilidad técnica (análisis de código MCP) -> Definir contratos API -> Descomponer en tareas -> Revisar con usuario -> Guardar plan.
 
-**Salida:** `.agents/plan.json`, escritura en memoria, opcionalmente `docs/exec-plans/active/` para planes complejos.
+**Salida:** `.agents/results/plan-{sessionId}.json`, escritura en memoria, opcionalmente `docs/exec-plans/active/` para planes complejos.
 
 **Ejecución:** Inline (sin generación de subagentes). Consumido por `/orchestrate` o `/work`.
 

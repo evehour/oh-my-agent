@@ -36,7 +36,7 @@ oh-my-agent solves this with specialization:
 | Agent | Role | Key Capabilities |
 |-------|------|-----------------|
 | **oma-brainstorm** | Design-first ideation | Explores user intent, proposes 2-3 approaches with trade-off analysis, produces design documents before any code is written. 6-phase workflow: Context, Questions, Approaches, Design, Documentation, Transition to `/plan`. |
-| **oma-pm** | Product manager | Decomposes requirements into prioritized tasks with dependencies. Defines API contracts. Outputs `.agents/plan.json` and `task-board.md`. Supports ISO 21500 concepts, ISO 31000 risk framing, ISO 38500 governance. |
+| **oma-pm** | Product manager | Decomposes requirements into prioritized tasks with dependencies. Defines API contracts. Outputs `.agents/results/plan-{sessionId}.json` and `task-board.md`. Supports ISO 21500 concepts, ISO 31000 risk framing, ISO 38500 governance. |
 
 ### Implementation
 
@@ -103,7 +103,7 @@ Everything oh-my-agent needs lives in the `.agents/` directory:
 │   └── oma-{agent}/        # Per-agent SKILL.md + resources/
 ├── workflows/              # 14 workflow definitions
 ├── agents/                 # 7 subagent definitions
-├── plan.json               # Generated plan output
+├── results/plan-{sessionId}.json               # Generated plan output
 ├── state/                  # Active workflow state files
 ├── results/                # Agent result files
 └── mcp.json                # MCP server configuration

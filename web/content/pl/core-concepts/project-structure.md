@@ -55,7 +55,7 @@ your-project/
 │   │
 │   ├── workflows/                    ← 14 definicji workflow
 │   ├── agents/                       ← 7 definicji subagentów
-│   ├── plan.json                     ← Wygenerowany plan (wypełniany przez /plan)
+│   ├── results/plan-{sessionId}.json                     ← Wygenerowany plan (wypełniany przez /plan)
 │   ├── state/                        ← Pliki stanu aktywnych workflow
 │   ├── results/                      ← Pliki wyników agentów
 │   └── mcp.json                      ← Konfiguracja serwera MCP

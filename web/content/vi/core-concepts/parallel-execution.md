@@ -319,7 +319,7 @@ Quy trình thực thi song song hoàn chỉnh cho xây dựng tính năng xác t
 ```bash
 # Bước 1: Lập kế hoạch tính năng
 # (Trong AI IDE, chạy /plan hoặc mô tả tính năng)
-# Tạo .agents/plan.json với phân tách task
+# Tạo .agents/results/plan-{sessionId}.json với phân tách task
 
 # Bước 2: Spawn agent triển khai song song
 oma agent:spawn backend "Implement JWT auth API with registration, login, refresh, and logout endpoints. Use bcrypt for password hashing. Follow the API contract in .agents/skills/_shared/core/api-contracts/" session-auth-01 -w ./apps/api &

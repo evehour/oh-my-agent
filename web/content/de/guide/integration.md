@@ -274,7 +274,7 @@ your-project/
     config/                         # Konfiguration
       oma-config.yaml
     mcp.json                        # MCP-Server-Konfiguration
-    plan.json                       # Aktueller Plan (generiert durch /plan)
+    results/plan-{sessionId}.json                       # Aktueller Plan (generiert durch /plan)
     skills/                         # Installierte Skills
       _shared/                      # Geteilte Ressourcen über alle Skills
         core/                       # Kernprotokolle und -referenzen

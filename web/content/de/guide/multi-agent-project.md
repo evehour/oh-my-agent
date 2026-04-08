@@ -39,9 +39,9 @@ Was passiert:
 3. **API-Verträge definieren** — Entwirft Endpunkt-Verträge (Methode, Pfad, Anfrage-/Antwort-Schemata, Auth, Fehlerantworten) und speichert sie in `.agents/skills/_shared/core/api-contracts/`.
 4. **In Aufgaben zerlegen** — Zerlegt das Projekt in umsetzbare Aufgaben, jeweils mit: zugewiesenem Agenten, Titel, Akzeptanzkriterien, Priorität (P0-P3) und Abhängigkeiten.
 5. **Plan mit Benutzer prüfen** — Präsentiert den vollständigen Plan zur Bestätigung. Der Workflow fährt ohne explizite Benutzergenehmigung nicht fort.
-6. **Plan speichern** — Schreibt den genehmigten Plan nach `.agents/plan.json` und zeichnet eine Zusammenfassung im Memory auf.
+6. **Plan speichern** — Schreibt den genehmigten Plan nach `.agents/results/plan-{sessionId}.json` und zeichnet eine Zusammenfassung im Memory auf.
 
-Die Ausgabe `.agents/plan.json` ist die Eingabe für sowohl `/work` als auch `/orchestrate`.
+Die Ausgabe `.agents/results/plan-{sessionId}.json` ist die Eingabe für sowohl `/work` als auch `/orchestrate`.
 
 ### Schritt 2: /work oder /orchestrate — Ausführung
 
@@ -50,7 +50,7 @@ Es gibt zwei Ausführungspfade:
 | Aspekt | /work | /orchestrate |
 |:-------|:-----------|:-------------|
 | **Interaktion** | Interaktiv — Benutzer bestätigt bei jeder Stufe | Automatisiert — läuft bis zum Abschluss |
-| **PM-Planung** | Eingebaut (Schritt 2 führt PM-Agent aus) | Benötigt plan.json von /plan |
+| **PM-Planung** | Eingebaut (Schritt 2 führt PM-Agent aus) | Benötigt plan von /plan |
 | **Benutzer-Checkpoint** | Nach Plan-Review (Schritt 3) | Vor dem Start (Plan muss existieren) |
 | **Persistenter Modus** | Ja — kann bis zum Abschluss nicht beendet werden | Ja — kann bis zum Abschluss nicht beendet werden |
 | **Am besten für** | Erstmalige Nutzung, komplexe Projekte mit Aufsichtsbedarf | Wiederholte Läufe, klar definierte Aufgaben |
@@ -62,7 +62,7 @@ Es gibt zwei Ausführungspfade:
 ```
 
 1. Analysiert die Benutzeranfrage und identifiziert beteiligte Domänen.
-2. Führt den PM-Agenten zur Aufgabenzerlegung aus (erstellt plan.json).
+2. Führt den PM-Agenten zur Aufgabenzerlegung aus (erstellt plan-{sessionId}.json).
 3. Präsentiert den Plan zur Benutzerbestätigung — **blockiert bis zur Bestätigung**.
 4. Startet Agenten nach Prioritätsstufe (P0 zuerst, dann P1 usw.), wobei Aufgaben gleicher Priorität parallel laufen.
 5. Überwacht den Agentenfortschritt über Memory-Dateien.
@@ -75,7 +75,7 @@ Es gibt zwei Ausführungspfade:
 /orchestrate
 ```
 
-1. Lädt `.agents/plan.json` (fährt ohne diesen nicht fort).
+1. Lädt `.agents/results/plan-{sessionId}.json` (fährt ohne diesen nicht fort).
 2. Initialisiert eine Sitzung mit ID-Format `session-YYYYMMDD-HHMMSS`.
 3. Erstellt `orchestrator-session.md` und `task-board.md` im Memory-Verzeichnis.
 4. Startet Agenten pro Prioritätsstufe, jeweils mit: Aufgabenbeschreibung, API-Verträgen und Kontext.
@@ -304,7 +304,7 @@ oma agent:parallel tasks.yaml -m claude
 
 ### 1. Plan überspringen
 
-`/orchestrate` ohne plan.json starten. Der Workflow wird die Ausführung verweigern. Immer zuerst `/plan` ausführen oder `/work` verwenden, das eingebaute Planung hat.
+`/orchestrate` ohne plan file starten. Der Workflow wird die Ausführung verweigern. Immer zuerst `/plan` ausführen oder `/work` verwenden, das eingebaute Planung hat.
 
 ### 2. Überlappende Workspaces
 

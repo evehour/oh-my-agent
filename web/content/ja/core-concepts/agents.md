@@ -64,7 +64,7 @@ oh-my-agentのエージェントは、専門化されたエンジニアリング
 - タスクは単一エージェントで完了可能であること
 - オーケストレータ互換のJSON plan + task-board.mdを出力
 
-**出力：** `.agents/plan.json`、`.agents/brain/current-plan.md`、オーケストレータ用メモリ書き込み。
+**出力：** `.agents/results/plan-{sessionId}.json`、`.agents/brain/current-plan.md`、オーケストレータ用メモリ書き込み。
 
 **リソース：** `execution-protocol.md`、`examples.md`、`iso-planning.md`、`task-template.json`、`../_shared/core/api-contracts/`。
 

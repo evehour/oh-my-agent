@@ -39,7 +39,7 @@ description: 全部 14 个 oh-my-agent 工作流的完整参考 —— 斜杠命
 
 **步骤：**
 1. **步骤 0 —— 准备：** 读取协调技能、上下文加载指南、内存协议。检测供应商。
-2. **步骤 1 —— 加载/创建计划：** 检查 `.agents/plan.json`。如果缺失，提示用户先运行 `/plan`。
+2. **步骤 1 —— 加载/创建计划：** 检查 `.agents/results/plan-{sessionId}.json`。如果缺失，提示用户先运行 `/plan`。
 3. **步骤 2 —— 初始化会话：** 加载 `oma-config.yaml`，显示 CLI 映射表，生成会话 ID（`session-YYYYMMDD-HHMMSS`），在内存中创建 `orchestrator-session.md` 和 `task-board.md`。
 4. **步骤 3 —— 启动智能体：** 对每个优先级层（先 P0，然后 P1...），使用供应商适配的方式启动智能体（Claude Code 用 Agent 工具，Gemini/Antigravity 用 `oma agent:spawn`，Codex 用模型协调）。不超过 MAX_PARALLEL。
 5. **步骤 4 —— 监控：** 轮询 `progress-{agent}.md` 文件，更新 `task-board.md`。监视完成、失败、崩溃。
@@ -47,7 +47,7 @@ description: 全部 14 个 oh-my-agent 工作流的完整参考 —— 斜杠命
 7. **步骤 6 —— 收集：** 读取所有 `result-{agent}.md` 文件，汇总摘要。
 8. **步骤 7 —— 最终报告：** 呈现会话摘要。如果测量了质量评分，包含实验账本摘要和自动生成的经验教训。
 
-**读取文件：** `.agents/plan.json`、`.agents/oma-config.yaml`、`progress-{agent}.md`、`result-{agent}.md`。
+**读取文件：** `.agents/results/plan-{sessionId}.json`、`.agents/oma-config.yaml`、`progress-{agent}.md`、`result-{agent}.md`。
 **写入文件：** `orchestrator-session.md`、`task-board.md`（内存）、最终报告。
 
 **何时使用：** 需要最大并行度和自动化协调的大型项目。
@@ -74,7 +74,7 @@ description: 全部 14 个 oh-my-agent 工作流的完整参考 —— 斜杠命
 **步骤：**
 1. **步骤 0 —— 准备：** 读取技能、上下文加载、内存协议。记录会话开始。
 2. **步骤 1 —— 分析需求：** 识别涉及的领域。如果是单一领域，建议直接使用智能体。
-3. **步骤 2 —— PM 智能体规划：** PM 分解需求，定义 API 契约，创建优先级任务分解，保存到 `.agents/plan.json`。
+3. **步骤 2 —— PM 智能体规划：** PM 分解需求，定义 API 契约，创建优先级任务分解，保存到 `.agents/results/plan-{sessionId}.json`。
 4. **步骤 3 —— 审查计划：** 向用户展示计划。**必须获得确认后才能继续。**
 5. **步骤 4 —— 启动智能体：** 按优先级层启动，同层并行，独立工作空间。
 6. **步骤 5 —— 监控：** 轮询进度文件，验证智能体间的 API 契约对齐。
@@ -143,7 +143,7 @@ description: 全部 14 个 oh-my-agent 工作流的完整参考 —— 斜杠命
 
 **步骤：** 收集需求 -> 分析技术可行性（MCP 代码分析）-> 定义 API 契约 -> 分解为任务 -> 与用户审查 -> 保存计划。
 
-**输出：** `.agents/plan.json`、内存写入，复杂计划可选输出到 `docs/exec-plans/active/`。
+**输出：** `.agents/results/plan-{sessionId}.json`、内存写入，复杂计划可选输出到 `docs/exec-plans/active/`。
 
 **执行方式：** 内联（不启动子智能体）。由 `/orchestrate` 或 `/work` 消费。
 

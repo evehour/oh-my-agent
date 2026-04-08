@@ -590,7 +590,7 @@ oma verify <agent-type> [-w <workspace>] [--json] [--output <format>]
 **What it does:** Runs the verification script for the specified agent type, checking build success, test results, and scope compliance.
 
 **Common checks (all agent types):**
-- **Scope Check**: Reads `.agents/plan.json` task scopes. Compares `git diff` changed files against defined scope patterns. Fails if files are modified outside the agent's assigned scope.
+- **Scope Check**: Reads `.agents/results/plan-{sessionId}.json` task scopes. Compares `git diff` changed files against defined scope patterns. Fails if files are modified outside the agent's assigned scope.
 - **Charter Preflight**: Verifies `result-{agent}.md` contains a properly filled `CHARTER_CHECK:` block with no unfilled placeholders.
 - **Hardcoded Secrets**: Scans `.py`, `.ts`, `.tsx`, `.js`, `.dart` files for patterns like `password = "..."`, `api_key = "..."` (excludes test/example files).
 - **TODO/FIXME Comments**: Counts `TODO`, `FIXME`, `HACK`, `XXX` comments (warns if any found).
@@ -604,7 +604,7 @@ oma verify <agent-type> [-w <workspace>] [--json] [--output <format>]
 | `mobile` | Flutter/Dart analysis (`flutter analyze` or `dart analyze`), Flutter tests (`flutter test`) |
 | `qa` | Self-check verification |
 | `debug` | Runs Python tests or frontend tests based on detected project type |
-| `pm` | Validates `.agents/plan.json` exists and is valid JSON |
+| `pm` | Validates `.agents/results/plan-{sessionId}.json` exists and is valid JSON |
 
 **Output format:**
 Each check reports `PASS`, `FAIL`, `WARN`, or `SKIP` with a detail message. Overall result is `ok: true` only if zero checks fail.

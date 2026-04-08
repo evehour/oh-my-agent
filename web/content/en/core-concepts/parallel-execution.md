@@ -319,7 +319,7 @@ A complete parallel execution workflow for building a user authentication featur
 ```bash
 # Step 1: Plan the feature
 # (In your AI IDE, run /plan or describe the feature)
-# This creates .agents/plan.json with task breakdown
+# This creates .agents/results/plan-{sessionId}.json with task breakdown
 
 # Step 2: Spawn implementation agents in parallel
 oma agent:spawn backend "Implement JWT auth API with registration, login, refresh, and logout endpoints. Use bcrypt for password hashing. Follow the API contract in .agents/skills/_shared/core/api-contracts/" session-auth-01 -w ./apps/api &

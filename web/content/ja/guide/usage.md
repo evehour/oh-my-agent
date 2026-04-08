@@ -154,7 +154,7 @@ oma agent:spawn qa "Review notification feature across all platforms" session-no
 | スキル | 最適な用途 | 主な出力 |
 |-------|---------|---------------|
 | **oma-brainstorm** | アイデア探索 | `docs/plans/`の設計ドキュメント |
-| **oma-pm** | タスク分解 | `.agents/plan.json` |
+| **oma-pm** | タスク分解 | `.agents/results/plan-{sessionId}.json` |
 | **oma-frontend** | UIコンポーネント | React/TypeScriptコンポーネント、テスト |
 | **oma-backend** | API、サーバーロジック | エンドポイント、モデル、サービス、テスト |
 | **oma-db** | スキーマ設計 | スキーマドキュメント、マイグレーション |

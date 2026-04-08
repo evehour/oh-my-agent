@@ -109,7 +109,7 @@ Tapez-les dans votre IDE IA pour declencher des processus structures :
 | Commande | Ce Qu'elle Fait | Quand L'utiliser |
 |----------|-----------------|------------------|
 | `/brainstorm` | Ideation libre et exploration | Avant de s'engager dans une approche |
-| `/plan` | Decomposition PM → `.agents/plan.json` | Avant de demarrer toute fonctionnalite complexe |
+| `/plan` | Decomposition PM → `.agents/results/plan-{sessionId}.json` | Avant de demarrer toute fonctionnalite complexe |
 | `/exec-plan` | Executer un plan existant etape par etape | Apres `/plan` |
 | `/work` | Coordination multi-domaine etape par etape | Fonctionnalites couvrant plusieurs agents |
 | `/orchestrate` | Execution automatisee d'agents en parallele | Grands projets, parallelisme maximum |
@@ -145,7 +145,7 @@ Les questions comme "qu'est-ce qu'orchestrate ?" sont filtrees — elles ne decl
 
 | Skill | Ideal Pour | Sortie |
 |-------|-----------|--------|
-| oma-pm | "planifie ca", "decompose" | `.agents/plan.json` |
+| oma-pm | "planifie ca", "decompose" | `.agents/results/plan-{sessionId}.json` |
 | oma-frontend | UI, composants, style | Composants React, tests |
 | oma-backend | APIs, bases de donnees, auth | Endpoints, modeles, tests |
 | oma-db | Schema, ERD, migrations | Design de schema, optimisation de requetes |

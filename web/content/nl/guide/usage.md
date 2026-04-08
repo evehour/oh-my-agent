@@ -176,7 +176,7 @@ oma agent:spawn qa "Review notification feature across all platforms" session-no
 | Skill | Geschikt Voor | Primaire Uitvoer |
 |-------|-------------|------------------|
 | **oma-brainstorm** | "Ik heb een idee", benaderingen verkennen | Ontwerpdocument in `docs/plans/` |
-| **oma-pm** | "plan dit", taakopsplitsing | `.agents/plan.json`, `task-board.md` |
+| **oma-pm** | "plan dit", taakopsplitsing | `.agents/results/plan-{sessionId}.json`, `task-board.md` |
 | **oma-frontend** | UI-componenten, formulieren, pagina's, styling | React/TypeScript-componenten, Vitest-tests |
 | **oma-backend** | API's, auth, serverlogica, migraties | Endpoints, models, services, tests |
 | **oma-db** | Schemaontwerp, ERD, capaciteitsplanning | Schemadocumentatie, migratiescripts |

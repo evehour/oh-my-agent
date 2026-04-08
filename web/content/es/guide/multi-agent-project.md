@@ -39,9 +39,9 @@ Qué sucede:
 3. **Definir contratos de API** — Diseña contratos de endpoints (método, ruta, esquemas de solicitud/respuesta, autenticación, respuestas de error) y los guarda en `.agents/skills/_shared/core/api-contracts/`.
 4. **Descomponer en tareas** — Divide el proyecto en tareas accionables, cada una con: agente asignado, título, criterios de aceptación, prioridad (P0-P3) y dependencias.
 5. **Revisar plan con usuario** — Presenta el plan completo para confirmación. El flujo no procederá sin aprobación explícita del usuario.
-6. **Guardar plan** — Escribe el plan aprobado en `.agents/plan.json` y registra un resumen en memoria.
+6. **Guardar plan** — Escribe el plan aprobado en `.agents/results/plan-{sessionId}.json` y registra un resumen en memoria.
 
-El output `.agents/plan.json` es la entrada tanto para `/work` como para `/orchestrate`.
+El output `.agents/results/plan-{sessionId}.json` es la entrada tanto para `/work` como para `/orchestrate`.
 
 ### Paso 2: /work o /orchestrate — Ejecución
 
@@ -50,7 +50,7 @@ Tienes dos caminos de ejecución:
 | Aspecto | /work | /orchestrate |
 |:--------|:-----------|:-------------|
 | **Interacción** | Interactivo — el usuario confirma en cada etapa | Automatizado — ejecuta hasta completar |
-| **Planificación PM** | Integrada (Paso 2 ejecuta agente PM) | Requiere plan.json de /plan |
+| **Planificación PM** | Integrada (Paso 2 ejecuta agente PM) | Requiere plan de /plan |
 | **Checkpoint de usuario** | Después de revisar el plan (Paso 3) | Antes de comenzar (el plan debe existir) |
 | **Modo persistente** | Sí — no puede terminarse hasta completar | Sí — no puede terminarse hasta completar |
 | **Mejor para** | Primer uso, proyectos complejos que necesitan supervisión | Ejecuciones repetidas, tareas bien definidas |
@@ -62,7 +62,7 @@ Tienes dos caminos de ejecución:
 ```
 
 1. Analiza la solicitud del usuario e identifica dominios involucrados.
-2. Ejecuta el agente PM para descomposición de tareas (crea plan.json).
+2. Ejecuta el agente PM para descomposición de tareas (crea plan-{sessionId}.json).
 3. Presenta plan para confirmación del usuario — **se bloquea hasta que se confirme**.
 4. Genera agentes por nivel de prioridad (P0 primero, luego P1, etc.), con cada tarea de misma prioridad ejecutándose en paralelo.
 5. Monitorea progreso de agentes vía archivos de memoria.
@@ -75,7 +75,7 @@ Tienes dos caminos de ejecución:
 /orchestrate
 ```
 
-1. Carga `.agents/plan.json` (no procederá sin uno).
+1. Carga `.agents/results/plan-{sessionId}.json` (no procederá sin uno).
 2. Inicializa sesión con formato de ID `session-YYYYMMDD-HHMMSS`.
 3. Crea `orchestrator-session.md` y `task-board.md` en el directorio de memoria.
 4. Genera agentes por nivel de prioridad, cada uno recibiendo: descripción de tarea, contratos API y contexto.
@@ -155,7 +155,7 @@ No quedan hallazgos CRITICAL o HIGH de la revisión del agente QA.
 
 ## Anti-Patrones a Evitar
 
-1. **Saltarse el Plan** — Iniciar `/orchestrate` sin un plan.json.
+1. **Saltarse el Plan** — Iniciar `/orchestrate` sin plan file.
 2. **Workspaces Superpuestos** — Asignar dos agentes al mismo directorio de workspace.
 3. **Contratos API Faltantes** — Generar agentes backend y frontend sin definir contratos primero.
 4. **Ignorar Hallazgos QA** — Tratar la revisión QA como opcional.

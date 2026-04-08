@@ -76,7 +76,7 @@ Sau khi cài đặt, dự án của bạn sẽ chứa:
 ├── workflows/                      # Tất cả 14 định nghĩa workflow
 ├── agents/                         # Định nghĩa subagent
 ├── mcp.json                        # Cấu hình MCP server
-├── plan.json                       # Trống (được điền bởi /plan)
+├── results/plan-{sessionId}.json                       # Trống (được điền bởi /plan)
 ├── state/                          # Trống (dùng bởi workflow liên tục)
 └── results/                        # Trống (được điền bởi các lần chạy agent)
 

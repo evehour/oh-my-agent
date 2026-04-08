@@ -49,29 +49,33 @@ const mockExecSync = child_process.execSync as ReturnType<typeof vi.fn>;
 describe("checkScopeViolation", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Default: findLatestPlan finds a plan file in results/
+    mockFsFunctions.readdirSync.mockReturnValue(["plan-session1.json"]);
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  it("should skip when plan.json does not exist", () => {
+  it("should skip when no plan file exists", () => {
     mockFsFunctions.existsSync.mockReturnValue(false);
+    mockFsFunctions.readdirSync.mockReturnValue([]);
 
     const result = checkScopeViolation("/workspace", "backend");
 
     expect(result.status).toBe("skip");
-    expect(result.message).toBe("No plan.json found");
+    expect(result.message).toBe("No plan file found");
   });
 
-  it("should skip when plan.json is invalid JSON", () => {
+  it("should skip when plan file is invalid JSON", () => {
     mockFsFunctions.existsSync.mockReturnValue(true);
+    mockFsFunctions.readdirSync.mockReturnValue(["plan-session1.json"]);
     mockFsFunctions.readFileSync.mockReturnValue("not-json");
 
     const result = checkScopeViolation("/workspace", "backend");
 
     expect(result.status).toBe("skip");
-    expect(result.message).toBe("Invalid plan.json");
+    expect(result.message).toBe("Invalid plan file");
   });
 
   it("should skip when no tasks match the agent type", () => {

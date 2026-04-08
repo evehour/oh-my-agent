@@ -54,7 +54,7 @@ Activate PM Agent to:
 1. Analyze requirements.
 2. Define API contracts.
 3. Create a prioritized task breakdown.
-4. Save plan to `.agents/plan.json`.
+4. Save plan to `.agents/results/plan-{sessionId}.json`.
 5. Use memory write tool to record plan completion.
 
 ---

@@ -319,7 +319,7 @@ oma agent:status <session-id> <agent-id>
 ```bash
 # Step 1: 기능 계획
 # (AI IDE에서 /plan을 실행하거나 기능을 설명)
-# .agents/plan.json에 태스크 분해가 생성됨
+# .agents/results/plan-{sessionId}.json에 태스크 분해가 생성됨
 
 # Step 2: 구현 에이전트를 병렬로 스폰
 oma agent:spawn backend "Implement JWT auth API with registration, login, refresh, and logout endpoints. Use bcrypt for password hashing. Follow the API contract in .agents/skills/_shared/core/api-contracts/" session-auth-01 -w ./apps/api &

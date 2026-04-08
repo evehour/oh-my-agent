@@ -58,10 +58,10 @@ export function checkScopeViolation(
   workspace: string,
   agentType: AgentType,
 ): VerifyCheck {
-  const planPath = join(workspace, ".agents", "plan.json");
+  const planPath = findLatestPlan(workspace);
 
-  if (!existsSync(planPath)) {
-    return createCheck("Scope Check", "skip", "No plan.json found");
+  if (!planPath) {
+    return createCheck("Scope Check", "skip", "No plan file found");
   }
 
   let plan: {
@@ -73,7 +73,7 @@ export function checkScopeViolation(
   try {
     plan = JSON.parse(readFileSync(planPath, "utf-8"));
   } catch {
-    return createCheck("Scope Check", "skip", "Invalid plan.json");
+    return createCheck("Scope Check", "skip", "Invalid plan file");
   }
 
   const tasks = plan.tasks?.filter((t) => t.agent?.toLowerCase() === agentType);
@@ -367,11 +367,36 @@ function checkFlutterTests(workspace: string): VerifyCheck {
   return createCheck("Flutter Tests", "fail", "Tests failed");
 }
 
-function checkPmPlan(workspace: string): VerifyCheck {
-  const planPath = join(workspace, ".agents", "plan.json");
+/**
+ * Find the most recent plan-{sessionId}.json in .agents/results/.
+ * Falls back to legacy .agents/plan.json for backward compatibility.
+ */
+function findLatestPlan(workspace: string): string | null {
+  const resultsDir = join(workspace, ".agents", "results");
+  if (existsSync(resultsDir)) {
+    try {
+      const planFiles = readdirSync(resultsDir)
+        .filter((f) => f.startsWith("plan-") && f.endsWith(".json"))
+        .sort()
+        .reverse();
+      if (planFiles.length > 0) {
+        return join(resultsDir, planFiles[0]);
+      }
+    } catch {
+      // Best-effort
+    }
+  }
 
-  if (!existsSync(planPath)) {
-    return createCheck("PM Plan", "warn", "plan.json not found");
+  // Legacy fallback
+  const legacyPath = join(workspace, ".agents", "plan.json");
+  return existsSync(legacyPath) ? legacyPath : null;
+}
+
+function checkPmPlan(workspace: string): VerifyCheck {
+  const planPath = findLatestPlan(workspace);
+
+  if (!planPath) {
+    return createCheck("PM Plan", "warn", "No plan file found");
   }
 
   try {

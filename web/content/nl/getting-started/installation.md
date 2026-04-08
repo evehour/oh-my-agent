@@ -76,7 +76,7 @@ Na de installatie bevat je project:
 ├── workflows/                      # Alle 14 workflowdefinities
 ├── agents/                         # Subagentdefinities
 ├── mcp.json                        # MCP-serverconfiguratie
-├── plan.json                       # Leeg (gevuld door /plan)
+├── results/plan-{sessionId}.json                       # Leeg (gevuld door /plan)
 ├── state/                          # Leeg (gebruikt door persistente workflows)
 └── results/                        # Leeg (gevuld door agentuitvoeringen)
 

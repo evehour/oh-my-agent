@@ -39,7 +39,7 @@ Persistent workflows keep running until all tasks are done. They maintain state 
 
 **Steps:**
 1. **Step 0 — Preparation:** Read coordination skill, context-loading guide, memory protocol. Detect vendor.
-2. **Step 1 — Load/Create Plan:** Check for `.agents/plan.json`. If missing, prompt user to run `/plan` first.
+2. **Step 1 — Load/Create Plan:** Check for `.agents/results/plan-{sessionId}.json`. If missing, prompt user to run `/plan` first.
 3. **Step 2 — Initialize Session:** Load `oma-config.yaml`, display CLI mapping table, generate session ID (`session-YYYYMMDD-HHMMSS`), create `orchestrator-session.md` and `task-board.md` in memory.
 4. **Step 3 — Spawn Agents:** For each priority tier (P0 first, then P1...), spawn agents using vendor-appropriate method (Agent tool for Claude Code, `oma agent:spawn` for Gemini/Antigravity, model-mediated for Codex). Never exceed MAX_PARALLEL.
 5. **Step 4 — Monitor:** Poll `progress-{agent}.md` files, update `task-board.md`. Watch for completions, failures, crashes.
@@ -47,7 +47,7 @@ Persistent workflows keep running until all tasks are done. They maintain state 
 7. **Step 6 — Collect:** Read all `result-{agent}.md` files, compile summary.
 8. **Step 7 — Final Report:** Present session summary. If Quality Score was measured, include Experiment Ledger summary and auto-generate lessons.
 
-**Files read:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Files read:** `.agents/results/plan-{sessionId}.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Files written:** `orchestrator-session.md`, `task-board.md` (memory), final report.
 
 **When to use:** Large projects requiring maximum parallelism with automated coordination.
@@ -74,7 +74,7 @@ Persistent workflows keep running until all tasks are done. They maintain state 
 **Steps:**
 1. **Step 0 — Preparation:** Read skills, context-loading, memory protocol. Record session start.
 2. **Step 1 — Analyze Requirements:** Identify involved domains. If single domain, suggest direct agent use.
-3. **Step 2 — PM Agent Planning:** PM decomposes requirements, defines API contracts, creates prioritized task breakdown, saves to `.agents/plan.json`.
+3. **Step 2 — PM Agent Planning:** PM decomposes requirements, defines API contracts, creates prioritized task breakdown, saves to `.agents/results/plan-{sessionId}.json`.
 4. **Step 3 — Review Plan:** Present plan to user. **Must get confirmation before proceeding.**
 5. **Step 4 — Spawn Agents:** Spawn by priority tier, parallel within same tier, separate workspaces.
 6. **Step 5 — Monitor:** Poll progress files, verify API contract alignment between agents.
@@ -177,7 +177,7 @@ Persistent workflows keep running until all tasks are done. They maintain state 
 
 **Steps:** Gather requirements -> Analyze technical feasibility (MCP code analysis) -> Define API contracts -> Decompose into tasks -> Review with user -> Save plan.
 
-**Output:** `.agents/plan.json`, memory write, optionally `docs/exec-plans/active/` for complex plans.
+**Output:** `.agents/results/plan-{sessionId}.json`, memory write, optionally `docs/exec-plans/active/` for complex plans.
 
 **Execution:** Inline (no subagent spawning). Consumed by `/orchestrate` or `/work`.
 

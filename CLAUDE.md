@@ -59,7 +59,7 @@ It shows: model name, context usage (green/yellow/red), and active workflow stat
 1. **Do not modify `.agents/` files** — SSOT protection
 2. Domain skills load only via explicit invocation or agent `skills` field
 3. Workflows execute via explicit `/command` or hook auto-detection only — never self-initiated
-4. Plans saved to `.agents/plan.json`
+4. Plans saved to `.agents/results/plan-{sessionId}.json`
 5. `stack/` is generated output — SSOT exception
 <!-- OMA:END -->
 

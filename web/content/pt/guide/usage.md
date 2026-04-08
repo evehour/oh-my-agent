@@ -76,7 +76,7 @@ Build a TODO app with user authentication, task CRUD, and a mobile companion app
      - P0: Backend auth API, Backend task CRUD API
      - P1: Frontend login/register, Frontend task list, Mobile auth screens, Mobile task list
      - P2: QA review
-   - Salva em `.agents/plan.json`
+   - Salva em `.agents/results/plan-{sessionId}.json`
 
 4. **Step 2 — Você revisa e confirma o plano**
 
@@ -295,7 +295,7 @@ oh-my-agent detecta palavras-chave de workflow em 11 idiomas. Aqui estão exempl
 | Skill | Melhor Para | Saída Principal |
 |-------|-----------|----------------|
 | **oma-brainstorm** | "Tenho uma ideia", explorar abordagens | Documento de design em `docs/plans/` |
-| **oma-pm** | "planeje isso", breakdown de tarefas | `.agents/plan.json`, `task-board.md` |
+| **oma-pm** | "planeje isso", breakdown de tarefas | `.agents/results/plan-{sessionId}.json`, `task-board.md` |
 | **oma-frontend** | Componentes UI, formulários, páginas, estilização | Componentes React/TypeScript, testes Vitest |
 | **oma-backend** | APIs, auth, lógica de servidor, migrações | Endpoints, modelos, serviços, testes |
 | **oma-db** | Design de schema, ERD, ajuste de queries, planejamento de capacidade | Documentação de schema, scripts de migração, glossário |

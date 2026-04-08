@@ -319,7 +319,7 @@ Kompletny workflow wykonywania równoległego dla budowy funkcjonalności uwierz
 ```bash
 # Krok 1: Zaplanuj funkcjonalność
 # (W IDE AI, uruchom /plan lub opisz funkcjonalność)
-# To tworzy .agents/plan.json z rozkładem zadań
+# To tworzy .agents/results/plan-{sessionId}.json z rozkładem zadań
 
 # Krok 2: Uruchom agentów implementacyjnych równolegle
 oma agent:spawn backend "Implement JWT auth API with registration, login, refresh, and logout endpoints. Use bcrypt for password hashing. Follow the API contract in .agents/skills/_shared/core/api-contracts/" session-auth-01 -w ./apps/api &

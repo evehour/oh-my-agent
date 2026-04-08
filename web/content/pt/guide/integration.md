@@ -241,7 +241,7 @@ your-project/
     agents/                         # Arquivos de definição de agentes
     config/                         # Configuração
     mcp.json                        # Configuração do servidor MCP
-    plan.json                       # Plano atual (gerado por /plan)
+    results/plan-{sessionId}.json                       # Plano atual (gerado por /plan)
     skills/                         # Skills instaladas
     workflows/                      # Definições de workflow
     results/                        # Resultados de execução de agentes

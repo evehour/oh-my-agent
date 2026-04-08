@@ -132,7 +132,7 @@ oma stats
 | Skill | Phù hợp nhất cho | Đầu ra chính |
 |-------|---------|---------------|
 | **oma-brainstorm** | "Tôi có ý tưởng", khám phá hướng tiếp cận | Tài liệu thiết kế trong `docs/plans/` |
-| **oma-pm** | "Lập kế hoạch cái này", phân tách task | `.agents/plan.json`, `task-board.md` |
+| **oma-pm** | "Lập kế hoạch cái này", phân tách task | `.agents/results/plan-{sessionId}.json`, `task-board.md` |
 | **oma-frontend** | Component UI, form, trang, styling | Component React/TypeScript, test Vitest |
 | **oma-backend** | API, xác thực, logic server, migration | Endpoint, model, service, test |
 | **oma-db** | Thiết kế schema, ERD, tuning truy vấn | Tài liệu schema, script migration, thuật ngữ |

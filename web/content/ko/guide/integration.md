@@ -274,7 +274,7 @@ your-project/
     config/                         # 설정
       oma-config.yaml
     mcp.json                        # MCP 서버 설정
-    plan.json                       # 현재 계획 (/plan으로 생성)
+    results/plan-{sessionId}.json                       # 현재 계획 (/plan으로 생성)
     skills/                         # 설치된 스킬
       _shared/                      # 모든 스킬에 걸친 공유 리소스
         core/                       # 핵심 프로토콜 및 참조

@@ -64,7 +64,7 @@ Agentes no oh-my-agent são papéis especializados de engenharia. Cada agente po
 - Tarefas devem ser completáveis por um único agente
 - Saída em JSON plan + task-board.md para compatibilidade com o orquestrador
 
-**Saída:** `.agents/plan.json`, `.agents/brain/current-plan.md`, escrita em memória para o orquestrador.
+**Saída:** `.agents/results/plan-{sessionId}.json`, `.agents/brain/current-plan.md`, escrita em memória para o orquestrador.
 
 **Recursos:** `execution-protocol.md`, `examples.md`, `iso-planning.md`, `task-template.json`, `../_shared/core/api-contracts/`.
 

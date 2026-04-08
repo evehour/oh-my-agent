@@ -20,14 +20,14 @@ Koordynacja wieloagentowa jest właściwym wyborem gdy:
 ## Pełna sekwencja: /plan do /review
 
 ### Krok 1: /plan — Wymagania i dekompozycja zadań
-Workflow `/plan` działa inline i produkuje ustrukturyzowany plan zapisywany do `.agents/plan.json`.
+Workflow `/plan` działa inline i produkuje ustrukturyzowany plan zapisywany do `.agents/results/plan-{sessionId}.json`.
 
 ### Krok 2: /work lub /orchestrate — Wykonanie
 
 | Aspekt | /work | /orchestrate |
 |:-------|:-----------|:-------------|
 | **Interakcja** | Interaktywne — użytkownik potwierdza na każdym etapie | Automatyczne — działa do zakończenia |
-| **Planowanie PM** | Wbudowane | Wymaga plan.json z /plan |
+| **Planowanie PM** | Wbudowane | Wymaga plan z /plan |
 | **Tryb trwały** | Tak | Tak |
 | **Najlepsze dla** | Pierwsze użycie, złożone projekty | Powtarzane uruchomienia, dobrze zdefiniowane zadania |
 
@@ -58,7 +58,7 @@ Bez kontraktów, agent backend może zwrócić `{ "user_id": 1 }` podczas gdy ag
 
 ## Anty-wzorce do unikania
 
-1. **Pomijanie planu** — `/orchestrate` bez plan.json odmówi kontynuacji
+1. **Pomijanie planu** — `/orchestrate` bez plan file odmówi kontynuacji
 2. **Nakładające się przestrzenie robocze** — Dwóch agentów w tym samym katalogu tworzy konflikty plików
 3. **Brak kontraktów API** — Agenci będą czynić niekompatybilne założenia
 4. **Ignorowanie znalezisk QA** — CRITICAL i HIGH to prawdziwe błędy które pojawią się w produkcji

@@ -102,7 +102,7 @@ your-project/
 │   │   ├── debug-investigator.md
 │   │   └── pm-planner.md
 │   │
-│   ├── plan.json                      ← Gegenereerde planuitvoer (gevuld door /plan)
+│   ├── results/plan-{sessionId}.json                      ← Gegenereerde planuitvoer (gevuld door /plan)
 │   ├── state/                         ← Actieve workflowstatusbestanden
 │   ├── results/                       ← Agentresultaatbestanden
 │   └── mcp.json                       ← MCP-serverconfiguratie
@@ -161,7 +161,7 @@ Waar agentexpertise leeft. 15 directory's totaal: 14 agent-skills + 1 gedeelde b
 
 7 subagentdefinitiebestanden gebruikt bij het spawnen van agenten via de Task tool (Claude Code) of CLI.
 
-### plan.json
+### plan-{sessionId}.json
 
 Gegenereerd door `/plan`. Bevat de gestructureerde taakopsplitsing. Geconsumeerd door `/orchestrate`, `/work` en `/exec-plan`.
 

@@ -78,7 +78,7 @@ bunx oh-my-agent@latest
 ├── workflows/                      # 14개 워크플로우 정의
 ├── agents/                         # 서브에이전트 정의
 ├── mcp.json                        # MCP 서버 설정
-├── plan.json                       # 빈 파일 (/plan으로 채워짐)
+├── results/plan-{sessionId}.json                       # 빈 파일 (/plan으로 채워짐)
 ├── state/                          # 빈 디렉토리 (영구 워크플로우에서 사용)
 └── results/                        # 빈 디렉토리 (에이전트 실행 시 채워짐)
 

@@ -39,9 +39,9 @@ O que acontece:
 3. **Definir contratos de API** — Projeta contratos de endpoint (method, path, schemas de request/response, auth, respostas de erro) e os salva em `.agents/skills/_shared/core/api-contracts/`.
 4. **Decompor em tarefas** — Quebra o projeto em tarefas acionáveis, cada uma com: agente atribuído, título, critérios de aceitação, prioridade (P0-P3) e dependências.
 5. **Revisar plano com usuário** — Apresenta o plano completo para confirmação. O workflow não prosseguirá sem aprovação explícita do usuário.
-6. **Salvar plano** — Escreve o plano aprovado em `.agents/plan.json` e registra um resumo na memória.
+6. **Salvar plano** — Escreve o plano aprovado em `.agents/results/plan-{sessionId}.json` e registra um resumo na memória.
 
-A saída `.agents/plan.json` é a entrada para ambos `/work` e `/orchestrate`.
+A saída `.agents/results/plan-{sessionId}.json` é a entrada para ambos `/work` e `/orchestrate`.
 
 ### Step 2: /work ou /orchestrate — Execução
 
@@ -50,7 +50,7 @@ Você tem dois caminhos de execução:
 | Aspecto | /work | /orchestrate |
 |:--------|:-----------|:-------------|
 | **Interação** | Interativo — usuário confirma em cada etapa | Automatizado — executa até conclusão |
-| **Planejamento PM** | Integrado (Step 2 executa agente PM) | Requer plan.json do /plan |
+| **Planejamento PM** | Integrado (Step 2 executa agente PM) | Requer plan do /plan |
 | **Checkpoint do usuário** | Após revisão do plano (Step 3) | Antes de iniciar (plano deve existir) |
 | **Modo persistente** | Sim — não pode ser terminado até completar | Sim — não pode ser terminado até completar |
 | **Melhor para** | Primeiro uso, projetos complexos precisando de supervisão | Execuções repetidas, tarefas bem definidas |
@@ -62,7 +62,7 @@ Você tem dois caminhos de execução:
 ```
 
 1. Analisa a requisição do usuário e identifica domínios envolvidos.
-2. Executa o agente PM para decomposição de tarefas (cria plan.json).
+2. Executa o agente PM para decomposição de tarefas (cria plan-{sessionId}.json).
 3. Apresenta plano para confirmação do usuário — **bloqueia até confirmação**.
 4. Spawna agentes por tier de prioridade (P0 primeiro, depois P1, etc.), com cada tarefa de mesma prioridade executando em paralelo.
 5. Monitora progresso dos agentes via arquivos de memória.
@@ -75,7 +75,7 @@ Você tem dois caminhos de execução:
 /orchestrate
 ```
 
-1. Carrega `.agents/plan.json` (não prosseguirá sem um).
+1. Carrega `.agents/results/plan-{sessionId}.json` (não prosseguirá sem um).
 2. Inicializa sessão com formato de ID `session-YYYYMMDD-HHMMSS`.
 3. Cria `orchestrator-session.md` e `task-board.md` no diretório de memória.
 4. Spawna agentes por tier de prioridade, cada um recebendo: descrição da tarefa, contratos de API e contexto.
@@ -300,7 +300,7 @@ oma agent:parallel tasks.yaml -m claude
 
 ### 1. Pular o Plano
 
-Iniciar `/orchestrate` sem um plan.json. O workflow recusará prosseguir. Sempre execute `/plan` primeiro, ou use `/work` que tem planejamento integrado.
+Iniciar `/orchestrate` sem plan file. O workflow recusará prosseguir. Sempre execute `/plan` primeiro, ou use `/work` que tem planejamento integrado.
 
 ### 2. Workspaces Sobrepostos
 

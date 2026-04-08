@@ -274,7 +274,7 @@ your-project/
     config/                         # 配置
       oma-config.yaml
     mcp.json                        # MCP 服务器配置
-    plan.json                       # 当前计划（由 /plan 生成）
+    results/plan-{sessionId}.json                       # 当前计划（由 /plan 生成）
     skills/                         # 已安装技能
       _shared/                      # 所有技能共享的资源
         core/                       # 核心协议和参考

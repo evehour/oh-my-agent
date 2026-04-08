@@ -76,7 +76,7 @@ bunx oh-my-agent@latest
 ├── workflows/                      # 全14ワークフロー定義
 ├── agents/                         # サブエージェント定義
 ├── mcp.json                        # MCPサーバー設定
-├── plan.json                       # 空（/planで作成）
+├── results/plan-{sessionId}.json                       # 空（/planで作成）
 ├── state/                          # 空（永続ワークフローで使用）
 └── results/                        # 空（エージェント実行で作成）
 

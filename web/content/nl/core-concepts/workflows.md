@@ -39,7 +39,7 @@ Persistente workflows blijven draaien totdat alle taken klaar zijn. Ze behouden 
 
 **Stappen:**
 1. **Stap 0 — Voorbereiding:** Lees coordinatieskill, contextladingsgids, geheugenprotocol. Detecteer leverancier.
-2. **Stap 1 — Plan Laden/Aanmaken:** Controleer op `.agents/plan.json`. Indien afwezig, vraag gebruiker eerst `/plan` uit te voeren.
+2. **Stap 1 — Plan Laden/Aanmaken:** Controleer op `.agents/results/plan-{sessionId}.json`. Indien afwezig, vraag gebruiker eerst `/plan` uit te voeren.
 3. **Stap 2 — Sessie Initialiseren:** Laad `oma-config.yaml`, toon CLI-mappingtabel, genereer sessie-ID (`session-JJJJMMDD-UUMMSS`), maak `orchestrator-session.md` en `task-board.md` aan in geheugen.
 4. **Stap 3 — Agenten Spawnen:** Voor elke prioriteitstier (P0 eerst, dan P1...), spawn agenten met leverancier-geschikte methode. Overschrijd nooit MAX_PARALLEL.
 5. **Stap 4 — Monitoren:** Poll `progress-{agent}.md`-bestanden, werk `task-board.md` bij. Let op voltooiingen, fouten, crashes.
@@ -47,7 +47,7 @@ Persistente workflows blijven draaien totdat alle taken klaar zijn. Ze behouden 
 7. **Stap 6 — Verzamelen:** Lees alle `result-{agent}.md`-bestanden, stel samenvatting samen.
 8. **Stap 7 — Eindrapport:** Presenteer sessiesamenvatting. Indien Quality Score gemeten, voeg Experiment Ledger-samenvatting toe.
 
-**Gelezen bestanden:** `.agents/plan.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
+**Gelezen bestanden:** `.agents/results/plan-{sessionId}.json`, `.agents/oma-config.yaml`, `progress-{agent}.md`, `result-{agent}.md`.
 **Geschreven bestanden:** `orchestrator-session.md`, `task-board.md` (geheugen), eindrapport.
 
 **Wanneer gebruiken:** Grote projecten die maximale parallelisme vereisen met geautomatiseerde coordinatie.
@@ -74,7 +74,7 @@ Persistente workflows blijven draaien totdat alle taken klaar zijn. Ze behouden 
 **Stappen:**
 1. **Stap 0 — Voorbereiding:** Lees skills, context-loading, geheugenprotocol.
 2. **Stap 1 — Requirements Analyseren:** Identificeer betrokken domeinen.
-3. **Stap 2 — PM Agent Planning:** PM ontleedt requirements, definieert API-contracten, slaat op in `.agents/plan.json`.
+3. **Stap 2 — PM Agent Planning:** PM ontleedt requirements, definieert API-contracten, slaat op in `.agents/results/plan-{sessionId}.json`.
 4. **Stap 3 — Plan Reviewen:** Presenteer plan aan gebruiker. **Moet bevestiging krijgen.**
 5. **Stap 4 — Agenten Spawnen:** Spawn per prioriteitstier, parallel binnen dezelfde tier.
 6. **Stap 5 — Monitoren:** Poll voortgangsbestanden, verifieer API-contractuitlijning.
@@ -128,7 +128,7 @@ Persistente workflows blijven draaien totdat alle taken klaar zijn. Ze behouden 
 
 **Stappen:** Requirements verzamelen -> Technische haalbaarheid analyseren -> API-contracten definieren -> Ontleden in taken -> Reviewen met gebruiker -> Plan opslaan.
 
-**Uitvoer:** `.agents/plan.json`, geheugen schrijven, optioneel `docs/exec-plans/active/`.
+**Uitvoer:** `.agents/results/plan-{sessionId}.json`, geheugen schrijven, optioneel `docs/exec-plans/active/`.
 
 ---
 

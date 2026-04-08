@@ -39,9 +39,9 @@ What happens:
 3. **Define API contracts** — Designs endpoint contracts (method, path, request/response schemas, auth, error responses) and saves them to `.agents/skills/_shared/core/api-contracts/`.
 4. **Decompose into tasks** — Breaks the project into actionable tasks, each with: assigned agent, title, acceptance criteria, priority (P0-P3), and dependencies.
 5. **Review plan with user** — Presents the full plan for confirmation. The workflow will not proceed without explicit user approval.
-6. **Save plan** — Writes the approved plan to `.agents/plan.json` and records a summary in memory.
+6. **Save plan** — Writes the approved plan to `.agents/results/plan-{sessionId}.json` and records a summary in memory.
 
-The output `.agents/plan.json` is the input for both `/work` and `/orchestrate`.
+The output `.agents/results/plan-{sessionId}.json` is the input for both `/work` and `/orchestrate`.
 
 ### Step 2: /work or /orchestrate — Execution
 
@@ -50,7 +50,7 @@ You have two execution paths:
 | Aspect | /work | /orchestrate |
 |:-------|:-----------|:-------------|
 | **Interaction** | Interactive — user confirms at each stage | Automated — runs to completion |
-| **PM planning** | Built-in (Step 2 runs PM agent) | Requires plan.json from /plan |
+| **PM planning** | Built-in (Step 2 runs PM agent) | Requires plan from /plan |
 | **User checkpoint** | After plan review (Step 3) | Before starting (plan must exist) |
 | **Persistent mode** | Yes — cannot be terminated until complete | Yes — cannot be terminated until complete |
 | **Best for** | First-time use, complex projects needing oversight | Repeat runs, well-defined tasks |
@@ -62,7 +62,7 @@ You have two execution paths:
 ```
 
 1. Analyzes the user's request and identifies involved domains.
-2. Runs the PM agent for task decomposition (creates plan.json).
+2. Runs the PM agent for task decomposition (creates plan-{sessionId}.json).
 3. Presents plan for user confirmation — **blocks until confirmed**.
 4. Spawns agents by priority tier (P0 first, then P1, etc.), with each same-priority task running in parallel.
 5. Monitors agent progress via memory files.
@@ -75,7 +75,7 @@ You have two execution paths:
 /orchestrate
 ```
 
-1. Loads `.agents/plan.json` (will not proceed without one).
+1. Loads `.agents/results/plan-{sessionId}.json` (will not proceed without one).
 2. Initializes a session with ID format `session-YYYYMMDD-HHMMSS`.
 3. Creates `orchestrator-session.md` and `task-board.md` in the memory directory.
 4. Spawns agents per priority tier, each getting: task description, API contracts, and context.
@@ -304,7 +304,7 @@ oma agent:parallel tasks.yaml -m claude
 
 ### 1. Skipping the Plan
 
-Starting `/orchestrate` without a plan.json. The workflow will refuse to proceed. Always run `/plan` first, or use `/work` which has built-in planning.
+Starting `/orchestrate` without a plan file. The workflow will refuse to proceed. Always run `/plan` first, or use `/work` which has built-in planning.
 
 ### 2. Overlapping Workspaces
 

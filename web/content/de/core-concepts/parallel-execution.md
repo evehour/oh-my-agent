@@ -319,7 +319,7 @@ Ein vollständiger paralleler Ausführungsworkflow zum Erstellen eines Benutzera
 ```bash
 # Schritt 1: Feature planen
 # (In Ihrer KI-IDE /plan ausführen oder das Feature beschreiben)
-# Dies erstellt .agents/plan.json mit Aufgabenaufschlüsselung
+# Dies erstellt .agents/results/plan-{sessionId}.json mit Aufgabenaufschlüsselung
 
 # Schritt 2: Implementierungsagenten parallel starten
 oma agent:spawn backend "Implement JWT auth API with registration, login, refresh, and logout endpoints. Use bcrypt for password hashing. Follow the API contract in .agents/skills/_shared/core/api-contracts/" session-auth-01 -w ./apps/api &

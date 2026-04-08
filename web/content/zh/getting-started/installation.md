@@ -76,7 +76,7 @@ bunx oh-my-agent@latest
 ├── workflows/                      # 全部 14 个工作流定义
 ├── agents/                         # 子智能体定义
 ├── mcp.json                        # MCP 服务器配置
-├── plan.json                       # 空（由 /plan 填充）
+├── results/plan-{sessionId}.json                       # 空（由 /plan 填充）
 ├── state/                          # 空（用于持久化工作流）
 └── results/                        # 空（由智能体运行填充）
 

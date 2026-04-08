@@ -64,7 +64,7 @@ Agenten in oh-my-agent sind spezialisierte Engineering-Rollen. Jeder Agent verf�
 - Aufgaben müssen von einem einzelnen Agenten abschließbar sein
 - Ausgabe: JSON-Plan + task-board.md für Orchestrator-Kompatibilität
 
-**Ausgabe:** `.agents/plan.json`, `.agents/brain/current-plan.md`, Memory-Eintrag für Orchestrator.
+**Ausgabe:** `.agents/results/plan-{sessionId}.json`, `.agents/brain/current-plan.md`, Memory-Eintrag für Orchestrator.
 
 **Ressourcen:** `execution-protocol.md`, `examples.md`, `iso-planning.md`, `task-template.json`, `../_shared/core/api-contracts/`.
 

@@ -76,7 +76,7 @@ Build a TODO app with user authentication, task CRUD, and a mobile companion app
      - P0: Backend auth API, Backend task CRUD API
      - P1: Frontend login/register, Frontend task list, Mobile auth screens, Mobile task list
      - P2: QA review
-   - `.agents/plan.json`에 저장
+   - `.agents/results/plan-{sessionId}.json`에 저장
 
 4. **Step 2 — 사용자가 계획을 리뷰하고 확인**
 
@@ -299,7 +299,7 @@ oh-my-agent는 11개 언어에서 워크플로우 키워드를 감지합니다. 
 | 스킬 | 적합한 용도 | 주요 출력 |
 |-------|---------|---------------|
 | **oma-brainstorm** | "아이디어가 있어", 접근 방식 탐색 | `docs/plans/`의 설계 문서 |
-| **oma-pm** | "이거 계획해줘", 태스크 분해 | `.agents/plan.json`, `task-board.md` |
+| **oma-pm** | "이거 계획해줘", 태스크 분해 | `.agents/results/plan-{sessionId}.json`, `task-board.md` |
 | **oma-frontend** | UI 컴포넌트, 폼, 페이지, 스타일링 | React/TypeScript 컴포넌트, Vitest 테스트 |
 | **oma-backend** | API, 인증, 서버 로직, 마이그레이션 | 엔드포인트, 모델, 서비스, 테스트 |
 | **oma-db** | 스키마 설계, ERD, 쿼리 튜닝, 용량 계획 | 스키마 문서, 마이그레이션 스크립트, 용어집 |

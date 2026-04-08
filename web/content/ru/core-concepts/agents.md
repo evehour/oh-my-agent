@@ -64,7 +64,7 @@ description: Полный справочник по всем 14 агентам o
 - Задачи должны быть выполнимы одним агентом
 - Вывод: JSON-план + task-board.md для совместимости с оркестратором
 
-**Вывод:** `.agents/plan.json`, `.agents/brain/current-plan.md`, запись в память для оркестратора.
+**Вывод:** `.agents/results/plan-{sessionId}.json`, `.agents/brain/current-plan.md`, запись в память для оркестратора.
 
 **Ресурсы:** `execution-protocol.md`, `examples.md`, `iso-planning.md`, `task-template.json`, `../_shared/core/api-contracts/`.
 

@@ -76,7 +76,7 @@ Build a TODO app with user authentication, task CRUD, and a mobile companion app
      - P0: Backend auth API, Backend task CRUD API
      - P1: Frontend login/register, Frontend task list, Mobile auth screens, Mobile task list
      - P2: QA review
-   - Saves to `.agents/plan.json`
+   - Saves to `.agents/results/plan-{sessionId}.json`
 
 4. **Step 2 — You review and confirm the plan**
 
@@ -299,7 +299,7 @@ oh-my-agent detects workflow keywords in 11 languages. Here are examples showing
 | Skill | Best For | Primary Output |
 |-------|---------|---------------|
 | **oma-brainstorm** | "I have an idea", exploring approaches | Design document in `docs/plans/` |
-| **oma-pm** | "plan this", task breakdown | `.agents/plan.json`, `task-board.md` |
+| **oma-pm** | "plan this", task breakdown | `.agents/results/plan-{sessionId}.json`, `task-board.md` |
 | **oma-frontend** | UI components, forms, pages, styling | React/TypeScript components, Vitest tests |
 | **oma-backend** | APIs, auth, server logic, migrations | Endpoints, models, services, tests |
 | **oma-db** | Schema design, ERD, query tuning, capacity planning | Schema documentation, migration scripts, glossary |

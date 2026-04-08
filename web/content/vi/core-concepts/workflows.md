@@ -57,7 +57,7 @@ Workflow liên tục tiếp tục chạy cho đến khi tất cả task hoàn th
 
 **Mô tả:** Phân tách task do PM dẫn dắt. Phân tích yêu cầu, chọn tech stack, phân tách thành task có ưu tiên với phụ thuộc, định nghĩa API contract.
 
-**Đầu ra:** `.agents/plan.json`, ghi bộ nhớ.
+**Đầu ra:** `.agents/results/plan-{sessionId}.json`, ghi bộ nhớ.
 
 ### /exec-plan
 

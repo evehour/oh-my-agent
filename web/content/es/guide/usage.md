@@ -109,7 +109,7 @@ Escribe estos en tu IDE de IA para activar procesos estructurados:
 | Comando | Que Hace | Cuando Usarlo |
 |---------|----------|---------------|
 | `/brainstorm` | Ideacion libre y exploracion | Antes de comprometerte con un enfoque |
-| `/plan` | Descomposicion PM → `.agents/plan.json` | Antes de iniciar cualquier funcionalidad compleja |
+| `/plan` | Descomposicion PM → `.agents/results/plan-{sessionId}.json` | Antes de iniciar cualquier funcionalidad compleja |
 | `/exec-plan` | Ejecutar un plan existente paso a paso | Despues de `/plan` |
 | `/work` | Coordinacion multi-dominio paso a paso | Funcionalidades que abarcan multiples agentes |
 | `/orchestrate` | Ejecucion automatizada de agentes en paralelo | Proyectos grandes, maximo paralelismo |
@@ -145,7 +145,7 @@ Preguntas como "que es orchestrate?" se filtran — no activaran workflows accid
 
 | Skill | Mejor Para | Salida |
 |-------|-----------|--------|
-| oma-pm | "planifica esto", "descompone" | `.agents/plan.json` |
+| oma-pm | "planifica esto", "descompone" | `.agents/results/plan-{sessionId}.json` |
 | oma-frontend | UI, componentes, estilos | Componentes React, tests |
 | oma-backend | APIs, bases de datos, auth | Endpoints, modelos, tests |
 | oma-db | Schema, ERD, migraciones | Diseno de schema, optimizacion de queries |

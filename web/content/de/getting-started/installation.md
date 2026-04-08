@@ -76,7 +76,7 @@ Nach der Installation enthält Ihr Projekt:
 ├── workflows/                      # Alle 14 Workflow-Definitionen
 ├── agents/                         # Subagenten-Definitionen
 ├── mcp.json                        # MCP-Server-Konfiguration
-├── plan.json                       # Leer (befüllt durch /plan)
+├── results/plan-{sessionId}.json                       # Leer (befüllt durch /plan)
 ├── state/                          # Leer (verwendet von persistenten Workflows)
 └── results/                        # Leer (befüllt durch Agentenläufe)
 

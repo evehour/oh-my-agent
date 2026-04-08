@@ -100,7 +100,7 @@ your-project/
 │   │   ├── debug-investigator.md      ← Def. de subagente: debug
 │   │   └── pm-planner.md             ← Def. de subagente: PM
 │   │
-│   ├── plan.json                      ← Saída de plano gerado (populado por /plan)
+│   ├── results/plan-{sessionId}.json                      ← Saída de plano gerado (populado por /plan)
 │   ├── state/                         ← Arquivos de estado de workflow ativos
 │   ├── results/                       ← Arquivos de resultado dos agentes
 │   └── mcp.json                       ← Configuração do servidor MCP
@@ -181,7 +181,7 @@ Onde a expertise dos agentes reside. 15 diretórios no total: 14 skills de agent
 - Regras específicas de domínio (10 regras)
 - Declaração: "Nunca modificar arquivos de `.agents/`"
 
-### plan.json
+### plan-{sessionId}.json
 
 Gerado pelo workflow `/plan`. Contém o breakdown estruturado de tarefas com atribuições de agentes, prioridades, dependências e critérios de aceitação. Consumido por `/orchestrate`, `/work` e `/exec-plan`.
 

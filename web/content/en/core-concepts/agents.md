@@ -64,7 +64,7 @@ Agents in oh-my-agent are specialized engineering roles. Each agent has a define
 - Tasks must be completable by a single agent
 - Output JSON plan + task-board.md for orchestrator compatibility
 
-**Output:** `.agents/plan.json`, `.agents/results/result-pm.md`, memory write for orchestrator.
+**Output:** `.agents/results/plan-{sessionId}.json`, `.agents/results/result-pm.md`, memory write for orchestrator.
 
 **Resources:** `execution-protocol.md`, `examples.md`, `iso-planning.md`, `task-template.json`, `../_shared/core/api-contracts/`.
 

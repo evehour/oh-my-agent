@@ -230,7 +230,7 @@ your-project/
 │   │   ├── debug-investigator.md      ← 子智能体定义：debug
 │   │   └── pm-planner.md             ← 子智能体定义：PM
 │   │
-│   ├── plan.json                      ← 生成的计划输出（由 /plan 填充）
+│   ├── results/plan-{sessionId}.json                      ← 生成的计划输出（由 /plan 填充）
 │   ├── state/                         ← 活跃工作流状态文件
 │   │   ├── orchestrate-state.json     ← （仅在工作流活跃时存在）
 │   │   ├── ultrawork-state.json
@@ -321,7 +321,7 @@ your-project/
 - 领域特定规则（10 条规则）
 - 声明："绝不修改 `.agents/` 文件"
 
-### plan.json
+### plan-{sessionId}.json
 
 由 `/plan` 工作流生成。包含结构化任务分解，含智能体分配、优先级、依赖关系和验收标准。由 `/orchestrate`、`/work` 和 `/exec-plan` 消费。
 

@@ -36,7 +36,7 @@ oh-my-agent는 전문화를 통해 이를 해결합니다:
 | 에이전트 | 역할 | 핵심 기능 |
 |-------|------|-----------------|
 | **oma-brainstorm** | 디자인 우선 아이디어 탐색 | 사용자 의도를 탐색하고, 트레이드오프 분석과 함께 2-3가지 접근 방식을 제안하며, 코드 작성 전에 설계 문서를 생성합니다. 6단계 워크플로우: Context, Questions, Approaches, Design, Documentation, `/plan` 전환. |
-| **oma-pm** | 프로덕트 매니저 | 요구사항을 의존성이 있는 우선순위 태스크로 분해합니다. API 컨트랙트를 정의합니다. `.agents/plan.json`과 `task-board.md`를 출력합니다. ISO 21500 개념, ISO 31000 리스크 프레이밍, ISO 38500 거버넌스를 지원합니다. |
+| **oma-pm** | 프로덕트 매니저 | 요구사항을 의존성이 있는 우선순위 태스크로 분해합니다. API 컨트랙트를 정의합니다. `.agents/results/plan-{sessionId}.json`과 `task-board.md`를 출력합니다. ISO 21500 개념, ISO 31000 리스크 프레이밍, ISO 38500 거버넌스를 지원합니다. |
 
 ### 구현
 
@@ -103,7 +103,7 @@ oh-my-agent에 필요한 모든 것은 `.agents/` 디렉토리에 있습니다:
 │   └── oma-{agent}/        # 에이전트별 SKILL.md + resources/
 ├── workflows/              # 14개 워크플로우 정의
 ├── agents/                 # 7개 서브에이전트 정의
-├── plan.json               # 생성된 계획 출력
+├── results/plan-{sessionId}.json               # 생성된 계획 출력
 ├── state/                  # 활성 워크플로우 상태 파일
 ├── results/                # 에이전트 결과 파일
 └── mcp.json                # MCP 서버 설정

@@ -86,7 +86,7 @@ your-project/
 │   │   ├── debug-investigator.md      ← Định nghĩa subagent: debug
 │   │   └── pm-planner.md             ← Định nghĩa subagent: PM
 │   │
-│   ├── plan.json                      ← Kết quả kế hoạch đã tạo (điền bởi /plan)
+│   ├── results/plan-{sessionId}.json                      ← Kết quả kế hoạch đã tạo (điền bởi /plan)
 │   ├── state/                         ← File trạng thái workflow đang hoạt động
 │   ├── results/                       ← File kết quả agent
 │   └── mcp.json                       ← Cấu hình MCP server
@@ -149,7 +149,7 @@ Không liên tục: `plan.md`, `exec-plan.md`, `brainstorm.md`, `deepinit.md`, `
 
 7 file định nghĩa subagent dùng khi spawn agent qua Task tool (Claude Code) hoặc CLI.
 
-### plan.json
+### plan-{sessionId}.json
 
 Được tạo bởi workflow `/plan`. Chứa phân tách task có cấu trúc với phân công agent, ưu tiên, phụ thuộc và tiêu chí chấp nhận. Được dùng bởi `/orchestrate`, `/work` và `/exec-plan`.
 

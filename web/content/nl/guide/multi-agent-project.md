@@ -21,14 +21,14 @@ Multi-agent coordinatie is de juiste keuze wanneer:
 
 ### Stap 1: /plan — Requirements en Taakdecompositie
 
-De `/plan`-workflow draait inline en produceert een gestructureerd plan: requirements verzamelen, technische haalbaarheid analyseren, API-contracten definieren, ontleden in taken, reviewen met gebruiker, plan opslaan in `.agents/plan.json`.
+De `/plan`-workflow draait inline en produceert een gestructureerd plan: requirements verzamelen, technische haalbaarheid analyseren, API-contracten definieren, ontleden in taken, reviewen met gebruiker, plan opslaan in `.agents/results/plan-{sessionId}.json`.
 
 ### Stap 2: /work of /orchestrate — Uitvoering
 
 | Aspect | /work | /orchestrate |
 |:-------|:-----------|:-------------|
 | **Interactie** | Interactief — gebruiker bevestigt bij elke fase | Geautomatiseerd — draait tot voltooiing |
-| **PM planning** | Ingebouwd | Vereist plan.json van /plan |
+| **PM planning** | Ingebouwd | Vereist plan van /plan |
 | **Persistent mode** | Ja | Ja |
 | **Geschikt voor** | Eerste gebruik, complex projecten met toezicht | Herhaalde runs, goed gedefinieerde taken |
 
@@ -61,7 +61,7 @@ API-contracten zijn het synchronisatiemechanisme tussen agenten. Contracten word
 
 ## Anti-Patronen om te Vermijden
 
-1. **Plan overslaan** — `/orchestrate` zonder plan.json weigert door te gaan
+1. **Plan overslaan** — `/orchestrate` zonder plan file weigert door te gaan
 2. **Overlappende werkruimten** — Twee agenten in dezelfde directory creert conflicten
 3. **Ontbrekende API-contracten** — Leidt tot incompatibele aannames
 4. **QA-bevindingen negeren** — CRITICAL/HIGH bevindingen zijn echte bugs

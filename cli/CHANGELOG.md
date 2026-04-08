@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.24.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.23.4...cli-v4.24.0) (2026-04-08)
+
+
+### Features
+
+* add test output filter hook and SSOT hooks architecture ([8b8fae4](https://github.com/first-fluke/oh-my-agent/commit/8b8fae482324caa62ac3c255357011045c89a228))
+
 ## [4.23.4](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.23.3...cli-v4.23.4) (2026-04-08)
 
 

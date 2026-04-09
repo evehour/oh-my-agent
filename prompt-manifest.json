@@ -1,7 +1,7 @@
 {
   "name": "oh-my-agent",
   "version": "4.25.0",
-  "releaseDate": "2026-04-08T23:44:59.357Z",
+  "releaseDate": "2026-04-09T01:10:28.572Z",
   "repository": "https://github.com/first-fluke/oh-my-agent",
   "files": [
     {
@@ -110,9 +110,59 @@
       "size": 570
     },
     {
+      "path": ".agents/rules/backend.md",
+      "sha256": "2d4a9acb1cc232bc058daee51ce3fb03e442def22e7a282ae3ce2f367a1f5018",
+      "size": 1658
+    },
+    {
+      "path": ".agents/rules/commit.md",
+      "sha256": "46e862897183decd398112d809e2e87e5fb1b117f4dd3ea83ab9abdddd21202b",
+      "size": 828
+    },
+    {
+      "path": ".agents/rules/database.md",
+      "sha256": "2b4a3975c87d224d1f4cac9341a097139ee05a003e7b20d9bb5060cbbb8e66b6",
+      "size": 1791
+    },
+    {
+      "path": ".agents/rules/debug.md",
+      "sha256": "4298a60b5784d4d3bf596763a63d5d4460fc3e0c4bc0ef314b3edec0d91fe2f2",
+      "size": 428
+    },
+    {
+      "path": ".agents/rules/design.md",
+      "sha256": "b28e43a6c8fbc59a89c1370088b5f9a262746d78a866cb54886f3bf682ab9101",
+      "size": 1457
+    },
+    {
+      "path": ".agents/rules/dev-workflow.md",
+      "sha256": "a96b9cc3889de8454e92662456e7aca2f44afc5e2d0f9aac18291c581258d4be",
+      "size": 917
+    },
+    {
+      "path": ".agents/rules/frontend.md",
+      "sha256": "8d00f675688a99701574576cd510fc3e26cdd9d0fdaae21e7fcc5e889a0d24cf",
+      "size": 2124
+    },
+    {
       "path": ".agents/rules/i18n-guide.md",
-      "sha256": "d3080f86f963a68e7c407f642470ccc46cf21a814ddf5e7848a09802ab4e148f",
-      "size": 2848
+      "sha256": "32dea4291206b532dcc672f2f9e7399f6b2ccbc552310af23da4c9737734430d",
+      "size": 3769
+    },
+    {
+      "path": ".agents/rules/infrastructure.md",
+      "sha256": "dd1918ca6f9b5add9001b73f558636a50c80e5be8aa8844c9bb87c2232b64439",
+      "size": 1583
+    },
+    {
+      "path": ".agents/rules/mobile.md",
+      "sha256": "416457068783b2c50ba905e257da714c5c09511211e8735f3deb4851bb2159c7",
+      "size": 614
+    },
+    {
+      "path": ".agents/rules/quality.md",
+      "sha256": "ee087ccc300e024c99c97fe406f3c1b72de03bc41ab039561b07b44ff25d6dd4",
+      "size": 647
     },
     {
       "path": ".agents/skills/_shared/README.md",
@@ -1071,6 +1121,6 @@
   "metadata": {
     "skillCount": 31,
     "workflowCount": 18,
-    "totalFiles": 212
+    "totalFiles": 222
   }
 }

@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
@@ -71,6 +72,33 @@ describe("install.sh", () => {
     expect(result.status).toBe(0);
     expect(result.stdout).not.toContain("\\\\033[1m");
     expect(result.stdout).toContain("\u001b[1moh-my-agent\u001b[0m");
+  });
+
+  it("does not fail with unbound variable when piped to bash", () => {
+    const result = spawnSync("bash", [], {
+      input: `set -euo pipefail\nsource "${installScript}"\nif [[ "\${BASH_SOURCE[0]:-\\$0}" == "\\$0" ]]; then printf "guard-ok"; fi`,
+      encoding: "utf-8",
+    });
+
+    expect(result.status).toBe(0);
+    expect(result.stderr).not.toContain("unbound variable");
+  });
+
+  it("executes main when piped to bash", () => {
+    const script = readFileSync(installScript, "utf-8");
+    // Replace exec bunx with a printf to avoid actually running the installer
+    const testScript = script.replace(
+      /exec bunx.*$/m,
+      'printf "main-executed"; exit 0',
+    );
+
+    const result = spawnSync("bash", [], {
+      input: testScript,
+      encoding: "utf-8",
+    });
+
+    expect(result.stderr).not.toContain("unbound variable");
+    expect(result.stdout).toContain("main-executed");
   });
 
   it("reports Windows as unsupported", () => {

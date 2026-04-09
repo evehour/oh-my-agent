@@ -12,11 +12,13 @@ export interface Migration {
 import { migrateToAgents } from "./001-agents-dir.js";
 import { migrateSharedLayout } from "./002-shared-layout.js";
 import { migrateOmaConfig } from "./003-oma-config.js";
+import { migrateClaudeMdLocal } from "./004-claude-md-local.js";
 
 const migrations: Migration[] = [
   migrateToAgents,
   migrateSharedLayout,
   migrateOmaConfig,
+  migrateClaudeMdLocal,
 ];
 
 export function runMigrations(cwd: string): string[] {

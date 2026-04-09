@@ -198,6 +198,76 @@ describe("installHooksFromVariant", () => {
     expect(cmd).not.toContain("$");
   });
 
+  it("should clear existing files before copying hooks to prevent EEXIST", () => {
+    (fs.readFileSync as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
+      JSON.stringify({
+        vendor: "claude",
+        hookDir: ".claude/hooks",
+        settingsFile: ".claude/settings.json",
+        projectDirEnv: "CLAUDE_PROJECT_DIR",
+        runtime: "bun",
+        events: {
+          UserPromptSubmit: {
+            hook: "keyword-detector.ts",
+            timeout: 5,
+          },
+        },
+      }),
+    );
+
+    // Simulate existing files in hooks directory (previous install)
+    (fs.readdirSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      (p: string, opts?: { withFileTypes?: boolean }) => {
+        if (
+          typeof p === "string" &&
+          p.includes("hooks/core") &&
+          opts?.withFileTypes
+        ) {
+          return [
+            {
+              name: "keyword-detector.ts",
+              isFile: () => true,
+              isDirectory: () => false,
+            },
+            { name: "hud.ts", isFile: () => true, isDirectory: () => false },
+          ];
+        }
+        return [];
+      },
+    );
+
+    // Simulate existing file at destination (triggers EEXIST without fix)
+    (fs.lstatSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      (p: string) => {
+        if (
+          typeof p === "string" &&
+          (p.endsWith("keyword-detector.ts") || p.endsWith("hud.ts")) &&
+          p.includes(".claude/hooks")
+        ) {
+          return { isDirectory: () => false };
+        }
+        throw new Error("ENOENT");
+      },
+    );
+
+    installVendorAdaptations(mockSourceDir, mockTargetDir, ["claude"]);
+
+    // Should have called unlinkSync on existing files before cpSync
+    const unlinkCalls = (
+      fs.unlinkSync as unknown as ReturnType<typeof vi.fn>
+    ).mock.calls.map((c: string[]) => c[0]);
+
+    expect(unlinkCalls).toContainEqual(
+      join(mockTargetDir, ".claude", "hooks", "keyword-detector.ts"),
+    );
+    expect(unlinkCalls).toContainEqual(
+      join(mockTargetDir, ".claude", "hooks", "hud.ts"),
+    );
+
+    // cpSync should still be called after cleanup
+    expect(fs.cpSync).toHaveBeenCalled();
+  });
+
   it("should skip vendor when variant file does not exist", () => {
     (fs.existsSync as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
       false,

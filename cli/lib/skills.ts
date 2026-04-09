@@ -19,6 +19,7 @@ import type {
   VendorType,
 } from "../types/index.js";
 import { parseFrontmatter, serializeFrontmatter } from "./frontmatter.js";
+import { generateClaudeRules as generateClaudeRulesFromSsot } from "./rules.js";
 
 export const REPO = "first-fluke/oh-my-agent";
 export const INSTALLED_SKILLS_DIR = ".agents/skills";
@@ -27,6 +28,7 @@ const ALL_CLI_VENDORS: CliVendor[] = [
   "claude",
   "codex",
   "copilot",
+  "cursor",
   "gemini",
   "qwen",
 ];
@@ -378,15 +380,11 @@ const CLAUDE_AGENT_DEFAULTS: Record<string, ClaudeAgentDefaults> = {
 };
 
 /**
- * Copy Claude Code rules from source .claude/rules/ to target .claude/rules/.
+ * Generate Claude Code rules from SSOT (.agents/rules/).
+ * Maps globs → paths frontmatter for Claude Code compatibility.
  */
-function installClaudeRules(sourceDir: string, targetDir: string): void {
-  const src = join(sourceDir, ".claude", "rules");
-  if (!existsSync(src)) return;
-
-  const dest = join(targetDir, ".claude", "rules");
-  mkdirSync(dest, { recursive: true });
-  cpSync(src, dest, { recursive: true, force: true });
+function installClaudeRules(_sourceDir: string, targetDir: string): void {
+  generateClaudeRulesFromSsot(targetDir);
 }
 
 /**
@@ -481,12 +479,22 @@ function installClaudeWorkflowRouters(
 
 /**
  * Copy core hook scripts from .agents/hooks/core/ to a vendor's hooks directory.
+ * Clears conflicting entries first to prevent EEXIST when overwriting.
  */
 function copyHookScripts(sourceDir: string, hooksDest: string): void {
   const hooksSrc = join(sourceDir, ".agents", "hooks", "core");
   if (!existsSync(hooksSrc)) return;
 
   mkdirSync(hooksDest, { recursive: true });
+  clearConflictingEntries(hooksSrc, hooksDest);
+
+  // Remove existing files that conflict with source files
+  for (const entry of readdirSync(hooksSrc, { withFileTypes: true })) {
+    if (entry.isFile()) {
+      clearNonDirectory(join(hooksDest, entry.name));
+    }
+  }
+
   cpSync(hooksSrc, hooksDest, { recursive: true, force: true });
 }
 
@@ -653,19 +661,16 @@ const OMA_START = "<!-- OMA:START";
 const OMA_END = "<!-- OMA:END -->";
 
 /**
- * Merge OMA instructions into the user-level ~/.claude/CLAUDE.md using markers.
+ * Merge OMA instructions into the project-local ./CLAUDE.md using markers.
  * Preserves any user content outside the OMA block.
  * Source: .claude/CLAUDE.md.template (from downloaded repo)
  */
-function mergeClaudeMd(sourceDir: string): void {
+function mergeClaudeMd(sourceDir: string, targetDir: string): void {
   const templatePath = join(sourceDir, ".claude", "CLAUDE.md.template");
   if (!existsSync(templatePath)) return;
 
-  const homeDir = process.env.HOME || process.env.USERPROFILE || "";
   const omaBlock = readFileSync(templatePath, "utf-8").trim();
-  const claudeMdPath = join(homeDir, ".claude", "CLAUDE.md");
-
-  mkdirSync(dirname(claudeMdPath), { recursive: true });
+  const claudeMdPath = join(targetDir, "CLAUDE.md");
 
   if (existsSync(claudeMdPath)) {
     const existing = readFileSync(claudeMdPath, "utf-8");
@@ -673,12 +678,10 @@ function mergeClaudeMd(sourceDir: string): void {
     const endIdx = existing.indexOf(OMA_END);
 
     if (startIdx !== -1 && endIdx !== -1) {
-      // Replace existing OMA block
       const before = existing.slice(0, startIdx);
       const after = existing.slice(endIdx + OMA_END.length);
       writeFileSync(claudeMdPath, `${before}${omaBlock}${after}`);
     } else {
-      // Append OMA block to end
       writeFileSync(claudeMdPath, `${existing.trimEnd()}\n\n${omaBlock}\n`);
     }
   } else {
@@ -714,7 +717,7 @@ export function installVendorAdaptations(
       installClaudeAgents(agentsDir, targetDir);
       installClaudeWorkflowRouters(workflowsDir, targetDir);
       installClaudeRules(sourceDir, targetDir);
-      mergeClaudeMd(sourceDir);
+      mergeClaudeMd(sourceDir, targetDir);
     }
   }
 }

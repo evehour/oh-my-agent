@@ -27,6 +27,7 @@ import {
   hasInstalledProject,
   saveLocalVersion,
 } from "../lib/manifest.js";
+import { generateCursorRules, mergeRulesIndexForVendor } from "../lib/rules.js";
 import { ensureSerenaProject, inferSerenaLanguages } from "../lib/serena.js";
 import {
   createCliSymlinks,
@@ -92,20 +93,6 @@ export async function update(force = false, ci = false): Promise<void> {
 
   const cwd = process.cwd();
 
-  // Run all migrations
-  const migrationActions = runMigrations(cwd);
-  if (migrationActions.length > 0) {
-    ui.note(
-      migrationActions.map((m) => `${pc.green("✓")} ${m}`).join("\n"),
-      "Migration",
-    );
-  }
-
-  // Detect and offer to remove competing tools (skip in CI — no stdin)
-  if (!ci) {
-    await promptUninstallCompetitors(cwd);
-  }
-
   const localVersion = await getLocalVersion(cwd);
   const hasExistingInstall = hasInstalledProject(cwd);
   const targetState = classifyUpdateTarget(localVersion, hasExistingInstall);
@@ -118,6 +105,20 @@ export async function update(force = false, ci = false): Promise<void> {
       throw new Error(message);
     }
     process.exit(1);
+  }
+
+  // Run all migrations (after confirming project is installed)
+  const migrationActions = runMigrations(cwd);
+  if (migrationActions.length > 0) {
+    ui.note(
+      migrationActions.map((m) => `${pc.green("✓")} ${m}`).join("\n"),
+      "Migration",
+    );
+  }
+
+  // Detect and offer to remove competing tools (skip in CI — no stdin)
+  if (!ci) {
+    await promptUninstallCompetitors(cwd);
   }
 
   if (targetState === "legacy") {
@@ -266,9 +267,23 @@ export async function update(force = false, ci = false): Promise<void> {
       // Update vendor adaptations for configured vendors (from oma-config.yaml)
       const configuredVendors = readVendorsFromConfig(cwd);
       const hookVendors = configuredVendors.filter(
-        (v): v is VendorType => v !== "copilot",
+        (v): v is VendorType => v !== "copilot" && v !== "cursor",
       );
       installVendorAdaptations(repoDir, cwd, hookVendors);
+
+      // --- Vendor-specific rules export ---
+      if (configuredVendors.includes("cursor")) {
+        generateCursorRules(cwd);
+      }
+      const mergedFiles = new Set<string>();
+      for (const v of ["gemini", "codex", "qwen"] as const) {
+        if (!configuredVendors.includes(v)) continue;
+        const target = v === "gemini" ? "GEMINI.md" : "AGENTS.md";
+        if (mergedFiles.has(target)) continue;
+        if (mergeRulesIndexForVendor(cwd, v)) {
+          mergedFiles.add(target);
+        }
+      }
 
       // --- Serena Project Setup ---
       {

@@ -34,13 +34,27 @@ describe("readVendorsFromConfig", () => {
   it("returns all vendors when config does not exist", () => {
     const dir = createTemp();
     const vendors = readVendorsFromConfig(dir);
-    expect(vendors).toEqual(["claude", "codex", "copilot", "gemini", "qwen"]);
+    expect(vendors).toEqual([
+      "claude",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "qwen",
+    ]);
   });
 
   it("returns all vendors when no vendors field in config", () => {
     const dir = createTemp("language: en\ntimezone: Asia/Seoul\n");
     const vendors = readVendorsFromConfig(dir);
-    expect(vendors).toEqual(["claude", "codex", "copilot", "gemini", "qwen"]);
+    expect(vendors).toEqual([
+      "claude",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "qwen",
+    ]);
   });
 
   it("reads vendors from config", () => {

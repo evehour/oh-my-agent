@@ -14,6 +14,7 @@ import {
   isGhInstalled,
 } from "../lib/github.js";
 import { getLocalVersion, saveLocalVersion } from "../lib/manifest.js";
+import { generateCursorRules, mergeRulesIndexForVendor } from "../lib/rules.js";
 import { ensureSerenaProject, resolveSerenaLanguages } from "../lib/serena.js";
 import {
   type CliTool,
@@ -233,6 +234,7 @@ export async function install(): Promise<void> {
     },
     { value: "codex", label: "Codex CLI", hint: "hooks + plugin" },
     { value: "copilot", label: "GitHub Copilot", hint: "skill symlinks" },
+    { value: "cursor", label: "Cursor", hint: ".cursor/rules/ export" },
     { value: "gemini", label: "Gemini CLI", hint: "hooks + Serena MCP" },
     { value: "qwen", label: "Qwen Code", hint: "hooks + settings" },
   ];
@@ -250,7 +252,9 @@ export async function install(): Promise<void> {
   }
 
   const vendors = selectedVendors as CliVendor[];
-  const hookVendors = vendors.filter((v): v is VendorType => v !== "copilot");
+  const hookVendors = vendors.filter(
+    (v): v is VendorType => v !== "copilot" && v !== "cursor",
+  );
   const selectedClis: CliTool[] = [];
   if (vendors.includes("claude")) selectedClis.push("claude");
   if (vendors.includes("copilot")) selectedClis.push("copilot");
@@ -328,6 +332,30 @@ export async function install(): Promise<void> {
       ].join("\n"),
       "Installed",
     );
+
+    // --- Vendor-specific rules export ---
+    if (vendors.includes("cursor")) {
+      const cursorExported = generateCursorRules(cwd);
+      if (cursorExported.length > 0) {
+        p.log.success(
+          pc.green(
+            `Cursor rules exported (${cursorExported.length} rules → .cursor/rules/)`,
+          ),
+        );
+      }
+    }
+
+    // Merge usage guide + rules index into single-file vendor docs
+    const mergedFiles = new Set<string>();
+    for (const v of ["gemini", "codex", "qwen"] as const) {
+      if (!vendors.includes(v)) continue;
+      const target = v === "gemini" ? "GEMINI.md" : "AGENTS.md";
+      if (mergedFiles.has(target)) continue;
+      if (mergeRulesIndexForVendor(cwd, v)) {
+        mergedFiles.add(target);
+        p.log.success(pc.green(`oma guide merged into ${target}`));
+      }
+    }
 
     // --- Serena Project Setup ---
     {

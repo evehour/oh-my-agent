@@ -10,6 +10,7 @@ import { checkAuthStatus } from "./commands/auth.js";
 import { bridge } from "./commands/bridge.js";
 import { cleanup } from "./commands/cleanup.js";
 import { doctor } from "./commands/doctor.js";
+import { exportRules } from "./commands/export.js";
 import { install } from "./commands/install.js";
 import { initMemory } from "./commands/memory.js";
 import { retro } from "./commands/retro.js";
@@ -652,6 +653,20 @@ program
       await star();
     }),
   );
+
+addOutputOptions(
+  program
+    .command("export <format>")
+    .description("Export skills for external IDEs (cursor)")
+    .option("-d, --dir <path>", "Target directory", process.cwd()),
+).action(
+  runAction(
+    async (format, options) => {
+      await exportRules(format, options.dir, resolveJsonMode(options));
+    },
+    { supportsJsonOutput: true },
+  ),
+);
 
 addOutputOptions(
   program

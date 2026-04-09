@@ -163,7 +163,7 @@ export async function doctor(jsonMode = false): Promise<void> {
   let recommendedSettingsOk = false;
   let claudeMdOk = false;
   const claudeSettingsPath = join(homeDir, ".claude", "settings.json");
-  const claudeMdPath = join(homeDir, ".claude", "CLAUDE.md");
+  const claudeMdPath = join(cwd, "CLAUDE.md");
   if (hasClaude)
     try {
       if (existsSync(claudeSettingsPath)) {
@@ -492,13 +492,10 @@ export async function doctor(jsonMode = false): Promise<void> {
       }
 
       if (claudeMdOk) {
-        p.note(
-          `${pc.green("✅")} OMA block found in ~/.claude/CLAUDE.md`,
-          "CLAUDE.md",
-        );
+        p.note(`${pc.green("✅")} OMA block found in ./CLAUDE.md`, "CLAUDE.md");
       } else {
         p.note(
-          `${pc.yellow("⚠️")} OMA block missing in ~/.claude/CLAUDE.md\n${pc.dim("Run 'oh-my-agent' to install or reinstall")}`,
+          `${pc.yellow("⚠️")} OMA block missing in ./CLAUDE.md\n${pc.dim("Run 'oh-my-agent' to install or reinstall")}`,
           "CLAUDE.md",
         );
       }

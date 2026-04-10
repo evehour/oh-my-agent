@@ -302,6 +302,12 @@ export async function update(force = false, ci = false): Promise<void> {
         setNeedsReconcile(cwd, false);
       }
 
+      // Clean up migration backups (no longer needed after successful update)
+      const migrationBackupDir = join(cwd, ".agents", ".migration-backup");
+      if (existsSync(migrationBackupDir)) {
+        rmSync(migrationBackupDir, { recursive: true, force: true });
+      }
+
       // --- Serena Project Setup ---
       {
         const serenaLangs = inferSerenaLanguages(cwd);

@@ -32,6 +32,37 @@ export async function getLocalVersion(
   }
 }
 
+export function getNeedsReconcile(targetDir: string): boolean {
+  const versionFile = join(targetDir, INSTALLED_SKILLS_DIR, "_version.json");
+  if (!existsSync(versionFile)) return false;
+
+  try {
+    const content = readFileSync(versionFile, "utf-8");
+    const json = JSON.parse(content);
+    return json.needsReconcile === true;
+  } catch {
+    return false;
+  }
+}
+
+export function setNeedsReconcile(targetDir: string, value: boolean): void {
+  const versionFile = join(targetDir, INSTALLED_SKILLS_DIR, "_version.json");
+  if (!existsSync(versionFile)) return;
+
+  try {
+    const content = readFileSync(versionFile, "utf-8");
+    const json = JSON.parse(content);
+    if (value) {
+      json.needsReconcile = true;
+    } else {
+      delete json.needsReconcile;
+    }
+    writeFileSync(versionFile, JSON.stringify(json, null, 2), "utf-8");
+  } catch {
+    // ignore — best-effort
+  }
+}
+
 export function hasInstalledProject(targetDir: string): boolean {
   const skillsDir = join(targetDir, INSTALLED_SKILLS_DIR);
   if (!existsSync(skillsDir)) return false;

@@ -24,8 +24,10 @@ import {
 import {
   fetchRemoteManifest,
   getLocalVersion,
+  getNeedsReconcile,
   hasInstalledProject,
   saveLocalVersion,
+  setNeedsReconcile,
 } from "../lib/manifest.js";
 import { generateCursorRules, mergeRulesIndexForVendor } from "../lib/rules.js";
 import { ensureSerenaProject, inferSerenaLanguages } from "../lib/serena.js";
@@ -116,6 +118,14 @@ export async function update(force = false, ci = false): Promise<void> {
     );
   }
 
+  // Determine if reconcile is needed (migrations ran, or previous reconcile failed)
+  const needsReconcile = migrationActions.length > 0 || getNeedsReconcile(cwd);
+
+  // Persist reconcile flag so a failed download doesn't lose the intent
+  if (migrationActions.length > 0 && !getNeedsReconcile(cwd)) {
+    setNeedsReconcile(cwd, true);
+  }
+
   // Detect and offer to remove competing tools (skip in CI — no stdin)
   if (!ci) {
     await promptUninstallCompetitors(cwd);
@@ -135,11 +145,13 @@ export async function update(force = false, ci = false): Promise<void> {
 
     const remoteManifest = await fetchRemoteManifest();
 
-    if (localVersion === remoteManifest.version) {
+    if (localVersion === remoteManifest.version && !needsReconcile) {
       spinner.stop(pc.green("Already up to date!"));
       ui.outro(`Current version: ${pc.cyan(localVersion)}`);
       return;
     }
+
+    const isReconcileOnly = localVersion === remoteManifest.version;
 
     spinner.message(`Downloading ${pc.cyan(remoteManifest.version)}...`);
 
@@ -285,6 +297,11 @@ export async function update(force = false, ci = false): Promise<void> {
         }
       }
 
+      // Vendor adaptations complete — clear reconcile flag
+      if (needsReconcile) {
+        setNeedsReconcile(cwd, false);
+      }
+
       // --- Serena Project Setup ---
       {
         const serenaLangs = inferSerenaLanguages(cwd);
@@ -347,7 +364,11 @@ export async function update(force = false, ci = false): Promise<void> {
 
       const cliTools = detectExistingCliSymlinkDirs(cwd);
 
-      spinner.stop(`Updated to version ${pc.cyan(remoteManifest.version)}!`);
+      spinner.stop(
+        isReconcileOnly
+          ? pc.green("Reconciled after migrations!")
+          : `Updated to version ${pc.cyan(remoteManifest.version)}!`,
+      );
 
       if (cliTools.length > 0) {
         const skillNames = getInstalledSkillNames(cwd);
@@ -363,7 +384,9 @@ export async function update(force = false, ci = false): Promise<void> {
       }
 
       ui.outro(
-        `${remoteManifest.metadata?.totalFiles ?? 0} files updated successfully`,
+        isReconcileOnly
+          ? `Reconciled to version ${pc.cyan(remoteManifest.version)}`
+          : `${remoteManifest.metadata?.totalFiles ?? 0} files updated successfully`,
       );
 
       if (

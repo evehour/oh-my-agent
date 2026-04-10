@@ -13,8 +13,10 @@ export const migrateOmaConfig: Migration = {
     const legacyPath = join(cwd, ".agents", "config", "user-preferences.yaml");
     const newPath = join(cwd, ".agents", "oma-config.yaml");
 
-    if (!existsSync(newPath) && existsSync(legacyPath)) {
-      cpSync(legacyPath, newPath);
+    if (existsSync(legacyPath)) {
+      // User's actual config in legacy path always takes precedence
+      // (newPath may be a template from cpSync, not user customization)
+      cpSync(legacyPath, newPath, { force: true });
       rmSync(legacyPath);
       actions.push(
         ".agents/config/user-preferences.yaml → .agents/oma-config.yaml",

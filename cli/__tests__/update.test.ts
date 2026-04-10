@@ -1,9 +1,21 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { runMigrations } from "../commands/migrations/index.js";
 import { classifyUpdateTarget } from "../commands/update.js";
-import { hasInstalledProject } from "../lib/manifest.js";
+import {
+  getNeedsReconcile,
+  hasInstalledProject,
+  setNeedsReconcile,
+} from "../lib/manifest.js";
 import * as skills from "../lib/skills.js";
 
 describe("whitelist-based skill filtering", () => {
@@ -152,5 +164,285 @@ describe("classifyUpdateTarget", () => {
 
   it("treats directories without an install as missing", () => {
     expect(classifyUpdateTarget(null, false)).toBe("missing");
+  });
+});
+
+describe("reconcile: migrations trigger full update even when version matches", () => {
+  const tempRoots: string[] = [];
+  let originalHome: string | undefined;
+
+  afterEach(() => {
+    process.env.HOME = originalHome;
+    for (const root of tempRoots) {
+      rmSync(root, { recursive: true, force: true });
+    }
+    tempRoots.length = 0;
+  });
+
+  it("runMigrations returns actions when legacy config exists — triggers reconcile", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-"));
+    tempRoots.push(root);
+
+    // Template oma-config.yaml (from previous cpSync)
+    mkdirSync(join(root, ".agents"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "oma-config.yaml"),
+      "language: en\n",
+      "utf-8",
+    );
+
+    // Legacy user config still present
+    mkdirSync(join(root, ".agents", "config"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "config", "user-preferences.yaml"),
+      "language: ko\n",
+      "utf-8",
+    );
+
+    const actions = runMigrations(root);
+
+    // Migration 003 should fire even though oma-config.yaml exists
+    expect(actions.length).toBeGreaterThan(0);
+    expect(actions).toContain(
+      ".agents/config/user-preferences.yaml → .agents/oma-config.yaml",
+    );
+
+    // Simulating update logic: migrations applied → should NOT early return
+    const localVersion = "4.26.1";
+    const remoteVersion = "4.26.1";
+    const shouldEarlyReturn =
+      localVersion === remoteVersion && actions.length === 0;
+    expect(shouldEarlyReturn).toBe(false);
+  });
+
+  it("runMigrations returns empty when no legacy state — allows early return", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-"));
+    tempRoots.push(root);
+
+    // Only modern config — no legacy files
+    mkdirSync(join(root, ".agents"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "oma-config.yaml"),
+      "language: en\n",
+      "utf-8",
+    );
+
+    const actions = runMigrations(root);
+
+    expect(actions).toHaveLength(0);
+
+    // No migrations → early return is safe
+    const localVersion = "4.26.1";
+    const remoteVersion = "4.26.1";
+    const shouldEarlyReturn =
+      localVersion === remoteVersion && actions.length === 0;
+    expect(shouldEarlyReturn).toBe(true);
+  });
+
+  it("migration 004 (global CLAUDE.md cleanup) also triggers reconcile", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-"));
+    tempRoots.push(root);
+    originalHome = process.env.HOME;
+    process.env.HOME = root;
+
+    // Modern .agents/ setup (no legacy config)
+    mkdirSync(join(root, ".agents"), { recursive: true });
+
+    // Global CLAUDE.md with OMA block (will be cleaned by migration 004)
+    mkdirSync(join(root, ".claude"), { recursive: true });
+    writeFileSync(
+      join(root, ".claude", "CLAUDE.md"),
+      "<!-- OMA:START -->\noma content\n<!-- OMA:END -->",
+    );
+
+    const actions = runMigrations(root);
+
+    expect(actions.length).toBeGreaterThan(0);
+    expect(existsSync(join(root, ".claude", "CLAUDE.md"))).toBe(false);
+
+    // Migrations applied → reconcile should proceed (to run mergeClaudeMd etc.)
+    const localVersion = "4.26.1";
+    const remoteVersion = "4.26.1";
+    const shouldEarlyReturn =
+      localVersion === remoteVersion && actions.length === 0;
+    expect(shouldEarlyReturn).toBe(false);
+  });
+
+  it("multiple migrations firing together all trigger reconcile", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-"));
+    tempRoots.push(root);
+    originalHome = process.env.HOME;
+    process.env.HOME = root;
+
+    // Legacy config file
+    mkdirSync(join(root, ".agents", "config"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "config", "user-preferences.yaml"),
+      "language: ko\n",
+      "utf-8",
+    );
+
+    // Global CLAUDE.md with OMA block
+    mkdirSync(join(root, ".claude"), { recursive: true });
+    writeFileSync(
+      join(root, ".claude", "CLAUDE.md"),
+      "# Notes\n<!-- OMA:START -->\nblock\n<!-- OMA:END -->\n",
+    );
+
+    const actions = runMigrations(root);
+
+    // Both migration 003 and 004 should fire
+    expect(actions.length).toBeGreaterThanOrEqual(2);
+    expect(actions).toContain(
+      ".agents/config/user-preferences.yaml → .agents/oma-config.yaml",
+    );
+    expect(actions.some((a) => a.includes("CLAUDE.md"))).toBe(true);
+
+    // User config preserved
+    expect(
+      readFileSync(join(root, ".agents", "oma-config.yaml"), "utf-8"),
+    ).toBe("language: ko\n");
+
+    // Global CLAUDE.md cleaned (user content preserved)
+    const globalMd = readFileSync(join(root, ".claude", "CLAUDE.md"), "utf-8");
+    expect(globalMd).toContain("# Notes");
+    expect(globalMd).not.toContain("OMA:START");
+  });
+});
+
+describe("persisted needsReconcile flag", () => {
+  const tempRoots: string[] = [];
+
+  afterEach(() => {
+    for (const root of tempRoots) {
+      rmSync(root, { recursive: true, force: true });
+    }
+    tempRoots.length = 0;
+  });
+
+  it("getNeedsReconcile returns false when _version.json does not exist", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-flag-"));
+    tempRoots.push(root);
+
+    expect(getNeedsReconcile(root)).toBe(false);
+  });
+
+  it("getNeedsReconcile returns false when flag is not set", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-flag-"));
+    tempRoots.push(root);
+
+    mkdirSync(join(root, ".agents", "skills"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "skills", "_version.json"),
+      JSON.stringify({ version: "4.26.1" }),
+      "utf-8",
+    );
+
+    expect(getNeedsReconcile(root)).toBe(false);
+  });
+
+  it("setNeedsReconcile persists flag and getNeedsReconcile reads it", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-flag-"));
+    tempRoots.push(root);
+
+    mkdirSync(join(root, ".agents", "skills"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "skills", "_version.json"),
+      JSON.stringify({ version: "4.26.1" }),
+      "utf-8",
+    );
+
+    setNeedsReconcile(root, true);
+    expect(getNeedsReconcile(root)).toBe(true);
+
+    // Version preserved
+    const json = JSON.parse(
+      readFileSync(join(root, ".agents", "skills", "_version.json"), "utf-8"),
+    );
+    expect(json.version).toBe("4.26.1");
+  });
+
+  it("setNeedsReconcile(false) clears the flag cleanly", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-flag-"));
+    tempRoots.push(root);
+
+    mkdirSync(join(root, ".agents", "skills"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "skills", "_version.json"),
+      JSON.stringify({ version: "4.26.1", needsReconcile: true }),
+      "utf-8",
+    );
+
+    expect(getNeedsReconcile(root)).toBe(true);
+
+    setNeedsReconcile(root, false);
+    expect(getNeedsReconcile(root)).toBe(false);
+
+    // Flag removed from JSON, not just set to false
+    const json = JSON.parse(
+      readFileSync(join(root, ".agents", "skills", "_version.json"), "utf-8"),
+    );
+    expect(json.needsReconcile).toBeUndefined();
+    expect(json.version).toBe("4.26.1");
+  });
+
+  it("persisted flag prevents early return even when migrations are no-op", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-flag-"));
+    tempRoots.push(root);
+
+    // Modern setup — no legacy files
+    mkdirSync(join(root, ".agents", "skills"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "oma-config.yaml"),
+      "language: en\n",
+      "utf-8",
+    );
+    // Simulates: previous reconcile attempt failed mid-download
+    writeFileSync(
+      join(root, ".agents", "skills", "_version.json"),
+      JSON.stringify({ version: "4.26.1", needsReconcile: true }),
+      "utf-8",
+    );
+
+    const migrationActions = runMigrations(root);
+    expect(migrationActions).toHaveLength(0);
+
+    // Even though migrations are no-op, persisted flag forces reconcile
+    const needsReconcile =
+      migrationActions.length > 0 || getNeedsReconcile(root);
+    expect(needsReconcile).toBe(true);
+
+    const localVersion = "4.26.1";
+    const remoteVersion = "4.26.1";
+    const shouldEarlyReturn = localVersion === remoteVersion && !needsReconcile;
+    expect(shouldEarlyReturn).toBe(false);
+  });
+
+  it("no flag + no migrations → allows early return", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-reconcile-flag-"));
+    tempRoots.push(root);
+
+    mkdirSync(join(root, ".agents", "skills"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "oma-config.yaml"),
+      "language: en\n",
+      "utf-8",
+    );
+    writeFileSync(
+      join(root, ".agents", "skills", "_version.json"),
+      JSON.stringify({ version: "4.26.1" }),
+      "utf-8",
+    );
+
+    const migrationActions = runMigrations(root);
+    const needsReconcile =
+      migrationActions.length > 0 || getNeedsReconcile(root);
+
+    expect(needsReconcile).toBe(false);
+
+    const localVersion = "4.26.1";
+    const remoteVersion = "4.26.1";
+    const shouldEarlyReturn = localVersion === remoteVersion && !needsReconcile;
+    expect(shouldEarlyReturn).toBe(true);
   });
 });

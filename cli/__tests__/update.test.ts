@@ -310,6 +310,73 @@ describe("reconcile: migrations trigger full update even when version matches", 
   });
 });
 
+describe("migration backup cleanup after successful update", () => {
+  const tempRoots: string[] = [];
+
+  afterEach(() => {
+    for (const root of tempRoots) {
+      rmSync(root, { recursive: true, force: true });
+    }
+    tempRoots.length = 0;
+  });
+
+  it("migration-backup dir is created by migration 002 when content differs", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-backup-cleanup-"));
+    tempRoots.push(root);
+
+    // Legacy file at old path with custom content
+    mkdirSync(join(root, ".agents", "skills", "_shared"), { recursive: true });
+    writeFileSync(
+      join(root, ".agents", "skills", "_shared", "context-loading.md"),
+      "customized content\n",
+      "utf-8",
+    );
+
+    // New path with different (canonical) content
+    mkdirSync(join(root, ".agents", "skills", "_shared", "core"), {
+      recursive: true,
+    });
+    writeFileSync(
+      join(root, ".agents", "skills", "_shared", "core", "context-loading.md"),
+      "canonical content\n",
+      "utf-8",
+    );
+
+    runMigrations(root);
+
+    const backupDir = join(root, ".agents", ".migration-backup");
+    expect(existsSync(backupDir)).toBe(true);
+
+    // Simulate: successful update would clean this up
+    rmSync(backupDir, { recursive: true, force: true });
+    expect(existsSync(backupDir)).toBe(false);
+  });
+
+  it("migration-backup dir is not created when content is identical", () => {
+    const root = mkdtempSync(join(tmpdir(), "oma-backup-cleanup-"));
+    tempRoots.push(root);
+
+    mkdirSync(join(root, ".agents", "skills", "_shared", "core"), {
+      recursive: true,
+    });
+    writeFileSync(
+      join(root, ".agents", "skills", "_shared", "context-loading.md"),
+      "same content\n",
+      "utf-8",
+    );
+    writeFileSync(
+      join(root, ".agents", "skills", "_shared", "core", "context-loading.md"),
+      "same content\n",
+      "utf-8",
+    );
+
+    runMigrations(root);
+
+    const backupDir = join(root, ".agents", ".migration-backup");
+    expect(existsSync(backupDir)).toBe(false);
+  });
+});
+
 describe("persisted needsReconcile flag", () => {
   const tempRoots: string[] = [];
 

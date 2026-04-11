@@ -37,8 +37,8 @@ Pick a preset and you're ready:
 
 | Agent | What They Do |
 |-------|-------------|
-| **oma-backend** | APIs in Python, Node.js, or Rust |
 | **oma-architecture** | Architectural tradeoffs, boundaries, ADR/ATAM/CBAM-aware analysis |
+| **oma-backend** | APIs in Python, Node.js, or Rust |
 | **oma-brainstorm** | Explores ideas before you commit to building |
 | **oma-commit** | Clean conventional commits |
 | **oma-db** | Schema design, migrations, indexing, vector DB |
@@ -135,6 +135,7 @@ flowchart TD
 
     subgraph Domain["Domain Agents"]
         direction TB
+        ARC[oma-architecture]
         FE[oma-frontend]
         BE[oma-backend]
         DB[oma-db]

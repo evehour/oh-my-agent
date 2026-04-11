@@ -6,7 +6,7 @@
 
 Hast du dir schon mal gewünscht, dein KI-Assistent hätte Kollegen? Genau das macht oh-my-agent.
 
-Statt dass eine einzige KI alles erledigt (und sich auf halbem Weg verheddert), verteilt oh-my-agent die Arbeit auf **spezialisierte Agenten** — Frontend, Backend, QA, PM, DB, Mobile, Infra, Debug, Design und mehr. Jeder kennt sein Fachgebiet in- und auswendig, hat eigene Tools und Checklisten und bleibt in seiner Spur.
+Statt dass eine einzige KI alles erledigt (und sich auf halbem Weg verheddert), verteilt oh-my-agent die Arbeit auf **spezialisierte Agenten** — Frontend, Backend, Architektur, QA, PM, DB, Mobile, Infra, Debug, Design und mehr. Jeder kennt sein Fachgebiet in- und auswendig, hat eigene Tools und Checklisten und bleibt in seiner Spur.
 
 Funktioniert mit allen großen KI-IDEs: Antigravity, Claude Code, Cursor, Gemini CLI, Codex CLI, OpenCode und weiteren.
 
@@ -25,16 +25,17 @@ Wähl ein Preset und los geht's:
 | Preset | Was Du Bekommst |
 |--------|-------------|
 | ✨ All | Alle Agenten und Skills |
-| 🌐 Fullstack | frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
 
 ## Dein Agenten-Team
 
 | Agent | Was Er Macht |
 |-------|-------------|
+| **oma-architecture** | Architektur-Trade-offs, Grenzen, ADR-/ATAM-/CBAM-bewusste Analyse |
 | **oma-backend** | APIs in Python, Node.js oder Rust |
 | **oma-brainstorm** | Erkundet Ideen, bevor du loslegst |
 | **oma-commit** | Saubere konventionelle Commits |
@@ -115,11 +116,12 @@ flowchart TD
         W1["/work"]
         W1b["/ultrawork"]
         W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-        W7["/design"]
+        W3["/architecture"]
+        W4["/plan"]
+        W5["/review"]
+        W6["/debug"]
+        W7["/deepinit"]
+        W8["/design"]
     end
 
     subgraph Orchestration["Orchestration"]
@@ -130,6 +132,7 @@ flowchart TD
 
     subgraph Domain["Domain Agents"]
         direction TB
+        ARC[oma-architecture]
         FE[oma-frontend]
         BE[oma-backend]
         DB[oma-db]

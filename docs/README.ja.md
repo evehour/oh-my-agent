@@ -6,7 +6,7 @@
 
 AIアシスタントに同僚がいたらいいのに、って思ったことありませんか？ oh-my-agentはまさにそれです。
 
-1つのAIに全部やらせて途中で混乱する代わりに、oh-my-agentは作業を**専門エージェント**に分担します — frontend、backend、QA、PM、DB、mobile、infra、debug、designなど。各エージェントは自分の領域を深く理解し、専用ツールとチェックリストを持ち、担当範囲に集中します。
+1つのAIに全部やらせて途中で混乱する代わりに、oh-my-agentは作業を**専門エージェント**に分担します — frontend、backend、architecture、QA、PM、DB、mobile、infra、debug、designなど。各エージェントは自分の領域を深く理解し、専用ツールとチェックリストを持ち、担当範囲に集中します。
 
 主要なAI IDEすべてに対応: Antigravity、Claude Code、Cursor、Gemini CLI、Codex CLI、OpenCodeなど。
 
@@ -25,16 +25,17 @@ bunx oh-my-agent@latest
 | プリセット | 内容 |
 |-----------|------|
 | ✨ All | すべてのエージェントとスキル |
-| 🌐 Fullstack | frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
 
 ## エージェントチーム
 
 | エージェント | 役割 |
 |-------------|------|
+| **oma-architecture** | アーキテクチャのトレードオフと境界、ADR/ATAM/CBAMを踏まえた分析 |
 | **oma-backend** | Python、Node.js、RustでAPI開発 |
 | **oma-brainstorm** | 実装前にアイデアを探索 |
 | **oma-commit** | きれいなconventional commit |
@@ -115,11 +116,12 @@ flowchart TD
         W1["/work"]
         W1b["/ultrawork"]
         W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-        W7["/design"]
+        W3["/architecture"]
+        W4["/plan"]
+        W5["/review"]
+        W6["/debug"]
+        W7["/deepinit"]
+        W8["/design"]
     end
 
     subgraph Orchestration["Orchestration"]
@@ -130,6 +132,7 @@ flowchart TD
 
     subgraph Domain["Domain Agents"]
         direction TB
+        ARC[oma-architecture]
         FE[oma-frontend]
         BE[oma-backend]
         DB[oma-db]

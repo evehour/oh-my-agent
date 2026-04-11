@@ -6,7 +6,7 @@
 
 AI 어시스턴트한테 동료가 있으면 좋겠다고 생각한 적 없나요? oh-my-agent가 바로 그겁니다.
 
-AI 하나가 전부 다 하다가 중간에 길을 잃는 대신, oh-my-agent는 작업을 **전문 에이전트**들에게 나눠줍니다 — frontend, backend, QA, PM, DB, mobile, infra, debug, design 등등. 각 에이전트는 자기 영역을 깊이 알고, 전용 도구와 체크리스트를 갖고 있으며, 맡은 일에만 집중합니다.
+AI 하나가 전부 다 하다가 중간에 길을 잃는 대신, oh-my-agent는 작업을 **전문 에이전트**들에게 나눠줍니다 — frontend, backend, architecture, QA, PM, DB, mobile, infra, debug, design 등등. 각 에이전트는 자기 영역을 깊이 알고, 전용 도구와 체크리스트를 갖고 있으며, 맡은 일에만 집중합니다.
 
 주요 AI IDE 모두 지원: Antigravity, Claude Code, Cursor, Gemini CLI, Codex CLI, OpenCode 등.
 
@@ -27,16 +27,17 @@ bunx oh-my-agent@latest
 | 프리셋 | 구성 |
 |--------|------|
 | ✨ All | 모든 에이전트와 스킬 |
-| 🌐 Fullstack | frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
 
 ## 에이전트 팀
 
 | 에이전트 | 하는 일 |
 |----------|------|
+| **oma-architecture** | 아키텍처 트레이드오프, 모듈 경계, ADR/ATAM/CBAM 관점의 분석 |
 | **oma-backend** | Python, Node.js, Rust로 API 개발 |
 | **oma-brainstorm** | 구현 전에 아이디어를 탐색 |
 | **oma-commit** | 깔끔한 conventional commit |
@@ -117,11 +118,12 @@ flowchart TD
         W1["/work"]
         W1b["/ultrawork"]
         W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-        W7["/design"]
+        W3["/architecture"]
+        W4["/plan"]
+        W5["/review"]
+        W6["/debug"]
+        W7["/deepinit"]
+        W8["/design"]
     end
 
     subgraph Orchestration["Orchestration"]
@@ -132,6 +134,7 @@ flowchart TD
 
     subgraph Domain["Domain Agents"]
         direction TB
+        ARC[oma-architecture]
         FE[oma-frontend]
         BE[oma-backend]
         DB[oma-db]

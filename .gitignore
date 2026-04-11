@@ -25,6 +25,10 @@ docs/plans/
 # Claude integration layer (generated)
 .claude/
 
+# Cursor/Gemini integration layer (generated)
+.cursor/*
+.gemini/*
+
 # Serena Memory (runtime state)
 .serena/memories/*
 !.serena/memories/.gitkeep

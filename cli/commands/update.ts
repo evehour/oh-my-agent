@@ -11,16 +11,16 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
-import {
-  applyRecommendedSettings,
-  needsSettingsUpdate,
-} from "../lib/claude-settings.js";
 import { promptUninstallCompetitors } from "../lib/competitors.js";
 import {
   isAlreadyStarred,
   isGhAuthenticated,
   isGhInstalled,
 } from "../lib/github.js";
+import {
+  applyRecommendedGeminiSettings,
+  needsGeminiSettingsUpdate,
+} from "../lib/gemini/settings.js";
 import {
   fetchRemoteManifest,
   getLocalVersion,
@@ -282,6 +282,24 @@ export async function update(force = false, ci = false): Promise<void> {
         (v): v is VendorType => v !== "copilot",
       );
       installVendorAdaptations(repoDir, cwd, hookVendors);
+      if (configuredVendors.includes("gemini")) {
+        const geminiSettingsPath = join(cwd, ".gemini", "settings.json");
+        let geminiSettings: unknown = {};
+        if (existsSync(geminiSettingsPath)) {
+          try {
+            geminiSettings = JSON.parse(readFileSync(geminiSettingsPath, "utf-8"));
+          } catch {
+            geminiSettings = {};
+          }
+        }
+        if (needsGeminiSettingsUpdate(geminiSettings)) {
+          applyRecommendedGeminiSettings(geminiSettings);
+          writeFileSync(
+            geminiSettingsPath,
+            `${JSON.stringify(geminiSettings, null, 2)}\n`,
+          );
+        }
+      }
 
       // --- Vendor-specific rules export ---
       if (configuredVendors.includes("cursor")) {
@@ -325,59 +343,10 @@ export async function update(force = false, ci = false): Promise<void> {
         ensureSerenaProject(cwd, serenaLangs);
       }
 
-      // --- Auto-configure vendors (no prompts, based on saved config) ---
-      const homeDir = process.env.HOME || process.env.USERPROFILE || "";
-
-      // Claude Code: apply recommended settings
-      if (configuredVendors.includes("claude")) {
-        try {
-          execSync("claude --version", { stdio: "ignore" });
-          const claudeSettingsPath = join(homeDir, ".claude", "settings.json");
-          // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
-          let claudeSettings: any = {};
-          if (existsSync(claudeSettingsPath)) {
-            claudeSettings = JSON.parse(
-              readFileSync(claudeSettingsPath, "utf-8"),
-            );
-          }
-          if (needsSettingsUpdate(claudeSettings)) {
-            mkdirSync(join(homeDir, ".claude"), { recursive: true });
-            applyRecommendedSettings(claudeSettings);
-            writeFileSync(
-              claudeSettingsPath,
-              `${JSON.stringify(claudeSettings, null, 2)}\n`,
-            );
-          }
-        } catch {
-          // Claude Code not installed — skip
-        }
-      }
-
-      // Codex: install/update plugin
-      if (configuredVendors.includes("codex")) {
-        try {
-          execSync("claude --version", { stdio: "ignore" });
-          execSync("codex --version", { stdio: "ignore" });
-          const pluginList = execSync("claude plugin list", {
-            encoding: "utf-8",
-            stdio: ["pipe", "pipe", "ignore"],
-          });
-          if (pluginList.includes("codex@openai-codex")) {
-            execSync("claude plugin update codex@openai-codex", {
-              stdio: "ignore",
-            });
-          } else {
-            execSync("claude plugin marketplace add openai/codex-plugin-cc", {
-              stdio: "ignore",
-            });
-            execSync("claude plugin install codex@openai-codex", {
-              stdio: "ignore",
-            });
-          }
-        } catch {
-          // CLI not available — skip
-        }
-      }
+      ui.note(
+        "Skipped global HOME-level configuration updates during project update.",
+        "Notice",
+      );
 
       const cliTools = detectExistingCliSymlinkDirs(cwd);
 

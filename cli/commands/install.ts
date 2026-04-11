@@ -3,16 +3,16 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
-import {
-  applyRecommendedSettings,
-  needsSettingsUpdate,
-} from "../lib/claude-settings.js";
 import { promptUninstallCompetitors } from "../lib/competitors.js";
 import {
   isAlreadyStarred,
   isGhAuthenticated,
   isGhInstalled,
 } from "../lib/github.js";
+import {
+  applyRecommendedGeminiSettings,
+  needsGeminiSettingsUpdate,
+} from "../lib/gemini/settings.js";
 import { getLocalVersion, saveLocalVersion } from "../lib/manifest.js";
 import { generateCursorRules, mergeRulesIndexForVendor } from "../lib/rules.js";
 import { ensureSerenaProject, resolveSerenaLanguages } from "../lib/serena.js";
@@ -21,7 +21,6 @@ import {
   getAllSkills,
   INSTALLED_SKILLS_DIR,
   installConfigs,
-  installGlobalWorkflows,
   installRules,
   installShared,
   installSkill,
@@ -268,7 +267,6 @@ export async function install(): Promise<void> {
       installWorkflows(repoDir, cwd);
       installRules(repoDir, cwd);
       installConfigs(repoDir, cwd);
-      installGlobalWorkflows(repoDir);
 
       for (const skillName of selectedSkills) {
         spinner.message(`Installing ${pc.cyan(skillName)}...`);
@@ -280,6 +278,24 @@ export async function install(): Promise<void> {
       // Install vendor-specific adaptations (agents, routers, hooks, CLAUDE.md)
       spinner.start("Installing vendor adaptations...");
       installVendorAdaptations(repoDir, cwd, hookVendors);
+      if (vendors.includes("gemini")) {
+        const geminiSettingsPath = join(cwd, ".gemini", "settings.json");
+        let geminiSettings: unknown = {};
+        if (existsSync(geminiSettingsPath)) {
+          try {
+            geminiSettings = JSON.parse(readFileSync(geminiSettingsPath, "utf-8"));
+          } catch {
+            geminiSettings = {};
+          }
+        }
+        if (needsGeminiSettingsUpdate(geminiSettings)) {
+          applyRecommendedGeminiSettings(geminiSettings);
+          writeFileSync(
+            geminiSettingsPath,
+            `${JSON.stringify(geminiSettings, null, 2)}\n`,
+          );
+        }
+      }
       spinner.stop("Vendor adaptations installed!");
 
       // Patch oma-config.yaml with selected language and vendors
@@ -380,139 +396,7 @@ export async function install(): Promise<void> {
       }
     }
 
-    // --- Git rerere Setup (auto-enable if not set) ---
-    try {
-      execSync("git config --get rerere.enabled", {
-        stdio: ["pipe", "pipe", "ignore"],
-      });
-    } catch {
-      try {
-        execSync("git config --global rerere.enabled true");
-        p.log.success(pc.green("git rerere enabled globally!"));
-      } catch {
-        // Not a git repo or git not available — skip
-      }
-    }
-
-    // --- Auto-configure selected vendors (no individual prompts) ---
-    const homeDir = process.env.HOME || process.env.USERPROFILE || "";
-
-    // Claude Code: apply recommended settings
-    if (vendors.includes("claude")) {
-      try {
-        execSync("claude --version", { stdio: "ignore" });
-        const claudeSettingsPath = join(homeDir, ".claude", "settings.json");
-        // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
-        let claudeSettings: any = {};
-        if (existsSync(claudeSettingsPath)) {
-          claudeSettings = JSON.parse(
-            readFileSync(claudeSettingsPath, "utf-8"),
-          );
-        }
-        if (needsSettingsUpdate(claudeSettings)) {
-          applyRecommendedSettings(claudeSettings);
-          writeFileSync(
-            claudeSettingsPath,
-            `${JSON.stringify(claudeSettings, null, 2)}\n`,
-          );
-          p.log.success(pc.green("Claude Code recommended settings applied!"));
-        }
-      } catch {
-        // Claude Code not installed — skip
-      }
-    }
-
-    // Codex: install plugin for Claude Code
-    if (vendors.includes("codex")) {
-      try {
-        execSync("claude --version", { stdio: "ignore" });
-        execSync("codex --version", { stdio: "ignore" });
-        const pluginList = execSync("claude plugin list", {
-          encoding: "utf-8",
-          stdio: ["pipe", "pipe", "ignore"],
-        });
-        if (!pluginList.includes("codex@openai-codex")) {
-          execSync("claude plugin marketplace add openai/codex-plugin-cc", {
-            stdio: "ignore",
-          });
-          execSync("claude plugin install codex@openai-codex", {
-            stdio: "ignore",
-          });
-          p.log.success(pc.green("Codex plugin installed for Claude Code!"));
-        }
-      } catch {
-        // CLI not available — skip
-      }
-    }
-
-    // Gemini: configure Serena MCP bridge
-    if (vendors.includes("gemini")) {
-      // Antigravity bridge
-      const mcpConfigPath = join(
-        homeDir,
-        ".gemini",
-        "antigravity",
-        "mcp_config.json",
-      );
-      try {
-        if (existsSync(mcpConfigPath)) {
-          // biome-ignore lint/suspicious/noExplicitAny: Config file is unstructured
-          const mcpConfig: any = JSON.parse(
-            readFileSync(mcpConfigPath, "utf-8"),
-          );
-          if (mcpConfig?.mcpServers) {
-            const serena = mcpConfig.mcpServers.serena;
-            const bridgeCmd = "oh-my-agent@latest";
-            const configured =
-              serena?.command === "npx" &&
-              Array.isArray(serena?.args) &&
-              serena.args.includes(bridgeCmd);
-            if (!configured) {
-              mcpConfig.mcpServers.serena = {
-                command: "npx",
-                args: [
-                  "-y",
-                  "oh-my-agent@latest",
-                  "bridge",
-                  "http://localhost:12341/mcp",
-                ],
-                disabled: false,
-              };
-              writeFileSync(mcpConfigPath, JSON.stringify(mcpConfig, null, 2));
-              p.log.success(pc.green("Serena MCP bridge configured!"));
-            }
-          }
-        }
-      } catch {
-        // Config not available — skip
-      }
-
-      // Gemini CLI Serena (HTTP mode)
-      const geminiConfigPath = join(homeDir, ".gemini", "settings.json");
-      try {
-        if (existsSync(geminiConfigPath)) {
-          // biome-ignore lint/suspicious/noExplicitAny: Config file is unstructured
-          const geminiConfig: any = JSON.parse(
-            readFileSync(geminiConfigPath, "utf-8"),
-          );
-          if (
-            geminiConfig?.mcpServers &&
-            geminiConfig.mcpServers.serena?.url !== "http://localhost:12341/mcp"
-          ) {
-            geminiConfig.mcpServers.serena = {
-              url: "http://localhost:12341/mcp",
-            };
-            writeFileSync(
-              geminiConfigPath,
-              JSON.stringify(geminiConfig, null, 2),
-            );
-            p.log.success(pc.green("Gemini CLI Serena configured!"));
-          }
-        }
-      } catch {
-        // Config not available — skip
-      }
-    }
+    p.log.info(pc.dim("Skipped global HOME-level configuration updates."));
 
     p.outro(pc.green("Done! Open your project in your IDE to use the skills."));
 

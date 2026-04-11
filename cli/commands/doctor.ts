@@ -3,10 +3,6 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
-import {
-  applyRecommendedSettings,
-  needsSettingsUpdate,
-} from "../lib/claude-settings.js";
 import { checkStarred } from "../lib/github.js";
 import {
   getAllSkills,
@@ -92,33 +88,8 @@ async function checkSkills(): Promise<SkillCheck[]> {
   return checks;
 }
 
-async function checkGlobalWorkflows(): Promise<{
-  installed: boolean;
-  count: number;
-}> {
-  const homeDir = process.env.HOME || process.env.USERPROFILE || "";
-  const globalWorkflowsDir = join(
-    homeDir,
-    ".gemini",
-    "antigravity",
-    "global_workflows",
-  );
-
-  if (!existsSync(globalWorkflowsDir)) return { installed: false, count: 0 };
-
-  try {
-    const files = readdirSync(globalWorkflowsDir).filter((f) =>
-      f.endsWith(".md"),
-    );
-    return { installed: true, count: files.length };
-  } catch {
-    return { installed: false, count: 0 };
-  }
-}
-
 export async function doctor(jsonMode = false): Promise<void> {
   const cwd = process.cwd();
-  const homeDir = process.env.HOME || process.env.USERPROFILE || "";
 
   const clis = await Promise.all([
     checkCLI("gemini", "gemini", "bun install --global @google/gemini-cli"),
@@ -148,31 +119,10 @@ export async function doctor(jsonMode = false): Promise<void> {
   );
 
   const skillChecks = await checkSkills();
-  const globalWorkflows = await checkGlobalWorkflows();
-
-  let rerereEnabled = false;
-  try {
-    const val = execSync("git config --get rerere.enabled", {
-      encoding: "utf-8",
-      stdio: ["pipe", "pipe", "ignore"],
-    }).trim();
-    rerereEnabled = val === "true";
-  } catch {}
 
   const hasClaude = clis.some((c) => c.name === "claude" && c.installed);
-  let recommendedSettingsOk = false;
   let claudeMdOk = false;
-  const claudeSettingsPath = join(homeDir, ".claude", "settings.json");
   const claudeMdPath = join(cwd, "CLAUDE.md");
-  if (hasClaude)
-    try {
-      if (existsSync(claudeSettingsPath)) {
-        const claudeSettings = JSON.parse(
-          readFileSync(claudeSettingsPath, "utf-8"),
-        );
-        recommendedSettingsOk = !needsSettingsUpdate(claudeSettings);
-      }
-    } catch {}
   try {
     if (existsSync(claudeMdPath)) {
       const content = readFileSync(claudeMdPath, "utf-8");
@@ -202,9 +152,6 @@ export async function doctor(jsonMode = false): Promise<void> {
   const totalIssues =
     missingCLIs.length +
     missingSkills.length +
-    (globalWorkflows.installed ? 0 : 1) +
-    (rerereEnabled ? 0 : 1) +
-    (hasClaude && !recommendedSettingsOk ? 1 : 0) +
     (hasClaude && !claudeMdOk ? 1 : 0);
 
   if (jsonMode) {
@@ -233,13 +180,7 @@ export async function doctor(jsonMode = false): Promise<void> {
             }))
           : [],
       missingSkills: missingSkills.map((s) => s.name),
-      globalWorkflows: {
-        installed: globalWorkflows.installed,
-        count: globalWorkflows.count,
-      },
       serena: { exists: hasSerena, fileCount: serenaFileCount },
-      gitRerere: { enabled: rerereEnabled },
-      recommendedSettings: { configured: recommendedSettingsOk },
       claudeMd: { hasOmaBlock: claudeMdOk },
     };
     console.log(JSON.stringify(result, null, 2));
@@ -415,82 +356,7 @@ export async function doctor(jsonMode = false): Promise<void> {
       );
     }
 
-    if (globalWorkflows.installed) {
-      p.note(
-        `${pc.green("✅")} Global workflows installed\n${pc.dim(`${globalWorkflows.count} workflow files found`)}`,
-        "Global Workflows",
-      );
-    } else {
-      p.note(
-        `${pc.red("❌")} Global workflows missing\n${pc.dim("Run 'oma' to install or reinstall global workflows")}`,
-        "Global Workflows",
-      );
-    }
-
-    if (rerereEnabled) {
-      p.note(`${pc.green("✅")} git rerere is enabled`, "Git Config");
-    } else {
-      const shouldEnable = await p.confirm({
-        message:
-          "Enable git rerere? (Recommended for multi-agent merge conflict reuse)",
-        initialValue: true,
-      });
-
-      if (!p.isCancel(shouldEnable) && shouldEnable) {
-        try {
-          execSync("git config --global rerere.enabled true");
-          p.log.success(pc.green("git rerere enabled globally!"));
-        } catch (err) {
-          p.log.error(`Failed to enable git rerere: ${err}`);
-        }
-      } else {
-        p.note(
-          `${pc.yellow("⚠️")} git rerere is not enabled\n${pc.dim("Run: git config --global rerere.enabled true")}`,
-          "Git Config",
-        );
-      }
-    }
-
     if (hasClaude) {
-      if (recommendedSettingsOk) {
-        p.note(
-          `${pc.green("✅")} Claude Code recommended settings applied`,
-          "Claude Config",
-        );
-      } else {
-        const shouldApply = await p.confirm({
-          message: "Apply recommended Claude Code settings?",
-          initialValue: true,
-        });
-
-        if (!p.isCancel(shouldApply) && shouldApply) {
-          try {
-            // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
-            let claudeSettings: any = {};
-            if (existsSync(claudeSettingsPath)) {
-              claudeSettings = JSON.parse(
-                readFileSync(claudeSettingsPath, "utf-8"),
-              );
-            }
-            applyRecommendedSettings(claudeSettings);
-            writeFileSync(
-              claudeSettingsPath,
-              `${JSON.stringify(claudeSettings, null, 2)}\n`,
-            );
-            p.log.success(
-              pc.green("Claude Code recommended settings applied!"),
-            );
-          } catch (err) {
-            p.log.error(`Failed to apply Claude Code settings: ${err}`);
-          }
-        } else {
-          p.note(
-            `${pc.yellow("⚠️")} Claude Code recommended settings not applied\n${pc.dim("Conversations are deleted after 30 days by default")}`,
-            "Claude Config",
-          );
-        }
-      }
-
       if (claudeMdOk) {
         p.note(`${pc.green("✅")} OMA block found in ./CLAUDE.md`, "CLAUDE.md");
       } else {

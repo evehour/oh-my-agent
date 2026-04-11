@@ -3,5 +3,8 @@
     "serena": {
       "url": "http://localhost:12341/mcp"
     }
+  },
+  "general": {
+    "enableNotifications": true
   }
 }

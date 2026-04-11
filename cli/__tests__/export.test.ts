@@ -201,7 +201,7 @@ describe("mergeRulesIndexForVendor", () => {
   afterEach(() => vi.restoreAllMocks());
 
   it("should return false for unsupported vendor", () => {
-    expect(mergeRulesIndexForVendor(mockTargetDir, "claude")).toBe(false);
+    expect(mergeRulesIndexForVendor(mockTargetDir, "unknown-vendor")).toBe(false);
   });
 
   it("should still generate usage guide even without rules", () => {
@@ -289,6 +289,31 @@ describe("mergeRulesIndexForVendor", () => {
     expect(writeCall).toBeDefined();
   });
 
+  it("should write CLAUDE.md for claude vendor", () => {
+    (fs.existsSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      (p: string) => {
+        if (typeof p === "string" && p.endsWith("CLAUDE.md")) return false;
+        return p.includes(".agents/rules");
+      },
+    );
+    (fs.readdirSync as unknown as ReturnType<typeof vi.fn>).mockReturnValue([
+      "frontend.md",
+    ]);
+    (fs.readFileSync as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
+      "---\ndescription: test\n---\n\n# Test",
+    );
+
+    mergeRulesIndexForVendor(mockTargetDir, "claude");
+
+    const writeCall = (
+      fs.writeFileSync as unknown as ReturnType<typeof vi.fn>
+    ).mock.calls.find(
+      (call: string[]) =>
+        typeof call[0] === "string" && call[0].endsWith("CLAUDE.md"),
+    );
+    expect(writeCall).toBeDefined();
+  });
+
   it("should write AGENTS.md for qwen vendor (shared with codex)", () => {
     (fs.existsSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
       (p: string) => {
@@ -304,6 +329,31 @@ describe("mergeRulesIndexForVendor", () => {
     );
 
     mergeRulesIndexForVendor(mockTargetDir, "qwen");
+
+    const writeCall = (
+      fs.writeFileSync as unknown as ReturnType<typeof vi.fn>
+    ).mock.calls.find(
+      (call: string[]) =>
+        typeof call[0] === "string" && call[0].endsWith("AGENTS.md"),
+    );
+    expect(writeCall).toBeDefined();
+  });
+
+  it("should write AGENTS.md for cursor vendor", () => {
+    (fs.existsSync as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+      (p: string) => {
+        if (typeof p === "string" && p.endsWith("AGENTS.md")) return false;
+        return p.includes(".agents/rules");
+      },
+    );
+    (fs.readdirSync as unknown as ReturnType<typeof vi.fn>).mockReturnValue([
+      "frontend.md",
+    ]);
+    (fs.readFileSync as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
+      "---\ndescription: test\n---\n\n# Test",
+    );
+
+    mergeRulesIndexForVendor(mockTargetDir, "cursor");
 
     const writeCall = (
       fs.writeFileSync as unknown as ReturnType<typeof vi.fn>

@@ -17,7 +17,6 @@ import { getLocalVersion, saveLocalVersion } from "../lib/manifest.js";
 import { generateCursorRules, mergeRulesIndexForVendor } from "../lib/rules.js";
 import { ensureSerenaProject, resolveSerenaLanguages } from "../lib/serena.js";
 import {
-  type CliTool,
   createCliSymlinks,
   getAllSkills,
   INSTALLED_SKILLS_DIR,
@@ -33,7 +32,7 @@ import {
   writeVendorsToConfig,
 } from "../lib/skills.js";
 import { downloadAndExtract } from "../lib/tarball.js";
-import type { CliVendor, VendorType } from "../types/index.js";
+import type { CliTool, CliVendor, VendorType } from "../types/index.js";
 import { runMigrations } from "./migrations/index.js";
 
 const LANGUAGE_NAMES: Record<string, string> = {
@@ -234,7 +233,11 @@ export async function install(): Promise<void> {
     },
     { value: "codex", label: "Codex CLI", hint: "hooks + plugin" },
     { value: "copilot", label: "GitHub Copilot", hint: "skill symlinks" },
-    { value: "cursor", label: "Cursor", hint: ".cursor/rules/ export" },
+    {
+      value: "cursor",
+      label: "Cursor",
+      hint: ".cursor/rules/ export + prompt hooks",
+    },
     { value: "gemini", label: "Gemini CLI", hint: "hooks + Serena MCP" },
     { value: "qwen", label: "Qwen Code", hint: "hooks + settings" },
   ];
@@ -252,9 +255,7 @@ export async function install(): Promise<void> {
   }
 
   const vendors = selectedVendors as CliVendor[];
-  const hookVendors = vendors.filter(
-    (v): v is VendorType => v !== "copilot" && v !== "cursor",
-  );
+  const hookVendors = vendors.filter((v): v is VendorType => v !== "copilot");
   const selectedClis: CliTool[] = [];
   if (vendors.includes("claude")) selectedClis.push("claude");
   if (vendors.includes("copilot")) selectedClis.push("copilot");
@@ -347,9 +348,10 @@ export async function install(): Promise<void> {
 
     // Merge usage guide + rules index into single-file vendor docs
     const mergedFiles = new Set<string>();
-    for (const v of ["gemini", "codex", "qwen"] as const) {
+    for (const v of ["claude", "gemini", "codex", "cursor", "qwen"] as const) {
       if (!vendors.includes(v)) continue;
-      const target = v === "gemini" ? "GEMINI.md" : "AGENTS.md";
+      const target =
+        v === "claude" ? "CLAUDE.md" : v === "gemini" ? "GEMINI.md" : "AGENTS.md";
       if (mergedFiles.has(target)) continue;
       if (mergeRulesIndexForVendor(cwd, v)) {
         mergedFiles.add(target);

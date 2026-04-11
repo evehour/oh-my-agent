@@ -1258,6 +1258,10 @@ export async function reviewAgent(options: {
     resolvedWorkspace,
   );
   const [command, ...args] = reviewArgs;
+  if (!command) {
+    console.error(color.red(`[${agentId}] No command provided for review`));
+    process.exit(1);
+  }
 
   const logFile = path.join(tmpdir(), `review-${sessionId}.log`);
   const pidFile = path.join(tmpdir(), `review-${sessionId}.pid`);
@@ -1271,19 +1275,21 @@ export async function reviewAgent(options: {
 
   const logStream = fs.openSync(logFile, "w");
 
-  const child = spawnProcess(command, args, {
+  const child = spawnProcess(command as string, args, {
     cwd: resolvedWorkspace,
     stdio: ["ignore", logStream, logStream],
     detached: false,
   });
 
-  if (!child.pid) {
+  if (!child || !child.pid) {
     console.error(color.red(`[${agentId}] Failed to spawn process`));
     process.exit(1);
   }
 
-  fs.writeFileSync(pidFile, child.pid.toString());
-  console.log(color.green(`[${agentId}] Started with PID ${child.pid}`));
+  const pid = child.pid;
+
+  fs.writeFileSync(pidFile, pid.toString());
+  console.log(color.green(`[${agentId}] Started with PID ${pid}`));
 
   const cleanup = () => {
     try {
@@ -1295,8 +1301,8 @@ export async function reviewAgent(options: {
   };
 
   const cleanAndExit = () => {
-    if (child.pid && isProcessRunning(child.pid)) {
-      process.kill(child.pid);
+    if (pid && isProcessRunning(pid)) {
+      process.kill(pid);
     }
     cleanup();
     process.exit();

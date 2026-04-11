@@ -6,7 +6,7 @@
 
 Ever wished your AI assistant had coworkers? That's what oh-my-agent does.
 
-Instead of one AI doing everything (and getting confused halfway through), oh-my-agent splits work across **specialized agents** — frontend, backend, QA, PM, DB, mobile, infra, debug, design, and more. Each one knows its domain deeply, has its own tools and checklists, and stays in its lane.
+Instead of one AI doing everything (and getting confused halfway through), oh-my-agent splits work across **specialized agents** — frontend, backend, architecture, QA, PM, DB, mobile, infra, debug, design, and more. Each one knows its domain deeply, has its own tools and checklists, and stays in its lane.
 
 Works with all major AI IDEs: Antigravity, Claude Code, Cursor, Gemini CLI, Codex CLI, OpenCode, and more.
 
@@ -27,17 +27,18 @@ Pick a preset and you're ready:
 | Preset | What You Get |
 |--------|-------------|
 | ✨ All | Every agent and skill |
-| 🌐 Fullstack | frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
 
 ## Your Agent Team
 
 | Agent | What They Do |
 |-------|-------------|
 | **oma-backend** | APIs in Python, Node.js, or Rust |
+| **oma-architecture** | Architectural tradeoffs, boundaries, ADR/ATAM/CBAM-aware analysis |
 | **oma-brainstorm** | Explores ideas before you commit to building |
 | **oma-commit** | Clean conventional commits |
 | **oma-db** | Schema design, migrations, indexing, vector DB |
@@ -71,6 +72,7 @@ Or use slash commands for structured workflows:
 
 | Command | What It Does |
 |---------|-------------|
+| `/architecture` | Software architecture review, tradeoffs, ADR/ATAM/CBAM-style analysis |
 | `/plan` | PM breaks down your feature into tasks |
 | `/work` | Step-by-step multi-agent execution |
 | `/orchestrate` | Automated parallel agent spawning |
@@ -81,7 +83,7 @@ Or use slash commands for structured workflows:
 | `/brainstorm` | Free-form ideation |
 | `/commit` | Conventional commit with type/scope analysis |
 
-**Auto-detection**: You don't even need slash commands — keywords like "plan", "review", "debug" in your message (in 11 languages!) auto-activate the right workflow.
+**Auto-detection**: You don't even need slash commands — keywords like "architecture", "plan", "review", and "debug" in your message (in 11 languages!) auto-activate the right workflow.
 
 ## CLI
 
@@ -117,11 +119,12 @@ flowchart TD
         W1["/work"]
         W1b["/ultrawork"]
         W2["/orchestrate"]
-        W3["/plan"]
-        W4["/review"]
-        W5["/debug"]
-        W6["/deepinit"]
-        W7["/design"]
+        W3["/architecture"]
+        W4["/plan"]
+        W5["/review"]
+        W6["/debug"]
+        W7["/deepinit"]
+        W8["/design"]
     end
 
     subgraph Orchestration["Orchestration"]

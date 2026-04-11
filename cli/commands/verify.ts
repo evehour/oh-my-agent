@@ -31,6 +31,9 @@ function findResultFile(workspace: string, agentType: string): string | null {
     .reverse();
 
   if (matches.length === 0) return null;
+  if (!matches[0]) {
+    throw new Error(`No retrospective memory found for agent ${agentType}`);
+  }
   return join(memoriesDir, matches[0]);
 }
 
@@ -379,7 +382,7 @@ function findLatestPlan(workspace: string): string | null {
         .filter((f) => f.startsWith("plan-") && f.endsWith(".json"))
         .sort()
         .reverse();
-      if (planFiles.length > 0) {
+      if (planFiles.length > 0 && planFiles[0]) {
         return join(resultsDir, planFiles[0]);
       }
     } catch {

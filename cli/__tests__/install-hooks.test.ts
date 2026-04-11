@@ -202,7 +202,9 @@ describe("installHooksFromVariant", () => {
     );
     const settings = JSON.parse(writeCall?.[1] as string);
     const cmd = settings.hooks.UserPromptSubmit[0].hooks[0].command;
-    expect(cmd).toBe('"/opt/homebrew/bin/bun" .codex/hooks/keyword-detector.ts');
+    expect(cmd).toBe(
+      '"/opt/homebrew/bin/bun" .codex/hooks/keyword-detector.ts',
+    );
     expect(cmd).not.toContain("$");
   });
 
@@ -240,6 +242,50 @@ describe("installHooksFromVariant", () => {
     const settings = JSON.parse(writeCall?.[1] as string);
     const cmd = settings.hooks.UserPromptSubmit[0].hooks[0].command;
     expect(cmd).toBe("bun .codex/hooks/keyword-detector.ts");
+  });
+
+  it("should generate Cursor hooks.json with version 1 and prompt hooks", () => {
+    (fs.readFileSync as unknown as ReturnType<typeof vi.fn>).mockReturnValue(
+      JSON.stringify({
+        vendor: "cursor",
+        hookDir: ".cursor/hooks",
+        settingsFile: ".cursor/hooks.json",
+        projectDirEnv: null,
+        runtime: "bun",
+        events: {
+          UserPromptSubmit: {
+            hook: "keyword-detector.ts",
+            timeout: 5,
+          },
+          beforeSubmitPrompt: {
+            hook: "keyword-detector.ts",
+            timeout: 5,
+          },
+        },
+        extra: {
+          version: 1,
+        },
+      }),
+    );
+
+    installVendorAdaptations(mockSourceDir, mockTargetDir, ["cursor"]);
+
+    const writeCall = (
+      fs.writeFileSync as unknown as ReturnType<typeof vi.fn>
+    ).mock.calls.find(
+      (call: string[]) =>
+        typeof call[0] === "string" && call[0].includes(".cursor/hooks.json"),
+    );
+    expect(writeCall).toBeTruthy();
+
+    const settings = JSON.parse(writeCall?.[1] as string);
+    expect(settings.version).toBe(1);
+    expect(settings.hooks.UserPromptSubmit[0].hooks[0].command).toContain(
+      ".cursor/hooks/keyword-detector.ts",
+    );
+    expect(settings.hooks.beforeSubmitPrompt[0].hooks[0].command).toContain(
+      ".cursor/hooks/keyword-detector.ts",
+    );
   });
 
   it("should clear existing files before copying hooks to prevent EEXIST", () => {

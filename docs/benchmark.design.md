@@ -22,10 +22,15 @@ Compare oh-my-agent against other Claude Code harnesses by running an identical 
 |---|---|
 | Prompt | `docs/benchmark.prompt.md` (identical raw prompt, no harness workflow) |
 | Model | claude-opus-4-6 (1M context) |
+| Effort | `--effort max` |
 | Initial state | Empty directory + `git init` only |
 | Isolation | `$HOME` override per harness |
-| Time limit | 60 minutes per run |
-| Human intervention | Only "continue", "yes", tool approval (logged) |
+| Execution mode | `claude -p` (non-interactive) |
+| Permissions | `--dangerously-skip-permissions` (no human approval needed) |
+| Budget cap | `--max-budget-usd 20` per run |
+| Time limit | 60 minutes per run (`timeout 3600`) |
+| Session persistence | `--no-session-persistence` |
+| Human intervention | None (fully automated) |
 | Runs | 1 per harness (reproducibility conditions documented) |
 
 ## Environment Isolation
@@ -43,21 +48,37 @@ for h in vanilla oma omc ecc superpowers; do
 done
 ```
 
-Execution per harness:
+Execution per harness (fully unattended via `claude -p`):
 
 ```bash
 HOME=$BASE/homes/{harness} \
 ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
-  claude --model claude-opus-4-6 --dir $BASE/projects/{harness}
+OPENAI_API_KEY=${OPENAI_API_KEY:-} \
+  timeout 3600 claude -p "$(cat $BASE/prompt.md)" \
+    --dangerously-skip-permissions \
+    --model claude-opus-4-6 \
+    --effort max \
+    --output-format json \
+    --max-budget-usd 20 \
+    --no-session-persistence \
+    --add-dir $BASE/projects/{harness} \
+    > $BASE/results/{harness}.json
 ```
+
+`-p` (print) mode runs Claude Code non-interactively while still executing
+multi-turn tool use. `--dangerously-skip-permissions` auto-approves all tool
+invocations so no human approval is required. `--output-format json` returns
+token usage and cost metadata for the meta-metrics report.
 
 ## Directory Structure
 
 ```
 benchmarks/
+├── run.sh                       # env setup + harness install + unattended exec
+├── collect.sh                   # aggregate scores + generate report
 ├── prompt/
 │   └── benchmark.prompt.md
-├── runs/
+├── runs/                        # generated code per harness (excludes node_modules)
 │   ├── vanilla/
 │   ├── oma/
 │   ├── omc/
@@ -65,9 +86,11 @@ benchmarks/
 │   └── superpowers/
 ├── scoring/
 │   ├── checklist.json
-│   ├── auto-score.sh
+│   ├── auto-score.sh            # build/test/lint/dependency checks
+│   ├── visual-score.sh          # Chrome DevTools MCP screenshot + AI scoring
+│   ├── score-prompt.md          # visual scoring prompt for Claude
 │   └── manual-score.template.json
-├── screenshots/
+├── screenshots/                 # captured per harness via Chrome DevTools MCP
 │   ├── vanilla/
 │   ├── oma/
 │   ├── omc/
@@ -188,87 +211,128 @@ Total: 100 points across 8 categories.
 
 ## Run Protocol
 
-### Phase 1: Environment Preparation
+The entire pipeline is automated by `benchmarks/run.sh` and `benchmarks/collect.sh`.
+A single human review pass at the end is the only manual step.
 
-1. Create BASE directory with 5 homes + projects
-2. Set git config per home
-3. Verify ANTHROPIC_API_KEY
-4. Record Claude Code version (`claude --version`)
-5. Copy benchmark.prompt.md to $BASE/prompt.md
+### Phase 1: Environment Preparation (`run.sh`)
 
-### Phase 2: Harness Installation (sequential)
+1. Verify `claude`, `jq`, `git`, `bun` in PATH
+2. Verify `ANTHROPIC_API_KEY` is set
+3. Create `BASE=/tmp/oma-benchmark-{timestamp}`
+4. Create 5 isolated `homes/{harness}` and `projects/{harness}`
+5. `git init` each project
+6. Record `claude --version`
+7. Copy `benchmark.prompt.md` to `$BASE/prompt.md`
+
+### Phase 2: Harness Installation (`run.sh`, sequential)
 
 1. vanilla: skip
-2. oma: `cd projects/oma && HOME=$BASE/homes/oma bunx oh-my-agent@latest`
-3. omc: plugin install in isolated HOME
-4. ecc: install.sh in isolated HOME
-5. superpowers: plugin install in isolated HOME
-6. Snapshot each install state (`ls -la`, `du -sh`)
+2. oma: `CI=true HOME=$HOMEDIR bunx oh-my-agent@latest install`
+3. omc: `git clone --depth 1 https://github.com/Yeachan-Heo/oh-my-claudecode $BASE/plugins/omc` (no install — loaded via `--plugin-dir` at runtime)
+4. ecc: clone + `bash install.sh --profile full`
+5. superpowers: `git clone --depth 1 https://github.com/obra/superpowers $BASE/plugins/superpowers` (loaded via `--plugin-dir` at runtime)
+6. Per-harness install status recorded in `{harness}.manifest.json`
 
-### Phase 3: Benchmark Execution (sequential, one at a time)
+### Phase 3: Benchmark Execution (`run.sh`, sequential)
 
 1. Start timer
-2. Launch Claude Code with isolated HOME and model pinned
-3. Paste prompt.md content
-4. Wait for completion (max 60 minutes)
-5. Stop timer, record token usage
-6. Record intervention count
+2. `claude -p` with all control flags (see Control Variables)
+3. Capture stdout (JSON metadata) → `{harness}.json`
+4. Capture stderr → `{harness}.stderr`
+5. Stop timer, record duration + exit code in `{harness}.manifest.json`
+6. Failure of one harness does NOT abort the rest
 
-### Phase 4: Result Collection
+### Phase 4: Result Collection (`collect.sh`)
 
-1. `npm install && npm run build`
-2. `npm test`
-3. `npx tsc --noEmit`
-4. Run `auto-score.sh`
-5. Start dev server, capture screenshots
-6. Copy code to `runs/{harness}/`
+1. For each harness, invoke `auto-score.sh` → `{harness}.auto-score.json`
+2. For each harness, invoke `visual-score.sh` → starts dev server, navigates Chrome via MCP, captures screenshots, AI-scores UX
+3. Copy generated code to `benchmarks/runs/{harness}/` (excluding node_modules, .next, .git)
+4. Copy screenshots to `benchmarks/screenshots/{harness}/`
 
-### Phase 5: Scoring & Report
+### Phase 5: Scoring & Report (`collect.sh`)
 
-1. Aggregate auto scores
-2. Complete manual scoring
-3. Generate `scores.json`
-4. Generate `report.md`
+1. Aggregate auto + visual scores per category using checklist.json weights
+2. Compute total per harness, rank
+3. Generate `results/scores.json` (machine-readable)
+4. Generate `results/report.md` (human-readable, ready to publish)
+
+### Phase 6: Human Review (manual, optional)
+
+1. Inspect generated code and screenshots
+2. Fill in `test-meaningful` manual score
+3. Adjust report.md as needed
+
+## Plugin Loading via `--plugin-dir`
+
+`omc` and `superpowers` are Claude Code plugins. Instead of `claude plugin install`
+(which has no `--yes`/`--non-interactive` flag and may hang), we use Claude Code's
+`--plugin-dir <path>` flag to load plugins directly from a local directory for the
+session only. This requires no install step and no `~/.claude/plugins/` mutation.
+
+```bash
+# Pre-clone (in run.sh setup)
+git clone --depth 1 https://github.com/Yeachan-Heo/oh-my-claudecode $BASE/plugins/omc
+git clone --depth 1 https://github.com/obra/superpowers $BASE/plugins/superpowers
+
+# Per-session load (in claude -p invocation)
+HOME=$BASE/homes/omc \
+OMC_PLUGIN_ROOT=$BASE/plugins/omc \
+  claude -p "$(cat prompt.md)" \
+    --plugin-dir $BASE/plugins/omc \
+    ...
+```
+
+For `omc`, `OMC_PLUGIN_ROOT` is also exported per the oh-my-claudecode REFERENCE.md
+decision matrix for "local dev checkout, no OMC shim" mode. `omc setup` is NOT run
+because in `--plugin-dir` mode the plugin provides skills/agents at runtime — `omc setup`
+only installs the optional HUD/git-hooks/CLAUDE.md into `~/.claude/`, which we don't need
+for a benchmark run.
 
 ## Intervention Policy
 
-### Allowed
+The benchmark is fully unattended via `claude -p --dangerously-skip-permissions`.
+**No human interventions occur during execution.**
 
-- "continue" / "계속"
-- "yes" (to y/n questions)
-- Tool approval (Claude Code permissions)
+If a harness hangs or errors, the 60-minute `timeout` and `--max-budget-usd 20`
+caps it. Whatever output exists at that point is what gets scored.
 
-### Not Allowed
-
-- Error fix instructions
-- Code modifications
-- Architecture / direction suggestions
-- Additional requirements
-
-All interventions logged: `{ "time": "...", "type": "continue|approve|yn", "context": "..." }`
+The only manual step is the optional Phase 6 review and `test-meaningful` scoring.
 
 ## Edge Case Handling
 
 | Situation | Response |
 |---|---|
-| Harness install fails | 3 retries, then record as "install failure", score 0 |
-| Claude stops responding | 5 min no-response → 1x "continue" (counts as intervention) |
-| Build fails | Record as-is. No human fixes |
-| npm install fails | Dependency issues are part of the harness result |
-| Multi-turn response | Allowed. Human only says "continue" |
-| Harness auto-detects workflow | Allowed. Auto-detection is a natural feature |
-| Dev server shows blank | Screenshot as-is. Blank screen is a result |
-| No test framework | test-exists: 0, test-pass: N/A |
-| Token limit exceeded | Score based on output at that point |
+| Harness install fails | Record `install_status: failed` in manifest, skip that harness's run, continue with the rest |
+| Claude exceeds time limit | `timeout 3600` kills it, partial output gets scored |
+| Claude exceeds budget | `--max-budget-usd 20` halts it, partial output gets scored |
+| Build fails | Recorded as-is in `auto-score.json`, no human fix |
+| npm install fails | Counted as build failure, score 0 for setup-build |
+| Harness auto-detects workflow from CLAUDE.md | Allowed — auto-detection is a natural harness feature |
+| Dev server cannot start | `visual-score.sh` records 0 across visual items + explanation |
+| Dev server uses non-default port | `score-prompt.md` instructs Claude to detect the port from stdout |
+| No test framework | `test-exists: 0`, `test-pass: 0`, `test-coverage: 0` |
+| chrome-devtools-mcp not installed | First `npx -y chrome-devtools-mcp@latest` invocation auto-installs it |
+| Plugin install hangs | `timeout 300` on install command, treated as install failure |
 
 ## Time Limits
 
-| Phase | Limit |
+| Phase | Limit | Mechanism |
+|---|---|---|
+| Harness installation | 5 minutes | `timeout 300` |
+| Benchmark execution | 60 minutes | `timeout 3600` + `--max-budget-usd 20` |
+| Build & test (auto-score) | 5 minutes per check | `timeout 300` |
+| Visual scoring (Claude + Chrome MCP) | 5 minutes | `timeout 300` + `--max-budget-usd 5` |
+
+## Budget Estimate
+
+| Item | Cost |
 |---|---|
-| Harness installation | 5 minutes |
-| Benchmark execution | 60 minutes |
-| Build & test | 5 minutes |
-| Screenshot capture | 5 minutes |
+| 5 harness runs × $20 max | $100 |
+| 5 visual scoring sessions × $5 max | $25 |
+| Dry run | $5 |
+| **Total budget cap** | **~$130** |
+
+Actual cost will likely be lower since most harnesses will not hit the cap.
 
 ## Meta Metrics (not scored, reference only)
 

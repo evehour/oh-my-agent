@@ -144,28 +144,37 @@ const OMA_END = "<!-- OMA:END -->";
 /**
  * Vendor → target file mapping.
  * codex/qwen/cursor share AGENTS.md (all read it natively).
+ * claude uses project-local CLAUDE.md.
  * gemini requires its own GEMINI.md (default context filename).
  */
 const VENDOR_FILES: Record<string, string> = {
+  claude: "CLAUDE.md",
   gemini: "GEMINI.md",
   codex: "AGENTS.md",
+  cursor: "AGENTS.md",
   qwen: "AGENTS.md",
 };
 
 /** Vendor-specific subagent spawn instructions. */
 const VENDOR_SPAWN: Record<string, string> = {
+  claude: "`@agent-name` (defined in `.claude/agents/`)",
   gemini:
-    "`@agent-name` delegation or `oma agent:spawn {agent} {prompt} {sessionId}`",
+    "`@agent-name` (defined in `.gemini/agents/`) or `oma agent:spawn {agent} {prompt} {sessionId}`",
+  cursor: "`@agent-name` (defined in `.cursor/agents/`)",
   codex: "`oma agent:spawn {agent} {prompt} {sessionId}`",
   qwen: "`oma agent:spawn {agent} {prompt} {sessionId}`",
 };
 
 /** Vendor-specific hook info. */
 const VENDOR_HOOKS: Record<string, string> = {
+  claude:
+    "Hooks: `UserPromptSubmit` (keyword detection), `PreToolUse`, `Stop` (persistent mode)",
   gemini:
     "Hooks: `BeforeAgent` (keyword detection), `BeforeTool`, `AfterAgent` (persistent mode)",
   codex:
     "Hooks: `UserPromptSubmit` (keyword detection), `PreToolUse`, `Stop` (persistent mode)",
+  cursor:
+    "Hooks: `UserPromptSubmit` / `beforeSubmitPrompt` (keyword detection)",
   qwen: "Hooks: `UserPromptSubmit` (keyword detection), `PreToolUse`, `Stop` (persistent mode)",
 };
 

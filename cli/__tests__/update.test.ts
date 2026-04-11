@@ -25,6 +25,7 @@ describe("whitelist-based skill filtering", () => {
 
     expect(skillNames).toContain("oma-frontend");
     expect(skillNames).toContain("oma-backend");
+    expect(skillNames).toContain("oma-architecture");
     expect(skillNames).toContain("oma-pm");
     expect(skillNames).toContain("oma-commit");
 
@@ -52,6 +53,7 @@ describe("whitelist-based skill filtering", () => {
       "oma-frontend",
       "oma-backend",
       "oma-mobile",
+      "oma-architecture",
       "oma-pm",
       "oma-qa",
       "oma-coordination",
@@ -260,7 +262,7 @@ describe("reconcile: migrations trigger full update even when version matches", 
     expect(actions.length).toBeGreaterThan(0);
     expect(existsSync(join(root, ".claude", "CLAUDE.md"))).toBe(false);
 
-    // Migrations applied → reconcile should proceed (to run mergeClaudeMd etc.)
+    // Migrations applied → reconcile should proceed (to re-run vendor docs merge etc.)
     const localVersion = "4.26.1";
     const remoteVersion = "4.26.1";
     const shouldEarlyReturn =

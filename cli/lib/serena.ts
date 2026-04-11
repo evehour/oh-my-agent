@@ -68,7 +68,7 @@ export function inferSerenaLanguages(cwd: string): string[] {
     try {
       const content = readFileSync(stackYaml, "utf-8");
       const match = content.match(/^language:\s*(.+)$/m);
-      if (match) {
+      if (match?.[1]) {
         const variant = match[1].trim();
         const mapped = BACKEND_VARIANT_MAP[variant];
         if (mapped) languages.add(mapped);

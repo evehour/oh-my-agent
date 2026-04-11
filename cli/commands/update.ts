@@ -279,7 +279,7 @@ export async function update(force = false, ci = false): Promise<void> {
       // Update vendor adaptations for configured vendors (from oma-config.yaml)
       const configuredVendors = readVendorsFromConfig(cwd);
       const hookVendors = configuredVendors.filter(
-        (v): v is VendorType => v !== "copilot" && v !== "cursor",
+        (v): v is VendorType => v !== "copilot",
       );
       installVendorAdaptations(repoDir, cwd, hookVendors);
 
@@ -288,9 +288,14 @@ export async function update(force = false, ci = false): Promise<void> {
         generateCursorRules(cwd);
       }
       const mergedFiles = new Set<string>();
-      for (const v of ["gemini", "codex", "qwen"] as const) {
+      for (const v of ["claude", "gemini", "codex", "cursor", "qwen"] as const) {
         if (!configuredVendors.includes(v)) continue;
-        const target = v === "gemini" ? "GEMINI.md" : "AGENTS.md";
+        const target =
+          v === "claude"
+            ? "CLAUDE.md"
+            : v === "gemini"
+              ? "GEMINI.md"
+              : "AGENTS.md";
         if (mergedFiles.has(target)) continue;
         if (mergeRulesIndexForVendor(cwd, v)) {
           mergedFiles.add(target);

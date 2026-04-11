@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.29.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.28.0...cli-v4.29.0) (2026-04-11)
+
+
+### Features
+
+* **cli:** keep vendor config project-local and modularize settings helpers ([245b48a](https://github.com/first-fluke/oh-my-agent/commit/245b48a310a0e923a604b1a932e65d5f110ca1ad))
+
+
+### Documentation
+
+* **readme:** sync architecture agent ordering and diagram entries ([e58f6fd](https://github.com/first-fluke/oh-my-agent/commit/e58f6fdf16202cb6e7a316b0a849904b3287db63))
+
 ## [4.28.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.27.1...cli-v4.28.0) (2026-04-11)
 
 

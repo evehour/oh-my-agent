@@ -34,6 +34,7 @@ import { ensureSerenaProject, inferSerenaLanguages } from "../lib/serena.js";
 import {
   createCliSymlinks,
   detectExistingCliSymlinkDirs,
+  ensureCursorMcpSymlink,
   getInstalledSkillNames,
   installVendorAdaptations,
   REPO,
@@ -303,6 +304,7 @@ export async function update(force = false, ci = false): Promise<void> {
 
       // --- Vendor-specific rules export ---
       if (configuredVendors.includes("cursor")) {
+        ensureCursorMcpSymlink(cwd);
         generateCursorRules(cwd);
       }
       const mergedFiles = new Set<string>();

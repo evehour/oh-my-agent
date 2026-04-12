@@ -52,6 +52,7 @@ const skillsState = vi.hoisted(() => ({
   installSkill: vi.fn(),
   installVendorAdaptations: vi.fn(),
   createCliSymlinks: vi.fn(() => ({ created: [], skipped: [] })),
+  ensureCursorMcpSymlink: vi.fn(),
   writeVendorsToConfig: vi.fn(),
 }));
 

@@ -182,6 +182,35 @@ export function getAllSkills(): SkillInfo[] {
   ];
 }
 
+/**
+ * Point Cursor's MCP config at the SSOT `.agents/mcp.json` via symlink.
+ * Skips if `.agents/mcp.json` is missing, or `.cursor/mcp.json` is a real file (not our link).
+ */
+export function ensureCursorMcpSymlink(targetDir: string): void {
+  const agentsMcp = join(targetDir, ".agents", "mcp.json");
+  if (!fs.existsSync(agentsMcp)) return;
+
+  const cursorDir = join(targetDir, ".cursor");
+  const linkPath = join(cursorDir, "mcp.json");
+  const relTarget = relative(cursorDir, agentsMcp);
+
+  try {
+    const stat = fs.lstatSync(linkPath);
+    if (stat.isSymbolicLink()) {
+      const existing = resolve(dirname(linkPath), fs.readlinkSync(linkPath));
+      if (existing === resolve(agentsMcp)) return;
+      fs.unlinkSync(linkPath);
+    } else {
+      return;
+    }
+  } catch {
+    // Link does not exist yet
+  }
+
+  fs.mkdirSync(cursorDir, { recursive: true });
+  fs.symlinkSync(relTarget, linkPath, "file");
+}
+
 export function createCliSymlinks(
   targetDir: string,
   cliTools: CliTool[],

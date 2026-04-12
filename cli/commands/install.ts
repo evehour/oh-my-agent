@@ -18,6 +18,7 @@ import { generateCursorRules, mergeRulesIndexForVendor } from "../lib/rules.js";
 import { ensureSerenaProject, resolveSerenaLanguages } from "../lib/serena.js";
 import {
   createCliSymlinks,
+  ensureCursorMcpSymlink,
   getAllSkills,
   INSTALLED_SKILLS_DIR,
   installConfigs,
@@ -352,6 +353,7 @@ export async function install(): Promise<void> {
 
     // --- Vendor-specific rules export ---
     if (vendors.includes("cursor")) {
+      ensureCursorMcpSymlink(cwd);
       const cursorExported = generateCursorRules(cwd);
       if (cursorExported.length > 0) {
         p.log.success(

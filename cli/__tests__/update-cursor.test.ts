@@ -41,6 +41,7 @@ vi.mock("../lib/skills.js", () => ({
   detectExistingCliSymlinkDirs: vi.fn(() => []),
   getInstalledSkillNames: vi.fn(() => []),
   createCliSymlinks: vi.fn(() => ({ created: [], skipped: [] })),
+  ensureCursorMcpSymlink: vi.fn(),
   readVendorsFromConfig: vi.fn(() => configuredVendorsForTest),
 }));
 
@@ -102,6 +103,11 @@ describe("update cursor vendor adaptations", () => {
     ).mock.calls[0];
     expect(cursorRulesCall?.[0]).toContain(projectDir);
 
+    const mcpLinkCall = (
+      skills.ensureCursorMcpSymlink as unknown as ReturnType<typeof vi.fn>
+    ).mock.calls[0];
+    expect(mcpLinkCall?.[0]).toContain(projectDir);
+
     const firstMergeCall = (
       rules.mergeRulesIndexForVendor as unknown as ReturnType<typeof vi.fn>
     ).mock.calls.find((call: unknown[]) => call[1] === "cursor");
@@ -128,6 +134,11 @@ describe("update cursor vendor adaptations", () => {
       rules.generateCursorRules as unknown as ReturnType<typeof vi.fn>
     ).mock.calls[0];
     expect(secondCursorRulesCall?.[0]).toContain(projectDir);
+
+    expect(
+      (skills.ensureCursorMcpSymlink as unknown as ReturnType<typeof vi.fn>).mock
+        .calls.length,
+    ).toBeGreaterThan(0);
 
     const codexMergeCall = (
       rules.mergeRulesIndexForVendor as unknown as ReturnType<typeof vi.fn>

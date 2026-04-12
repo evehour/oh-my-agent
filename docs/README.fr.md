@@ -68,17 +68,17 @@ Toi : "Construis une app TODO avec authentification"
 
 Ou utilise les slash commands pour des workflows structurés :
 
-| Commande | Ce Qu'elle Fait |
-|---------|-------------|
-| `/brainstorm` | Idéation libre |
-| `/design` | Workflow de système de design en 7 phases |
-| `/plan` | PM découpe ta feature en tâches |
-| `/work` | Exécution multi-agent étape par étape |
-| `/orchestrate` | Lancement automatisé d'agents en parallèle |
-| `/ultrawork` | Workflow qualité en 5 phases avec 11 portes de revue |
-| `/review` | Audit sécurité + performance + accessibilité |
-| `/debug` | Debugging structuré par cause racine |
-| `/scm` | Commit conventionnel avec analyse type/scope |
+| Étape | Commande | Ce Qu'elle Fait |
+|-------|----------|----------------|
+| 1 | `/brainstorm` | Idéation libre |
+| 2 | `/design` | Workflow de système de design en 7 phases |
+| 3 | `/plan` | PM découpe ta feature en tâches |
+| 4 | `/work` | Exécution multi-agent étape par étape |
+| 4 | `/orchestrate` | Lancement automatisé d'agents en parallèle |
+| 4 | `/ultrawork` | Workflow qualité en 5 phases avec 11 portes de revue |
+| 5 | `/review` | Audit sécurité + performance + accessibilité |
+| 6 | `/debug` | Debugging structuré par cause racine |
+| 7 | `/scm` | Commit conventionnel avec analyse type/scope |
 
 **Auto-détection** : Tu n'as même pas besoin des slash commands — des mots-clés comme "plan", "review", "debug" dans ton message (en 11 langues !) activent automatiquement le bon workflow.
 

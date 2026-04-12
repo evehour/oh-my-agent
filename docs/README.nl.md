@@ -68,17 +68,17 @@ Jij: "Bouw een TODO-app met gebruikersauthenticatie"
 
 Of gebruik slash commands voor gestructureerde workflows:
 
-| Commando | Wat het doet |
-|---------|-------------|
-| `/brainstorm` | Vrije brainstorm |
-| `/design` | 7-fasen design system workflow |
-| `/plan` | PM splitst je feature op in taken |
-| `/work` | Stapsgewijze multi-agent uitvoering |
-| `/orchestrate` | Automatische parallelle agent-spawning |
-| `/ultrawork` | 5-fasen kwaliteitsworkflow met 11 review gates |
-| `/review` | Beveiligings- + performance- + toegankelijkheidsaudit |
-| `/debug` | Gestructureerde root cause-debugging |
-| `/scm` | Conventional commit met type/scope-analyse |
+| Stap | Commando | Wat het doet |
+|------|----------|-------------|
+| 1 | `/brainstorm` | Vrije brainstorm |
+| 2 | `/design` | 7-fasen design system workflow |
+| 3 | `/plan` | PM splitst je feature op in taken |
+| 4 | `/work` | Stapsgewijze multi-agent uitvoering |
+| 4 | `/orchestrate` | Automatische parallelle agent-spawning |
+| 4 | `/ultrawork` | 5-fasen kwaliteitsworkflow met 11 review gates |
+| 5 | `/review` | Beveiligings- + performance- + toegankelijkheidsaudit |
+| 6 | `/debug` | Gestructureerde root cause-debugging |
+| 7 | `/scm` | Conventional commit met type/scope-analyse |
 
 **Autodetectie**: Je hebt de slash commands niet eens nodig — woorden als "plan", "review", "debug" in je bericht (in 11 talen!) activeren automatisch de juiste workflow.
 

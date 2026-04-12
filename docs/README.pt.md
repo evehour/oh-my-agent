@@ -68,17 +68,17 @@ Voce: "Cria um app de TODO com autenticacao de usuario"
 
 Ou use slash commands para workflows estruturados:
 
-| Comando | O Que Faz |
-|---------|-------------|
-| `/brainstorm` | Ideacao livre |
-| `/design` | Workflow de design system em 7 fases |
-| `/plan` | PM detalha sua feature em tarefas |
-| `/work` | Execucao multi-agente passo a passo |
-| `/orchestrate` | Spawn automatico e paralelo de agentes |
-| `/ultrawork` | Workflow de qualidade em 5 fases com 11 gates de revisao |
-| `/review` | Auditoria de seguranca + performance + acessibilidade |
-| `/debug` | Debugging estruturado de causa raiz |
-| `/scm` | Commit convencional com analise de type/scope |
+| Etapa | Comando | O Que Faz |
+|-------|---------|-------------|
+| 1 | `/brainstorm` | Ideacao livre |
+| 2 | `/design` | Workflow de design system em 7 fases |
+| 3 | `/plan` | PM detalha sua feature em tarefas |
+| 4 | `/work` | Execucao multi-agente passo a passo |
+| 4 | `/orchestrate` | Spawn automatico e paralelo de agentes |
+| 4 | `/ultrawork` | Workflow de qualidade em 5 fases com 11 gates de revisao |
+| 5 | `/review` | Auditoria de seguranca + performance + acessibilidade |
+| 6 | `/debug` | Debugging estruturado de causa raiz |
+| 7 | `/scm` | Commit convencional com analise de type/scope |
 
 **Auto-deteccao**: Voce nem precisa dos slash commands — palavras como "plan", "review", "debug" na sua mensagem (em 11 idiomas!) ativam automaticamente o workflow certo.
 

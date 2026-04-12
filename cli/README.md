@@ -70,18 +70,18 @@ You: "Build a TODO app with user authentication"
 
 Or use slash commands for structured workflows:
 
-| Command | What It Does |
-|---------|-------------|
-| `/brainstorm` | Free-form ideation |
-| `/architecture` | Software architecture review, tradeoffs, ADR/ATAM/CBAM-style analysis |
-| `/design` | 7-phase design system workflow |
-| `/plan` | PM breaks down your feature into tasks |
-| `/work` | Step-by-step multi-agent execution |
-| `/orchestrate` | Automated parallel agent spawning |
-| `/ultrawork` | 5-phase quality workflow with 11 review gates |
-| `/review` | Security + performance + accessibility audit |
-| `/debug` | Structured root-cause debugging |
-| `/scm` | SCM + Git workflow and Conventional Commit support |
+| Step | Command | What It Does |
+|------|---------|-------------|
+| 1 | `/brainstorm` | Free-form ideation |
+| 2 | `/architecture` | Software architecture review, tradeoffs, ADR/ATAM/CBAM-style analysis |
+| 3 | `/design` | 7-phase design system workflow |
+| 4 | `/plan` | PM breaks down your feature into tasks |
+| 5 | `/work` | Step-by-step multi-agent execution |
+| 5 | `/orchestrate` | Automated parallel agent spawning |
+| 5 | `/ultrawork` | 5-phase quality workflow with 11 review gates |
+| 6 | `/review` | Security + performance + accessibility audit |
+| 7 | `/debug` | Structured root-cause debugging |
+| 8 | `/scm` | SCM + Git workflow and Conventional Commit support |
 
 **Auto-detection**: You don't even need slash commands — keywords like "architecture", "plan", "review", and "debug" in your message (in 11 languages!) auto-activate the right workflow.
 

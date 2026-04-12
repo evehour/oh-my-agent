@@ -68,17 +68,17 @@ Du: "Bau eine TODO-App mit User-Authentifizierung"
 
 Oder nutz Slash Commands für strukturierte Workflows:
 
-| Befehl | Was Er Macht |
-|---------|-------------|
-| `/brainstorm` | Freie Ideenfindung |
-| `/design` | 7-Phasen Design-System-Workflow |
-| `/plan` | PM zerlegt dein Feature in Aufgaben |
-| `/work` | Schritt-für-Schritt Multi-Agent-Ausführung |
-| `/orchestrate` | Automatisiertes paralleles Agenten-Spawning |
-| `/ultrawork` | 5-Phasen-Qualitätsworkflow mit 11 Review-Gates |
-| `/review` | Sicherheits- + Performance- + Barrierefreiheits-Audit |
-| `/debug` | Strukturiertes Ursachen-Debugging |
-| `/scm` | Konventioneller Commit mit Type/Scope-Analyse |
+| Schritt | Befehl | Was Er Macht |
+|---------|--------|-------------|
+| 1 | `/brainstorm` | Freie Ideenfindung |
+| 2 | `/design` | 7-Phasen Design-System-Workflow |
+| 3 | `/plan` | PM zerlegt dein Feature in Aufgaben |
+| 4 | `/work` | Schritt-für-Schritt Multi-Agent-Ausführung |
+| 4 | `/orchestrate` | Automatisiertes paralleles Agenten-Spawning |
+| 4 | `/ultrawork` | 5-Phasen-Qualitätsworkflow mit 11 Review-Gates |
+| 5 | `/review` | Sicherheits- + Performance- + Barrierefreiheits-Audit |
+| 6 | `/debug` | Strukturiertes Ursachen-Debugging |
+| 7 | `/scm` | Konventioneller Commit mit Type/Scope-Analyse |
 
 **Auto-Erkennung**: Du brauchst nicht mal Slash Commands — Schlüsselwörter wie "plan", "review", "debug" in deiner Nachricht (in 11 Sprachen!) aktivieren automatisch den richtigen Workflow.
 

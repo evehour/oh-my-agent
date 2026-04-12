@@ -68,17 +68,17 @@ Tú: "Construye una app de TODO con autenticación de usuarios"
 
 O usa slash commands para flujos estructurados:
 
-| Comando | Qué Hace |
-|---------|-------------|
-| `/brainstorm` | Ideación libre |
-| `/design` | Flujo de sistema de diseño en 7 fases |
-| `/plan` | PM desglosa tu feature en tareas |
-| `/work` | Ejecución multi-agente paso a paso |
-| `/orchestrate` | Lanzamiento automatizado de agentes en paralelo |
-| `/ultrawork` | Flujo de calidad en 5 fases con 11 puertas de revisión |
-| `/review` | Auditoría de seguridad + rendimiento + accesibilidad |
-| `/debug` | Debugging estructurado de causa raíz |
-| `/scm` | Commit convencional con análisis de type/scope |
+| Paso | Comando | Qué Hace |
+|------|---------|-------------|
+| 1 | `/brainstorm` | Ideación libre |
+| 2 | `/design` | Flujo de sistema de diseño en 7 fases |
+| 3 | `/plan` | PM desglosa tu feature en tareas |
+| 4 | `/work` | Ejecución multi-agente paso a paso |
+| 4 | `/orchestrate` | Lanzamiento automatizado de agentes en paralelo |
+| 4 | `/ultrawork` | Flujo de calidad en 5 fases con 11 puertas de revisión |
+| 5 | `/review` | Auditoría de seguridad + rendimiento + accesibilidad |
+| 6 | `/debug` | Debugging estructurado de causa raíz |
+| 7 | `/scm` | Commit convencional con análisis de type/scope |
 
 **Auto-detección**: Ni siquiera necesitas slash commands — palabras clave como "plan", "review", "debug" en tu mensaje (¡en 11 idiomas!) activan automáticamente el flujo correcto.
 

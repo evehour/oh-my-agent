@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.31.0...cli-v5.0.0) (2026-04-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cli:** oma usage:anti is removed. auth:status JSON omits antigravity.
+
+### Refactoring
+
+* **cli:** remove usage:anti and Antigravity quota bridge ([d32403c](https://github.com/first-fluke/oh-my-agent/commit/d32403c4636640c4841a77ecad3cb3e8e995a509))
+
 ## [4.31.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.30.2...cli-v4.31.0) (2026-04-12)
 
 

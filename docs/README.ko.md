@@ -27,11 +27,11 @@ bunx oh-my-agent@latest
 | 프리셋 | 구성 |
 |--------|------|
 | ✨ All | 모든 에이전트와 스킬 |
-| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + scm |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + scm |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + scm |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + scm |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + scm |
 
 ## 에이전트 팀
 
@@ -73,16 +73,17 @@ You: "유저 인증이 있는 TODO 앱 만들어줘"
 | 순서 | 커맨드 | 하는 일 |
 |------|--------|------|
 | 1 | `/brainstorm` | 자유로운 아이디어 발산 |
-| 2 | `/design` | 7단계 디자인 시스템 워크플로우 |
-| 3 | `/plan` | PM이 기능을 태스크로 분해 |
-| 4 | `/work` | 단계별 멀티 에이전트 실행 |
-| 4 | `/orchestrate` | 자동 병렬 에이전트 스폰 |
-| 4 | `/ultrawork` | 11개 리뷰 게이트가 포함된 5단계 품질 워크플로우 |
-| 5 | `/review` | 보안 + 성능 + 접근성 감사 |
-| 6 | `/debug` | 구조화된 근본 원인 디버깅 |
-| 7 | `/scm` | SCM + Git 워크플로 및 Conventional Commit 지원 |
+| 2 | `/architecture` | 소프트웨어 아키텍처 검토, 트레이드오프, ADR/ATAM/CBAM 스타일 분석 |
+| 3 | `/design` | 7단계 디자인 시스템 워크플로우 |
+| 4 | `/plan` | PM이 기능을 태스크로 분해 |
+| 5 | `/work` | 단계별 멀티 에이전트 실행 |
+| 5 | `/orchestrate` | 자동 병렬 에이전트 스폰 |
+| 5 | `/ultrawork` | 11개 리뷰 게이트가 포함된 5단계 품질 워크플로우 |
+| 6 | `/review` | 보안 + 성능 + 접근성 감사 |
+| 7 | `/debug` | 구조화된 근본 원인 디버깅 |
+| 8 | `/scm` | SCM + Git 워크플로 및 Conventional Commit 지원 |
 
-**자동 감지**: 슬래시 커맨드 없이도 메시지에 "계획", "리뷰", "디버그" 같은 키워드를 쓰면 (11개 언어 지원!) 알맞은 워크플로우가 자동으로 활성화됩니다.
+**자동 감지**: 슬래시 커맨드 없이도 메시지에 "아키텍처", "계획", "리뷰", "디버그" 같은 키워드를 쓰면 (11개 언어 지원!) 알맞은 워크플로우가 자동으로 활성화됩니다.
 
 ## CLI
 

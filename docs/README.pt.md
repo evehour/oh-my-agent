@@ -25,11 +25,11 @@ Escolha um preset e pronto:
 | Preset | O Que Voce Ganha |
 |--------|-------------|
 | ✨ All | Todos os agentes e skills |
-| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + scm |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + scm |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + scm |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + scm |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + scm |
 
 ## Seu Time de Agentes
 
@@ -48,7 +48,7 @@ Escolha um preset e pronto:
 | **oma-pdf** | Conversão de PDF para Markdown |
 | **oma-pm** | Planeja tarefas, detalha requisitos, define contratos de API |
 | **oma-qa** | Seguranca OWASP, performance, revisao de acessibilidade |
-| **oma-scm** | Commits convencionais limpos |
+| **oma-scm** | SCM (gestão de configuração de software): branches, merges, worktrees, baselines; Conventional Commits |
 | **oma-tf-infra** | IaC multi-cloud com Terraform (Infrastructure as Code) |
 | **oma-translator** | Traducao multilingual natural |
 
@@ -71,14 +71,15 @@ Ou use slash commands para workflows estruturados:
 | Etapa | Comando | O Que Faz |
 |-------|---------|-------------|
 | 1 | `/brainstorm` | Ideacao livre |
-| 2 | `/design` | Workflow de design system em 7 fases |
-| 3 | `/plan` | PM detalha sua feature em tarefas |
-| 4 | `/work` | Execucao multi-agente passo a passo |
-| 4 | `/orchestrate` | Spawn automatico e paralelo de agentes |
-| 4 | `/ultrawork` | Workflow de qualidade em 5 fases com 11 gates de revisao |
-| 5 | `/review` | Auditoria de seguranca + performance + acessibilidade |
-| 6 | `/debug` | Debugging estruturado de causa raiz |
-| 7 | `/scm` | Commit convencional com analise de type/scope |
+| 2 | `/architecture` | Revisao de arquitetura, trade-offs, analise estilo ADR/ATAM/CBAM |
+| 3 | `/design` | Workflow de design system em 7 fases |
+| 4 | `/plan` | PM detalha sua feature em tarefas |
+| 5 | `/work` | Execucao multi-agente passo a passo |
+| 5 | `/orchestrate` | Spawn automatico e paralelo de agentes |
+| 5 | `/ultrawork` | Workflow de qualidade em 5 fases com 11 gates de revisao |
+| 6 | `/review` | Auditoria de seguranca + performance + acessibilidade |
+| 7 | `/debug` | Debugging estruturado de causa raiz |
+| 8 | `/scm` | Workflow SCM e Git com suporte a Conventional Commits |
 
 **Auto-deteccao**: Voce nem precisa dos slash commands — palavras como "plan", "review", "debug" na sua mensagem (em 11 idiomas!) ativam automaticamente o workflow certo.
 

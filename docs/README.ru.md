@@ -25,11 +25,11 @@ bunx oh-my-agent@latest
 | Пресет | Что получаете |
 |--------|-------------|
 | ✨ All | Все агенты и навыки |
-| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + scm |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + scm |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + scm |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + scm |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + scm |
 
 ## Ваша команда агентов
 
@@ -48,7 +48,7 @@ bunx oh-my-agent@latest
 | **oma-pdf** | Конвертация PDF в Markdown |
 | **oma-pm** | Планирует задачи, декомпозирует требования, определяет API-контракты |
 | **oma-qa** | Безопасность OWASP, производительность, ревью доступности |
-| **oma-scm** | Чистые conventional commits |
+| **oma-scm** | SCM (управление конфигурацией ПО): ветки, слияния, worktree, базовые линии; Conventional Commits |
 | **oma-tf-infra** | Мультиоблачный IaC на Terraform (Infrastructure as Code) |
 | **oma-translator** | Естественный мультиязычный перевод |
 
@@ -71,14 +71,15 @@ bunx oh-my-agent@latest
 | Шаг | Команда | Что делает |
 |-----|---------|-------------|
 | 1 | `/brainstorm` | Свободная генерация идей |
-| 2 | `/design` | 7-фазный воркфлоу дизайн-системы |
-| 3 | `/plan` | PM разбивает фичу на задачи |
-| 4 | `/work` | Пошаговое мульти-агентное выполнение |
-| 4 | `/orchestrate` | Автоматический параллельный запуск агентов |
-| 4 | `/ultrawork` | 5-фазный воркфлоу качества с 11 ревью-гейтами |
-| 5 | `/review` | Аудит безопасности + производительности + доступности |
-| 6 | `/debug` | Структурированная отладка с поиском корневой причины |
-| 7 | `/scm` | Conventional commit с анализом type/scope |
+| 2 | `/architecture` | Обзор архитектуры, компромиссы, анализ в духе ADR/ATAM/CBAM |
+| 3 | `/design` | 7-фазный воркфлоу дизайн-системы |
+| 4 | `/plan` | PM разбивает фичу на задачи |
+| 5 | `/work` | Пошаговое мульти-агентное выполнение |
+| 5 | `/orchestrate` | Автоматический параллельный запуск агентов |
+| 5 | `/ultrawork` | 5-фазный воркфлоу качества с 11 ревью-гейтами |
+| 6 | `/review` | Аудит безопасности + производительности + доступности |
+| 7 | `/debug` | Структурированная отладка с поиском корневой причины |
+| 8 | `/scm` | Рабочий процесс SCM и Git, поддержка Conventional Commits |
 
 **Автодетекция**: Slash-команды даже не нужны — слова вроде "plan", "review", "debug" в вашем сообщении (на 11 языках!) автоматически активируют нужный воркфлоу.
 

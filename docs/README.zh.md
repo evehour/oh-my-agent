@@ -25,11 +25,11 @@ bunx oh-my-agent@latest
 | 预设 | 包含内容 |
 |------|---------|
 | ✨ All | 所有 agent 和 skill |
-| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + scm |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + scm |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + scm |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + scm |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + scm |
 
 ## Agent 团队
 
@@ -48,7 +48,7 @@ bunx oh-my-agent@latest
 | **oma-pdf** | PDF 转 Markdown |
 | **oma-pm** | 任务规划、需求拆解、API 契约定义 |
 | **oma-qa** | OWASP 安全、性能、无障碍审查 |
-| **oma-scm** | 干净的 conventional commit |
+| **oma-scm** | SCM（软件配置管理）— 分支、合并、worktree、基线；Conventional Commits |
 | **oma-tf-infra** | 多云 Terraform IaC（Infrastructure as Code，基础设施即代码） |
 | **oma-translator** | 自然的多语言翻译 |
 
@@ -71,14 +71,15 @@ You: "做一个带用户认证的 TODO 应用"
 | 步骤 | 命令 | 说明 |
 |------|------|------|
 | 1 | `/brainstorm` | 自由发散想法 |
-| 2 | `/design` | 7 阶段设计系统工作流 |
-| 3 | `/plan` | PM 把功能拆解成任务 |
-| 4 | `/work` | 逐步执行多 agent 协作 |
-| 4 | `/orchestrate` | 自动并行 agent 调度 |
-| 4 | `/ultrawork` | 含 11 个审查门禁的 5 阶段质量工作流 |
-| 5 | `/review` | 安全 + 性能 + 无障碍审计 |
-| 6 | `/debug` | 结构化根因调试 |
-| 7 | `/scm` | 带 type/scope 分析的 conventional commit |
+| 2 | `/architecture` | 软件架构评审、权衡、ADR/ATAM/CBAM 式分析 |
+| 3 | `/design` | 7 阶段设计系统工作流 |
+| 4 | `/plan` | PM 把功能拆解成任务 |
+| 5 | `/work` | 逐步执行多 agent 协作 |
+| 5 | `/orchestrate` | 自动并行 agent 调度 |
+| 5 | `/ultrawork` | 含 11 个审查门禁的 5 阶段质量工作流 |
+| 6 | `/review` | 安全 + 性能 + 无障碍审计 |
+| 7 | `/debug` | 结构化根因调试 |
+| 8 | `/scm` | SCM 与 Git 工作流，Conventional Commits 支持 |
 
 **自动检测**：不用斜杠命令也行 — 在消息里写"计划"、"审查"、"调试"之类的关键词（支持 11 种语言！），就会自动激活对应的工作流。
 

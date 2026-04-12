@@ -25,11 +25,11 @@ bunx oh-my-agent@latest
 | プリセット | 内容 |
 |-----------|------|
 | ✨ All | すべてのエージェントとスキル |
-| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + scm |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + scm |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + scm |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + scm |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + scm |
 
 ## エージェントチーム
 
@@ -48,7 +48,7 @@ bunx oh-my-agent@latest
 | **oma-pdf** | PDFからMarkdownへの変換 |
 | **oma-pm** | タスク計画、要件分解、APIコントラクト定義 |
 | **oma-qa** | OWASPセキュリティ、パフォーマンス、アクセシビリティレビュー |
-| **oma-scm** | きれいなconventional commit |
+| **oma-scm** | SCM（ソフトウェア構成管理）— ブランチ、マージ、ワークツリー、ベースライン；Conventional Commits |
 | **oma-tf-infra** | マルチクラウド Terraform IaC（Infrastructure as Code） |
 | **oma-translator** | 自然な多言語翻訳 |
 
@@ -71,14 +71,15 @@ You: "ユーザー認証付きのTODOアプリを作って"
 | 順 | コマンド | 説明 |
 |---|---------|------|
 | 1 | `/brainstorm` | 自由なアイデア発散 |
-| 2 | `/design` | 7フェーズのデザインシステムワークフロー |
-| 3 | `/plan` | PMが機能をタスクに分解 |
-| 4 | `/work` | ステップごとのマルチエージェント実行 |
-| 4 | `/orchestrate` | 自動並列エージェントスポーン |
-| 4 | `/ultrawork` | 11のレビューゲート付き5フェーズ品質ワークフロー |
-| 5 | `/review` | セキュリティ + パフォーマンス + アクセシビリティ監査 |
-| 6 | `/debug` | 構造化された根本原因デバッグ |
-| 7 | `/scm` | type/scope分析付きconventional commit |
+| 2 | `/architecture` | ソフトウェアアーキテクチャのレビュー、トレードオフ、ADR/ATAM/CBAM型の分析 |
+| 3 | `/design` | 7フェーズのデザインシステムワークフロー |
+| 4 | `/plan` | PMが機能をタスクに分解 |
+| 5 | `/work` | ステップごとのマルチエージェント実行 |
+| 5 | `/orchestrate` | 自動並列エージェントスポーン |
+| 5 | `/ultrawork` | 11のレビューゲート付き5フェーズ品質ワークフロー |
+| 6 | `/review` | セキュリティ + パフォーマンス + アクセシビリティ監査 |
+| 7 | `/debug` | 構造化された根本原因デバッグ |
+| 8 | `/scm` | SCMとGitのワークフロー、Conventional Commitsの支援 |
 
 **自動検出**: スラッシュコマンドなしでも、メッセージに「計画」「レビュー」「デバッグ」などのキーワードを入れるだけで（11言語対応！）適切なワークフローが自動で起動します。
 

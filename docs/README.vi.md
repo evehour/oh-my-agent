@@ -25,11 +25,11 @@ Chọn một preset và bạn đã sẵn sàng:
 | Preset | Bạn nhận được |
 |--------|--------------|
 | ✨ All | Tất cả agent và skill |
-| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + commit |
-| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + commit |
-| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + commit |
-| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + commit |
-| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + commit |
+| 🌐 Fullstack | architecture + frontend + backend + db + pm + qa + debug + brainstorm + scm |
+| 🎨 Frontend | architecture + frontend + pm + qa + debug + brainstorm + scm |
+| ⚙️ Backend | architecture + backend + db + pm + qa + debug + brainstorm + scm |
+| 📱 Mobile | architecture + mobile + pm + qa + debug + brainstorm + scm |
+| 🚀 DevOps | architecture + tf-infra + dev-workflow + pm + qa + debug + brainstorm + scm |
 
 ## Đội ngũ Agent
 
@@ -48,7 +48,7 @@ Chọn một preset và bạn đã sẵn sàng:
 | **oma-pdf** | Chuyển đổi PDF sang Markdown |
 | **oma-pm** | Lập kế hoạch, phân tích yêu cầu, định nghĩa API contract |
 | **oma-qa** | Đánh giá bảo mật OWASP, hiệu suất, accessibility |
-| **oma-scm** | Conventional commit gọn gàng |
+| **oma-scm** | SCM (quản lý cấu hình phần mềm): nhánh, merge, worktree, baseline; Conventional Commits |
 | **oma-tf-infra** | Terraform IaC đa đám mây (Infrastructure as Code) |
 | **oma-translator** | Dịch thuật đa ngôn ngữ tự nhiên |
 
@@ -71,14 +71,15 @@ Hoặc sử dụng slash command cho các workflow có cấu trúc:
 | Bước | Lệnh | Chức năng |
 |------|------|----------|
 | 1 | `/brainstorm` | Phát triển ý tưởng tự do |
-| 2 | `/design` | Workflow hệ thống thiết kế 7 giai đoạn |
-| 3 | `/plan` | PM phân tách tính năng thành các task |
-| 4 | `/work` | Thực thi multi-agent từng bước |
-| 4 | `/orchestrate` | Tự động spawn agent song song |
-| 4 | `/ultrawork` | Workflow chất lượng 5 giai đoạn với 11 cổng đánh giá |
-| 5 | `/review` | Kiểm tra bảo mật + hiệu suất + accessibility |
-| 6 | `/debug` | Debug có cấu trúc tìm nguyên nhân gốc |
-| 7 | `/scm` | Conventional commit với phân tích type/scope |
+| 2 | `/architecture` | Rà soát kiến trúc, trade-off, phân tích kiểu ADR/ATAM/CBAM |
+| 3 | `/design` | Workflow hệ thống thiết kế 7 giai đoạn |
+| 4 | `/plan` | PM phân tách tính năng thành các task |
+| 5 | `/work` | Thực thi multi-agent từng bước |
+| 5 | `/orchestrate` | Tự động spawn agent song song |
+| 5 | `/ultrawork` | Workflow chất lượng 5 giai đoạn với 11 cổng đánh giá |
+| 6 | `/review` | Kiểm tra bảo mật + hiệu suất + accessibility |
+| 7 | `/debug` | Debug có cấu trúc tìm nguyên nhân gốc |
+| 8 | `/scm` | Quy trình SCM và Git, hỗ trợ Conventional Commits |
 
 **Tự động phát hiện**: Bạn thậm chí không cần slash command — các từ khóa như "kế hoạch", "đánh giá", "debug" trong tin nhắn (hỗ trợ 11 ngôn ngữ!) sẽ tự động kích hoạt workflow phù hợp.
 

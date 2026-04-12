@@ -6,6 +6,7 @@
 ### Documentation
 
 * **readme:** add workflow step column to slash-command tables ([d060d04](https://github.com/first-fluke/oh-my-agent/commit/d060d046a60b8eadef9340b2bc1d991ab2745ef4))
+* **readme:** align auto-detection blurbs with EN keyword set ([41e4625](https://github.com/first-fluke/oh-my-agent/commit/41e46258de56afc583bbd4b01ef263d78a516f71))
 * **readme:** align locale READMEs with EN after translator review ([3f246da](https://github.com/first-fluke/oh-my-agent/commit/3f246da642d892a6a6d5ca2c1cec0d5fc2b3bd8d))
 * **readme:** list oma-scm after oma-qa in agent team tables ([7316d20](https://github.com/first-fluke/oh-my-agent/commit/7316d209569dc99ef504635b9490c83e6467f961))
 * **readme:** order How It Works slash commands by workflow stage ([5ed9f01](https://github.com/first-fluke/oh-my-agent/commit/5ed9f01b08a5107cf1eb8f46ceed17730a384243))

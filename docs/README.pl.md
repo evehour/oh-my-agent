@@ -72,14 +72,14 @@ Lub uzyj slash commands do ustrukturyzowanych workflow:
 |------|---------|-------------|
 | 1 | `/brainstorm` | Swobodna burza mozgow |
 | 2 | `/architecture` | Przeglad architektury, trade-offy, analiza w stylu ADR/ATAM/CBAM |
-| 3 | `/design` | 7-fazowy workflow design systemu |
-| 4 | `/plan` | PM rozbija Twoja funkcjonalnosc na zadania |
-| 5 | `/work` | Krokowe wykonanie wieloagentowe |
-| 5 | `/orchestrate` | Automatyczne rownolegle uruchamianie agentow |
-| 5 | `/ultrawork` | 5-fazowy workflow jakosci z 11 bramkami rewizji |
-| 6 | `/review` | Audyt bezpieczenstwa + wydajnosci + dostepnosci |
-| 7 | `/debug` | Ustrukturyzowane debugowanie z analiza przyczyn |
-| 8 | `/scm` | Workflow SCM i Git oraz wsparcie Conventional Commits |
+| 2 | `/design` | 7-fazowy workflow design systemu |
+| 2 | `/plan` | PM rozbija Twoja funkcjonalnosc na zadania |
+| 3 | `/work` | Krokowe wykonanie wieloagentowe |
+| 3 | `/orchestrate` | Automatyczne rownolegle uruchamianie agentow |
+| 3 | `/ultrawork` | 5-fazowy workflow jakosci z 11 bramkami rewizji |
+| 4 | `/review` | Audyt bezpieczenstwa + wydajnosci + dostepnosci |
+| 5 | `/debug` | Ustrukturyzowane debugowanie z analiza przyczyn |
+| 6 | `/scm` | Workflow SCM i Git oraz wsparcie Conventional Commits |
 
 **Autodetekcja**: Nie musisz nawet uzywac slash commands — slowa takie jak "architektura", "plan", "review" i "debug" w Twojej wiadomosci (w 11 jezykach!) automatycznie uruchamiaja odpowiedni workflow.
 

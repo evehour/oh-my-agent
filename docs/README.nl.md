@@ -72,14 +72,14 @@ Of gebruik slash commands voor gestructureerde workflows:
 |------|----------|-------------|
 | 1 | `/brainstorm` | Vrije brainstorm |
 | 2 | `/architecture` | Software-architectuurreview, trade-offs, ADR/ATAM/CBAM-stijl analyse |
-| 3 | `/design` | 7-fasen design system workflow |
-| 4 | `/plan` | PM splitst je feature op in taken |
-| 5 | `/work` | Stapsgewijze multi-agent uitvoering |
-| 5 | `/orchestrate` | Automatische parallelle agent-spawning |
-| 5 | `/ultrawork` | 5-fasen kwaliteitsworkflow met 11 review gates |
-| 6 | `/review` | Beveiligings- + performance- + toegankelijkheidsaudit |
-| 7 | `/debug` | Gestructureerde root cause-debugging |
-| 8 | `/scm` | SCM- en Git-workflow met ondersteuning voor Conventional Commits |
+| 2 | `/design` | 7-fasen design system workflow |
+| 2 | `/plan` | PM splitst je feature op in taken |
+| 3 | `/work` | Stapsgewijze multi-agent uitvoering |
+| 3 | `/orchestrate` | Automatische parallelle agent-spawning |
+| 3 | `/ultrawork` | 5-fasen kwaliteitsworkflow met 11 review gates |
+| 4 | `/review` | Beveiligings- + performance- + toegankelijkheidsaudit |
+| 5 | `/debug` | Gestructureerde root cause-debugging |
+| 6 | `/scm` | SCM- en Git-workflow met ondersteuning voor Conventional Commits |
 
 **Autodetectie**: Je hebt de slash commands niet eens nodig — woorden als "architectuur", "plan", "review" en "debug" in je bericht (in 11 talen!) activeren automatisch de juiste workflow.
 

@@ -72,14 +72,14 @@ You: "做一个带用户认证的 TODO 应用"
 |------|------|------|
 | 1 | `/brainstorm` | 自由发散想法 |
 | 2 | `/architecture` | 软件架构评审、权衡、ADR/ATAM/CBAM 式分析 |
-| 3 | `/design` | 7 阶段设计系统工作流 |
-| 4 | `/plan` | PM 把功能拆解成任务 |
-| 5 | `/work` | 逐步执行多 agent 协作 |
-| 5 | `/orchestrate` | 自动并行 agent 调度 |
-| 5 | `/ultrawork` | 含 11 个审查门禁的 5 阶段质量工作流 |
-| 6 | `/review` | 安全 + 性能 + 无障碍审计 |
-| 7 | `/debug` | 结构化根因调试 |
-| 8 | `/scm` | SCM 与 Git 工作流，Conventional Commits 支持 |
+| 2 | `/design` | 7 阶段设计系统工作流 |
+| 2 | `/plan` | PM 把功能拆解成任务 |
+| 3 | `/work` | 逐步执行多 agent 协作 |
+| 3 | `/orchestrate` | 自动并行 agent 调度 |
+| 3 | `/ultrawork` | 含 11 个审查门禁的 5 阶段质量工作流 |
+| 4 | `/review` | 安全 + 性能 + 无障碍审计 |
+| 5 | `/debug` | 结构化根因调试 |
+| 6 | `/scm` | SCM 与 Git 工作流，Conventional Commits 支持 |
 
 **自动检测**：甚至不需要斜杠命令 — 消息里出现“架构”“计划”“审查”“调试”等关键词（支持 11 种语言！）即可自动激活对应工作流。
 

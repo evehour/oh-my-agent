@@ -72,14 +72,14 @@ Ou use slash commands para workflows estruturados:
 |-------|---------|-------------|
 | 1 | `/brainstorm` | Ideacao livre |
 | 2 | `/architecture` | Revisao de arquitetura, trade-offs, analise estilo ADR/ATAM/CBAM |
-| 3 | `/design` | Workflow de design system em 7 fases |
-| 4 | `/plan` | PM detalha sua feature em tarefas |
-| 5 | `/work` | Execucao multi-agente passo a passo |
-| 5 | `/orchestrate` | Spawn automatico e paralelo de agentes |
-| 5 | `/ultrawork` | Workflow de qualidade em 5 fases com 11 gates de revisao |
-| 6 | `/review` | Auditoria de seguranca + performance + acessibilidade |
-| 7 | `/debug` | Debugging estruturado de causa raiz |
-| 8 | `/scm` | Workflow SCM e Git com suporte a Conventional Commits |
+| 2 | `/design` | Workflow de design system em 7 fases |
+| 2 | `/plan` | PM detalha sua feature em tarefas |
+| 3 | `/work` | Execucao multi-agente passo a passo |
+| 3 | `/orchestrate` | Spawn automatico e paralelo de agentes |
+| 3 | `/ultrawork` | Workflow de qualidade em 5 fases com 11 gates de revisao |
+| 4 | `/review` | Auditoria de seguranca + performance + acessibilidade |
+| 5 | `/debug` | Debugging estruturado de causa raiz |
+| 6 | `/scm` | Workflow SCM e Git com suporte a Conventional Commits |
 
 **Auto-deteccao**: Voce nem precisa dos slash commands — palavras como "arquitetura", "plan", "review" e "debug" na sua mensagem (em 11 idiomas!) ativam automaticamente o workflow certo.
 

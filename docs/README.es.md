@@ -72,14 +72,14 @@ O usa slash commands para flujos estructurados:
 |------|---------|-------------|
 | 1 | `/brainstorm` | Ideación libre |
 | 2 | `/architecture` | Revisión de arquitectura, trade-offs, análisis estilo ADR/ATAM/CBAM |
-| 3 | `/design` | Flujo de sistema de diseño en 7 fases |
-| 4 | `/plan` | PM desglosa tu feature en tareas |
-| 5 | `/work` | Ejecución multi-agente paso a paso |
-| 5 | `/orchestrate` | Lanzamiento automatizado de agentes en paralelo |
-| 5 | `/ultrawork` | Flujo de calidad en 5 fases con 11 puertas de revisión |
-| 6 | `/review` | Auditoría de seguridad + rendimiento + accesibilidad |
-| 7 | `/debug` | Debugging estructurado de causa raíz |
-| 8 | `/scm` | Flujo SCM y Git con soporte de Conventional Commits |
+| 2 | `/design` | Flujo de sistema de diseño en 7 fases |
+| 2 | `/plan` | PM desglosa tu feature en tareas |
+| 3 | `/work` | Ejecución multi-agente paso a paso |
+| 3 | `/orchestrate` | Lanzamiento automatizado de agentes en paralelo |
+| 3 | `/ultrawork` | Flujo de calidad en 5 fases con 11 puertas de revisión |
+| 4 | `/review` | Auditoría de seguridad + rendimiento + accesibilidad |
+| 5 | `/debug` | Debugging estructurado de causa raíz |
+| 6 | `/scm` | Flujo SCM y Git con soporte de Conventional Commits |
 
 **Auto-detección**: Ni siquiera necesitas slash commands — palabras clave como "arquitectura", "plan", "review" y "debug" en tu mensaje (¡en 11 idiomas!) activan automáticamente el flujo correcto.
 

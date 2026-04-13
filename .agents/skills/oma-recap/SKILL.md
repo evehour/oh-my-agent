@@ -191,3 +191,4 @@ For window ranges, use `{start-date}~{end-date}.md` format.
 7. **Time range (daily only)**: `(AM/PM/Evening HH:MM~HH:MM)`. AM: ~12:00, PM: 12:00~18:00, Evening: 18:00~.
 8. **Save results**: Write markdown to `.agents/results/recap/`.
 9. **Response language**: Follows `language` setting in `.agents/oma-config.yaml` if configured.
+10. **No em dashes**: Use commas, periods, or parentheses instead of `—` (em dash).

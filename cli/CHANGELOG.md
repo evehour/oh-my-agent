@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.1.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v5.0.0...cli-v5.1.0) (2026-04-13)
+
+
+### Features
+
+* **cli:** add link command ([93215cd](https://github.com/first-fluke/oh-my-agent/commit/93215cd54a5f671e22fd691db9586d473db8effc))
+
+
+### Bug Fixes
+
+* **cli:** unset deprecated claude prompt caching ([326e312](https://github.com/first-fluke/oh-my-agent/commit/326e312e4afff46f11245ed96d411c47f7dcd792))
+
 ## [5.0.0](https://github.com/first-fluke/oh-my-agent/compare/cli-v4.31.0...cli-v5.0.0) (2026-04-12)
 
 

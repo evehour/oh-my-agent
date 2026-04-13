@@ -20,7 +20,23 @@ Analyze AI tool conversation histories for a given period and generate themed wo
 
 ## Process
 
-### 1. Collect Data
+### 1. Resolve Date
+
+Determine the target date or window from the user's natural language input. Default is today.
+
+| User input | Resolution |
+|------------|------------|
+| "today's summary" / "오늘 작업 요약" | Today's date |
+| "yesterday" / "어제" | Yesterday's date |
+| "March 25" / "3월 25일" | 2026-03-25 |
+| "last Monday" / "지난 월요일" | Calculate the date |
+| "this week" / "이번 주" | `--window 7d` |
+| "last 3 days" / "최근 3일" | `--window 3d` |
+| No date specified | Today (`--window 1d`) |
+
+Convert to either `--date YYYY-MM-DD` or `--window Nd` format for the CLI.
+
+### 2. Collect Data
 
 Extract normalized conversation history via CLI.
 
@@ -55,7 +71,7 @@ TZ=Asia/Seoul jq -r --argjson start "$start_ts" --argjson end "$end_ts" '
 ' ~/.claude/history.jsonl
 ```
 
-### 2. Theme Analysis and Grouping
+### 3. Theme Analysis and Grouping
 
 Read **all** extracted data and analyze with the following criteria:
 
@@ -76,7 +92,7 @@ Read **all** extracted data and analyze with the following criteria:
 - Tool combinations used
 - Artifacts produced (docs, code, config, etc.)
 
-### 3. Output Format
+### 4. Output Format
 
 Save results to `.agents/results/summary/{date}.md` and display simultaneously.
 
@@ -112,7 +128,7 @@ Focus on outcomes and progress, not tool ratios or technical details.
 - Notable tool-switching patterns
 ```
 
-### 4. Save Results
+### 5. Save Results
 
 Save to `.agents/results/summary/{date}.md`.
 For window ranges, use `{start-date}~{end-date}.md` format.

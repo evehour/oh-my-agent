@@ -29,15 +29,19 @@ function extractText(
   return "";
 }
 
+interface SessionPair {
+  prefix: string; // first 80 chars of user prompt in session file
+  response: string; // first 200 chars of assistant response
+}
+
 /**
- * Build a map of sessionId → Map<promptPrefix, responseSnippet>.
- * Matches user→assistant pairs by sequential order in session JSONL.
- * Uses first 80 chars of user prompt as the key.
+ * Build sessionId → SessionPair[] (ordered user→assistant pairs).
+ * Primary match by prompt prefix (Map-like), fallback by index order.
  */
 function loadSessionResponses(
   sessionIds: Set<string>,
-): Map<string, Map<string, string>> {
-  const result = new Map<string, Map<string, string>>();
+): Map<string, SessionPair[]> {
+  const result = new Map<string, SessionPair[]>();
   if (!existsSync(PROJECTS_DIR)) return result;
 
   try {
@@ -55,13 +59,12 @@ function loadSessionResponses(
 
       for (const file of files) {
         const sessionId = file.replace(".jsonl", "");
-        const responses = new Map<string, string>();
+        const pairs: SessionPair[] = [];
         try {
           const lines = readFileSync(join(projPath, file), "utf-8")
             .split("\n")
             .filter(Boolean);
 
-          // Collect user/assistant messages in order
           const msgs: Array<{ type: string; text: string }> = [];
           for (const line of lines) {
             const d = JSON.parse(line);
@@ -71,23 +74,25 @@ function loadSessionResponses(
             }
           }
 
-          // Pair user → next assistant
           for (let i = 0; i < msgs.length; i++) {
-            if (msgs[i].type !== "user" || !msgs[i].text) continue;
-            // Find next assistant message
+            if (msgs[i].type !== "user") continue;
+            let resp = "";
             for (let j = i + 1; j < msgs.length; j++) {
               if (msgs[j].type === "assistant" && msgs[j].text) {
-                const key = msgs[i].text.slice(0, 80);
-                responses.set(key, msgs[j].text.slice(0, 200));
+                resp = msgs[j].text.slice(0, 200);
                 break;
               }
             }
+            pairs.push({
+              prefix: msgs[i].text.slice(0, 80),
+              response: resp,
+            });
           }
         } catch {
           // skip unreadable
         }
-        if (responses.size > 0) {
-          result.set(sessionId, responses);
+        if (pairs.length > 0) {
+          result.set(sessionId, pairs);
         }
       }
     }
@@ -148,14 +153,31 @@ registerParser({
     // Second pass: load responses for matching sessions
     const sessionResponses = loadSessionResponses(sessionIds);
 
-    // Build normalized entries with responses (match by prompt text prefix)
+    // Track per-session index for fallback matching
+    const sessionIndexCounters = new Map<string, number>();
+
+    // Build normalized entries: prefix match first, index fallback
     const entries: NormalizedEntry[] = rawEntries.map((raw) => {
       let response: string | undefined;
       if (raw.sessionId) {
-        const resMap = sessionResponses.get(raw.sessionId);
-        if (resMap) {
+        const pairs = sessionResponses.get(raw.sessionId);
+        if (pairs) {
+          // Primary: match by prompt prefix
           const key = raw.prompt.slice(0, 80);
-          response = resMap.get(key);
+          const prefixMatch = pairs.find((p) => p.prefix === key);
+          if (prefixMatch) {
+            response = prefixMatch.response || undefined;
+          } else {
+            // Fallback: match by sequential index within the session
+            const idx = sessionIndexCounters.get(raw.sessionId) ?? 0;
+            if (idx < pairs.length) {
+              response = pairs[idx].response || undefined;
+            }
+          }
+          sessionIndexCounters.set(
+            raw.sessionId,
+            (sessionIndexCounters.get(raw.sessionId) ?? 0) + 1,
+          );
         }
       }
 

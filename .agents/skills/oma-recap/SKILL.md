@@ -124,13 +124,13 @@ Focus on outcomes and progress, not tool ratios or technical details.
 - Notable tool-switching patterns
 ```
 
-#### Multi-day format (3d, 7d, 2w, etc.)
+#### Multi-day format (3d, 7d, 2w, 30d)
 
-For multi-day windows, use a **date-driven structure** that preserves daily granularity.
-Large projects (50+ prompts) must be broken down by date, not collapsed into a single theme.
+For any multi-day window, use a **project-driven structure** like a sprint report.
+Focus on what was accomplished per project, not day-by-day chronology.
 
 ```markdown
-## {start} ~ {end} Recap
+## {start} ~ {end} Monthly Recap
 
 > **TL;DR**
 > - {What I accomplished 1 — project name + outcome}
@@ -138,30 +138,36 @@ Large projects (50+ prompts) must be broken down by date, not collapsed into a s
 > - {What I accomplished 3}
 
 ### Overview
-3-5 sentence summary of the entire period. Key focus shifts, major milestones,
-and overall arc of work. Written from "I did X" perspective.
+3-5 sentence narrative of the month. Major focus shifts week-by-week,
+key milestones achieved, and overall direction. Written from "I did X" perspective.
 
-### {MM/DD Day} — {primary focus}
-- {project}: what was done (2-3 bullets per project)
-- {project}: what was done
-Highlight key decisions or milestones for the day.
+### {Project A} (N prompts, active MM/DD~MM/DD)
+What this project is, what was accomplished this month.
+- Key milestone or deliverable 1
+- Key milestone or deliverable 2
+- Key decision made
+- Current status (shipped / in progress / blocked)
 
-### {MM/DD Day} — {primary focus}
-- {project}: what was done
+### {Project B} (N prompts, active MM/DD~MM/DD)
+- ...
 
-### Miscellaneous
-- Days or tasks too small for their own section
+### Side Projects
+Projects with <30 prompts, summarized briefly.
+- {project}: one-line summary
+- {project}: one-line summary
 
 ### Tool Usage Patterns
-- Tool usage ratios and primary purposes
-- Notable tool-switching patterns or shifts across the period
+- Tool usage ratios and how they evolved over the month
+- Notable shifts (e.g., "started using Codex mid-month")
 ```
 
 **Multi-day grouping rules:**
-- Each day with 10+ prompts gets its own section
-- Days with <10 prompts are grouped into "Miscellaneous" or merged with adjacent days
-- Within each day section, list projects worked on with 2-3 bullets each
-- If a project spans multiple days, mention it in each day's section (not as a separate multi-day theme)
+- Group by **project**, not by date
+- Order projects by activity volume (most active first)
+- Each project section: what it is, what was accomplished, key decisions, current status
+- Include active date range per project (e.g., "active 04/02~04/09")
+- Small projects (<30 prompts) go into "Side Projects" as one-liners
+- Overview should read like a sprint report narrative, not a log
 
 ### 5. Save Results
 
@@ -179,7 +185,7 @@ For window ranges, use `{start-date}~{end-date}.md` format.
 1. **TL;DR required**: Top 3 lines of "what I accomplished". Project name + outcome. No tool names or technical details.
 2. **Overview**: After TL;DR, describe the flow. Start with "I" as subject.
 3. **Daily**: themes by time block (15+ min). Rest goes to "Miscellaneous".
-4. **Multi-day**: sections by date, projects listed within each day. Large projects broken down per day, not collapsed.
+4. **Multi-day (3d+)**: sections by project, ordered by activity. Read like a sprint report, not a daily log.
 5. **2-4 bullets per theme/project**: Concise essentials only. Don't enumerate every step.
 6. **Themes by content**: Group by actual work, not by tool.
 7. **Time range (daily only)**: `(AM/PM/Evening HH:MM~HH:MM)`. AM: ~12:00, PM: 12:00~18:00, Evening: 18:00~.

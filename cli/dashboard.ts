@@ -10,6 +10,8 @@ import { basename, join } from "node:path";
 import { watch } from "chokidar";
 import * as pc from "picocolors";
 import { WebSocket, WebSocketServer } from "ws";
+import { buildGraphData } from "./lib/summary/graph.js";
+import { collectSummary } from "./lib/summary/index.js";
 
 const PORT = process.env.DASHBOARD_PORT
   ? parseInt(process.env.DASHBOARD_PORT || "9847", 10)
@@ -311,14 +313,181 @@ const HTML = `<!DOCTYPE html>
 </body>
 </html>`;
 
+const SUMMARY_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>oh-my-agent — Summary Graph</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,sans-serif;overflow:hidden}
+#controls{position:fixed;top:16px;left:16px;z-index:10;display:flex;gap:8px;align-items:center}
+#controls select,#controls input,#controls button{
+  background:#161b22;color:#e6edf3;border:1px solid #30363d;border-radius:6px;padding:6px 10px;font-size:13px}
+#controls button{cursor:pointer;background:#238636;border-color:#238636}
+#controls button:hover{background:#2ea043}
+#tooltip{position:fixed;display:none;background:#1c2128;border:1px solid #30363d;border-radius:8px;padding:12px;
+  font-size:13px;pointer-events:none;z-index:20;max-width:280px;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+#tooltip .tool-badge{display:inline-block;padding:2px 6px;border-radius:4px;font-size:11px;margin:2px}
+#legend{position:fixed;bottom:16px;left:16px;display:flex;gap:12px;font-size:12px;opacity:.7}
+#legend span{display:flex;align-items:center;gap:4px}
+#legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+#stats{position:fixed;top:16px;right:16px;font-size:13px;opacity:.7;text-align:right}
+svg{width:100vw;height:100vh}
+</style>
+</head>
+<body>
+<div id="controls">
+  <select id="window">
+    <option value="1d">Today</option>
+    <option value="3d">3 Days</option>
+    <option value="7d" selected>7 Days</option>
+    <option value="2w">2 Weeks</option>
+    <option value="30d">30 Days</option>
+  </select>
+  <input id="topK" type="number" min="0" max="50" value="" placeholder="Top K">
+  <button id="refresh">Refresh</button>
+</div>
+<div id="tooltip"></div>
+<div id="legend">
+  <span><i class="dot" style="background:#f0a030"></i> Claude</span>
+  <span><i class="dot" style="background:#4a90d9"></i> Gemini</span>
+  <span><i class="dot" style="background:#3fb950"></i> Codex</span>
+  <span><i class="dot" style="background:#a371f7"></i> Qwen</span>
+  <span><i class="dot" style="background:#768390"></i> Cursor</span>
+</div>
+<div id="stats"></div>
+<svg></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+const TOOL_COLORS={claude:'#f0a030',gemini:'#4a90d9',codex:'#3fb950',qwen:'#a371f7',cursor:'#768390'};
+const svg=d3.select('svg'),width=window.innerWidth,height=window.innerHeight;
+svg.attr('viewBox',[0,0,width,height]);
+
+const g=svg.append('g');
+svg.call(d3.zoom().scaleExtent([.1,8]).on('zoom',e=>g.attr('transform',e.transform)));
+
+let simulation,linkG,nodeG,labelG;
+
+function init(){
+  linkG=g.append('g').attr('class','links');
+  nodeG=g.append('g').attr('class','nodes');
+  labelG=g.append('g').attr('class','labels');
+}
+init();
+
+async function load(){
+  const w=document.getElementById('window').value;
+  const t=document.getElementById('topK').value;
+  const params=new URLSearchParams({window:w});
+  if(t)params.set('top',t);
+  const res=await fetch('/api/summary?'+params);
+  const data=await res.json();
+  render(data);
+}
+
+function render(data){
+  const{graph,stats}=data;
+  if(!graph||!graph.nodes.length){
+    document.getElementById('stats').textContent='No data for this window.';
+    linkG.selectAll('*').remove();nodeG.selectAll('*').remove();labelG.selectAll('*').remove();
+    return;
+  }
+
+  document.getElementById('stats').innerHTML=
+    'Prompts: <b>'+stats.totalPrompts+'</b> &middot; Projects: <b>'+graph.nodes.length+'</b>';
+
+  const maxCount=d3.max(graph.nodes,d=>d.count)||1;
+  const r=d3.scaleSqrt().domain([1,maxCount]).range([8,40]);
+
+  // Restart simulation
+  if(simulation)simulation.stop();
+  simulation=d3.forceSimulation(graph.nodes)
+    .force('link',d3.forceLink(graph.edges).id(d=>d.id).distance(120).strength(d=>Math.min(d.weight/5,.8)))
+    .force('charge',d3.forceManyBody().strength(-200))
+    .force('center',d3.forceCenter(width/2,height/2))
+    .force('collision',d3.forceCollide().radius(d=>r(d.count)+4));
+
+  // Links
+  linkG.selectAll('*').remove();
+  const link=linkG.selectAll('line').data(graph.edges).join('line')
+    .attr('stroke','#30363d').attr('stroke-width',d=>Math.min(d.weight,6)).attr('stroke-opacity',.6);
+
+  // Nodes
+  nodeG.selectAll('*').remove();
+  const node=nodeG.selectAll('circle').data(graph.nodes).join('circle')
+    .attr('r',d=>r(d.count))
+    .attr('fill',d=>TOOL_COLORS[d.primaryTool]||'#768390')
+    .attr('stroke','#0d1117').attr('stroke-width',2)
+    .style('cursor','pointer')
+    .call(d3.drag().on('start',dragStart).on('drag',dragging).on('end',dragEnd));
+
+  node.on('mouseover',(e,d)=>{
+    const tip=document.getElementById('tooltip');
+    const tools=Object.entries(d.tools).sort((a,b)=>b[1]-a[1])
+      .map(([t,c])=>'<span class="tool-badge" style="background:'+TOOL_COLORS[t]+'">'+t+': '+c+'</span>').join(' ');
+    const dur=d.duration>0?Math.round(d.duration/60000)+'min':'<1min';
+    tip.innerHTML='<b>'+d.label+'</b><br>Prompts: '+d.count+' &middot; Duration: '+dur+'<br>'+tools;
+    tip.style.display='block';
+    tip.style.left=(e.pageX+12)+'px';tip.style.top=(e.pageY-12)+'px';
+  }).on('mousemove',e=>{
+    const tip=document.getElementById('tooltip');
+    tip.style.left=(e.pageX+12)+'px';tip.style.top=(e.pageY-12)+'px';
+  }).on('mouseout',()=>{document.getElementById('tooltip').style.display='none'});
+
+  // Labels
+  labelG.selectAll('*').remove();
+  const label=labelG.selectAll('text').data(graph.nodes).join('text')
+    .text(d=>d.label).attr('font-size',11).attr('fill','#e6edf3')
+    .attr('text-anchor','middle').attr('dy',d=>r(d.count)+14).style('pointer-events','none');
+
+  simulation.on('tick',()=>{
+    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
+        .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+    node.attr('cx',d=>d.x).attr('cy',d=>d.y);
+    label.attr('x',d=>d.x).attr('y',d=>d.y);
+  });
+}
+
+function dragStart(e,d){if(!e.active)simulation.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y}
+function dragging(e,d){d.fx=e.x;d.fy=e.y}
+function dragEnd(e,d){if(!e.active)simulation.alphaTarget(0);d.fx=null;d.fy=null}
+
+document.getElementById('refresh').onclick=load;
+document.getElementById('window').onchange=load;
+load();
+</script>
+</body>
+</html>`;
+
 export function startDashboard() {
   const memoriesDir = resolveMemoriesDir();
   if (!existsSync(memoriesDir)) mkdirSync(memoriesDir, { recursive: true });
 
-  const server = createServer((req, res) => {
-    if (req.url === "/api/state") {
+  const server = createServer(async (req, res) => {
+    const url = new URL(req.url || "/", `http://${req.headers.host}`);
+
+    if (url.pathname === "/api/state") {
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(buildFullState(memoriesDir)));
+    } else if (url.pathname === "/api/summary") {
+      try {
+        const window = url.searchParams.get("window") || "7d";
+        const tool = url.searchParams.get("tool") || undefined;
+        const top = url.searchParams.get("top")
+          ? Number.parseInt(url.searchParams.get("top") as string, 10)
+          : undefined;
+        const output = await collectSummary({ window, tool, top });
+        const graph = buildGraphData(output.entries, top);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ...output, graph }));
+      } catch (err) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: String(err) }));
+      }
+    } else if (url.pathname === "/summary") {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.end(SUMMARY_HTML);
     } else {
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end(HTML);

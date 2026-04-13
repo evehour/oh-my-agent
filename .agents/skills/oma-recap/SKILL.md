@@ -141,14 +141,14 @@ Focus on what was accomplished per project, not day-by-day chronology.
 3-5 sentence narrative of the month. Major focus shifts week-by-week,
 key milestones achieved, and overall direction. Written from "I did X" perspective.
 
-### {Project A} (N prompts, active MM/DD~MM/DD)
-What this project is, what was accomplished this month.
+### {Project A}
+What this project is, what was accomplished during the period.
 - Key milestone or deliverable 1
 - Key milestone or deliverable 2
 - Key decision made
 - Current status (shipped / in progress / blocked)
 
-### {Project B} (N prompts, active MM/DD~MM/DD)
+### {Project B}
 - ...
 
 ### Side Projects
@@ -165,7 +165,7 @@ Projects with <30 prompts, summarized briefly.
 - Group by **project**, not by date
 - Order projects by activity volume (most active first)
 - Each project section: what it is, what was accomplished, key decisions, current status
-- Include active date range per project (e.g., "active 04/02~04/09")
+- Do NOT include prompt counts or date ranges in project headers — those are internal metrics
 - Small projects (<30 prompts) go into "Side Projects" as one-liners
 - Overview should read like a sprint report narrative, not a log
 

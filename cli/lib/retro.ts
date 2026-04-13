@@ -8,6 +8,12 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 
+export {
+  getCompareWindows,
+  parseTimeWindow,
+  type TimeWindow,
+} from "./time-window.js";
+
 // --- Types ---
 
 export interface RetroCommit {
@@ -80,60 +86,6 @@ export interface RetroSnapshot {
   authors: Record<string, RetroSnapshotAuthor>;
   commitTypes: Record<string, number>;
   hotspots: Array<{ file: string; count: number }>;
-}
-
-export interface TimeWindow {
-  since: string;
-  until?: string;
-  label: string;
-  days: number;
-}
-
-// --- Time Window ---
-
-export function parseTimeWindow(arg?: string): TimeWindow {
-  if (!arg) {
-    return { since: "7 days ago", label: "7d", days: 7 };
-  }
-
-  const match = arg.match(/^(\d+)(h|d|w)$/);
-  if (!match) {
-    throw new Error(`Invalid window: ${arg}. Use: 24h, 7d, 14d, 30d, 2w`);
-  }
-
-  const num = parseInt(match[1] || "0", 10);
-  const unit = match[2] || "";
-
-  switch (unit) {
-    case "h":
-      return { since: `${num} hours ago`, label: `${num}h`, days: num / 24 };
-    case "d":
-      return { since: `${num} days ago`, label: `${num}d`, days: num };
-    case "w":
-      return {
-        since: `${num * 7} days ago`,
-        label: `${num}w`,
-        days: num * 7,
-      };
-    default:
-      throw new Error(`Invalid unit: ${unit}`);
-  }
-}
-
-export function getCompareWindows(arg?: string): {
-  current: TimeWindow;
-  previous: TimeWindow;
-} {
-  const current = parseTimeWindow(arg);
-  return {
-    current,
-    previous: {
-      since: `${current.days * 2} days ago`,
-      until: `${current.days} days ago`,
-      label: current.label,
-      days: current.days,
-    },
-  };
 }
 
 // --- Git Data Collection ---

@@ -17,6 +17,7 @@ import { initMemory } from "./commands/memory.js";
 import { retro } from "./commands/retro.js";
 import { star } from "./commands/star.js";
 import { stats } from "./commands/stats.js";
+import { summary } from "./commands/summary.js";
 import { update } from "./commands/update.js";
 import { verify } from "./commands/verify.js";
 import { visualize } from "./commands/visualize.js";
@@ -461,6 +462,7 @@ program
       await update(options.force ?? false, options.ci ?? false);
     }),
   );
+
 program
   .command("link [vendors...]")
   .description(
@@ -471,7 +473,6 @@ program
       link(vendors.length > 0 ? vendors : undefined);
     }),
   );
-
 
 addOutputOptions(
   program
@@ -514,6 +515,37 @@ addOutputOptions(
         json: resolveJsonMode(options),
         compare: options.compare,
         interactive: options.interactive,
+      });
+    },
+    { supportsJsonOutput: true },
+  ),
+);
+
+addOutputOptions(
+  program
+    .command("summary")
+    .description("Summarize AI tool conversation history")
+    .option("--window <period>", "Time window: 1d, 3d, 7d, 2w, 30d", "1d")
+    .option("--date <date>", "Specific date (YYYY-MM-DD)")
+    .option(
+      "--tool <tools>",
+      "Filter by tools (comma-separated: claude,codex,gemini,qwen,cursor)",
+    )
+    .option("--top <n>", "Show top N projects/topics", Number.parseInt)
+    .option("--sort <metric>", "Sort by: count, duration", "count")
+    .option("--mermaid", "Output Mermaid gantt chart")
+    .option("--graph", "Open interactive graph in browser"),
+).action(
+  runAction(
+    async (options) => {
+      await summary(resolveJsonMode(options), {
+        window: options.window,
+        date: options.date,
+        tool: options.tool,
+        top: options.top,
+        sort: options.sort,
+        mermaid: options.mermaid,
+        graph: options.graph,
       });
     },
     { supportsJsonOutput: true },

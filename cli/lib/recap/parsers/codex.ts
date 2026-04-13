@@ -57,33 +57,41 @@ function scanDir(dir: string, map: Map<string, SessionData>): void {
 
         const responses = new Map<string, string>();
 
-        // Scan for user event_msg → next response_item(assistant)
-        for (let i = 0; i < lines.length; i++) {
-          const d = JSON.parse(lines[i]);
-          if (d.type === "event_msg" && d.payload?.role === "user") {
-            const userText = (d.payload.content || [])
-              .filter((c: { type?: string }) => c.type === "input_text")
-              .map((c: { text?: string }) => c.text || "")
+        // Collect response_items with user/assistant roles
+        type ContentItem = { type?: string; text?: string };
+        const items: Array<{ role: string; text: string }> = [];
+        for (const line of lines) {
+          const d = JSON.parse(line);
+          if (d.type !== "response_item") continue;
+          const p = d.payload;
+          if (!p?.role || !p.content) continue;
+          if (p.role === "user") {
+            const text = (p.content as ContentItem[])
+              .filter((c) => c.type === "input_text")
+              .map((c) => c.text || "")
               .join(" ")
               .trim();
-
-            // Find next assistant response
-            for (let j = i + 1; j < lines.length; j++) {
-              const r = JSON.parse(lines[j]);
-              if (
-                r.type === "response_item" &&
-                r.payload?.role === "assistant"
-              ) {
-                const rText = (r.payload.content || [])
-                  .filter((c: { type?: string }) => c.type === "output_text")
-                  .map((c: { text?: string }) => c.text || "")
-                  .join(" ")
-                  .trim();
-                if (userText && rText) {
-                  responses.set(userText.slice(0, 100), rText.slice(0, 200));
-                }
-                break;
-              }
+            if (text && !text.startsWith("<environment_context>")) {
+              items.push({ role: "user", text });
+            }
+          } else if (p.role === "assistant") {
+            const text = (p.content as ContentItem[])
+              .filter((c) => c.type === "output_text")
+              .map((c) => c.text || "")
+              .join(" ")
+              .trim();
+            if (text) items.push({ role: "assistant", text });
+          }
+        }
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].role !== "user") continue;
+          for (let j = i + 1; j < items.length; j++) {
+            if (items[j].role === "assistant") {
+              responses.set(
+                items[i].text.slice(0, 100),
+                items[j].text.slice(0, 200),
+              );
+              break;
             }
           }
         }

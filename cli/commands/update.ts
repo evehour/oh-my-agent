@@ -11,6 +11,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
+import {
+  applyRecommendedSettings,
+  needsSettingsUpdate,
+} from "../lib/claude/settings.js";
 import { promptUninstallCompetitors } from "../lib/competitors.js";
 import {
   applyRecommendedGeminiSettings,
@@ -283,6 +287,26 @@ export async function update(force = false, ci = false): Promise<void> {
         (v): v is VendorType => v !== "copilot",
       );
       installVendorAdaptations(repoDir, cwd, hookVendors);
+      if (configuredVendors.includes("claude")) {
+        const claudeSettingsPath = join(cwd, ".claude", "settings.json");
+        let claudeSettings: unknown = {};
+        if (existsSync(claudeSettingsPath)) {
+          try {
+            claudeSettings = JSON.parse(
+              readFileSync(claudeSettingsPath, "utf-8"),
+            );
+          } catch {
+            claudeSettings = {};
+          }
+        }
+        if (needsSettingsUpdate(claudeSettings)) {
+          applyRecommendedSettings(claudeSettings);
+          writeFileSync(
+            claudeSettingsPath,
+            `${JSON.stringify(claudeSettings, null, 2)}\n`,
+          );
+        }
+      }
       if (configuredVendors.includes("gemini")) {
         const geminiSettingsPath = join(cwd, ".gemini", "settings.json");
         let geminiSettings: unknown = {};

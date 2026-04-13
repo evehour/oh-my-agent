@@ -3,6 +3,10 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
+import {
+  applyRecommendedSettings,
+  needsSettingsUpdate,
+} from "../lib/claude/settings.js";
 import { promptUninstallCompetitors } from "../lib/competitors.js";
 import {
   applyRecommendedGeminiSettings,
@@ -279,6 +283,26 @@ export async function install(): Promise<void> {
       // Install vendor-specific adaptations (agents, routers, hooks, CLAUDE.md)
       spinner.start("Installing vendor adaptations...");
       installVendorAdaptations(repoDir, cwd, hookVendors);
+      if (vendors.includes("claude")) {
+        const claudeSettingsPath = join(cwd, ".claude", "settings.json");
+        let claudeSettings: unknown = {};
+        if (existsSync(claudeSettingsPath)) {
+          try {
+            claudeSettings = JSON.parse(
+              readFileSync(claudeSettingsPath, "utf-8"),
+            );
+          } catch {
+            claudeSettings = {};
+          }
+        }
+        if (needsSettingsUpdate(claudeSettings)) {
+          applyRecommendedSettings(claudeSettings);
+          writeFileSync(
+            claudeSettingsPath,
+            `${JSON.stringify(claudeSettings, null, 2)}\n`,
+          );
+        }
+      }
       if (vendors.includes("gemini")) {
         const geminiSettingsPath = join(cwd, ".gemini", "settings.json");
         let geminiSettings: unknown = {};

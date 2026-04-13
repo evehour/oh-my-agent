@@ -11,8 +11,9 @@ export const RECOMMENDED_ENV = {
   DISABLE_ERROR_REPORTING: "1",
   CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY: "1",
   CLAUDE_CODE_DISABLE_AUTO_MEMORY: "1",
-  DISABLE_PROMPT_CACHING: "1",
 } as const;
+
+const DEPRECATED_ENV_KEYS = ["DISABLE_PROMPT_CACHING"] as const;
 
 export const RECOMMENDED_ATTRIBUTION = {
   commit:
@@ -27,6 +28,10 @@ export const RECOMMENDED_ATTRIBUTION = {
 export function needsSettingsUpdate(claudeSettings: any): boolean {
   const env = claudeSettings?.env;
   if (!env) return true;
+
+  for (const key of DEPRECATED_ENV_KEYS) {
+    if (key in env) return true;
+  }
 
   for (const [key, expected] of Object.entries(RECOMMENDED_ENV)) {
     const actual = env[key];
@@ -49,10 +54,15 @@ export function needsSettingsUpdate(claudeSettings: any): boolean {
  */
 // biome-ignore lint/suspicious/noExplicitAny: settings.json schema is dynamic
 export function applyRecommendedSettings(claudeSettings: any): any {
-  claudeSettings.env = {
+  const env = {
     ...(claudeSettings.env || {}),
     ...RECOMMENDED_ENV,
   };
+  for (const key of DEPRECATED_ENV_KEYS) {
+    delete env[key];
+  }
+
+  claudeSettings.env = env;
   claudeSettings.attribution = { ...RECOMMENDED_ATTRIBUTION };
   return claudeSettings;
 }

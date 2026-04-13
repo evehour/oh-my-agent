@@ -22,19 +22,14 @@ Analyze AI tool conversation histories for a given period and generate themed wo
 
 ### 1. Resolve Date
 
-Determine the target date or window from the user's natural language input. Default is today.
+Determine the target date or window from the user's natural language input (in any language). Default is today.
 
-| User input | Resolution |
-|------------|------------|
-| "today's summary" / "오늘 작업 요약" | Today's date |
-| "yesterday" / "어제" | Yesterday's date |
-| "March 25" / "3월 25일" | 2026-03-25 |
-| "last Monday" / "지난 월요일" | Calculate the date |
-| "this week" / "이번 주" | `--window 7d` |
-| "last 3 days" / "최근 3일" | `--window 3d` |
-| No date specified | Today (`--window 1d`) |
-
-Convert to either `--date YYYY-MM-DD` or `--window Nd` format for the CLI.
+**Resolution rules:**
+- Relative day references (today, yesterday, day before yesterday, etc.) → calculate `--date YYYY-MM-DD`
+- Specific date mentions (month + day, or full date) → convert to `--date YYYY-MM-DD`
+- Relative weekday references (last Monday, this Friday, etc.) → calculate the date
+- Period references (this week, last 3 days, past 2 weeks, etc.) → convert to `--window Nd`
+- No date specified → today (`--window 1d`)
 
 ### 2. Collect Data
 

@@ -6,17 +6,17 @@ import type { NormalizedEntry } from "../schema.js";
 
 const GEMINI_BASE = join(homedir(), ".gemini", "tmp");
 
-function findSessionFiles(): string[] {
+function findSessionFiles(): Array<{ path: string; project: string }> {
   if (!existsSync(GEMINI_BASE)) return [];
 
-  const files: string[] = [];
+  const files: Array<{ path: string; project: string }> = [];
   try {
     for (const projectDir of readdirSync(GEMINI_BASE)) {
       const chatsDir = join(GEMINI_BASE, projectDir, "chats");
       if (!existsSync(chatsDir)) continue;
       for (const file of readdirSync(chatsDir)) {
         if (file.startsWith("session-") && file.endsWith(".json")) {
-          files.push(join(chatsDir, file));
+          files.push({ path: join(chatsDir, file), project: projectDir });
         }
       }
     }
@@ -39,7 +39,7 @@ registerParser({
 
     const entries: NormalizedEntry[] = [];
 
-    for (const file of files) {
+    for (const { path: file, project } of files) {
       try {
         const data = JSON.parse(readFileSync(file, "utf-8"));
         const sessionId = data.sessionId || undefined;
@@ -61,6 +61,7 @@ registerParser({
           entries.push({
             tool: "gemini",
             timestamp: ts,
+            project,
             prompt: text,
             sessionId,
             metadata: msg.model ? { model: msg.model } : undefined,

@@ -12,6 +12,7 @@ import { cleanup } from "./commands/cleanup.js";
 import { doctor } from "./commands/doctor.js";
 import { exportRules } from "./commands/export.js";
 import { install } from "./commands/install.js";
+import { link } from "./commands/link.js";
 import { initMemory } from "./commands/memory.js";
 import { retro } from "./commands/retro.js";
 import { star } from "./commands/star.js";
@@ -460,6 +461,17 @@ program
       await update(options.force ?? false, options.ci ?? false);
     }),
   );
+program
+  .command("link [vendors...]")
+  .description(
+    "Regenerate vendor files (.claude/, .cursor/, etc.) from .agents/ SSOT",
+  )
+  .action(
+    runAction((vendors: string[]) => {
+      link(vendors.length > 0 ? vendors : undefined);
+    }),
+  );
+
 
 addOutputOptions(
   program

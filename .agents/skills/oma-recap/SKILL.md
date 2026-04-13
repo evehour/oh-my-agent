@@ -93,16 +93,18 @@ Save results to `.agents/results/recap/{date}.md` and display simultaneously.
 
 Output in the following markdown format. **Response language follows `language` setting in `.agents/oma-config.yaml`.**
 
+#### Daily format (1d or specific date)
+
 ```markdown
-## {date/period} Work Summary
+## {date} Recap
 
 > **TL;DR**
 > - {What I accomplished 1 — project name + outcome}
 > - {What I accomplished 2}
 > - {What I accomplished 3}
 
-### Daily Overview
-2-3 sentence summary of the entire day's flow. Written from "I did X" perspective.
+### Overview
+2-3 sentence summary of the day. Written from "I did X" perspective.
 Focus on outcomes and progress, not tool ratios or technical details.
 
 ### {Theme 1} (AM 09:36~11:30)
@@ -122,6 +124,45 @@ Focus on outcomes and progress, not tool ratios or technical details.
 - Notable tool-switching patterns
 ```
 
+#### Multi-day format (3d, 7d, 2w, etc.)
+
+For multi-day windows, use a **date-driven structure** that preserves daily granularity.
+Large projects (50+ prompts) must be broken down by date, not collapsed into a single theme.
+
+```markdown
+## {start} ~ {end} Recap
+
+> **TL;DR**
+> - {What I accomplished 1 — project name + outcome}
+> - {What I accomplished 2}
+> - {What I accomplished 3}
+
+### Overview
+3-5 sentence summary of the entire period. Key focus shifts, major milestones,
+and overall arc of work. Written from "I did X" perspective.
+
+### {MM/DD Day} — {primary focus}
+- {project}: what was done (2-3 bullets per project)
+- {project}: what was done
+Highlight key decisions or milestones for the day.
+
+### {MM/DD Day} — {primary focus}
+- {project}: what was done
+
+### Miscellaneous
+- Days or tasks too small for their own section
+
+### Tool Usage Patterns
+- Tool usage ratios and primary purposes
+- Notable tool-switching patterns or shifts across the period
+```
+
+**Multi-day grouping rules:**
+- Each day with 10+ prompts gets its own section
+- Days with <10 prompts are grouped into "Miscellaneous" or merged with adjacent days
+- Within each day section, list projects worked on with 2-3 bullets each
+- If a project spans multiple days, mention it in each day's section (not as a separate multi-day theme)
+
 ### 5. Save Results
 
 Save to `.agents/results/recap/{date}.md`.
@@ -136,10 +177,11 @@ For window ranges, use `{start-date}~{end-date}.md` format.
 ## Core Rules
 
 1. **TL;DR required**: Top 3 lines of "what I accomplished". Project name + outcome. No tool names or technical details.
-2. **Daily Overview**: After TL;DR, describe the flow. Start with "I" as subject.
-3. **Recap first**: Only 15+ minute work gets its own theme. Rest goes to "Miscellaneous".
-4. **2-4 bullets per theme**: Concise essentials only. Don't enumerate every step.
-5. **Themes by content**: Group by actual work, not by tool.
-6. **Time range**: Include time range in theme title as `(AM/PM/Evening HH:MM~HH:MM)`. Criteria — AM: ~12:00, PM: 12:00~18:00, Evening: 18:00~.
+2. **Overview**: After TL;DR, describe the flow. Start with "I" as subject.
+3. **Daily**: themes by time block (15+ min). Rest goes to "Miscellaneous".
+4. **Multi-day**: sections by date, projects listed within each day. Large projects broken down per day, not collapsed.
+5. **2-4 bullets per theme/project**: Concise essentials only. Don't enumerate every step.
+6. **Themes by content**: Group by actual work, not by tool.
+7. **Time range (daily only)**: `(AM/PM/Evening HH:MM~HH:MM)`. AM: ~12:00, PM: 12:00~18:00, Evening: 18:00~.
 8. **Save results**: Write markdown to `.agents/results/recap/`.
 9. **Response language**: Follows `language` setting in `.agents/oma-config.yaml` if configured.
